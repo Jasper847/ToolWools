@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://toolwools.com/tools/pdf-merger/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/favicon.svg">
-  <meta name="theme-color" content="#F4511E">
+  <meta name="theme-color" content="#EF4444">
   <title>PDF Merger — Combine PDF Files Online Free | ToolWools</title>
   <meta name="description" content="Merge multiple PDF files into one document in seconds. Drag to reorder pages, preview before merging, then download. 100% client-side — your files never leave your browser.">
   
@@ -20,7 +21,7 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="PDF Merger — Combine PDF Files Online Free | ToolWools">
-  <meta name="twitter:description" content="Merge multiple PDF files into one document in seconds. Drag to reorder pages, preview before merging, then download. 100">
+  <meta name="twitter:description" content="Merge multiple PDF files into one document in seconds. Drag to reorder pages, preview before merging, then download.">
   <meta name="twitter:image" content="https://toolwools.com/og-image.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,28 +33,77 @@
 
   <script type="application/ld+json">
   {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "PDF Merger — Combine PDF Files Online Free",
-  "description": "Merge multiple PDF files into one document in seconds. Drag to reorder pages, preview before merging, then download. 100% client-side — your files never leave your browser.",
-  "url": "https://toolwools.com/tools/pdf-merger/",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "creator": {
-    "@type": "Organization",
-    "name": "ToolWools",
-    "url": "https://toolwools.com"
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF Merger — Combine PDF Files Online Free",
+    "description": "Merge multiple PDF files into one document in seconds. Drag to reorder pages, preview before merging, then download. 100% client-side — your files never leave your browser.",
+    "url": "https://toolwools.com/tools/pdf-merger/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "ToolWools",
+      "url": "https://toolwools.com"
+    }
   }
-}
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the PDF Merger combine documents?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tool parses multiple document streams in client-side memory using pdf-lib, copy-appends the underlying page nodes sequentially into a brand new PDF catalog, and generates a unified PDF file download."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I reorder PDF files after uploading?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, once your PDF files are loaded, you can drag and drop the list cards to arrange them into your preferred sequence prior to executing the merger."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a limit to the number of PDFs I can merge?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "There are no arbitrary software limits on the number of documents you can combine, though the performance is bound by your local browser tab RAM size. We recommend merging under 30 files at once for speed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does merging lose original link tags or annotations?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, standard copyPage operations preserve internal links, annotations, bookmarks, layouts, and embedded font structures."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it safe to merge confidential documents?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, 100% safe. Everything is processed locally in your web browser memory. No data is sent to external servers, making it completely private and offline-capable."
+        }
+      }
+    ]
+  }
   </script>
 </head>
 <body>
   <a href="#main-content" class="skip-to-content">Skip to content</a>
+  
   <!-- ==================== HEADER ==================== -->
   <header class="navbar" id="navbar">
     <div class="nav-container">
@@ -176,100 +226,344 @@
     </div>
   </header>
 
+  <!-- ==================== MAIN CONTENT ==================== -->
   <main id="main-content" class="tool-page">
     <div class="tool-container">
       <nav class="tool-breadcrumb" aria-label="Breadcrumb">
-        <a href="../../index.html">Home</a><span aria-hidden="true">›</span>
-        <a href="../index.html">Tools</a><span aria-hidden="true">›</span>
+        <a href="../../index.html">Home</a>
+        <span aria-hidden="true"> › </span>
+        <a href="../index.html">Tools</a>
+        <span aria-hidden="true"> › </span>
         <span aria-current="page">PDF Merger</span>
       </nav>
 
       <div class="tool-header">
-        <div class="tool-header-icon tool-icon-red">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="white" stroke-width="2"/><path d="M14 2v6h6" stroke="white" stroke-width="2"/><path d="M9 13h6M12 10v6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <div class="tool-header-icon tool-icon-red" style="display: flex; align-items: center; justify-content: center; color: white;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <path d="M14 2v6h6"/>
+            <path d="M9 13h6M12 10v6"/>
+          </svg>
         </div>
         <div>
-          <div class="tool-badge-category">PDF Tools</div>
-      <h1 class="tool-title">PDF Merger</h1>
-          <p class="tool-subtitle">Combine multiple PDF files into a single document. Drag and drop to reorder, then download. Everything runs in your browser — your files never leave your device.</p>
+          <div class="tool-badge-category" style="background: rgba(239, 68, 68, 0.08); color: var(--color-red); border-color: rgba(239, 68, 68, 0.15);">PDF Tools</div>
+          <h1 class="tool-title">PDF Merger Pro — Combine Documents</h1>
+          <p class="tool-subtitle">Merge multiple PDF files into one clean document. Drag to reorder pages and compile locally inside your browser.</p>
+          <p style="font-size: 13px; color: var(--color-muted); margin-top: 8px; font-weight: 500;">Trusted by administrators, lawyers, and students · 100% offline document merging · Zero server uploads</p>
         </div>
       </div>
 
-      <!-- Privacy badge -->
-      <div style="display:flex;align-items:center;gap:8px;padding:12px 16px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:12px;margin-bottom:24px;font-size:13px;color:var(--color-green);font-weight:600">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        100% Private — Your PDF files are processed locally and never uploaded to any server
+      <!-- Main Workspace -->
+      <div class="tool-workspace" id="tool-workspace">
+        <div class="tool-grid-workspace reveal-up">
+          
+          <!-- Left Panel: Dropzone -->
+          <div class="tool-panel">
+            <div class="tool-panel-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+              </svg>
+              Upload PDF Documents
+            </div>
+
+            <div class="upload-zone-wrapper">
+              <div class="tool-upload-zone" id="upload-zone" role="button" tabindex="0" aria-label="Upload PDF files">
+                <div class="upload-icon-wrapper" style="color: var(--color-red);">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M12 11v6M9 14l3-3 3 3"/>
+                  </svg>
+                </div>
+                <div class="upload-main-text">Drop PDF files here or click to browse</div>
+                <div class="upload-sub-text">Select multiple PDF files · Drag to reorder after upload</div>
+                <input type="file" id="file-input" accept="application/pdf" multiple hidden>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Panel: File List & Compilation -->
+          <div class="tool-panel" id="file-list-section" style="display:none; min-height: 400px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="tool-panel-title" style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid var(--color-border); padding-bottom: 12px; margin-bottom: 16px;">
+                <span style="display:flex; align-items:center; gap:8px;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
+                  </svg>
+                  Files to Merge (<span id="file-count">0</span>)
+                </span>
+                <button id="btn-add-more" class="btn btn-secondary" style="font-size:12px; padding:6px 12px; margin: 0;">+ Add More</button>
+              </div>
+
+              <!-- Reorderable List -->
+              <ul id="file-list" class="file-list" aria-label="PDF files to merge" style="margin: 16px 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px;"></ul>
+
+              <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 20px;">
+                <div class="stat-card">
+                  <span class="stat-value" id="stat-files">0</span>
+                  <span class="stat-label">Files</span>
+                </div>
+                <div class="stat-card">
+                  <span class="stat-value" id="stat-pages">—</span>
+                  <span class="stat-label">Total Pages</span>
+                </div>
+                <div class="stat-card">
+                  <span class="stat-value" id="stat-size">—</span>
+                  <span class="stat-label">Total Size</span>
+                </div>
+              </div>
+
+              <!-- Output Configuration -->
+              <div class="control-group">
+                <label class="control-label" for="output-name">Output Filename</label>
+                <div style="display:flex; gap:8px; align-items:center; margin-top: 8px;">
+                  <input type="text" id="output-name" class="tool-input" value="merged" placeholder="merged" style="flex:1;">
+                  <span style="font-size:14px; font-weight: 600; color: var(--color-muted);">.pdf</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 24px;">
+              <!-- Progress Wrapper -->
+              <div id="progress-wrap" style="display:none; margin-bottom: 16px;">
+                <div class="comp-progress-bg" style="background: var(--color-border); height: 8px; border-radius: var(--radius-full); overflow: hidden; margin-bottom: 8px;">
+                  <div class="comp-progress-fill" id="progress-bar" style="background: var(--color-red); width:0%; height:100%; border-radius: var(--radius-full);"></div>
+                </div>
+                <p id="status-text" style="font-size:13px; color:var(--color-muted); text-align:center; font-weight: 500;"></p>
+              </div>
+
+              <div class="tool-action-btn-row" style="display:flex; gap:12px;">
+                <button id="btn-merge" class="btn btn-primary" style="flex:1;">
+                  Merge &amp; Download PDF
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                </button>
+                <button id="btn-clear" class="btn btn-secondary">Clear All</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
 
-      <!-- Upload Zone -->
-      <div class="upload-zone" id="upload-zone" role="button" tabindex="0" aria-label="Upload PDF files">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style="color:var(--color-muted);margin-bottom:12px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="1.5"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.5"/><path d="M12 11v6M9 14l3-3 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <p style="font-weight:600;color:var(--color-dark);margin-bottom:4px">Drop PDF files here or click to browse</p>
-        <p style="font-size:13px;color:var(--color-muted)">Select multiple PDF files • Drag to reorder after upload</p>
-        <input type="file" id="file-input" accept="application/pdf" multiple hidden>
-      </div>
+      <!-- Rich SEO Content -->
+      <div class="seo-content-rich">
+        
+        <!-- How It Works Section -->
+        <section class="seo-steps-section">
+          <div class="seo-section-title-wrap">
+            <h2 class="seo-section-title">How the PDF Merger Works</h2>
+            <p class="seo-section-subtitle">Merge files locally in three steps</p>
+          </div>
+          <div class="seo-steps-grid">
+            <div class="seo-step-card">
+              <div class="seo-step-num">1</div>
+              <h3 class="seo-step-title">Upload Documents</h3>
+              <p class="seo-step-desc">Drag and drop two or more PDF files into the upload target. The browser initializes their structures locally in memory.</p>
+            </div>
+            <div class="seo-step-card">
+              <div class="seo-step-num">2</div>
+              <h3 class="seo-step-title">Arrange Page Order</h3>
+              <p class="seo-step-desc">Drag the uploaded file list nodes up or down to set the compilation order. Name your merged file output.</p>
+            </div>
+            <div class="seo-step-card">
+              <div class="seo-step-num">3</div>
+              <h3 class="seo-step-title">Combine &amp; Download</h3>
+              <p class="seo-step-desc">Click "Merge &amp; Download PDF" to run the node copier. The unified document downloads instantly to your device.</p>
+            </div>
+          </div>
+        </section>
 
-      <!-- File List -->
-      <div id="file-list-section" style="display:none">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-          <p style="font-size:14px;font-weight:600;color:var(--color-dark)">Files to merge (<span id="file-count">0</span>) — <span style="font-weight:400;color:var(--color-muted)">Drag to reorder</span></p>
-          <button id="btn-add-more" class="btn btn-secondary" style="font-size:13px;padding:6px 14px">+ Add More</button>
-        </div>
-        <ul id="file-list" class="file-list" aria-label="PDF files to merge"></ul>
-
-        <div class="stats-grid" style="grid-template-columns:repeat(3,1fr)">
-          <div class="stat-card"><span class="stat-value" id="stat-files">0</span><span class="stat-label">Files</span></div>
-          <div class="stat-card"><span class="stat-value" id="stat-pages">—</span><span class="stat-label">Total Pages</span></div>
-          <div class="stat-card"><span class="stat-value" id="stat-size">—</span><span class="stat-label">Total Size</span></div>
-        </div>
-
-        <!-- Output filename -->
-        <label class="tool-label" for="output-name" style="margin-top:16px">Output Filename</label>
-        <div style="display:flex;gap:8px;align-items:center;margin-bottom:16px">
-          <input type="text" id="output-name" class="tool-input" value="merged" placeholder="merged" style="flex:1">
-          <span style="font-size:14px;color:var(--color-muted)">.pdf</span>
-        </div>
-
-        <div class="tool-bottom-actions">
-          <button id="btn-merge" class="btn btn-primary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-            Merge &amp; Download PDF
-          </button>
-          <button id="btn-clear" class="btn btn-secondary">Clear All</button>
-        </div>
-
-        <!-- Progress -->
-        <div id="progress-wrap" style="display:none">
-          <div class="tool-progress"><div class="tool-progress-bar" id="progress-bar" style="width:0%"></div></div>
-          <p id="status-text" style="font-size:13px;color:var(--color-muted);text-align:center"></p>
-        </div>
-      </div>
-
-      <div class="tool-info-grid">
-        <div class="tool-info-card">
-          <h3>How to merge PDFs</h3>
+        <!-- Technical Deep-Dive -->
+        <section class="seo-technical-section">
+          <h2>The Science of Page-Tree Nodes &amp; PDF Catalog Structures</h2>
+          <p>Every PDF file is organized as an acyclic graph of dictionary objects connected by cross-reference tables (Xrefs). At the root of this structure sits the Document Catalog, which points to the Page Tree. The Page Tree represents all visible canvas surfaces as parent-child nodes:</p>
+          
           <ul>
-            <li>Upload 2 or more PDF files</li>
-            <li>Drag and drop to set the order</li>
-            <li>Click "Merge &amp; Download PDF"</li>
-            <li>Your merged PDF downloads automatically</li>
+            <li><strong>Page Tree Balance:</strong> Page nodes are stored in balanced B-Tree arrays. Standard PDF readers require page trees to remain balanced to ensure search indexing and page scrolling run efficiently.</li>
+            <li><strong>Direct Copy-Appending:</strong> In contrast to raw byte concatenation (which corrupts file headers), the merging loop copy-maps the page resources (fonts, image dictionaries) into the new catalog, preventing name collisions.</li>
+            <li><strong>Xref Rebuilding:</strong> Compiling documents requires rebuilding the byte offset mappings in the final binary catalog, which links all object IDs together correctly.</li>
           </ul>
+
+          <div class="seo-formula-box">
+            <h4>Internal PDF Merging Sequence</h4>
+            <p>Merging PDF files involves a copy loop that takes pages from the source documents and appends them to the target document tree:</p>
+            <code>const pages = await mergedDoc.copyPages(sourceDoc, sourceDoc.getPageIndices());</code>
+            <p style="margin-top:8px;">Then, each page is added to the merged catalog:</p>
+            <code>pages.forEach(page => mergedDoc.addPage(page));</code>
+          </div>
+        </section>
+
+        <!-- Tip Box -->
+        <div class="tool-tip-box">
+          <div class="tool-tip-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9.663 17h4.673M12 3v1m6.364.364l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <div class="tool-tip-content">
+            <strong>Pro Tip:</strong> Need to arrange individual pages? Split a large PDF into separate pages using our <strong>PDF Splitter</strong> tool first, select only the ones you need, and drop them into the PDF Merger to compile a customized report.
+          </div>
         </div>
-        <div class="tool-info-card">
-          <h3>Privacy &amp; Security</h3>
-          <ul>
-            <li>All processing happens in your browser</li>
-            <li>No files are uploaded to any server</li>
-            <li>Works completely offline after page load</li>
-            <li>Your files are never stored or shared</li>
-          </ul>
-        </div>
+
+        <!-- Reference Table -->
+        <section class="seo-table-section">
+          <div class="tool-panel-title">
+            <div style="display:flex;align-items:center;gap:8px">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM21 9H3M21 15H3M12 3v18"></path></svg>
+              <h2>Feature Comparison: Local PDF Merger vs. Cloud Editors</h2>
+            </div>
+          </div>
+          <div class="seo-table-container">
+            <table class="seo-table">
+              <thead>
+                <tr>
+                  <th>Comparison Attribute</th>
+                  <th>Local Browser Merger (ToolWools)</th>
+                  <th>Cloud-Based PDF Editors</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Data Security</strong></td>
+                  <td>100% Private (No files uploaded to servers)</td>
+                  <td>Vulnerable (Files are uploaded to remote clouds)</td>
+                </tr>
+                <tr>
+                  <td><strong>Offline Capability</strong></td>
+                  <td>Yes (Works without an active internet connection)</td>
+                  <td>No (Fails without server connectivity)</td>
+                </tr>
+                <tr>
+                  <td><strong>Processing Speed</strong></td>
+                  <td>Instant (Determined by local hardware RAM)</td>
+                  <td>Variable (Bound by internet upload/download queues)</td>
+                </tr>
+                <tr>
+                  <td><strong>Annotation Protection</strong></td>
+                  <td>Preserved (Direct catalog copying)</td>
+                  <td>Risk of Loss (Compression algorithms can strip links)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="seo-faq-section">
+          <div class="seo-section-title-wrap">
+            <h2 class="seo-section-title">Frequently Asked Questions</h2>
+            <p class="seo-section-subtitle">Answers to common PDF merging questions</p>
+          </div>
+          <div class="tool-faq-list">
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">How does the PDF Merger combine documents?</summary>
+              <div class="tool-faq-a">
+                <p>The merger uses client-side JavaScript. It parses the object arrays of each uploaded file, copies the page dictionaries sequentially into a new document using <code>pdf-lib</code>, and generates the resulting byte buffer locally in your browser memory.</p>
+              </div>
+            </details>
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">Can I reorder PDF files after uploading?</summary>
+              <div class="tool-faq-a">
+                <p>Yes. After drag-uploading files, a card list appears in the workspace. You can drag and drop items to adjust their order. The merger compiles pages from top to bottom.</p>
+              </div>
+            </details>
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">Is there a limit to the number of PDFs I can merge?</summary>
+              <div class="tool-faq-a">
+                <p>There is no fixed limit. You can combine dozens of files. However, because processing happens entirely in browser memory, we recommend merging in batches of under 30 files to ensure smooth performance.</p>
+              </div>
+            </details>
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">Does merging lose original link tags or annotations?</summary>
+              <div class="tool-faq-a">
+                <p>No. Standard document merging preserves hyperlinks, notes, text formatting, form fields, and embedded font resources.</p>
+              </div>
+            </details>
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">Is it safe to merge confidential documents?</summary>
+              <div class="tool-faq-a">
+                <p>Yes, it is completely secure. Your files never leave your device. The code runs entirely locally, making the tool safe for merging contracts, transcripts, financial statements, and medical forms.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- SEO Articles -->
+        <section class="seo-text-section">
+          <h2>Understanding PDF Internal Catalogues: How Page Trees and Node Copiers Work</h2>
+          <p>Unlike raw text files, PDF documents are binary structures organized as trees. At the base of this tree is the pages catalog. Merging multiple documents requires reading the separate catalogs, mapping their coordinates, and rebuilding a unified page tree. Using JavaScript tools, we can securely copy page references, update the document's cross-reference table, and export a clean PDF without corrupting internal objects.</p>
+        </section>
+
+        <section class="seo-text-section">
+          <h2>Workflow Automation: Organizing Multi-Document Reports Securely in the Browser</h2>
+          <p>As remote operations expand, organizing and merging digital paperwork efficiently is a common task. Whether you are assembling research reports or compiling invoices, uploading sensitive company documents to external servers poses a security risk. Local browser-side PDF editing solves this issue by combining records in local memory, maintaining confidentiality and workflow efficiency.</p>
+        </section>
+
       </div>
+
+      <!-- Related Tools Section -->
+      <section class="related-tools">
+        <h2 class="related-tools-heading">Related Tools</h2>
+        <div class="related-tools-grid">
+          <a href="../pdf-compressor/index.html" class="related-tool-card">
+            <div class="related-tool-card-top">
+              <div class="related-tool-icon-wrapper" style="background: var(--color-red); color: white; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="9" y1="9" x2="15" y2="15"/>
+                  <line x1="15" y1="9" x2="9" y2="15"/>
+                </svg>
+              </div>
+              <span class="related-tool-category-badge category-text-badge" style="background: rgba(239, 68, 68, 0.06); color: var(--color-red); border-color: rgba(239, 68, 68, 0.12);">PDF Tools</span>
+            </div>
+            <div class="related-tool-card-body">
+              <h3 class="related-tool-name">PDF Compressor</h3>
+              <p class="related-tool-desc">Reduce the storage footprint of PDF documents using optimized content stream deflation.</p>
+            </div>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+          <a href="../pdf-splitter/index.html" class="related-tool-card">
+            <div class="related-tool-card-top">
+              <div class="related-tool-icon-wrapper" style="background: var(--color-red); color: white; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18V9M9 15l3 3 3-3"/>
+                </svg>
+              </div>
+              <span class="related-tool-category-badge category-text-badge" style="background: rgba(239, 68, 68, 0.06); color: var(--color-red); border-color: rgba(239, 68, 68, 0.12);">PDF Tools</span>
+            </div>
+            <div class="related-tool-card-body">
+              <h3 class="related-tool-name">PDF Splitter</h3>
+              <p class="related-tool-desc">Split pages from a PDF document or save individual pages as separate PDF files locally.</p>
+            </div>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+          <a href="../jpg-to-pdf/index.html" class="related-tool-card">
+            <div class="related-tool-card-top">
+              <div class="related-tool-icon-wrapper" style="background: var(--color-red); color: white; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 12v6M9 15l3 3 3-3"/>
+                </svg>
+              </div>
+              <span class="related-tool-category-badge category-text-badge" style="background: rgba(239, 68, 68, 0.06); color: var(--color-red); border-color: rgba(239, 68, 68, 0.12);">PDF Tools</span>
+            </div>
+            <div class="related-tool-card-body">
+              <h3 class="related-tool-name">JPG to PDF</h3>
+              <p class="related-tool-desc">Convert JPEGs, PNGs, and WebPs into high-quality, formatted PDF assets in seconds.</p>
+            </div>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Closing CTA Banner -->
+      <section class="seo-cta-banner">
+        <h2>Merge and Organize Your PDFs Instantly</h2>
+        <p>Upload your files above, drag to sort the page order, and download your compiled PDF document securely.</p>
+        <a href="#tool-workspace" class="seo-cta-btn">↑ Back to PDF Merger Workspace</a>
+      </section>
+
     </div>
-  
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid"><a href="../pdf-compressor/index.html" class="related-tool-card"><strong class="related-tool-name">PDF Compressor</strong><span class="related-tool-link">Try this tool</span></a><a href="../jpg-to-pdf/index.html" class="related-tool-card"><strong class="related-tool-name">JPG to PDF Converter</strong><span class="related-tool-link">Try this tool</span></a><a href="../pdf-to-jpg/index.html" class="related-tool-card"><strong class="related-tool-name">PDF to JPG</strong><span class="related-tool-link">Try this tool</span></a></div></section>
   </main>
 
+  <!-- ==================== FOOTER ==================== -->
   <footer class="footer" id="footer">
     <div class="footer-container">
       <div class="footer-grid">

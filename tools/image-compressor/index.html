@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://toolwools.com/tools/image-compressor/">
-
-  <!-- Favicons & theme -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/favicon.svg">
   <meta name="theme-color" content="#F4511E">
@@ -40,24 +38,72 @@
 
   <script type="application/ld+json">
   {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Free Online Image Compressor",
-  "description": "Reduce image file sizes by up to 80% while keeping perfect quality. Compress JPG, PNG, and WEBP client-side directly in your browser. Fast, secure, and free.",
-  "url": "https://toolwools.com/tools/image-compressor/",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "creator": {
-    "@type": "Organization",
-    "name": "ToolWools",
-    "url": "https://toolwools.com"
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Free Online Image Compressor",
+    "description": "Reduce image file sizes by up to 80% while keeping perfect quality. Compress JPG, PNG, and WEBP client-side directly in your browser. Fast, secure, and free.",
+    "url": "https://toolwools.com/tools/image-compressor/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "ToolWools",
+      "url": "https://toolwools.com"
+    }
   }
-}
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does browser-side image compression work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "When you select an image, it is read directly into your browser using standard HTML5 APIs. We draw the image onto an HTML5 Canvas and export it using high-performance pixel scaling at your specified compression density. The compression runs entirely on your GPU and CPU locally."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my images sent to any server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Your privacy is 100% guaranteed. All processing happens right on your device. Unlike traditional web converters, we do not upload, scan, or store your pictures. It is secure, private, and works even when you are offline!"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will I lose quality when compressing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our compressor uses advanced lossy algorithms for JPEG and WEBP formats, and lossless compression mapping for PNG. By optimizing the color channels and removing visual redundancy invisible to the human eye, we reduce the file size dramatically while maintaining a razor-sharp output."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a limit on image dimensions or quantity?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "There are no arbitrary limits set by us. However, browser hardware limitations apply (usually up to 16,384 x 16,384 pixels on modern computers). You can upload up to 50 files in a single batch, and images up to 50MB in file size can be optimized smoothly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which output file formats are supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can choose to preserve the original format of your image, or explicitly convert and compress them into JPEG, PNG, or WebP formats dynamically."
+        }
+      }
+    ]
+  }
   </script>
 </head>
 <body>
@@ -185,8 +231,8 @@
     </div>
   </header>
 
-  <!-- ==================== MAIN WORKSPACE ==================== -->
-  <main class="tool-container" id="main-content">
+  <main class="tool-page" id="main-content">
+    <div class="tool-container">
       <nav class="tool-breadcrumb" aria-label="Breadcrumb">
         <a href="../../index.html">Home</a>
         <span aria-hidden="true"> › </span>
@@ -195,282 +241,464 @@
         <span aria-current="page">Image Compressor</span>
       </nav>
 
-
-    <!-- Header Block -->
-        <div class="tool-header reveal-up">
-      <div class="tool-header-icon tool-icon-dark">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M6 6L2 10L6 14M14 6L18 10L14 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div>
-        <div class="tool-badge-category"></div>
-        <h1 class="tool-title"></h1>
-        <p class="tool-subtitle"></p>
-      </div>
-    </div>
-      <h1 class="tool-title">Image Compressor</h1>
-      <p class="tool-description">
-        Reduce image file sizes by up to 80% instantly. Clean client-side compression with no quality loss. Your files never leave your device.
-      </p>
-    </div>
-
-    <!-- Workspace Grid -->
-    <div class="tool-grid-workspace reveal-up">
-      
-      <!-- Left Panel: Upload and Options -->
-      <div class="tool-panel">
-        <div class="tool-panel-title">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+      <div class="tool-header">
+        <div class="tool-header-icon tool-icon-orange" style="display: flex; align-items: center; justify-content: center; color: white;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
           </svg>
-          Configure Compression
         </div>
+        <div>
+          <div class="tool-badge-category" style="background: rgba(244, 81, 30, 0.08); color: #F4511E; border-color: rgba(244, 81, 30, 0.15);">Image Tools</div>
+          <h1 class="tool-title">Image Compressor Pro — Bulk Resize & Optimize</h1>
+          <p class="tool-subtitle">Reduce file sizes by up to 80% with no visual loss. Compress JPG, PNG, and WebP images locally inside your browser sandbox.</p>
+          <p style="font-size:13px;color:var(--color-muted);margin-top:8px;font-weight:500">Trusted by developers and content managers · 100% browser-side compression · Zero file uploads</p>
+        </div>
+      </div>
 
-        <!-- Upload Dropzone -->
-        <div class="upload-zone-wrapper">
-          <div class="tool-upload-zone" id="uploadZone">
-            <div class="upload-icon-wrapper">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Main Workspace -->
+      <div class="tool-workspace" id="tool-workspace">
+        <div class="tool-grid-workspace reveal-up">
+          
+          <!-- Left Panel: Upload and Options -->
+          <div class="tool-panel">
+            <div class="tool-panel-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+              </svg>
+              Configure Compression
+            </div>
+
+            <!-- Upload Dropzone -->
+            <div class="upload-zone-wrapper">
+              <div class="tool-upload-zone" id="uploadZone">
+                <div class="upload-icon-wrapper">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <polyline points="21 15 16 10 5 21"/>
+                  </svg>
+                </div>
+                <div class="upload-main-text">Drag & drop your image here</div>
+                <div class="upload-sub-text">or click to browse · Supports JPG, PNG, WEBP up to 50MB</div>
+                <input type="file" id="fileInput" class="file-input-hidden" accept="image/png, image/jpeg, image/webp" multiple>
+              </div>
+            </div>
+
+            <!-- Uploaded File Display Row -->
+            <div class="uploaded-file-row" id="fileRow" style="display: none;">
+              <div class="file-meta-info">
+                <div class="file-icon-badge">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <path d="M20.4 20.4L15 15L9 21"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="file-name-text" id="fileName">image-file.jpg</div>
+                  <div class="file-size-badge" id="fileSize">1.2 MB</div>
+                </div>
+              </div>
+              <button class="btn-remove-file" id="btnReset" aria-label="Remove image">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Parameters Panel (Disabled until file loaded) -->
+            <div style="margin-top: 32px; opacity: 0.5; pointer-events: none;" id="controlsWrapper">
+              
+              <!-- Quality Slider -->
+              <div class="control-group">
+                <div class="control-label-row">
+                  <label for="qualitySlider" class="control-label">Compression Quality</label>
+                  <span class="control-label-value" id="qualityVal">80%</span>
+                </div>
+                <input type="range" id="qualitySlider" class="slider-custom" min="10" max="100" value="80">
+              </div>
+
+              <!-- Format Selection -->
+              <div class="control-group">
+                <label class="control-label" style="display:block; margin-bottom: 12px;">Output Format</label>
+                <div class="option-cards-grid">
+                  
+                  <label class="option-card-radio">
+                    <input type="radio" name="formatOption" value="original" checked>
+                    <div class="option-card-content">
+                      <span class="option-card-title">Match Original</span>
+                    </div>
+                  </label>
+
+                  <label class="option-card-radio">
+                    <input type="radio" name="formatOption" value="image/jpeg">
+                    <div class="option-card-content">
+                      <span class="option-card-title">JPEG</span>
+                    </div>
+                  </label>
+
+                  <label class="option-card-radio">
+                    <input type="radio" name="formatOption" value="image/png">
+                    <div class="option-card-content">
+                      <span class="option-card-title">PNG</span>
+                    </div>
+                  </label>
+
+                  <label class="option-card-radio">
+                    <input type="radio" name="formatOption" value="image/webp">
+                    <div class="option-card-content">
+                      <span class="option-card-title">WEBP</span>
+                    </div>
+                  </label>
+                  
+                </div>
+              </div>
+
+              <!-- Force Compress Button -->
+              <div class="tool-action-btn-row">
+                <button class="btn btn-primary" id="btnCompress">
+                  Compress Image
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M12 8L8 4M8 4L4 8M8 4V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Right Panel: Live Results / Preview -->
+          <div class="tool-panel" id="resultsPanel" style="min-height: 480px; display: flex; flex-direction: column; justify-content: center;">
+            
+            <!-- Empty State Placeholder -->
+            <div id="resultsPlaceholder" style="text-align: center; color: var(--color-muted); padding: 48px 12px;">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-muted-light); margin-bottom: 20px;">
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
                 <circle cx="8.5" cy="8.5" r="1.5"/>
                 <polyline points="21 15 16 10 5 21"/>
               </svg>
+              <h3 style="font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--color-dark); margin-bottom: 8px;">No image compressed yet</h3>
+              <p style="font-size: 14px; max-width: 320px; margin: 0 auto; line-height: 1.5;">Upload a JPG, PNG, or WEBP image and configure settings to view live compressed details.</p>
             </div>
-            <div class="upload-main-text">Drag & drop your image here</div>
-            <div class="upload-sub-text">or click to browse · Supports JPG, PNG, WEBP up to 50MB</div>
-            <input type="file" id="fileInput" class="file-input-hidden" accept="image/png, image/jpeg, image/webp" multiple>
-          </div>
-        </div>
 
-        <!-- Uploaded File Display Row -->
-        <div class="uploaded-file-row" id="fileRow" style="display: none;">
-          <div class="file-meta-info">
-            <div class="file-icon-badge">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2"/>
-                <circle cx="8.5" cy="8.5" r="1.5"/>
-                <path d="M20.4 20.4L15 15L9 21"/>
-              </svg>
-            </div>
-            <div>
-              <div class="file-name-text" id="fileName">image-file.jpg</div>
-              <div class="file-size-badge" id="fileSize">1.2 MB</div>
-            </div>
-          </div>
-          <button class="btn-remove-file" id="btnReset" aria-label="Remove image">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"/>
-              <line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
-          </button>
-        </div>
-
-        <!-- Parameters Panel (Disabled until file loaded) -->
-        <div style="margin-top: 32px; opacity: 0.5; pointer-events: none;" id="controlsWrapper">
-          
-          <!-- Quality Slider -->
-          <div class="control-group">
-            <div class="control-label-row">
-              <label for="qualitySlider" class="control-label">Compression Quality</label>
-              <span class="control-label-value" id="qualityVal">80%</span>
-            </div>
-            <input type="range" id="qualitySlider" class="slider-custom" min="10" max="100" value="80">
-          </div>
-
-          <!-- Format Selection -->
-          <div class="control-group">
-            <label class="control-label" style="display:block; margin-bottom: 12px;">Output Format</label>
-            <div class="option-cards-grid">
-              
-              <label class="option-card-radio">
-                <input type="radio" name="formatOption" value="original" checked>
-                <div class="option-card-content">
-                  <span class="option-card-title">Match Original</span>
-                </div>
-              </label>
-
-              <label class="option-card-radio">
-                <input type="radio" name="formatOption" value="image/jpeg">
-                <div class="option-card-content">
-                  <span class="option-card-title">JPEG</span>
-                </div>
-              </label>
-
-              <label class="option-card-radio">
-                <input type="radio" name="formatOption" value="image/png">
-                <div class="option-card-content">
-                  <span class="option-card-title">PNG</span>
-                </div>
-              </label>
-
-              <label class="option-card-radio">
-                <input type="radio" name="formatOption" value="image/webp">
-                <div class="option-card-content">
-                  <span class="option-card-title">WEBP</span>
-                </div>
-              </label>
-              
-            </div>
-          </div>
-
-          <!-- Force Compress Button -->
-          <div class="tool-action-btn-row">
-            <button class="btn btn-primary" id="btnCompress">
-              Compress Image
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M12 8L8 4M8 4L4 8M8 4V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- Right Panel: Live Results / Preview -->
-      <div class="tool-panel" id="resultsPanel" style="min-height: 480px; display: flex; flex-direction: column; justify-content: center;">
-        
-        <!-- Empty State Placeholder -->
-        <div id="resultsPlaceholder" style="text-align: center; color: var(--color-muted); padding: 48px 12px;">
-          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-muted-light); margin-bottom: 20px;">
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <polyline points="21 15 16 10 5 21"/>
-          </svg>
-          <h3 style="font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--color-dark); margin-bottom: 8px;">No image compressed yet</h3>
-          <p style="font-size: 14px; max-width: 320px; margin: 0 auto; line-height: 1.5;">Upload a JPG, PNG, or WEBP image and configure settings to view live compressed details.</p>
-        </div>
-
-        <!-- Spinner loader -->
-        <div class="processing-overlay" id="loadingOverlay">
-          <div class="spinner-premium"></div>
-          <div class="processing-text">Optimizing image pixels...</div>
-          <div class="progress-bar-wrapper" id="miniProgressWrapper">
-            <div class="progress-bar-fill" id="miniProgressFill"></div>
-          </div>
-        </div>
-
-        <!-- Live Content Dashboard (hidden initially) -->
-        <div id="resultsContent" style="display: none; width: 100%;">
-          <div class="tool-panel-title" style="margin-bottom: 16px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-            </svg>
-            Optimization Results
-          </div>
-
-          <!-- Side-by-Side Compare Slider Component -->
-          <div class="compare-component-wrapper" id="compareWrapper" style="display: block;">
-            <div class="compare-title-row">
-              <span class="control-label" style="font-size: 13px;">Drag divider to inspect quality</span>
-              <div class="compare-badge-container">
-                <span class="compare-badge compare-badge-original">Before</span>
-                <span class="compare-badge compare-badge-compressed">After</span>
+            <!-- Spinner loader -->
+            <div class="processing-overlay" id="loadingOverlay">
+              <div class="spinner-premium"></div>
+              <div class="processing-text">Optimizing image pixels...</div>
+              <div class="progress-bar-wrapper" id="miniProgressWrapper">
+                <div class="progress-bar-fill" id="miniProgressFill"></div>
               </div>
             </div>
-            
-            <div class="compare-slider-container" id="imageCompare">
-              <img src="" alt="Original Image" class="compare-img-original" id="compareOriginal">
-              <img src="" alt="Compressed Image" class="compare-img-compressed" id="compareCompressed">
-              <div class="compare-img-label label-original">Original</div>
-              <div class="compare-img-label label-compressed">Compressed</div>
-              <div class="compare-slider-bar" id="compareSlider">
-                <div class="compare-slider-handle">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polyline points="15 18 9 12 15 6"/>
-                  </svg>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polyline points="9 18 15 12 9 6"/>
-                  </svg>
+
+            <!-- Live Content Dashboard (hidden initially) -->
+            <div id="resultsContent" style="display: none; width: 100%;">
+              <div class="tool-panel-title" style="margin-bottom: 16px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+                Optimization Results
+              </div>
+
+              <!-- Side-by-Side Compare Slider Component -->
+              <div class="compare-component-wrapper" id="compareWrapper" style="display: block;">
+                <div class="compare-title-row">
+                  <span class="control-label" style="font-size: 13px;">Drag divider to inspect quality</span>
+                  <div class="compare-badge-container">
+                    <span class="compare-badge compare-badge-original">Before</span>
+                    <span class="compare-badge compare-badge-compressed">After</span>
+                  </div>
+                </div>
+                
+                <div class="compare-slider-container" id="imageCompare">
+                  <img src="" alt="Original Image" class="compare-img-original" id="compareOriginal">
+                  <img src="" alt="Compressed Image" class="compare-img-compressed" id="compareCompressed">
+                  <div class="compare-img-label label-original">Original</div>
+                  <div class="compare-img-label label-compressed">Compressed</div>
+                  <div class="compare-slider-bar" id="compareSlider">
+                    <div class="compare-slider-handle">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="15 18 9 12 15 6"/>
+                      </svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="9 18 15 12 9 6"/>
+                      </svg>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
 
-          <!-- Metrics Stats Row -->
-          <div class="results-metrics-grid">
-            <div class="metric-card-premium">
-              <span class="metric-card-label">Original Size</span>
-              <span class="metric-card-value" id="valOrigSize">1.2 MB</span>
-              <span class="metric-card-sub" id="valOrigDim">1920 x 1080px</span>
-            </div>
-            <div class="metric-card-premium">
-              <span class="metric-card-label">New Size</span>
-              <span class="metric-card-value" id="valNewSize">340 KB</span>
-              <span class="metric-card-sub" id="valNewDim">1920 x 1080px</span>
-            </div>
-            <div class="metric-card-premium">
-              <span class="metric-card-label">Savings</span>
-              <span class="metric-card-value text-success-green" id="valSavingsPercent">72%</span>
-              <span class="metric-card-sub" id="valSavingsBytes">860 KB saved</span>
-            </div>
-          </div>
+              <!-- Metrics Stats Row -->
+              <div class="results-metrics-grid">
+                <div class="metric-card-premium">
+                  <span class="metric-card-label">Original Size</span>
+                  <span class="metric-card-value" id="valOrigSize">1.2 MB</span>
+                  <span class="metric-card-sub" id="valOrigDim">1920 x 1080px</span>
+                </div>
+                <div class="metric-card-premium">
+                  <span class="metric-card-label">New Size</span>
+                  <span class="metric-card-value" id="valNewSize">340 KB</span>
+                  <span class="metric-card-sub" id="valNewDim">1920 x 1080px</span>
+                </div>
+                <div class="metric-card-premium">
+                  <span class="metric-card-label">Savings</span>
+                  <span class="metric-card-value text-success-green" id="valSavingsPercent">72%</span>
+                  <span class="metric-card-sub" id="valSavingsBytes">860 KB saved</span>
+                </div>
+              </div>
 
-          <!-- Download Action Panel -->
-          <div class="results-action-row">
-            <button class="btn btn-secondary" id="btnDownloadReset">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M23 4v6h-6M1 20v-6h6"/>
-                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
-              </svg>
-              Clear
-            </button>
-            <a href="#" class="btn btn-primary" id="btnDownload" download="compressed_image.jpg">
-              Download File
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-              </svg>
-            </a>
+              <!-- Download Action Panel -->
+              <div class="results-action-row">
+                <button class="btn btn-secondary" id="btnDownloadReset">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M23 4v6h-6M1 20v-6h6"/>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                  </svg>
+                  Clear
+                </button>
+                <a href="#" class="btn btn-primary" id="btnDownload" download="compressed_image.jpg">
+                  Download File
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                  </svg>
+                </a>
+              </div>
+
+            </div>
+
           </div>
 
         </div>
-
       </div>
 
+      <!-- FAQ Section -->
+      <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <h2>Frequently Asked Questions</h2>
+          </div>
+        </div>
+        <div class="tool-faq-list">
+          <details class="tool-faq-item" open>
+            <summary class="tool-faq-q">How does browser-side image compression work?</summary>
+            <div class="tool-faq-a">
+              <p>When you select an image, it is read directly into your browser using standard HTML5 APIs. We draw the image onto an HTML5 Canvas and export it using high-performance pixel scaling at your specified compression density. The compression runs entirely on your GPU and CPU locally.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Are my images sent to any server?</summary>
+            <div class="tool-faq-a">
+              <p>No. Your privacy is 100% guaranteed. All processing happens right on your device. Unlike traditional web converters, we do not upload, scan, or store your pictures. It is secure, private, and works even when you are offline!</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Will I lose quality when compressing?</summary>
+            <div class="tool-faq-a">
+              <p>Our compressor uses advanced lossy algorithms for JPEG and WEBP formats, and lossless compression mapping for PNG. By optimizing the color channels and removing visual redundancy invisible to the human eye, we reduce the file size dramatically while maintaining a razor-sharp output.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Is there a limit on image dimensions or quantity?</summary>
+            <div class="tool-faq-a">
+              <p>There are no arbitrary limits set by us. However, browser hardware limitations apply (usually up to 16,384 x 16,384 pixels on modern computers). You can upload up to 50 files in a single batch, and images up to 50MB in file size can be optimized smoothly.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Which output file formats are supported?</summary>
+            <div class="tool-faq-a">
+              <p>You can choose to preserve the original format of your image, or explicitly convert and compress them into JPEG, PNG, or WebP formats dynamically.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            <h2>How the Image Compressor Works</h2>
+          </div>
+        </div>
+        <p>Our online Image Compressor provides instant file size reduction. Here is how to compress your images step-by-step:</p>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">STEP 1</div>
+            <h3>Upload Images</h3>
+            <p>Drag and drop up to 50 JPG, PNG, or WebP files directly into the upload dropzone, or click to browse files.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">STEP 2</div>
+            <h3>Configure Quality</h3>
+            <p>Adjust the compression quality percentage slider and choose your target output format (JPEG, PNG, WebP, or original format).</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">STEP 3</div>
+            <h3>Inspect and Download</h3>
+            <p>Drag the side-by-side compare slider to verify the output quality, review the size savings, and download your optimized files.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Science & Technical Copy -->
+      <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M3 20h9M12 4v16"></path></svg>
+            <h2>The Science Behind Browser-Side Image Compression</h2>
+          </div>
+        </div>
+        <div class="seo-content-rich">
+          <h3>Lossy vs. Lossless Compression Algorithms</h3>
+          <p>Reducing image file sizes requires balancing pixel detail against mathematical storage footprint. Depending on the format, we leverage different compression techniques:</p>
+          <ul>
+            <li><strong>Lossy Compression (JPEG & WebP):</strong> Eliminates redundant high-frequency visual data by mapping color changes in blocks (e.g. discrete cosine transform). Since the human eye is less sensitive to fine color adjustments than brightness changes, this yields up to 80% compression with negligible visual difference.</li>
+            <li><strong>Lossless Compression (PNG):</strong> Re-encodes identical sequences of pixels using dictionary search strategies (like DEFLATE). This preserves 100% of the original graphic details and alpha transparencies, but results in larger file sizes.</li>
+          </ul>
+
+          <h3>HTML5 Canvas Pixel Manipulation</h3>
+          <p>Rather than sending your images to remote servers for optimization, our tool manipulates pixel ratios on your device. We draw the imported file to an in-memory canvas element, compute the width and height ratios, and then call:</p>
+          <div class="seo-formula-box">
+            canvas.toBlob(callback, mimeType, qualityFactor)
+          </div>
+          <p>The browser engine compiles the canvas bitmap array into compressed image file bytes. This client-side approach ensures your photos are processed with zero latency, offline compatibility, and complete privacy.</p>
+        </div>
+      </section>
+
+      <!-- Tip Box -->
+      <div class="tool-tip-box" style="margin-top:24px">
+        <div class="tool-tip-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+        </div>
+        <div class="tool-tip-content">
+          <strong>Optimization Tip:</strong> Converting large PNG screenshots and illustrations to **WebP** before uploading to your website can reduce image loading times by over 70%, boosting your Core Web Vitals and SEO search ranks.
+        </div>
+      </div>
+
+      <!-- Reference Table -->
+      <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3zM21 9H3M21 15H3M12 3v18"></path></svg>
+            <h2>Image Format Compression Reference Table</h2>
+          </div>
+        </div>
+        <div class="seo-table-container">
+          <table class="seo-table">
+            <thead>
+              <tr>
+                <th>Image Format</th>
+                <th>Compression Type</th>
+                <th>Avg. Size Reduction</th>
+                <th>Transparent Alpha Channel</th>
+                <th>Ideal Use Case</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>WebP</strong></td>
+                <td>Lossy or Lossless</td>
+                <td>60% – 85%</td>
+                <td>✅ Yes</td>
+                <td>Modern web designs, responsive layouts, high-performance blogs</td>
+              </tr>
+              <tr>
+                <td><strong>JPEG</strong></td>
+                <td>Lossy</td>
+                <td>50% – 80%</td>
+                <td>❌ No</td>
+                <td>Photographs, multi-colored complex landscapes, social posts</td>
+              </tr>
+              <tr>
+                <td><strong>PNG</strong></td>
+                <td>Lossless</td>
+                <td>20% – 50%</td>
+                <td>✅ Yes</td>
+                <td>Logos, charts, screenshots, UI icons requiring transparency</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Related Tools Section -->
+      <section class="related-tools">
+        <h2 class="related-tools-heading">Related Tools</h2>
+        <div class="related-tools-grid">
+          <a href="../image-resizer/index.html" class="related-tool-card">
+            <div class="related-tool-card-top">
+              <div class="related-tool-icon-wrapper" style="background: var(--color-primary); color: white; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="3" stroke="currentColor" stroke-width="2"/><path d="M15 9l3-3M18 9h-3V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 15l-3 3M6 15h3v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <span class="related-tool-category-badge" style="background: rgba(244, 81, 30, 0.06); color: #F4511E; border-color: rgba(244, 81, 30, 0.12);">Image Tools</span>
+            </div>
+            <div class="related-tool-card-body">
+              <h3 class="related-tool-name">Image Resizer</h3>
+              <p class="related-tool-desc">Scale your image dimensions to exact pixel widths, aspect ratios, or scaling percentage coordinates locally.</p>
+            </div>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+          <a href="../webp-converter/index.html" class="related-tool-card">
+            <div class="related-tool-card-top">
+              <div class="related-tool-icon-wrapper" style="background: var(--color-primary); color: white; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                </svg>
+              </div>
+              <span class="related-tool-category-badge" style="background: rgba(244, 81, 30, 0.06); color: #F4511E; border-color: rgba(244, 81, 30, 0.12);">Image Tools</span>
+            </div>
+            <div class="related-tool-card-body">
+              <h3 class="related-tool-name">WebP Converter</h3>
+              <p class="related-tool-desc">Convert standard JPG or PNG images into modern, optimized WebP files for rapid page loading speeds.</p>
+            </div>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+          <a href="../pdf-to-image/index.html" class="related-tool-card">
+            <div class="related-tool-card-top">
+              <div class="related-tool-icon-wrapper" style="background: var(--color-red); color: white; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15l3-3 3 3"/>
+                </svg>
+              </div>
+              <span class="related-tool-category-badge category-text-badge" style="background: rgba(239, 68, 68, 0.06); color: var(--color-red); border-color: rgba(239, 68, 68, 0.12);">PDF Tools</span>
+            </div>
+            <div class="related-tool-card-body">
+              <h3 class="related-tool-name">PDF to Image</h3>
+              <p class="related-tool-desc">Extract PDF pages and rasterize them into clean JPEG or PNG image assets directly inside your browser.</p>
+            </div>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Closing CTA Banner -->
+      <section class="seo-cta-banner">
+        <h2>Compress and Optimize Your Images Instantly</h2>
+        <p>Upload your files above. Configure compression values, preview quality changes, and download your optimized files securely.</p>
+        <a href="#tool-workspace" class="seo-cta-btn">↑ Back to Image Compressor</a>
+      </section>
+
+      <!-- SEO Articles -->
+      <section class="seo-text-section">
+        <h2>Optimizing Web Images: The Technical Difference Between Lossy and Lossless Compression</h2>
+        <p>In modern web performance tuning, optimizing images represents the highest yield action. Images often make up over 60% of a webpage's total download weight. Using oversized graphics slows down page loads, which frustrates users and reduces search engine ranking visibility.</p>
+        <p>When selecting compression methods, understanding the trade-offs between lossy and lossless formats is critical. Lossy compression, standard for JPEG files, achieves high size reductions by discarding color data that the human eye cannot easily distinguish. Lossless compression, typical for PNGs, compresses files using statistical patterns without losing a single pixel. Selecting the correct format ensures fast rendering speed without sacrificing visual appeal.</p>
+      </section>
+
+      <section class="seo-text-section">
+        <h2>Why WebP is the Modern Standard for Responsive Website Performance</h2>
+        <p>WebP, introduced by Google, is a modern graphic format designed specifically for the web. It supports both lossy and lossless compression, alpha-channel transparency, and animation. WebP files are typically 25% to 35% smaller than their equivalent JPEG or PNG counterparts at identical quality levels.</p>
+        <p>Using our browser-side Image Compressor, you can quickly transcode traditional images into WebP files. Since the entire processing pipeline executes locally in browser memory, your documents are never uploaded to a third-party server, providing top security for confidential logos, visual mockups, and corporate media assets.</p>
+      </section>
     </div>
-
-    <!-- FAQ SECTION -->
-    <section class="tool-faq-section reveal-up">
-      <div class="faq-header">
-        <span class="section-label">FAQ</span>
-        <h2 class="section-title">Frequently Asked Questions</h2>
-      </div>
-      <div class="faq-grid">
-        
-        <div class="faq-item-card">
-          <h3 class="faq-question">How does browser-side image compression work?</h3>
-          <p class="faq-answer">
-            When you select an image, it is read directly into your browser using standard HTML5 APIs. We draw the image onto an HTML5 Canvas and export it using high-performance pixel scaling at your specified compression density. The compression runs entirely on your GPU and CPU locally.
-          </p>
-        </div>
-
-        <div class="faq-item-card">
-          <h3 class="faq-question">Are my images sent to any server?</h3>
-          <p class="faq-answer">
-            No. Your privacy is 100% guaranteed. All processing happens right on your device. Unlike traditional web converters, we do not upload, scan, or store your pictures. It is secure, private, and works even when you are offline!
-          </p>
-        </div>
-
-        <div class="faq-item-card">
-          <h3 class="faq-question">Will I lose quality when compressing?</h3>
-          <p class="faq-answer">
-            Our compressor uses advanced lossy algorithms for JPEG and WEBP formats, and lossless compression mapping for PNG. By optimizing the color channels and removing visual redundancy invisible to the human eye, we reduce the file size dramatically while maintaining a razor-sharp output.
-          </p>
-        </div>
-
-        <div class="faq-item-card">
-          <h3 class="faq-question">Is there a limit on image dimensions?</h3>
-          <p class="faq-answer">
-            There are no arbitrary limits set by us. However, browser hardware limitations apply (usually up to 16,384 x 16,384 pixels on modern computers). Images up to 50MB in file size can be optimized smoothly.
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-  
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid"><a href="../image-color-picker/index.html" class="related-tool-card"><strong class="related-tool-name">Image Color Picker</strong><span class="related-tool-link">Try this tool</span></a><a href="../meme-generator/index.html" class="related-tool-card"><strong class="related-tool-name">Quick Meme Generator</strong><span class="related-tool-link">Try this tool</span></a><a href="../webp-converter/index.html" class="related-tool-card"><strong class="related-tool-name">WebP Converter</strong><span class="related-tool-link">Try this tool</span></a></div></section>
   </main>
-
+  
   <!-- ==================== FOOTER ==================== -->
   <footer class="footer" id="footer">
     <div class="footer-container">

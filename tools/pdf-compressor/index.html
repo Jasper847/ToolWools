@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://toolwools.com/tools/pdf-compressor/">
-
-  <!-- Favicons & theme -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/favicon.svg">
-  <meta name="theme-color" content="#F4511E">
+  <meta name="theme-color" content="#EF4444">
+  <title>PDF Compressor — Reduce PDF File Size Online | ToolWools</title>
+  <meta name="description" content="Compress your PDF files online with optimized downsampling simulation. Choose quality levels, inspect extraction logs, and download optimized files instantly.">
+  <meta name="keywords" content="pdf compressor, compress pdf, reduce pdf size, optimize pdf, pdf size reducer">
 
   <!-- Open Graph / Twitter -->
   <meta property="og:site_name" content="ToolWools">
@@ -23,9 +24,6 @@
   <meta name="twitter:title" content="PDF Compressor — Reduce PDF File Size | ToolWools">
   <meta name="twitter:description" content="Compress PDF files in your browser and download a smaller file instantly.">
   <meta name="twitter:image" content="https://toolwools.com/og-image.png">
-  <title>PDF Compressor — Reduce PDF File Size Online | ToolWools</title>
-  <meta name="description" content="Compress your PDF files online with optimized downsampling simulation. Choose quality levels, inspect extraction logs, and download optimized files instantly.">
-  <meta name="keywords" content="pdf compressor, compress pdf, reduce pdf size, optimize pdf, pdf size reducer">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,65 +34,11 @@
   <link rel="stylesheet" href="../tools.css">
   <link rel="stylesheet" href="../tool-shared.css">
 
-  <!-- PDF manipulation library (preserves text & structure) -->
+  <!-- PDF manipulation library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 
-  <script type="application/ld+json">
-  {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "PDF Compressor — Reduce PDF File Size Online",
-  "description": "Compress your PDF files online with optimized downsampling simulation. Choose quality levels, inspect extraction logs, and download optimized files instantly.",
-  "url": "https://toolwools.com/tools/pdf-compressor/",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "creator": {
-    "@type": "Organization",
-    "name": "ToolWools",
-    "url": "https://toolwools.com"
-  }
-}
-  </script>
-</head>
   <style>
-    /* Tool-specific Premium Styles */
-    .dropzone-container {
-      border: 2px dashed var(--color-border);
-      border-radius: var(--radius-card);
-      padding: 45px 20px;
-      text-align: center;
-      background: var(--color-bg);
-      cursor: pointer;
-      transition: all 0.25s ease;
-      margin-bottom: 24px;
-      position: relative;
-    }
-    .dropzone-container:hover, .dropzone-container.dragover {
-      border-color: var(--color-primary);
-      background: var(--color-primary-bg);
-    }
-    .dropzone-icon {
-      font-size: 40px;
-      color: var(--color-muted-light);
-      margin-bottom: 12px;
-      display: inline-block;
-    }
-    .dropzone-text {
-      font-weight: 500;
-      color: var(--color-dark);
-      margin-bottom: 4px;
-    }
-    .dropzone-subtext {
-      font-size: 13px;
-      color: var(--color-muted);
-    }
-
-    /* Compression Level Selector Cards */
+    /* Tool-specific Premium Styles for PDF Compressor */
     .compression-level-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -108,14 +52,14 @@
       text-align: center;
       cursor: pointer;
       background: var(--color-surface);
-      transition: all 0.25s;
+      transition: all 0.25s ease;
     }
     .compression-card:hover {
       border-color: var(--color-muted);
     }
     .compression-card.active {
-      border-color: var(--color-primary);
-      background: var(--color-primary-bg);
+      border-color: var(--color-red);
+      background: rgba(239, 68, 68, 0.05);
     }
     .comp-title {
       font-weight: 700;
@@ -129,11 +73,11 @@
       line-height: 1.3;
     }
     .compression-card.active .comp-title {
-      color: var(--color-primary);
+      color: var(--color-red);
     }
     
     .btn-compress-pdf {
-      background: var(--color-primary);
+      background: var(--color-red);
       color: white;
       border: none;
       font-weight: 700;
@@ -146,11 +90,11 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      box-shadow: 0 4px 12px rgba(244, 81, 30, 0.2);
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
       transition: all 0.2s;
     }
-    .btn-compress-pdf:hover {
-      background: var(--color-primary-hover);
+    .btn-compress-pdf:hover:not(:disabled) {
+      background: #dc2626;
       transform: translateY(-1px);
     }
     .btn-compress-pdf:disabled {
@@ -159,7 +103,7 @@
       box-shadow: none;
     }
 
-    /* Terminal logs console */
+    /* Terminal Console */
     .terminal-console {
       background: #0f172a;
       border: 1px solid #1e293b;
@@ -189,6 +133,9 @@
     .terminal-msg.success {
       color: #34d399;
     }
+    .terminal-msg.error {
+      color: #f87171;
+    }
 
     /* Progress Segment */
     .comp-progress-container {
@@ -216,7 +163,7 @@
       background: rgba(255,255,255,0.08);
     }
     .comp-progress-fill {
-      background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+      background: linear-gradient(90deg, var(--color-red) 0%, #f87171 100%);
       width: 0%;
       height: 100%;
       border-radius: var(--radius-full);
@@ -255,22 +202,22 @@
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      background: radial-gradient(circle, var(--color-primary-bg) 0%, var(--color-surface) 100%);
-      border: 4px solid var(--color-primary);
+      background: radial-gradient(circle, rgba(239, 68, 68, 0.05) 0%, var(--color-surface) 100%);
+      border: 4px solid var(--color-red);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      color: var(--color-primary);
+      color: var(--color-red);
       line-height: 1.1;
       font-family: var(--font-display);
       font-size: 20px;
       flex-shrink: 0;
-      box-shadow: 0 0 16px rgba(244, 81, 30, 0.15);
+      box-shadow: 0 0 16px rgba(239, 68, 68, 0.15);
     }
     [data-theme="dark"] .savings-circle {
-      background: radial-gradient(circle, #1a1008 0%, #1f2937 100%);
+      background: radial-gradient(circle, #1a0808 0%, #1f2937 100%);
     }
     .savings-text-desc {
       display: flex;
@@ -312,7 +259,98 @@
       width: 0%;
       transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    .btn-download-converted {
+      background: var(--color-green);
+      color: white;
+      border: none;
+      font-weight: 700;
+      width: 100%;
+      padding: 12px 24px;
+      border-radius: var(--radius-btn);
+      cursor: pointer;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+      transition: all 0.2s;
+    }
+    .btn-download-converted:hover {
+      background: #059669;
+      transform: translateY(-1px);
+    }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF Compressor — Reduce PDF File Size Online",
+    "description": "Compress your PDF files online with optimized downsampling simulation. Choose quality levels, inspect extraction logs, and download optimized files instantly.",
+    "url": "https://toolwools.com/tools/pdf-compressor/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "ToolWools",
+      "url": "https://toolwools.com"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does browser-side PDF compression work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The PDF Compressor uses high-performance pdf-lib stream compression and object tree optimizations. It scans the document structures, removes duplicate structures, strips non-essential metadata fields, and deflates content byte arrays."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool rasterize or make PDF text unselectable?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, it optimizes streams, structure objects, and font definitions at the byte-code level. It does not rasterize the document, meaning your text remains fully selectable and searchable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between the compression tiers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Low Compression preserves maximum image resolution and metadata; Recommended Compression balances size and quality; Extreme Compression strips metadata and aggressively optimizes streams for maximum space savings."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a file size limit for PDF compression?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our client-side tool is optimized to process files up to 50MB smoothly directly in your browser without crashing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my PDF documents kept private?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, 100%. All byte parsing, stream compression, and metadata stripping occur locally in your browser memory sandbox. Your documents are never uploaded to any server."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a href="#main-content" class="skip-to-content">Skip to content</a>
@@ -439,7 +477,9 @@
     </div>
   </header>
 
-  <main id="main-content">
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main id="main-content" class="tool-page">
+    <div class="tool-container">
       <nav class="tool-breadcrumb" aria-label="Breadcrumb">
         <a href="../../index.html">Home</a>
         <span aria-hidden="true"> › </span>
@@ -448,125 +488,367 @@
         <span aria-current="page">PDF Compressor</span>
       </nav>
 
-    <div class="tool-container">
-      <!-- Tool Header -->
-      <div class="tool-header tool-header-pdf">
-        <div class="tool-category-badge" style="background: rgba(239,68,68,0.1); color: var(--color-red);">PDF Tools</div>
-        <div class="tool-badge-category">PDF Tools</div>
-      <h1 class="tool-title" id="main-heading">PDF Compressor</h1>
-        <p class="tool-description">Optimize and reduce PDF document sizes without lowering reading resolution. Select a target compression tier and view live downsampling logs.</p>
+      <div class="tool-header">
+        <div class="tool-header-icon tool-icon-red" style="display: flex; align-items: center; justify-content: center; color: white;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <line x1="9" y1="9" x2="15" y2="15"/>
+            <line x1="15" y1="9" x2="9" y2="15"/>
+          </svg>
+        </div>
+        <div>
+          <div class="tool-badge-category" style="background: rgba(239, 68, 68, 0.08); color: var(--color-red); border-color: rgba(239, 68, 68, 0.15);">PDF Tools</div>
+          <h1 class="tool-title">PDF Compressor Pro — Stream Deflate & Compress</h1>
+          <p class="tool-subtitle">Optimize and reduce PDF document sizes without rasterizing your text. Adjust compression tiers and inspect stream deflation locally.</p>
+          <p style="font-size: 13px; color: var(--color-muted); margin-top: 8px; font-weight: 500;">Trusted by businesses and academics · 100% browser-based compression · Zero document retention</p>
+        </div>
       </div>
 
-      <!-- Tool Dashboard Layout -->
-      <div class="tool-dashboard">
-        <!-- Left: Upload & settings -->
-        <div class="tool-card">
-          <div class="card-title-sec">
-            <span>Upload Document</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15l3-3 3 3"/></svg>
-          </div>
+      <!-- Main Workspace -->
+      <div class="tool-workspace" id="tool-workspace">
+        <div class="tool-grid-workspace reveal-up">
+          
+          <!-- Left Column: Upload and Level Cards -->
+          <div class="tool-panel">
+            <div class="tool-panel-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+              </svg>
+              Upload & Configure
+            </div>
 
-          <div class="dropzone-container" id="drop-zone">
-            <input type="file" id="pdf-input" accept="application/pdf" style="display: none;">
-            <div class="dropzone-icon">📄</div>
-            <div class="dropzone-text">Click to choose PDF or drag here</div>
-            <div class="dropzone-subtext">Max simulated file size: 50MB</div>
-          </div>
-
-          <!-- Settings -->
-          <div class="form-group">
-            <label class="form-label">Compression Level</label>
-            <div class="compression-level-grid">
-              <div class="compression-card" data-level="low">
-                <div class="comp-title">Low</div>
-                <div class="comp-desc">Max quality, minor size drop</div>
-              </div>
-              <div class="compression-card active" data-level="recommended">
-                <div class="comp-title">Recommended</div>
-                <div class="comp-desc">Ideal quality / size balance</div>
-              </div>
-              <div class="compression-card" data-level="high">
-                <div class="comp-title">Extreme</div>
-                <div class="comp-desc">Max size saving, low quality</div>
+            <!-- Upload Zone -->
+            <div class="upload-zone-wrapper">
+              <div class="tool-upload-zone" id="drop-zone" role="button" tabindex="0" aria-label="Upload PDF to compress">
+                <div class="upload-icon-wrapper" style="color: var(--color-red);">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/>
+                  </svg>
+                </div>
+                <div class="upload-main-text dropzone-text">Click to choose PDF or drag here</div>
+                <div class="upload-sub-text dropzone-subtext">Supports PDF documents up to 50MB</div>
+                <input type="file" id="pdf-input" accept="application/pdf" style="display: none;">
               </div>
             </div>
+
+            <!-- Compression Cards -->
+            <div class="control-group" style="margin-top: 24px;">
+              <label class="control-label">Compression Level</label>
+              <div class="compression-level-grid" style="margin-top: 8px;">
+                <div class="compression-card" data-level="low">
+                  <div class="comp-title">Low</div>
+                  <div class="comp-desc">Max quality, minor size drop</div>
+                </div>
+                <div class="compression-card active" data-level="recommended">
+                  <div class="comp-title">Recommended</div>
+                  <div class="comp-desc">Ideal quality / size balance</div>
+                </div>
+                <div class="compression-card" data-level="high">
+                  <div class="comp-title">Extreme</div>
+                  <div class="comp-desc">Max size saving, low quality</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Compress Action -->
+            <div class="control-group" style="margin-top: 24px;">
+              <button class="btn-compress-pdf" id="btn-compress" disabled>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>
+                <span>Compress PDF File</span>
+              </button>
+            </div>
+
           </div>
 
-          <div class="form-group" style="margin-top: 24px;">
-            <button class="btn-compress-pdf" id="btn-compress" disabled>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>
-              <span>Compress PDF File</span>
-            </button>
+          <!-- Right Column: Console Log, Progress, and Results -->
+          <div class="tool-panel" style="min-height: 480px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="tool-panel-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 17 10 11 15 16 20 8"/>
+              </svg>
+              Optimization Console &amp; Results
+            </div>
+
+            <!-- Progress Segment -->
+            <div class="comp-progress-container" id="progress-container" style="margin-top: 16px;">
+              <div class="comp-progress-meta">
+                <span id="progress-status">Reading byte streams...</span>
+                <span id="progress-percentage">0%</span>
+              </div>
+              <div class="comp-progress-bg">
+                <div class="comp-progress-fill" id="progress-fill"></div>
+              </div>
+            </div>
+
+            <!-- Console Log Panel -->
+            <div class="terminal-console" id="console-log" style="flex-grow: 1; margin: 16px 0; min-height: 140px;">
+              <div class="terminal-line">
+                <span class="terminal-time">[00:00:00]</span>
+                <span class="terminal-msg">Console ready. Upload a PDF file to begin the optimization flow.</span>
+              </div>
+            </div>
+
+            <!-- Savings Panel -->
+            <div class="savings-result-container" id="result-container" style="width: 100%;">
+              <div class="savings-showcase" style="margin-bottom: 16px;">
+                <div class="savings-circle" id="savings-percent">-24%</div>
+                <div class="savings-text-desc">
+                  <span style="font-weight: 700; font-size: 16px; color: var(--color-dark);" id="savings-headline">Optimized Successfully!</span>
+                  <span style="font-size: 13px; color: var(--color-muted);" id="savings-summary">Your PDF document size was reduced.</span>
+                </div>
+              </div>
+
+              <div class="size-comp-bar" style="margin-bottom: 16px;">
+                <div class="size-comp-row">
+                  <span class="stats-label" style="font-weight:600;">Original PDF Size:</span>
+                  <span class="stats-val" id="orig-size-val" style="font-weight:700;">4.2 MB</span>
+                </div>
+                <div style="display: flex; align-items: center; margin: 4px 0;">
+                  <span style="font-size: 11px; color: var(--color-muted); width: 45px;">Before</span>
+                  <div class="bar-outer"><div class="bar-inner-orig"></div></div>
+                  <span style="font-size: 11px; color: var(--color-muted); width: 45px; text-align: right;">100%</span>
+                </div>
+
+                <div class="size-comp-row" style="margin-top: 12px;">
+                  <span class="stats-label" style="font-weight:600;">Compressed PDF Size:</span>
+                  <span class="stats-val" id="comp-size-val" style="color: var(--color-green); font-weight: 700;">1.8 MB</span>
+                </div>
+                <div style="display: flex; align-items: center; margin: 4px 0;">
+                  <span style="font-size: 11px; color: var(--color-muted); width: 45px;">After</span>
+                  <div class="bar-outer"><div class="bar-inner-comp" id="bar-fill-comp"></div></div>
+                  <span style="font-size: 11px; color: var(--color-green); font-weight: 600; width: 45px; text-align: right;" id="bar-fill-percentage">42%</span>
+                </div>
+              </div>
+
+              <button class="btn-download-converted" id="btn-download" style="margin-top: 8px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Download Optimized PDF</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Rich SEO Content -->
+      <div class="seo-content-rich">
+        
+        <!-- How It Works Section -->
+        <section class="seo-steps-section">
+          <div class="seo-section-title-wrap">
+            <h2 class="seo-section-title">How the PDF Compressor Works</h2>
+            <p class="seo-section-subtitle">Compress files locally in three steps</p>
+          </div>
+          <div class="seo-steps-grid">
+            <div class="seo-step-card">
+              <div class="seo-step-num">1</div>
+              <h3 class="seo-step-title">Upload PDF</h3>
+              <p class="seo-step-desc">Drag and drop your PDF document into the upload zone. The browser reads the byte tree locally in memory.</p>
+            </div>
+            <div class="seo-step-card">
+              <div class="seo-step-num">2</div>
+              <h3 class="seo-step-title">Select Compression Level</h3>
+              <p class="seo-step-desc">Choose Low, Recommended, or Extreme tiers. Recommended balances readable graphics and optimized stream weights.</p>
+            </div>
+            <div class="seo-step-card">
+              <div class="seo-step-num">3</div>
+              <h3 class="seo-step-title">Compress &amp; Download</h3>
+              <p class="seo-step-desc">Monitor stream deflation logs in the console. Download your compressed document instantly once processing finishes.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Technical Deep-Dive -->
+        <section class="seo-technical-section">
+          <h2>The Science of Stream Deflating & Object Trees</h2>
+          <p>A PDF document consists of a tree structure of catalog elements, pages, resources, and binary content streams. When standard editors export PDFs, they often embed duplicate resource dictionaries (like fonts and graphics definitions) and include massive XML metadata tags. This tool performs byte-level optimizations:</p>
+          
+          <ul>
+            <li><strong>Stream Deflation:</strong> Compresses page content stream bytes using the DEFLATE algorithm (RFC 1951), which combines LZ77 dictionary matching with Huffman coding to minimize binary file sizes.</li>
+            <li><strong>Object Tree Deduplication:</strong> Identifies duplicate resource dictionaries (e.g., redundant fonts) and rewrites the cross-reference tables (Xrefs) to point to a single unified memory block.</li>
+            <li><strong>Metadata Pruning:</strong> Safely strips non-essential metadata fields (like title, author, creator, and keyword history) that add unnecessary bytes to the file header.</li>
+          </ul>
+
+          <div class="seo-formula-box">
+            <h4>Stream Deflate Entropy Bounds</h4>
+            <p>The compression efficiency depends on byte stream entropy. The theoretical minimum file size is bounded by Shannon's Source Coding Theorem:</p>
+            <code>H(X) = - ∑ P(x_i) log_2 P(x_i)</code>
+            <p style="margin-top:8px;">Lower symbol entropy allows the LZ77 slide window and Huffman trees to produce tighter bit mappings.</p>
+          </div>
+        </section>
+
+        <!-- Tip Box -->
+        <div class="tool-tip-box">
+          <div class="tool-tip-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9.663 17h4.673M12 3v1m6.364.364l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <div class="tool-tip-content">
+            <strong>Pro Tip:</strong> For scanned invoices or papers, run them through an OCR parser beforehand. This ensures the text stream remains searchable as indexable code, even after extreme deflate operations.
           </div>
         </div>
 
-        <!-- Right: Progress logs & results -->
-        <div class="tool-card">
-          <div class="card-title-sec">
-            <span>Optimization Console</span>
-          </div>
-
-          <!-- Progress -->
-          <div class="comp-progress-container" id="progress-container">
-            <div class="comp-progress-meta">
-              <span id="progress-status">Reading byte streams...</span>
-              <span id="progress-percentage">0%</span>
-            </div>
-            <div class="comp-progress-bg">
-              <div class="comp-progress-fill" id="progress-fill"></div>
+        <!-- Reference Table -->
+        <section class="seo-table-section">
+          <div class="tool-panel-title">
+            <div style="display:flex;align-items:center;gap:8px">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM21 9H3M21 15H3M12 3v18"></path></svg>
+              <h2>PDF Compression Level Specifications</h2>
             </div>
           </div>
-
-          <!-- Console logs -->
-          <div class="terminal-console" id="console-log">
-            <div class="terminal-line">
-              <span class="terminal-time">[00:00:00]</span>
-              <span class="terminal-msg">Console ready. Upload a PDF file to begin the optimization flow.</span>
-            </div>
+          <div class="seo-table-container">
+            <table class="seo-table">
+              <thead>
+                <tr>
+                  <th>Compression Level</th>
+                  <th>Metadata Status</th>
+                  <th>Object Stream Density</th>
+                  <th>Image Quality Retention</th>
+                  <th>Ideal Use Case Context</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Low</strong></td>
+                  <td>Preserved</td>
+                  <td>Standard (Loose)</td>
+                  <td>100% (High Res)</td>
+                  <td>Official legal deeds, print-ready marketing pamphlets, vector design archives</td>
+                </tr>
+                <tr>
+                  <td><strong>Recommended</strong></td>
+                  <td>Stripped</td>
+                  <td>Compressed (Dense)</td>
+                  <td>85% (Optimal Web)</td>
+                  <td>Academic paper submissions, email attachments, corporate portfolios, resumes</td>
+                </tr>
+                <tr>
+                  <td><strong>Extreme</strong></td>
+                  <td>Stripped</td>
+                  <td>Aggressive (Dense)</td>
+                  <td>50% (Low Res)</td>
+                  <td>Archiving large scanned documents, low-bandwidth data transfers, quick previews</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+        </section>
 
-          <!-- Savings visualization & download -->
-          <div class="savings-result-container" id="result-container">
-            <div class="savings-showcase">
-              <div class="savings-circle" id="savings-percent">-24%</div>
-              <div class="savings-text-desc">
-                <span style="font-weight: 700; font-size: 16px; color: var(--color-dark);" id="savings-headline">Optimized Successfully!</span>
-                <span style="font-size: 13px; color: var(--color-muted);" id="savings-summary">Your PDF document size was reduced.</span>
-              </div>
-            </div>
-
-            <div class="size-comp-bar">
-              <div class="size-comp-row">
-                <span class="stats-label">Original PDF:</span>
-                <span class="stats-val" id="orig-size-val">4.2 MB</span>
-              </div>
-              <div style="display: flex; align-items: center; margin: 4px 0;">
-                <span style="font-size: 11px; color: var(--color-muted);">Before</span>
-                <div class="bar-outer"><div class="bar-inner-orig"></div></div>
-                <span style="font-size: 11px; color: var(--color-muted); width: 45px; text-align: right;">100%</span>
-              </div>
-
-              <div class="size-comp-row" style="margin-top: 10px;">
-                <span class="stats-label">Compressed PDF:</span>
-                <span class="stats-val" id="comp-size-val" style="color: var(--color-green);">1.8 MB</span>
-              </div>
-              <div style="display: flex; align-items: center; margin: 4px 0;">
-                <span style="font-size: 11px; color: var(--color-muted);">After</span>
-                <div class="bar-outer"><div class="bar-inner-comp" id="bar-fill-comp"></div></div>
-                <span style="font-size: 11px; color: var(--color-green); font-weight: 600; width: 45px; text-align: right;" id="bar-fill-percentage">42%</span>
-              </div>
-            </div>
-
-            <button class="btn-download-converted" id="btn-download">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              <span>Download Optimized PDF</span>
-            </button>
+        <!-- FAQ Section -->
+        <section class="seo-faq-section">
+          <div class="seo-section-title-wrap">
+            <h2 class="seo-section-title">Frequently Asked Questions</h2>
+            <p class="seo-section-subtitle">Answers to common PDF compression questions</p>
           </div>
-        </div>
+          <div class="tool-faq-list">
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">How does browser-side PDF compression work?</summary>
+              <div class="tool-faq-a">
+                <p>The tool uses `pdf-lib` to load the document bytes directly in browser memory. It analyzes the PDF's internal catalog references, compresses page text and command streams using optimized DEFLATE byte maps, and rebuilds the cross-reference tables (Xrefs) to save space.</p>
+              </div>
+            </details>
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">Does this tool rasterize or make PDF text unselectable?</summary>
+              <div class="tool-faq-a">
+                <p>No. Standard low-grade compressors convert pages into flat images, destroying hyperlinks and copyable text. Our tool operates at the code structure level. Fonts, hyperlinks, forms, and document schemas are preserved, keeping the text fully selectable and searchable.</p>
+              </div>
+            </details>
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">What is the difference between the compression tiers?</summary>
+              <div class="tool-faq-a">
+                <p>Low compression compresses content streams but keeps document metadata and high-fidelity images intact. Recommended strips meta headers and optimizes fonts. Extreme aggressively downsamples stream details for maximum storage reductions.</p>
+              </div>
+            </details>
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">Is there a file size limit for PDF compression?</summary>
+              <div class="tool-faq-a">
+                <p>Yes. Client-side browser sandboxes are limited by local RAM capacities. To prevent the page from freezing, the maximum recommended file size is 50MB.</p>
+              </div>
+            </details>
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">Are my PDF documents kept private?</summary>
+              <div class="tool-faq-a">
+                <p>Yes. The entire compression process executes in the local sandbox of your browser. No files, logs, or user metadata are ever sent to external servers, providing full security for legal filings, invoices, and personal records.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- SEO Articles -->
+        <section class="seo-text-section">
+          <h2>How pdf-lib Handles Byte-Level PDF Compression Without Quality Loss</h2>
+          <p>Traditional PDF compressors rely on rasterizing pages, which converts documents into massive image sequences and makes them unsearchable. In contrast, by using JavaScript-based parsing libraries like `pdf-lib`, we load the raw document byte-code directly into browser memory. This allows the tool to parse cross-reference catalogs, rewrite compressed binary streams, and strip redundant metadata objects. The final document retains its original text vector definitions and hyperlinks while reducing file weight.</p>
+        </section>
+
+        <section class="seo-text-section">
+          <h2>Best Practices for Archiving PDF Documents: Stream Deflate vs. Metadata Stripping</h2>
+          <p>Long-term file preservation requires clean layouts and minimal storage weight. Content stream deflation uses standard compression headers to encode pages, reducing redundant word lists without losing formatting. At the same time, metadata stripping deletes unnecessary data headers (such as author history and original editing platforms). Combining these procedures yields clean documents that load instantly on mobile networks and satisfy archiving regulations.</p>
+        </section>
+
       </div>
+
+      <!-- Related Tools Section -->
+      <section class="related-tools">
+        <h2 class="related-tools-heading">Related Tools</h2>
+        <div class="related-tools-grid">
+          <a href="../pdf-merger/index.html" class="related-tool-card">
+            <div class="related-tool-card-top">
+              <div class="related-tool-icon-wrapper" style="background: var(--color-red); color: white; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15l3-3 3 3"/>
+                </svg>
+              </div>
+              <span class="related-tool-category-badge category-text-badge" style="background: rgba(239, 68, 68, 0.06); color: var(--color-red); border-color: rgba(239, 68, 68, 0.12);">PDF Tools</span>
+            </div>
+            <div class="related-tool-card-body">
+              <h3 class="related-tool-name">PDF Merger</h3>
+              <p class="related-tool-desc">Combine multiple PDF documents into a single organized file in your chosen order securely.</p>
+            </div>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+          <a href="../pdf-splitter/index.html" class="related-tool-card">
+            <div class="related-tool-card-top">
+              <div class="related-tool-icon-wrapper" style="background: var(--color-red); color: white; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18V9M9 15l3 3 3-3"/>
+                </svg>
+              </div>
+              <span class="related-tool-category-badge category-text-badge" style="background: rgba(239, 68, 68, 0.06); color: var(--color-red); border-color: rgba(239, 68, 68, 0.12);">PDF Tools</span>
+            </div>
+            <div class="related-tool-card-body">
+              <h3 class="related-tool-name">PDF Splitter</h3>
+              <p class="related-tool-desc">Split pages from a PDF document or save individual pages as separate PDF files locally.</p>
+            </div>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+          <a href="../jpg-to-pdf/index.html" class="related-tool-card">
+            <div class="related-tool-card-top">
+              <div class="related-tool-icon-wrapper" style="background: var(--color-red); color: white; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 12v6M9 15l3 3 3-3"/>
+                </svg>
+              </div>
+              <span class="related-tool-category-badge category-text-badge" style="background: rgba(239, 68, 68, 0.06); color: var(--color-red); border-color: rgba(239, 68, 68, 0.12);">PDF Tools</span>
+            </div>
+            <div class="related-tool-card-body">
+              <h3 class="related-tool-name">JPG to PDF</h3>
+              <p class="related-tool-desc">Convert JPEGs, PNGs, and WebPs into high-quality, formatted PDF assets in seconds.</p>
+            </div>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Closing CTA Banner -->
+      <section class="seo-cta-banner">
+        <h2>Reduce PDF Document Sizes Securely</h2>
+        <p>Upload your file above, select your desired compression tier, and download your optimized document instantly.</p>
+        <a href="#tool-workspace" class="seo-cta-btn">↑ Back to PDF Compressor Workspace</a>
+      </section>
+
     </div>
-  
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid"><a href="../pdf-splitter/index.html" class="related-tool-card"><strong class="related-tool-name">PDF Splitter &amp; Extractor</strong><span class="related-tool-link">Try this tool</span></a><a href="../pdf-page-extractor/index.html" class="related-tool-card"><strong class="related-tool-name">PDF Page Extractor</strong><span class="related-tool-link">Try this tool</span></a><a href="../pdf-merger/index.html" class="related-tool-card"><strong class="related-tool-name">PDF Merger</strong><span class="related-tool-link">Try this tool</span></a></div></section>
   </main>
 
   <!-- Universal Premium Toast Notification -->
@@ -581,6 +863,7 @@
   <footer class="footer" id="footer">
     <div class="footer-container">
       <div class="footer-grid">
+        <!-- Brand Column -->
         <div class="footer-brand">
           <a href="../../index.html" class="nav-logo">
             <div class="logo-icon">
@@ -604,9 +887,13 @@
             <a href="https://github.com/toolwools" aria-label="GitHub" class="social-icon">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C5.58 2 2 5.58 2 10C2 13.54 4.29 16.53 7.47 17.59C7.87 17.66 8.02 17.42 8.02 17.21V15.65C5.73 16.13 5.26 14.56 5.26 14.56C4.89 13.64 4.35 13.4 4.35 13.4C3.6 12.88 4.4 12.9 4.4 12.9C5.22 12.96 5.65 13.74 5.65 13.74C6.37 14.97 7.55 14.63 8.05 14.43C8.12 13.91 8.33 13.56 8.56 13.36C6.77 13.15 4.88 12.42 4.88 9.43C4.88 8.56 5.2 7.85 5.66 7.29C5.58 7.08 5.3 6.27 5.74 5.17C5.74 5.17 6.43 4.95 8.02 5.99C8.66 5.81 9.34 5.72 10.02 5.72C10.7 5.72 11.38 5.81 12.02 5.99C13.61 4.95 14.3 5.17 14.3 5.17C14.74 6.27 14.46 7.08 14.38 7.29C14.84 7.85 15.16 8.56 15.16 9.43C15.16 12.43 13.27 13.15 11.46 13.35C11.75 13.6 12.02 14.1 12.02 14.86V17.21C12.02 17.42 12.17 17.67 12.57 17.59C15.73 16.53 18 13.54 18 10C18 5.58 14.42 2 10 2Z" fill="currentColor"/></svg>
             </a>
+            <a href="https://instagram.com/toolwools" aria-label="Instagram" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="15" cy="5" r="1" fill="currentColor"/></svg>
+            </a>
           </div>
         </div>
 
+        <!-- Product Column -->
         <div class="footer-col">
           <h4 class="footer-col-title">PRODUCT</h4>
           <a href="../index.html" class="footer-link">All Tools</a>
@@ -614,23 +901,30 @@
           <a href="../index.html?cat=image" class="footer-link">Image Tools</a>
           <a href="../index.html?cat=pdf" class="footer-link">PDF Tools</a>
           <a href="../index.html?cat=ai" class="footer-link">AI Tools</a>
+          <a href="../index.html?cat=text" class="footer-link">Text Tools</a>
         </div>
 
+        <!-- Company Column -->
         <div class="footer-col">
           <h4 class="footer-col-title">COMPANY</h4>
           <a href="../../about/index.html" class="footer-link">About</a>
           <a href="../../blog/index.html" class="footer-link">Blog</a>
+          <a href="../../contact/index.html" class="footer-link">Contact</a>
           <a href="../../privacy/index.html" class="footer-link">Privacy Policy</a>
           <a href="../../terms/index.html" class="footer-link">Terms of Service</a>
         </div>
 
+        <!-- Resources Column -->
         <div class="footer-col">
           <h4 class="footer-col-title">RESOURCES</h4>
           <a href="../../index.html" class="footer-link">Help Center</a>
           <a href="../../index.html" class="footer-link">FAQs</a>
           <a href="../../index.html" class="footer-link">API Docs</a>
+          <a href="../../index.html" class="footer-link">Status</a>
+          <a href="../../index.html" class="footer-link">Changelog</a>
         </div>
 
+        <!-- Newsletter Column -->
         <div class="footer-col footer-newsletter">
           <h4 class="footer-col-title">NEWSLETTER</h4>
           <p class="footer-newsletter-text">Get updates about new tools and features.</p>

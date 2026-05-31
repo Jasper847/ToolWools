@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://toolwools.com/tools/image-resizer/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/favicon.svg">
@@ -20,7 +21,7 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Image Resizer — Resize Images to Exact Dimensions | ToolWools">
-  <meta name="twitter:description" content="Resize images online to exact pixel dimensions or by percentage. Lock aspect ratio, choose output format (PNG, JPEG, Web">
+  <meta name="twitter:description" content="Resize images online to exact pixel dimensions or by percentage. Lock aspect ratio, choose output format (PNG, JPEG, WebP). Batch resize up to 20 images. Free, no upload.">
   <meta name="twitter:image" content="https://toolwools.com/og-image.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,30 +31,86 @@
   <link rel="stylesheet" href="../tools.css">
   <link rel="stylesheet" href="../tool-shared.css">
 
+  <style>
+    /* CSS sibling selector to hide placeholder when preview image is visible */
+    #preview-img:not([style*="display: none"]) ~ #preview-placeholder {
+      display: none !important;
+    }
+  </style>
+
   <script type="application/ld+json">
   {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Image Resizer — Resize Images to Exact Dimensions",
-  "description": "Resize images online to exact pixel dimensions or by percentage. Lock aspect ratio, choose output format (PNG, JPEG, WebP). Batch resize up to 20 images. Free, no upload.",
-  "url": "https://toolwools.com/tools/image-resizer/",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "creator": {
-    "@type": "Organization",
-    "name": "ToolWools",
-    "url": "https://toolwools.com"
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Image Resizer — Resize Images to Exact Dimensions",
+    "description": "Resize images online to exact pixel dimensions or by percentage. Lock aspect ratio, choose output format (PNG, JPEG, WebP). Batch resize up to 20 images. Free, no upload.",
+    "url": "https://toolwools.com/tools/image-resizer/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "ToolWools",
+      "url": "https://toolwools.com"
+    }
   }
-}
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the Image Resizer scale images?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Image Resizer utilizes HTML5 canvas bilinear interpolation algorithms to scale pixel dimensions smoothly directly in your browser without blurring."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does locking the aspect ratio distort my images?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, locking the aspect ratio ensures that when you adjust the width, the height is automatically calculated using the original proportions (Height = Width / Aspect Ratio), preventing any stretching or distortion."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I resize multiple images at once?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, our tool supports batch processing. You can upload up to 20 images at once and resize them to the same dimensions in a single action."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which image types can I resize?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It supports standard image formats including JPEG, PNG, WebP, and static GIF files."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my photos uploaded to ToolWools servers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, all operations execute locally on your computer via client-side JavaScript. Your files are never uploaded to any server, making this 100% secure and private."
+        }
+      }
+    ]
+  }
   </script>
 </head>
 <body>
   <a href="#main-content" class="skip-to-content">Skip to content</a>
+  
   <!-- ==================== HEADER ==================== -->
   <header class="navbar" id="navbar">
     <div class="nav-container">
@@ -176,127 +233,414 @@
     </div>
   </header>
 
+  <!-- ==================== MAIN CONTENT ==================== -->
   <main id="main-content" class="tool-page">
     <div class="tool-container">
       <nav class="tool-breadcrumb" aria-label="Breadcrumb">
-        <a href="../../index.html">Home</a><span aria-hidden="true">›</span>
-        <a href="../index.html">Tools</a><span aria-hidden="true">›</span>
+        <a href="../../index.html">Home</a>
+        <span aria-hidden="true"> › </span>
+        <a href="../index.html">Tools</a>
+        <span aria-hidden="true"> › </span>
         <span aria-current="page">Image Resizer</span>
       </nav>
 
       <div class="tool-header">
-        <div class="tool-header-icon tool-icon-orange">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="3" stroke="white" stroke-width="2"/><path d="M15 9l3-3M18 9h-3V6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 15l-3 3M6 15h3v3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="tool-header-icon tool-icon-orange" style="display: flex; align-items: center; justify-content: center; color: white;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="3" stroke="currentColor" stroke-width="2"/>
+            <path d="M15 9l3-3M18 9h-3V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 15l-3 3M6 15h3v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
         <div>
-          <div class="tool-badge-category">Image Tools</div>
-      <h1 class="tool-title">Image Resizer</h1>
-          <p class="tool-subtitle">Resize images to exact pixel dimensions or by percentage. Maintains aspect ratio, supports batch processing, and outputs PNG, JPEG, or WebP — all in your browser.</p>
+          <div class="tool-badge-category" style="background: rgba(244, 81, 30, 0.08); color: #F4511E; border-color: rgba(244, 81, 30, 0.15);">Image Tools</div>
+          <h1 class="tool-title">Image Resizer Pro — Bulk Scale Dimensions</h1>
+          <p class="tool-subtitle">Resize your images to exact pixel widths, custom scaling percentages, or preset templates locally in your browser.</p>
+          <p style="font-size: 13px; color: var(--color-muted); margin-top: 8px; font-weight: 500;">Trusted by social media managers and developers · 100% client-side resizing · No data tracking</p>
         </div>
       </div>
 
-      <!-- Preset Sizes -->
-      <div class="tool-actions-grid" id="preset-btns" role="group" aria-label="Quick presets">
-        <button class="action-btn" data-preset="1920x1080">1920×1080 (FHD)</button>
-        <button class="action-btn" data-preset="1280x720">1280×720 (HD)</button>
-        <button class="action-btn" data-preset="800x600">800×600</button>
-        <button class="action-btn" data-preset="400x400">400×400 (Square)</button>
-        <button class="action-btn" data-preset="1200x630">1200×630 (OG Image)</button>
-        <button class="action-btn" data-preset="512x512">512×512 (Icon)</button>
-      </div>
+      <!-- Main Workspace -->
+      <div class="tool-workspace" id="tool-workspace">
+        <div class="tool-grid-workspace reveal-up">
+          
+          <!-- Left Panel: Preset & Upload -->
+          <div class="tool-panel">
+            <div class="tool-panel-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/>
+              </svg>
+              Resize Configurations
+            </div>
 
-      <!-- Upload -->
-      <div class="upload-zone" id="upload-zone" role="button" tabindex="0" aria-label="Upload images to resize">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style="color:var(--color-muted);margin-bottom:12px"><rect x="2" y="2" width="20" height="20" rx="3" stroke="currentColor" stroke-width="1.5"/><circle cx="8.5" cy="8.5" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M2 15l6-6 4 4 3-3 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <p style="font-weight:600;color:var(--color-dark);margin-bottom:4px">Drop images here or click to browse</p>
-        <p style="font-size:13px;color:var(--color-muted)">Supports JPG, PNG, WebP, GIF • Up to 20 images at once</p>
-        <input type="file" id="file-input" accept="image/*" multiple hidden>
-      </div>
+            <!-- Quick Presets -->
+            <div class="control-group" style="margin-bottom: 24px;">
+              <label class="control-label" style="margin-bottom: 12px; display: block;">Quick Size Presets</label>
+              <div class="tool-actions-grid" id="preset-btns" role="group" aria-label="Quick presets" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px;">
+                <button class="action-btn" data-preset="1920x1080" style="padding: 10px 8px; font-size: 13px;">1920×1080 (FHD)</button>
+                <button class="action-btn" data-preset="1280x720" style="padding: 10px 8px; font-size: 13px;">1280×720 (HD)</button>
+                <button class="action-btn" data-preset="800x600" style="padding: 10px 8px; font-size: 13px;">800×600</button>
+                <button class="action-btn" data-preset="400x400" style="padding: 10px 8px; font-size: 13px;">400×400 (Square)</button>
+                <button class="action-btn" data-preset="1200x630" style="padding: 10px 8px; font-size: 13px;">1200×630 (OG)</button>
+                <button class="action-btn" data-preset="512x512" style="padding: 10px 8px; font-size: 13px;">512×512 (Icon)</button>
+              </div>
+            </div>
 
-      <!-- Controls (hidden until upload) -->
-      <div id="controls" style="display:none">
-        <!-- Current image info -->
-        <div class="stats-grid" id="img-stats" aria-live="polite">
-          <div class="stat-card"><span class="stat-value" id="orig-w">—</span><span class="stat-label">Orig. Width</span></div>
-          <div class="stat-card"><span class="stat-value" id="orig-h">—</span><span class="stat-label">Orig. Height</span></div>
-          <div class="stat-card"><span class="stat-value" id="file-size">—</span><span class="stat-label">File Size</span></div>
-          <div class="stat-card"><span class="stat-value" id="file-count">1</span><span class="stat-label">Images</span></div>
-        </div>
+            <!-- Upload Dropzone -->
+            <div class="upload-zone-wrapper">
+              <div class="tool-upload-zone" id="upload-zone" role="button" tabindex="0" aria-label="Upload images to resize">
+                <div class="upload-icon-wrapper">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="8.5" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M2 15l6-6 4 4 3-3 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="upload-main-text">Drag & drop your images here</div>
+                <div class="upload-sub-text">or click to browse · Supports JPG, PNG, WEBP, GIF up to 20 files</div>
+                <input type="file" id="file-input" accept="image/*" multiple hidden>
+              </div>
+            </div>
 
-        <!-- Dimension controls -->
-        <div class="tool-controls-row" style="align-items:flex-end;gap:16px;flex-wrap:wrap;margin-top:8px">
-          <div>
-            <label class="tool-label" for="width">Width (px)</label>
-            <input type="number" id="width" class="tool-input" min="1" max="8000" style="width:120px">
-          </div>
-          <div style="padding-bottom:8px;color:var(--color-muted);font-size:20px">×</div>
-          <div>
-            <label class="tool-label" for="height">Height (px)</label>
-            <input type="number" id="height" class="tool-input" min="1" max="8000" style="width:120px">
-          </div>
-          <label style="display:flex;align-items:center;gap:8px;font-size:14px;padding-bottom:4px">
-            <input type="checkbox" id="lock-ratio" checked>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-            Lock aspect ratio
-          </label>
-        </div>
+            <!-- Parameters panel (shown on load) -->
+            <div id="controls" style="display: none; margin-top: 24px;">
+              <!-- Current image info -->
+              <div class="stats-grid" id="img-stats" aria-live="polite" style="margin-bottom: 20px;">
+                <div class="stat-card">
+                  <span class="stat-value" id="orig-w">—</span>
+                  <span class="stat-label">Orig. Width</span>
+                </div>
+                <div class="stat-card">
+                  <span class="stat-value" id="orig-h">—</span>
+                  <span class="stat-label">Orig. Height</span>
+                </div>
+                <div class="stat-card">
+                  <span class="stat-value" id="file-size">—</span>
+                  <span class="stat-label">File Size</span>
+                </div>
+                <div class="stat-card">
+                  <span class="stat-value" id="file-count">1</span>
+                  <span class="stat-label">Images</span>
+                </div>
+              </div>
 
-        <!-- Percentage mode -->
-        <div class="tool-controls-row" style="align-items:center;gap:16px;flex-wrap:wrap">
-          <div>
-            <label class="tool-label" for="scale-pct">Scale by %</label>
-            <div style="display:flex;gap:8px;align-items:center">
-              <input type="number" id="scale-pct" class="tool-input-sm" min="1" max="800" value="100" style="width:80px">
-              <span style="font-size:14px;color:var(--color-muted)">%</span>
-              <button id="btn-apply-pct" class="btn btn-secondary" style="padding:8px 14px;font-size:13px">Apply %</button>
+              <!-- Custom Dimensions -->
+              <div class="control-group">
+                <label class="control-label">Target Dimensions</label>
+                <div style="display: flex; align-items: center; gap: 12px; margin-top: 8px;">
+                  <div style="flex: 1;">
+                    <span style="font-size: 11px; color: var(--color-muted); display: block; margin-bottom: 4px;">Width (px)</span>
+                    <input type="number" id="width" class="tool-input" min="1" max="8000" style="width: 100%;">
+                  </div>
+                  <div style="color: var(--color-muted); font-size: 20px; font-weight: 500; margin-top: 16px;">×</div>
+                  <div style="flex: 1;">
+                    <span style="font-size: 11px; color: var(--color-muted); display: block; margin-bottom: 4px;">Height (px)</span>
+                    <input type="number" id="height" class="tool-input" min="1" max="8000" style="width: 100%;">
+                  </div>
+                </div>
+                <div style="margin-top: 12px;">
+                  <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--color-dark); cursor: pointer;">
+                    <input type="checkbox" id="lock-ratio" checked style="accent-color: var(--color-primary);">
+                    Lock Aspect Ratio
+                  </label>
+                </div>
+              </div>
+
+              <!-- Scale by % -->
+              <div class="control-group" style="margin-top: 20px;">
+                <label class="control-label" for="scale-pct">Scale by Percentage</label>
+                <div style="display: flex; gap: 8px; align-items: center; margin-top: 8px;">
+                  <input type="number" id="scale-pct" class="tool-input" min="1" max="800" value="100" style="width: 80px; text-align: center;">
+                  <span style="font-size: 14px; font-weight: 500; color: var(--color-dark);">%</span>
+                  <button id="btn-apply-pct" class="btn btn-secondary" style="padding: 10px 14px; font-size: 13px;">Apply Scale</button>
+                </div>
+              </div>
+
+              <!-- Format & Quality -->
+              <div class="control-group" style="margin-top: 20px;">
+                <label class="control-label" for="format">Output Format</label>
+                <select id="format" class="tool-select" style="margin-top: 8px; width: 100%;">
+                  <option value="image/jpeg" selected>JPEG (Optimized Lossy)</option>
+                  <option value="image/png">PNG (Lossless Source)</option>
+                  <option value="image/webp">WebP (Modern Format)</option>
+                </select>
+              </div>
+
+              <div class="control-group" id="quality-wrap" style="margin-top: 20px;">
+                <div class="control-label-row">
+                  <label class="control-label" for="quality">Output Quality</label>
+                  <span class="control-label-value" id="quality-val">85%</span>
+                </div>
+                <input type="range" id="quality" min="10" max="100" value="85" class="slider-custom" style="margin-top: 8px;">
+              </div>
+
+              <div class="tool-action-btn-row" style="margin-top: 28px; display: flex; gap: 12px;">
+                <button id="btn-resize" class="btn btn-primary" style="flex: 1;">
+                  Resize &amp; Download
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                </button>
+                <button id="btn-clear" class="btn btn-secondary">Reset</button>
+              </div>
+
             </div>
           </div>
-          <div>
-            <label class="tool-label" for="format">Output Format</label>
-            <select id="format" class="tool-select">
-              <option value="image/png">PNG (lossless)</option>
-              <option value="image/jpeg" selected>JPEG (compressed)</option>
-              <option value="image/webp">WebP (modern)</option>
-            </select>
+
+          <!-- Right Panel: Live Preview -->
+          <div class="tool-panel" style="min-height: 480px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="tool-panel-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="3" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="8.5" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M2 15l6-6 4 4 3-3 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              Image Preview &amp; Output
+            </div>
+
+            <!-- Preview Box -->
+            <div class="canvas-preview" id="preview-box" style="flex-grow: 1; display: flex; align-items: center; justify-content: center; background: var(--bg-grid-preview, #f8f9fa); border: 2px dashed var(--color-border); border-radius: 8px; margin: 16px 0; padding: 16px; min-height: 280px; overflow: hidden; position: relative;">
+              <img id="preview-img" style="max-width: 100%; max-height: 380px; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: none;" alt="Image preview">
+              <div id="preview-placeholder" style="text-align: center; color: var(--color-muted);">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-muted-light); margin-bottom: 12px;">
+                  <rect x="2" y="2" width="20" height="20" rx="3" stroke="currentColor" stroke-width="1.5"/><circle cx="8.5" cy="8.5" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M2 15l6-6 4 4 3-3 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <p style="font-size: 14px;">No image uploaded yet</p>
+              </div>
+            </div>
+
+            <p id="resize-info" class="tool-badge" style="text-align: center; font-size: 13px; font-weight: 600; min-height: 20px; color: var(--color-primary);"></p>
           </div>
-          <div id="quality-wrap">
-            <label class="tool-label" for="quality">Quality (<span id="quality-val">85</span>%)</label>
-            <input type="range" id="quality" min="10" max="100" value="85" style="width:120px">
-          </div>
+          
         </div>
-
-        <div class="tool-bottom-actions">
-          <button id="btn-resize" class="btn btn-primary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-            Resize &amp; Download
-          </button>
-          <button id="btn-clear" class="btn btn-secondary">Clear</button>
-        </div>
-
-        <!-- Preview -->
-        <div class="canvas-preview" id="preview-box" style="min-height:200px">
-          <img id="preview-img" style="max-width:100%;max-height:400px;object-fit:contain;border-radius:8px;display:none" alt="Image preview">
-        </div>
-
-        <p id="resize-info" class="tool-badge" style="margin-top:8px"></p>
       </div>
 
-      <div class="tool-info-grid">
-        <div class="tool-info-card">
-          <h3>Pro Tips</h3>
+      <!-- Rich SEO Content -->
+      <div class="seo-content-rich">
+        
+        <!-- How It Works Section -->
+        <section class="seo-steps-section">
+          <div class="seo-section-title-wrap">
+            <h2 class="seo-section-title">How the Image Resizer Works</h2>
+            <p class="seo-section-subtitle">Resize files locally in three simple steps</p>
+          </div>
+          <div class="seo-steps-grid">
+            <div class="seo-step-card">
+              <div class="seo-step-num">1</div>
+              <h3 class="seo-step-title">Upload File</h3>
+              <p class="seo-step-desc">Drag and drop up to 20 images into the workspace or click inside the dotted dropzone to select local files.</p>
+            </div>
+            <div class="seo-step-card">
+              <div class="seo-step-num">2</div>
+              <h3 class="seo-step-title">Set Dimensions</h3>
+              <p class="seo-step-desc">Select a preset size, type custom pixel dimensions while keeping the aspect ratio locked, or enter a scaling percentage.</p>
+            </div>
+            <div class="seo-step-card">
+              <div class="seo-step-num">3</div>
+              <h3 class="seo-step-title">Resize & Download</h3>
+              <p class="seo-step-desc">Click the primary action button to render the scaled canvas and download the resized files to your local hard drive.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Technical Deep-Dive -->
+        <section class="seo-technical-section">
+          <h2>The Mathematics of Pixel Interpolation & Aspect Ratio Scaling</h2>
+          <p>When you resize a raster graphic, you are changing the density and coordinates of its pixel grid. This requires the browser to calculate brand new color values for target pixels using interpolation algorithms. Different scaling methods yield varying quality results:</p>
+          
           <ul>
-            <li>Use <strong>WebP</strong> for smallest file size on the web</li>
-            <li>Set quality to <strong>85%</strong> for optimal JPEG balance</li>
-            <li>Use <strong>1200×630</strong> for social media Open Graph images</li>
-            <li>Use <strong>512×512</strong> for app icons and favicons</li>
+            <li><strong>Nearest-Neighbor Interpolation:</strong> Simply replicates the nearest pixel's color values. This is computationally fast but creates jagged, pixelated borders in photographic layouts.</li>
+            <li><strong>Bilinear Interpolation:</strong> Samples a 2x2 grid of neighboring pixels, averaging color values based on distance coordinates. This provides a balance of smoothness and rendering speed.</li>
+            <li><strong>Bicubic Interpolation:</strong> Examines a 4x4 grid of surrounding pixels. Using cubic equations, it produces the smoothest transitions and sharpest features, ideal for high-definition rendering.</li>
           </ul>
+
+          <div class="seo-formula-box">
+            <h4>Aspect Ratio Constraining Formula</h4>
+            <p>To scale an image without horizontal or vertical stretching, the aspect ratio ($AR$) must remain constant:</p>
+            <code>AR = Width_orig / Height_orig</code>
+            <p style="margin-top:8px;">When calculating a new height from a user-supplied target width:</p>
+            <code>Height_new = Width_new / AR</code>
+          </div>
+        </section>
+
+        <!-- Tip Box -->
+        <div class="tool-tip-box">
+          <div class="tool-tip-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9.663 17h4.673M12 3v1m6.364.364l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <div class="tool-tip-content">
+            <strong>Pro Tip:</strong> Need to scale multiple files down quickly? Use the <strong>Scale by Percentage</strong> option set to 50% to cut the file storage footprint by more than half while maintaining perfect aspect ratios.
+          </div>
         </div>
+
+        <!-- Reference Table -->
+        <section class="seo-table-section">
+          <div class="tool-panel-title">
+            <div style="display:flex;align-items:center;gap:8px">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM21 9H3M21 15H3M12 3v18"></path></svg>
+              <h2>Social Media & Web Aspect Ratio Standards</h2>
+            </div>
+          </div>
+          <div class="seo-table-container">
+            <table class="seo-table">
+              <thead>
+                <tr>
+                  <th>Preset Category</th>
+                  <th>Target Dimensions</th>
+                  <th>Aspect Ratio</th>
+                  <th>Ideal Use Case Context</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Full HD (FHD)</strong></td>
+                  <td>1920 × 1080 px</td>
+                  <td>16:9 Landscape</td>
+                  <td>Standard desktop screens, YouTube video uploads, website hero headers</td>
+                </tr>
+                <tr>
+                  <td><strong>HD Video</strong></td>
+                  <td>1280 × 720 px</td>
+                  <td>16:9 Landscape</td>
+                  <td>Standard web streaming videos, secondary slides, email assets</td>
+                </tr>
+                <tr>
+                  <td><strong>Square Post</strong></td>
+                  <td>1080 × 1080 px</td>
+                  <td>1:1 Square</td>
+                  <td>Instagram feed grids, LinkedIn updates, logo avatars, user profile pictures</td>
+                </tr>
+                <tr>
+                  <td><strong>OG Image</strong></td>
+                  <td>1200 × 630 px</td>
+                  <td>1.91:1 Rectangle</td>
+                  <td>Open Graph previews on platforms like Facebook, Twitter, and Slack link previews</td>
+                </tr>
+                <tr>
+                  <td><strong>App Icon</strong></td>
+                  <td>512 × 512 px</td>
+                  <td>1:1 Square</td>
+                  <td>Favicons, progressive web application (PWA) icons, system shortcuts</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="seo-faq-section">
+          <div class="seo-section-title-wrap">
+            <h2 class="seo-section-title">Frequently Asked Questions</h2>
+            <p class="seo-section-subtitle">Answers to common image resizing questions</p>
+          </div>
+          <div class="tool-faq-list">
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">How does the Image Resizer scale images?</summary>
+              <div class="tool-faq-a">
+                <p>The tool uses HTML5 Canvas coordinates. When you drag in a file, it loads into a virtual Image element. It then sets a target canvas width and height, running high-performance browser bilinear interpolation to draw the scaled graphic smoothly without creating pixelated boundaries.</p>
+              </div>
+            </details>
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">Does locking the aspect ratio distort my images?</summary>
+              <div class="tool-faq-a">
+                <p>No, locking the aspect ratio keeps the proportions constant. When you edit the width input, our JavaScript matches it with the height by calculating <code>Height = Width / Ratio</code>. Uncheck this box only if you specifically want to stretch or squish your visual graphic.</p>
+              </div>
+            </details>
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">Can I resize multiple images at once?</summary>
+              <div class="tool-faq-a">
+                <p>Yes. The resizer allows batch operations on up to 20 images at the same time. All uploaded files will inherit your specified dimension rules, and the browser will download them as individual files sequentially.</p>
+              </div>
+            </details>
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">Which image types can I resize?</summary>
+              <div class="tool-faq-a">
+                <p>You can resize PNG, JPG, JPEG, static WebP, and non-animated GIF files. Since browser-based resizing uses native renderers, files are processed instantly.</p>
+              </div>
+            </details>
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">Are my photos uploaded to ToolWools servers?</summary>
+              <div class="tool-faq-a">
+                <p>No. Your files are processed entirely in your computer's local memory. The tool does not perform any server communication or analytics tracking, making it completely private and secure for confidential logos, signatures, or personal records.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- SEO Articles -->
+        <section class="seo-text-section">
+          <h2>Understanding Image Resolution: Bilinear vs. Bicubic Pixel Interpolation</h2>
+          <p>Resizing images involves changing the density of pixels on a grid. Up-scaling requires the creation of new pixel coordinates, whereas down-scaling involves merging existing pixel channels. Bilinear interpolation performs average calculations over a 2x2 grid, whereas bicubic interpolation fits pixel curves across a 4x4 matrix. Modern browser canvas drawing uses bilinear and bicubic rendering states automatically, ensuring that when you shrink image dimensions, details remain sharp without rendering artifacts.</p>
+        </section>
+
+        <section class="seo-text-section">
+          <h2>Social Media Presets: Standard Aspect Ratios for Modern Platforms</h2>
+          <p>Every digital platform features proprietary aspect ratio requirements. For example, modern search previews pull Open Graph metadata displaying a standard 1200x630 layout. Storing files at these precise dimensions ensures that platforms display card media without awkward cropped borders. Using predefined resizer presets saves design hours and guarantees your graphics look premium and fit pixel-perfectly across all social feeds.</p>
+        </section>
+
       </div>
+
+      <!-- Related Tools Section -->
+      <section class="related-tools">
+        <h2 class="related-tools-heading">Related Tools</h2>
+        <div class="related-tools-grid">
+          <a href="../image-compressor/index.html" class="related-tool-card">
+            <div class="related-tool-card-top">
+              <div class="related-tool-icon-wrapper" style="background: var(--color-primary); color: white; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <circle cx="8.5" cy="8.5" r="1.5"/>
+                  <polyline points="21 15 16 10 5 21"/>
+                </svg>
+              </div>
+              <span class="related-tool-category-badge" style="background: rgba(244, 81, 30, 0.06); color: #F4511E; border-color: rgba(244, 81, 30, 0.12);">Image Tools</span>
+            </div>
+            <div class="related-tool-card-body">
+              <h3 class="related-tool-name">Image Compressor</h3>
+              <p class="related-tool-desc">Reduce the storage size of JPEG, PNG, and WebP images by up to 80% without losing visual clarity.</p>
+            </div>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+          <a href="../webp-converter/index.html" class="related-tool-card">
+            <div class="related-tool-card-top">
+              <div class="related-tool-icon-wrapper" style="background: var(--color-primary); color: white; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                </svg>
+              </div>
+              <span class="related-tool-category-badge" style="background: rgba(244, 81, 30, 0.06); color: #F4511E; border-color: rgba(244, 81, 30, 0.12);">Image Tools</span>
+            </div>
+            <div class="related-tool-card-body">
+              <h3 class="related-tool-name">WebP Converter</h3>
+              <p class="related-tool-desc">Convert standard JPG or PNG images into modern WebP format for fast web page loading.</p>
+            </div>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+          <a href="../pdf-to-image/index.html" class="related-tool-card">
+            <div class="related-tool-card-top">
+              <div class="related-tool-icon-wrapper" style="background: var(--color-red); color: white; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15l-3-3 3 3"/>
+                </svg>
+              </div>
+              <span class="related-tool-category-badge category-text-badge" style="background: rgba(239, 68, 68, 0.06); color: var(--color-red); border-color: rgba(239, 68, 68, 0.12);">PDF Tools</span>
+            </div>
+            <div class="related-tool-card-body">
+              <h3 class="related-tool-name">PDF to Image</h3>
+              <p class="related-tool-desc">Extract PDF pages and convert them into clean JPEG or PNG image assets directly in your browser.</p>
+            </div>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Closing CTA Banner -->
+      <section class="seo-cta-banner">
+        <h2>Resize and Constrain Your Images Instantly</h2>
+        <p>Upload your files above, enter your target dimensions or select a template preset, and download your resized files locally.</p>
+        <a href="#tool-workspace" class="seo-cta-btn">↑ Back to Image Resizer Workspace</a>
+      </section>
+
     </div>
-  
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid"><a href="../pdf-to-image/index.html" class="related-tool-card"><strong class="related-tool-name">PDF to Image</strong><span class="related-tool-link">Try this tool</span></a><a href="../base64-to-image/index.html" class="related-tool-card"><strong class="related-tool-name">Base64 to Image Decoder</strong><span class="related-tool-link">Try this tool</span></a><a href="../webp-converter/index.html" class="related-tool-card"><strong class="related-tool-name">WebP Converter</strong><span class="related-tool-link">Try this tool</span></a></div></section>
   </main>
 
+  <!-- ==================== FOOTER ==================== -->
   <footer class="footer" id="footer">
     <div class="footer-container">
       <div class="footer-grid">
