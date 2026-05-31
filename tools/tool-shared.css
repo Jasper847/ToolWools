@@ -804,15 +804,7 @@
   padding: 40px max(16px, 4vw) 80px;
 }
 
-.tool-title {
-  font-family: var(--font-display);
-  font-size: var(--text-3xl);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--color-dark);
-  margin-bottom: var(--space-2);
-  line-height: 1.15;
-}
+/* .tool-title — authoritative definition in typography section below (L1734) */
 
 .tool-subtitle {
   font-size: var(--text-base);
@@ -1360,6 +1352,29 @@
   }
 }
 
+/* 480px: stack related tools to single column */
+@media (max-width: 480px) {
+  .related-tools-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* Code element styling for SEO content */
+.tool-container code {
+  font-family: 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.9em;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: var(--color-primary);
+}
+[data-theme="dark"] .tool-container code {
+  background: #0f172a;
+  border-color: #1e293b;
+}
+
 /* =============================================
    AMBIENT GLOWS, DOT-GRID BACKDROP & STICKY FOOTER
    ============================================= */
@@ -1645,44 +1660,8 @@ main.tool-page {
   }
 }
 
-/* -----------------------------------------------
-   FIX 11: Related tools responsive (3→2→1 col)
-   ----------------------------------------------- */
-.related-tools {
-  margin-top: 56px;
-  padding-top: 32px;
-  border-top: 1px solid var(--color-border);
-  position: relative;
-}
+/* FIX 11: Related tools — using authoritative definitions above (L1161-L1351) */
 
-.related-tools-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-}
-
-@media (max-width: 800px) {
-  .related-tools-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .related-tools-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-  .related-tool-card {
-    padding: 16px;
-    flex-direction: row;
-    align-items: center;
-    gap: 14px;
-  }
-  .related-tool-link {
-    padding-top: 0;
-    flex-shrink: 0;
-  }
-}
 
 /* -----------------------------------------------
    FIX 12: Upload zone mobile friendliness

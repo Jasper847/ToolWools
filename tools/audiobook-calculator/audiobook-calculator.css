@@ -159,13 +159,7 @@
   gap: 8px;
 }
 
-.ab-input-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--color-dark);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
+/* .ab-input-label — authoritative definition below at L707 */
 
 .ab-slider-row {
   display: flex;
@@ -338,7 +332,8 @@
   color: var(--color-muted);
 }
 
-/* Premium Related Tools Cards */
+/* Related tool card sub-components — using authoritative definitions from tool-shared.css */
+/* Only audiobook-specific overrides below */
 .related-tool-card-top {
   display: flex;
   justify-content: space-between;
@@ -391,44 +386,10 @@
   text-align: left;
 }
 
-.related-tool-name {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--color-dark);
-  margin-bottom: 6px;
-  display: block;
-}
-
 .related-tool-desc {
   font-size: 13px;
   line-height: 1.55;
   color: var(--color-muted);
-}
-
-.related-tool-link {
-  font-size: 13px;
-  color: var(--color-primary);
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  transition: gap 0.25s ease;
-  margin-top: auto;
-  align-self: flex-start;
-}
-
-.related-tool-link::after {
-  content: '→';
-  transition: transform 0.25s ease;
-}
-
-.related-tool-card:hover .related-tool-link {
-  gap: 8px;
-}
-
-.related-tool-card:hover .related-tool-link::after {
-  transform: translateX(2px);
 }
 
 /* Responsive */
@@ -537,13 +498,8 @@
   margin: 24px auto 0;
 }
 
-/* Related Tools Layout, Alignment, and Footer Spacing */
-.related-tools {
-  margin-top: 80px; /* Generous top margin */
-  padding: 48px 0 80px; /* 48px top, 80px bottom spacing above footer */
-  border-top: 1px solid var(--color-border);
-}
-
+/* Related Tools — using authoritative definitions from tool-shared.css */
+/* Only minor audiobook-specific spacing kept */
 .related-tools-heading {
   justify-content: center;
   margin-bottom: 32px;
@@ -552,20 +508,15 @@
 .related-tools-grid {
   max-width: 1200px;
   margin: 0 auto;
-  gap: 24px; /* Premium spacing gap */
 }
 
-/* Ensure related tool cards look balanced and premium */
+/* Ensure related tool cards look balanced */
 .related-tool-card {
-  padding: 32px 24px;
+  padding: 28px 24px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
 }
 
 @media (max-width: 768px) {
-  .related-tools {
-    margin-top: 48px;
-    padding: 32px 0 48px;
-  }
   .related-tools-heading {
     margin-bottom: 24px;
   }
