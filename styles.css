@@ -2792,3 +2792,580 @@ body {
     transition-delay: 0s !important;
   }
 }
+
+
+/* =============================================
+   HERO + FOOTER REDESIGN — Ultra Modern Premium
+   14 upgrades: 8 Hero + 6 Footer
+   ============================================= */
+
+/* -----------------------------------------------
+   HERO #1: Animated gradient orbs (3 floating blobs)
+   ----------------------------------------------- */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+.hero-orb-1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(244,81,30,0.18) 0%, transparent 70%);
+  top: -200px; left: -150px;
+  animation: orbDrift1 18s ease-in-out infinite;
+}
+.hero-orb-2 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(37,99,235,0.13) 0%, transparent 70%);
+  top: 100px; right: -100px;
+  animation: orbDrift2 22s ease-in-out infinite;
+}
+.hero-orb-3 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(16,185,129,0.10) 0%, transparent 70%);
+  bottom: -100px; left: 40%;
+  animation: orbDrift3 16s ease-in-out infinite;
+}
+
+@keyframes orbDrift1 {
+  0%,100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(60px, 40px) scale(1.08); }
+  66%      { transform: translate(-30px, 80px) scale(0.95); }
+}
+@keyframes orbDrift2 {
+  0%,100% { transform: translate(0, 0) scale(1); }
+  40%     { transform: translate(-80px, 50px) scale(1.05); }
+  70%     { transform: translate(40px, -40px) scale(0.97); }
+}
+@keyframes orbDrift3 {
+  0%,100% { transform: translate(0, 0) scale(1); }
+  30%     { transform: translate(50px, -60px) scale(1.1); }
+  60%     { transform: translate(-40px, 30px) scale(0.94); }
+}
+
+[data-theme="dark"] .hero-orb-1 {
+  background: radial-gradient(circle, rgba(244,81,30,0.22) 0%, transparent 70%);
+}
+[data-theme="dark"] .hero-orb-2 {
+  background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 70%);
+}
+[data-theme="dark"] .hero-orb-3 {
+  background: radial-gradient(circle, rgba(16,185,129,0.14) 0%, transparent 70%);
+}
+
+@media (max-width: 768px) {
+  .hero-orb { filter: blur(60px); }
+  .hero-orb-1 { width: 350px; height: 350px; }
+  .hero-orb-2 { width: 300px; height: 300px; }
+  .hero-orb-3 { width: 250px; height: 250px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-orb { animation: none !important; }
+}
+
+/* -----------------------------------------------
+   HERO #2: CTA Button shimmer sweep
+   ----------------------------------------------- */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.22) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  animation: btnShimmer 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes btnShimmer {
+  0%   { left: -100%; opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { left: 150%; opacity: 1; }
+  51%,100% { left: 150%; opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary::after { animation: none; }
+}
+
+/* -----------------------------------------------
+   HERO #3: Typing cursor for word-cycle effect
+   ----------------------------------------------- */
+.hero-title .highlight-word {
+  display: inline-block;
+  position: relative;
+  color: var(--color-primary);
+  font-style: italic;
+}
+.hero-title .highlight-word::after {
+  content: '|';
+  position: absolute;
+  right: -6px;
+  top: 0;
+  color: var(--color-primary);
+  font-style: normal;
+  animation: cursorBlink 0.8s step-end infinite;
+  opacity: 0;
+}
+.hero-title .highlight-word.typing::after { opacity: 1; }
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* -----------------------------------------------
+   HERO #4: Scroll-down indicator
+   ----------------------------------------------- */
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.4s ease;
+  z-index: 5;
+  animation: scrollIndicatorFade 0.8s ease 2s forwards;
+  opacity: 0;
+}
+@keyframes scrollIndicatorFade {
+  to { opacity: 1; }
+}
+.hero-scroll-indicator.hidden { opacity: 0; pointer-events: none; }
+
+.hero-scroll-chevron {
+  width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1.5px solid var(--color-border);
+  border-radius: 50%;
+  animation: bounceDown 2s ease-in-out infinite;
+}
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+@media (max-width: 768px) { .hero-scroll-indicator { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-chevron { animation: none; }
+  .hero-scroll-indicator { animation: none; opacity: 1; }
+}
+
+/* -----------------------------------------------
+   HERO #5: Parallax word highlight underline
+   ----------------------------------------------- */
+.hero-title .highlight {
+  position: relative;
+  display: inline-block;
+}
+.hero-title .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 100%; height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), #FF7043, var(--color-primary));
+  background-size: 200% 100%;
+  border-radius: 2px;
+  animation: underlineShift 3s linear infinite;
+}
+@keyframes underlineShift {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+/* -----------------------------------------------
+   HERO #6: Badge shimmer glow pulse upgrade
+   ----------------------------------------------- */
+.hero-badge {
+  position: relative;
+  overflow: hidden;
+}
+.hero-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(244,81,30,0.12) 50%,
+    transparent 100%
+  );
+  animation: badgeShimmer 4s ease-in-out infinite;
+}
+@keyframes badgeShimmer {
+  0%   { transform: translateX(-100%); }
+  50%  { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* -----------------------------------------------
+   HERO #7: Stats bar count-up visual highlight
+   ----------------------------------------------- */
+.stat-number {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.stat-number.counting {
+  color: var(--color-primary);
+  transform: scale(1.05);
+}
+
+/* -----------------------------------------------
+   HERO #8: Hero container position relative
+   (needed for orbs + scroll indicator)
+   ----------------------------------------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+.hero-container {
+  position: relative;
+  z-index: 2;
+}
+
+/* =============================================
+   FOOTER REDESIGN — Ultra Modern Minimal
+   ============================================= */
+
+/* -----------------------------------------------
+   FOOTER #1: Animated cycling gradient top border
+   ----------------------------------------------- */
+.footer {
+  position: relative;
+  border-top: none;
+  background: var(--color-surface);
+}
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    #F4511E 0%,
+    #FF7043 20%,
+    #2563EB 40%,
+    #10B981 60%,
+    #7C3AED 80%,
+    #F4511E 100%
+  );
+  background-size: 300% 100%;
+  animation: footerBorderShift 6s linear infinite;
+}
+@keyframes footerBorderShift {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 300% 0%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .footer::before {
+    animation: none;
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    background-size: 100% 100%;
+  }
+}
+
+/* -----------------------------------------------
+   FOOTER #2: Frosted glass background
+   ----------------------------------------------- */
+[data-theme="dark"] .footer {
+  background: rgba(10, 10, 20, 0.85);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+}
+
+/* -----------------------------------------------
+   FOOTER #3: Ultra-minimal 2-col grid layout
+   ----------------------------------------------- */
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px max(24px, 4vw) 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--color-border);
+  align-items: start;
+}
+
+.footer-brand-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-muted);
+  margin: 14px 0 24px;
+  max-width: 280px;
+}
+
+/* Brand tagline (manifesto line) */
+.footer-manifesto {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin: 8px 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.footer-manifesto::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: 1px;
+}
+
+/* -----------------------------------------------
+   FOOTER #4: Social icons with brand-color glow
+   ----------------------------------------------- */
+.social-icons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.social-icon {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-muted);
+  transition: all 0.25s cubic-bezier(0.21,0.47,0.32,0.98);
+  position: relative;
+  overflow: hidden;
+}
+.social-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  border-radius: inherit;
+}
+/* Twitter/X — blue */
+.social-icon[aria-label="Twitter/X"]::before  { background: rgba(29,161,242,0.12); }
+.social-icon[aria-label="Twitter/X"]:hover     { color: #1DA1F2; border-color: rgba(29,161,242,0.4); box-shadow: 0 0 16px rgba(29,161,242,0.25); }
+/* LinkedIn — blue */
+.social-icon[aria-label="LinkedIn"]::before    { background: rgba(0,119,181,0.12); }
+.social-icon[aria-label="LinkedIn"]:hover      { color: #0077B5; border-color: rgba(0,119,181,0.4); box-shadow: 0 0 16px rgba(0,119,181,0.25); }
+/* GitHub — purple */
+.social-icon[aria-label="GitHub"]::before      { background: rgba(124,58,237,0.12); }
+.social-icon[aria-label="GitHub"]:hover        { color: #7C3AED; border-color: rgba(124,58,237,0.4); box-shadow: 0 0 16px rgba(124,58,237,0.25); }
+/* Instagram — pink */
+.social-icon[aria-label="Instagram"]::before   { background: rgba(225,48,108,0.12); }
+.social-icon[aria-label="Instagram"]:hover     { color: #E1306C; border-color: rgba(225,48,108,0.4); box-shadow: 0 0 16px rgba(225,48,108,0.25); }
+.social-icon:hover::before { opacity: 1; }
+.social-icon:hover { transform: translateY(-3px); }
+
+[data-theme="dark"] .social-icon {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.08);
+}
+
+/* -----------------------------------------------
+   FOOTER #5: Staggered link hover cascade
+   ----------------------------------------------- */
+.footer-col { display: flex; flex-direction: column; }
+
+.footer-col-title {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-dark);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.footer-col-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.footer-link {
+  font-size: 14px;
+  color: var(--color-muted);
+  padding: 5px 0;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease, padding-left 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+.footer-link::before {
+  content: '';
+  width: 0;
+  height: 1px;
+  background: var(--color-primary);
+  transition: width 0.2s ease;
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+}
+.footer-link:hover {
+  color: var(--color-dark);
+  padding-left: 6px;
+}
+.footer-link:hover::before { width: calc(100% - 6px); }
+
+/* Stagger on column hover */
+.footer-col:hover .footer-link:nth-child(2) { transition-delay: 0.03s; }
+.footer-col:hover .footer-link:nth-child(3) { transition-delay: 0.06s; }
+.footer-col:hover .footer-link:nth-child(4) { transition-delay: 0.09s; }
+.footer-col:hover .footer-link:nth-child(5) { transition-delay: 0.12s; }
+.footer-col:hover .footer-link:nth-child(6) { transition-delay: 0.15s; }
+
+/* -----------------------------------------------
+   FOOTER #6: Back-to-top button
+   ----------------------------------------------- */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 44px; height: 44px;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(244,81,30,0.35);
+  transition: all 0.3s cubic-bezier(0.21,0.47,0.32,0.98);
+  z-index: 999;
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+}
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(244,81,30,0.45);
+}
+.back-to-top:active { transform: scale(0.95); }
+
+/* -----------------------------------------------
+   FOOTER: Bottom bar ultra-clean
+   ----------------------------------------------- */
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0 32px;
+  gap: 16px;
+}
+.footer-copyright {
+  font-size: 13px;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+.footer-legal-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+.footer-legal-links a {
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.footer-legal-links a:hover { color: var(--color-primary); }
+.footer-dot {
+  color: var(--color-border);
+  font-size: 8px;
+}
+
+/* Remove old footer-made */
+.footer-made { display: none; }
+
+/* -----------------------------------------------
+   FOOTER: Responsive
+   ----------------------------------------------- */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 560px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .back-to-top {
+    bottom: 16px;
+    right: 16px;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+  }
+}
+
+
+/* -----------------------------------------------
+   SUPPRESS old footer elements no longer in HTML
+   ----------------------------------------------- */
+.footer-newsletter,
+.footer-newsletter-text,
+.newsletter-form {
+  display: none !important;
+}
+.footer-made {
+  display: none !important;
+}
+/* Old footer-grid column definition override (3-col clean) */
+.footer-grid {
+  grid-template-columns: 1.4fr 1fr 1fr;
+}
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
