@@ -508,3 +508,65 @@
   border-color: var(--color-primary);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
 }
+
+/* =============================================
+   LAYOUT POLISHING & ALIGNMENT OVERRIDES
+   ============================================= */
+
+/* Center section headings inside full-width panels */
+.tool-container > section.tool-panel .tool-panel-title {
+  justify-content: center;
+  text-align: center;
+}
+
+.tool-container > section.tool-panel .tool-panel-title > div {
+  justify-content: center;
+  width: 100%;
+}
+
+/* Center descriptive paragraphs under section headings */
+.tool-container > section.tool-panel > p {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 24px;
+}
+
+/* Center FAQ items container */
+.ab-faq-list {
+  max-width: 900px;
+  margin: 24px auto 0;
+}
+
+/* Related Tools Layout, Alignment, and Footer Spacing */
+.related-tools {
+  margin-top: 80px; /* Generous top margin */
+  padding: 48px 0 80px; /* 48px top, 80px bottom spacing above footer */
+  border-top: 1px solid var(--color-border);
+}
+
+.related-tools-heading {
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.related-tools-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 24px; /* Premium spacing gap */
+}
+
+/* Ensure related tool cards look balanced and premium */
+.related-tool-card {
+  padding: 32px 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+}
+
+@media (max-width: 768px) {
+  .related-tools {
+    margin-top: 48px;
+    padding: 32px 0 48px;
+  }
+  .related-tools-heading {
+    margin-bottom: 24px;
+  }
+}
