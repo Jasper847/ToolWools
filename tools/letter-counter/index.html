@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/letter-counter/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>Letter Counter — Analyze Character Frequencies | ToolWools</title>
+  <meta name="description" content="Count letters, vowels, consonants, spaces, and numbers in any text. View visual letter frequency charts and find the most common characters. Free online tool.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+  <link rel="stylesheet" href="../tool-shared.css">
+  <style>
+    .frequency-chart-container {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+      margin-top: 24px;
+    }
+    .frequency-chart-title {
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--color-dark);
+      margin-bottom: 16px;
+    }
+    .frequency-bar-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      gap: 12px;
+    }
+    .frequency-letter-label {
+      width: 24px;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--color-dark);
+    }
+    .frequency-bar-bg {
+      flex: 1;
+      height: 12px;
+      background: var(--color-border-light);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .frequency-bar-fill {
+      height: 100%;
+      background: var(--color-primary);
+      border-radius: 6px;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    .frequency-val-label {
+      width: 45px;
+      font-size: 13px;
+      color: var(--color-muted);
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-logo" aria-label="ToolWools Home">
+        <div class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="16" fill="#F4511E"/>
+            <path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="logo-text">ToolWools</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="../index.html" class="nav-link">All Tools</a>
+        <a href="../index.html?cat=text" class="nav-link">Text Tools</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M10 2V4M10 16V18M2 10H4M16 10H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <a href="../../index.html#cta" class="btn btn-primary nav-cta">Get Started Free</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html" class="mobile-link">All Tools</a>
+      <a href="../../index.html#cta" class="btn btn-primary mobile-cta">Get Started Free</a>
+    </div>
+  </header>
+
+  <main id="main-content" class="tool-page">
+    <div class="tool-container">
+      <nav class="tool-breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="../index.html">Tools</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">Letter Counter</span>
+      </nav>
+
+      <div class="tool-header">
+        <div class="tool-header-icon tool-icon-green">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke="white" stroke-width="2"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="tool-title">Letter Counter Pro</h1>
+          <p class="tool-subtitle">Analyze character frequencies inside text strings. Count letters, vowels, consonants, spaces, and display distribution charts.</p>
+        </div>
+      </div>
+
+      <div class="stats-grid" style="grid-template-columns: repeat(5, 1fr); margin-bottom: 24px;">
+        <div class="stat-card"><span class="stat-value" id="stat-letters">0</span><span class="stat-label">Total Letters</span></div>
+        <div class="stat-card"><span class="stat-value" id="stat-vowels">0</span><span class="stat-label">Vowels</span></div>
+        <div class="stat-card"><span class="stat-value" id="stat-consonants">0</span><span class="stat-label">Consonants</span></div>
+        <div class="stat-card"><span class="stat-value" id="stat-digits">0</span><span class="stat-label">Digits</span></div>
+        <div class="stat-card"><span class="stat-value" id="stat-spaces">0</span><span class="stat-label">Spaces</span></div>
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <label class="tool-label" for="input">Enter Your Text</label>
+        <textarea id="input" class="tool-textarea" rows="10" placeholder="Type or paste your text content here to calculate details..." autofocus></textarea>
+      </div>
+
+      <div class="tool-bottom-actions" style="margin-bottom: 32px;">
+        <button id="btn-clear" class="btn btn-secondary">Clear Text</button>
+      </div>
+
+      <div class="frequency-chart-container" id="chart-section" style="display: none;">
+        <div class="frequency-chart-title">Letter Frequency Distribution (A - Z)</div>
+        <div id="chart-bars">
+          <!-- Bars will be dynamically populated -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-bottom">
+        <span class="footer-copyright">© 2026 ToolWools. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../script.js"></script>
+  <script src="letter-counter.js"></script>
+</body>
+</html>

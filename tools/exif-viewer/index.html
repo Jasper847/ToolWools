@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/exif-viewer/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>EXIF Data Viewer — Read Image Metadata Online | ToolWools</title>
+  <meta name="description" content="View hidden EXIF metadata from your digital photos instantly. Extract camera model, aperture, shutter speed, ISO settings, lens, and GPS coordinates. Free.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+  <link rel="stylesheet" href="../tool-shared.css">
+  <style>
+    .exif-table-wrapper {
+      margin-top: 24px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .exif-section-header {
+      background: var(--color-border-light);
+      padding: 12px 16px;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--color-dark);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .exif-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .exif-table tr {
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    .exif-table tr:last-child {
+      border-bottom: none;
+    }
+    .exif-table td {
+      padding: 12px 16px;
+      font-size: 14px;
+    }
+    .exif-label {
+      font-weight: 600;
+      color: var(--color-muted);
+      width: 35%;
+    }
+    .exif-val {
+      color: var(--color-dark);
+      word-break: break-all;
+    }
+    .exif-preview-img {
+      max-width: 100%;
+      max-height: 350px;
+      border-radius: var(--radius-sm);
+      object-fit: contain;
+      border: 1px solid var(--color-border);
+      background: #f8fafc;
+      margin-bottom: 24px;
+    }
+    [data-theme="dark"] .exif-preview-img {
+      background: #0f172a;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-logo" aria-label="ToolWools Home">
+        <div class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="16" fill="#F4511E"/>
+            <path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="logo-text">ToolWools</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="../index.html" class="nav-link">All Tools</a>
+        <a href="../index.html?cat=image" class="nav-link">Image Tools</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M10 2V4M10 16V18M2 10H4M16 10H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <a href="../../index.html#cta" class="btn btn-primary nav-cta">Get Started Free</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html" class="mobile-link">All Tools</a>
+      <a href="../../index.html#cta" class="btn btn-primary mobile-cta">Get Started Free</a>
+    </div>
+  </header>
+
+  <main id="main-content" class="tool-page">
+    <div class="tool-container">
+      <nav class="tool-breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="../index.html">Tools</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">EXIF Viewer</span>
+      </nav>
+
+      <div class="tool-header">
+        <div class="tool-header-icon tool-icon-orange">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="4" width="18" height="16" rx="2" stroke="white" stroke-width="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18" stroke="white" stroke-width="2"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="tool-title">EXIF Data Viewer</h1>
+          <p class="tool-subtitle">Upload digital photos to view embedded EXIF tags: camera specifications, shooting parameters, and GPS location details.</p>
+        </div>
+      </div>
+
+      <div class="dropzone-container" id="dropzone" style="margin-bottom: 24px;">
+        <input type="file" id="file-input" class="file-input-hidden" accept="image/jpeg, image/tiff">
+        <div class="dropzone-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 4v12m-4-4l4 4 4-4M4 20h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="dropzone-text">Drag &amp; drop a JPEG photo here or click to select</div>
+        <div class="dropzone-subtext">Supports JPEG (.jpg, .jpeg) and TIFF (.tif) files containing metadata</div>
+      </div>
+
+      <div class="uploaded-file-row" id="file-info-row" style="display: none; margin-bottom: 24px;">
+        <div class="file-meta-info">
+          <div class="file-icon-badge">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <div>
+            <div class="file-name-text" id="file-name">photo.jpg</div>
+            <div class="file-size-badge" id="file-info-text">0 KB</div>
+          </div>
+        </div>
+        <button class="btn-remove-file" id="btn-remove" aria-label="Remove image">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div id="results-wrapper" style="display: none;">
+        <div style="display: flex; justify-content: center;">
+          <img id="preview-image" class="exif-preview-img" alt="Uploaded photo preview">
+        </div>
+
+        <div class="exif-table-wrapper">
+          <div class="exif-section-header">📷 Camera &amp; Lens Info</div>
+          <table class="exif-table">
+            <tr><td class="exif-label">Camera Make</td><td class="exif-val" id="val-make">—</td></tr>
+            <tr><td class="exif-label">Camera Model</td><td class="exif-val" id="val-model">—</td></tr>
+            <tr><td class="exif-label">Lens Model</td><td class="exif-val" id="val-lens">—</td></tr>
+            <tr><td class="exif-label">Software Used</td><td class="exif-val" id="val-software">—</td></tr>
+          </table>
+        </div>
+
+        <div class="exif-table-wrapper">
+          <div class="exif-section-header">⚙️ Shooting Settings</div>
+          <table class="exif-table">
+            <tr><td class="exif-label">Aperture</td><td class="exif-val" id="val-aperture">—</td></tr>
+            <tr><td class="exif-label">Exposure Time</td><td class="exif-val" id="val-exposure">—</td></tr>
+            <tr><td class="exif-label">ISO Speed</td><td class="exif-val" id="val-iso">—</td></tr>
+            <tr><td class="exif-label">Focal Length</td><td class="exif-val" id="val-focal">—</td></tr>
+            <tr><td class="exif-label">Flash Mode</td><td class="exif-val" id="val-flash">—</td></tr>
+            <tr><td class="exif-label">Exposure Program</td><td class="exif-val" id="val-program">—</td></tr>
+          </table>
+        </div>
+
+        <div class="exif-table-wrapper">
+          <div class="exif-section-header">🗓️ Date &amp; Time</div>
+          <table class="exif-table">
+            <tr><td class="exif-label">Date Taken</td><td class="exif-val" id="val-date-taken">—</td></tr>
+            <tr><td class="exif-label">Date Modified</td><td class="exif-val" id="val-date-modified">—</td></tr>
+          </table>
+        </div>
+
+        <div class="exif-table-wrapper">
+          <div class="exif-section-header">📍 GPS Coordinates</div>
+          <table class="exif-table">
+            <tr><td class="exif-label">Latitude</td><td class="exif-val" id="val-lat">—</td></tr>
+            <tr><td class="exif-label">Longitude</td><td class="exif-val" id="val-lng">—</td></tr>
+            <tr><td class="exif-label">Map Link</td><td class="exif-val" id="val-map">—</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-bottom">
+        <span class="footer-copyright">© 2026 ToolWools. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Exif.js library via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.min.js"></script>
+  <script src="../../script.js"></script>
+  <script src="exif-viewer.js"></script>
+</body>
+</html>

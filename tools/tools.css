@@ -1926,3 +1926,9 @@ input[type="range"].form-input::-webkit-slider-thumb:hover {
     transition-delay: 0s !important;
   }
 }
+
+.action-btn--active {
+  background: var(--color-primary) !important;
+  color: white !important;
+  border-color: var(--color-primary) !important;
+}
