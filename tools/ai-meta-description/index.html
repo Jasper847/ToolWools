@@ -174,7 +174,8 @@
     </div>
   </header>
 
-  <main class="tool-container" id="main-content">
+  <main class="tool-page" id="main-content">
+    <div class="tool-container">
       <nav class="tool-breadcrumb" aria-label="Breadcrumb">
         <a href="../../index.html">Home</a>
         <span aria-hidden="true"> › </span>
@@ -183,23 +184,196 @@
         <span aria-current="page">AI Meta Description Generator</span>
       </nav>
 
-        <div class="tool-header">
-      <div class="tool-header-icon tool-icon-dark">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M6 6L2 10L6 14M14 6L18 10L14 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <!-- Tool Header -->
+      <div class="tool-header tool-header-purple">
+        <div class="tool-header-icon tool-icon-purple">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="tool-badge-category">AI Tools</div>
+          <h1 class="tool-title" id="main-heading">AI Meta Description Generator</h1>
+          <p class="tool-subtitle">Generate high-relevance, search optimized meta descriptions within standard 155-character limits · 100% browser-based · Zero data uploads</p>
+        </div>
       </div>
-      <div>
-        <div class="tool-badge-category"></div>
-        <h1 class="tool-title"></h1>
-        <p class="tool-subtitle"></p>
+
+      <!-- Tool Workspace -->
+      <div class="tool-workspace tool-panel tool-card" id="tool-workspace">
+        <noscript>
+          <div class="tool-badge" style="margin-top:24px;padding:20px;text-align:center;font-size:15px;background:var(--color-primary-bg);border-radius:12px">
+            <strong>JavaScript Required</strong><br>This tool requires JavaScript to function. Please enable JavaScript in your browser settings and reload the page.
+          </div>
+        </noscript>
       </div>
+
+      <!-- SEO FAQ Section -->
+      <section class="tool-panel seo-content-rich" style="margin-top: 32px;">
+        <h2 class="seo-section-title">Frequently Asked Questions</h2>
+        <div class="tool-faq-list">
+          <details class="tool-faq-item" open>
+            <summary class="tool-faq-q">What is the ideal length for a meta description?</summary>
+            <div class="tool-faq-a">
+              <p>For optimal visibility, meta descriptions should be kept between 150 and 160 characters. Search engines like Google truncate descriptions exceeding this length limit—or more precisely, those that exceed a rendering limit of 960 pixels on desktop and 680 pixels on mobile viewports.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Why are target keywords crucial in search descriptions?</summary>
+            <div class="tool-faq-a">
+              <p>When a user queries a search term that matches a keyword inside your page's meta description, Google highlights the matching words in **bold** on the Search Engine Results Page (SERP). This visual emphasis draws the user's eye and raises the organic click-through rate (CTR).</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">How does client-side AI generate copy variations?</summary>
+            <div class="tool-faq-a">
+              <p>Our tool implements local copy templates combining your page title inputs, target keywords, current calendar year, and persuasive calls-to-action (CTAs). These templates are engineered around standard SEO copywriting patterns, allowing you to generate diverse variations without calling remote APIs.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">What copy tones are supported by the generator?</summary>
+            <div class="tool-faq-a">
+              <p>The generator supports four distinct writing tones: Professional (best for B2B and corporate sites), Friendly (perfect for blogs and social communities), Urgent/FOMO (ideal for e-commerce deals and landing pages), and Informative (geared toward tutorials and reference wikis).</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Does this tool require external OpenAI or LLM connections?</summary>
+            <div class="tool-faq-a">
+              <p>No. The entire formatting and variation rendering compiles locally in your browser memory window. No external HTTP requests are made, protecting your page titles, target keywords, and content outlines from network logging or server storage.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section class="tool-panel" style="margin-top: 32px;">
+        <h2 class="seo-section-title">How the AI Meta Description Generator Works</h2>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">1</div>
+            <h3>Provide Details</h3>
+            <p>Enter your target page title and primary SEO focus keyword into the respective input fields.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">2</div>
+            <h3>Select Tone</h3>
+            <p>Choose your copywriting tone style and define how many variations (up to 10 options) you want to generate.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">3</div>
+            <h3>Generate & Copy</h3>
+            <p>Click "Generate", review the character limits for each option, and copy your preferred variation with a single click.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Science & Formula Section -->
+      <section class="tool-panel seo-content-rich" style="margin-top: 32px;">
+        <h2 class="seo-section-title">The Science Behind SERP Snippet Optimization</h2>
+        <p>Google implements a pixel-based truncation boundary for search listings. While character counts are a useful approximation, characters like "W" or "M" consume more horizontal pixel space than "I" or "L". Our generator sets a conservative boundary of **155 characters** to ensure that your meta description renders completely without truncated ellipses (<code>...</code>) across most devices.</p>
+        <div class="seo-formula-box">
+          Search Snippet Limits:<br>
+          <code>Desktop Limit: Max 960px (~155–160 characters)</code><br>
+          <code>Mobile Limit:  Max 680px (~120–125 characters)</code>
+        </div>
+        <p>Additionally, search engines analyze user queries dynamically; if the meta description does not closely align with search intent, search algorithms will ignore it and dynamically extract body copy from the page instead. Standardizing search-intent structures increases the likelihood of your description being shown.</p>
+
+        <!-- Tip Box -->
+        <div class="tool-tip-box" style="margin-top: 24px;">
+          <div class="tool-tip-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 16v-4M12 8h.01"/></svg>
+          </div>
+          <div class="tool-tip-content">
+            <strong>Copywriting Tip:</strong> Always close your meta description with an active call-to-action (CTA) such as "Learn more", "Get started free", or "Compare features" to prompt search users to click.
+          </div>
+        </div>
+
+        <!-- Reference Table -->
+        <h3 style="margin-top: 24px; margin-bottom: 12px; font-size: 16px; font-weight: 700;">Copywriting Tones & Application Types</h3>
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--color-border); padding-bottom: 8px;">
+                <th style="padding: 8px;">Copywriting Tone</th>
+                <th style="padding: 8px;">Core Value Proposition</th>
+                <th style="padding: 8px;">Typical Call-To-Action (CTA)</th>
+                <th style="padding: 8px;">Recommended Page Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><strong>Professional</strong></td>
+                <td style="padding: 8px;">Trustworthy, objective, and authoritative</td>
+                <td style="padding: 8px;"><code>"Read the expert guide."</code></td>
+                <td style="padding: 8px;">SaaS landing pages, B2B services, wikis</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><strong>Friendly</strong></td>
+                <td style="padding: 8px;">Conversational, open, and approachable</td>
+                <td style="padding: 8px;"><code>"Check out our review!"</code></td>
+                <td style="padding: 8px;">Personal blogs, reviews, social forums</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><strong>Urgent/FOMO</strong></td>
+                <td style="padding: 8px;">Scarcity, immediate value, high-energy</td>
+                <td style="padding: 8px;"><code>"Get the list now."</code></td>
+                <td style="padding: 8px;">E-commerce products, flash deals, newsletters</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><strong>Informative</strong></td>
+                <td style="padding: 8px;">Fact-driven, logical, and clear value</td>
+                <td style="padding: 8px;"><code>"Compare top options."</code></td>
+                <td style="padding: 8px;">How-to tutorials, documentation, comparison tables</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
-      <h1 class="tool-title">AI Meta Description Generator</h1>
-      <p class="tool-description">Generate SEO-optimized meta descriptions from your page title and content. 155-character limit, keyword inclusion, CTA.</p>
-    </div>
-    <div class="tool-workspace" id="tool-workspace"><noscript><div class="tool-badge" style="margin-top:24px;padding:20px;text-align:center;font-size:15px;background:var(--color-primary-bg);border-radius:12px"><strong>JavaScript Required</strong><br>This tool requires JavaScript to function. Please enable JavaScript in your browser settings and reload the page.</noscript></div>
-  
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid"><a href="../ai-hashtag-generator/index.html" class="related-tool-card"><strong class="related-tool-name">AI Hashtag Generator</strong><span class="related-tool-link">Try this tool</span></a><a href="../ai-ad-copy-generator/index.html" class="related-tool-card"><strong class="related-tool-name">AI Ad Copy Generator</strong><span class="related-tool-link">Try this tool</span></a><a href="../ai-keyword-extractor/index.html" class="related-tool-card"><strong class="related-tool-name">AI Keyword Extractor</strong><span class="related-tool-link">Try this tool</span></a></div></section>
+
+    <section class="related-tools">
+      <h2 class="related-tools-heading">Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="../meta-tag-generator/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 7L3 12L7 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 7L21 12L17 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 4L10 20" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-blue">
+              <span class="category-text-badge text-blue">SEO Tools</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">SEO Meta Tag Generator</strong>
+          <p class="related-tool-desc">Generate search engine friendly meta tags, Open Graph, and Twitter cards.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+        <a href="../ai-hashtag-generator/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-purple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M10 2L12 7H18L13 11L15 17L10 13L5 17L7 11L2 7H8L10 2Z" fill="white"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-purple">
+              <span class="category-text-badge text-purple">AI Tools</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">AI Hashtag Generator</strong>
+          <p class="related-tool-desc">Compile popular social hashtags based on your descriptions or target terms.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+        <a href="../keyword-density-checker/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="white" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-blue">
+              <span class="category-text-badge text-blue">SEO Tools</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">Keyword Density Checker</strong>
+          <p class="related-tool-desc">Analyze keyword frequency and density to balance content keywords safely.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+      </div>
+    </section>
   </main>
+
 
   <footer class="footer" id="footer">
     <div class="footer-container">

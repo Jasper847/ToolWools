@@ -188,19 +188,204 @@
         <span aria-current="page">Base64 Encoder / Decoder</span>
       </nav>
 
-      <div class="tool-badge-category">Developer Tools</div>
-      <h1 class="tool-title">Base64 Encoder / Decoder</h1>
-      <p class="tool-subtitle">Encode and decode Base64 strings instantly</p>
-      <textarea id="input" class="tool-textarea" rows="8" placeholder="Enter text or Base64 string..."></textarea>
-      <div class="tool-bottom-actions">
-        <button id="btn-encode" class="btn btn-primary">Encode →</button>
-        <button id="btn-decode" class="btn btn-primary">← Decode</button>
-        <button id="btn-copy" class="btn btn-secondary">Copy Result</button>
+      <!-- Tool Header -->
+      <div class="tool-header tool-header-dark">
+        <div class="tool-header-icon tool-icon-dark">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" stroke-width="2.5"/><path d="M14 2v6h6" stroke="white" stroke-width="2.5"/><circle cx="10" cy="14" r="2" stroke="white" stroke-width="2"/><path d="M16 16l-2-2" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div class="tool-badge-category">Developer Tools</div>
+          <h1 class="tool-title" id="main-heading">Base64 Encoder / Decoder</h1>
+          <p class="tool-subtitle">Encode raw text strings to Base64 format or decode Base64 back to plain text instantly · 100% browser-based · Zero data uploads</p>
+        </div>
       </div>
-      <textarea id="output" class="tool-textarea" rows="8" readonly placeholder="Result appears here..."></textarea>
+
+      <!-- Tool Workspace -->
+      <div class="tool-workspace">
+        <div class="tool-panel tool-card">
+          <div class="card-title-sec">
+            <span>Input String</span>
+          </div>
+          <label for="input" class="sr-only">Input text or Base64 string</label>
+          <textarea id="input" class="tool-textarea" rows="8" placeholder="Enter text or Base64 string to encode/decode..."></textarea>
+          
+          <div class="tool-bottom-actions" style="margin-top: 16px;">
+            <button id="btn-encode" class="btn btn-primary">Encode Text →</button>
+            <button id="btn-decode" class="btn btn-primary">← Decode Base64</button>
+            <button id="btn-copy" class="btn btn-secondary">Copy Result</button>
+          </div>
+        </div>
+
+        <div class="tool-panel tool-card" style="margin-top: 24px;">
+          <div class="card-title-sec">
+            <span>Output Result</span>
+          </div>
+          <label for="output" class="sr-only">Output result</label>
+          <textarea id="output" class="tool-textarea" rows="8" readonly placeholder="Result will appear here..."></textarea>
+        </div>
+      </div>
+
+      <!-- SEO FAQ Section -->
+      <section class="tool-panel seo-content-rich" style="margin-top: 32px;">
+        <h2 class="seo-section-title">Frequently Asked Questions</h2>
+        <div class="tool-faq-list">
+          <details class="tool-faq-item" open>
+            <summary class="tool-faq-q">What is Base64 binary-to-text encoding?</summary>
+            <div class="tool-faq-a">
+              <p>Base64 is a binary-to-text encoding scheme that translates raw binary data into a set of 64 printable characters (A-Z, a-z, 0-9, +, /). This format is widely used when transferring binary data over network protocols (like email MIME headers or HTTP POST payloads) that only support textual characters.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Does Base64 encoding encrypt my sensitive data?</summary>
+            <div class="tool-faq-a">
+              <p>No. Base64 encoding is not a method of encryption. It is a public, standard codec designed purely to transform data format types for transport safety. Anyone can decode a Base64 string using basic browser utilities. Never use Base64 to store or transmit passwords, tokens, or private keys without actual cryptographic encryption layers (like AES or RSA).</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">How does the decoder handle UTF-8 symbols?</summary>
+            <div class="tool-faq-a">
+              <p>Standard browser decoding functions (like <code>atob</code>) only support 8-bit Latin characters (binary data). Our tool handles UTF-8 characters properly by utilizing URI escape sequences (e.g. <code>encodeURIComponent</code> and <code>decodeURIComponent</code>) to safely convert multi-byte Unicode strings without throwing errors or producing corrupt outputs.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">What are the trailing equal signs (=) in Base64 strings?</summary>
+            <div class="tool-faq-a">
+              <p>The equal signs are padding characters. Base64 processes data in blocks of 3 bytes (24 bits) into 4 characters (6 bits each). If the input text length is not a multiple of 3 bytes, padding characters (<code>=</code> or <code>==</code>) are added to the end of the encoded output to ensure the decoded stream aligns perfectly to standard byte boundaries.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Are my strings processed or saved on a remote server?</summary>
+            <div class="tool-faq-a">
+              <p>No. All encoding and decoding operations run locally inside your browser window using pure client-side JavaScript. No network calls are made, guaranteeing that your text payloads, code variables, or credentials remain entirely private on your device.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section class="tool-panel" style="margin-top: 32px;">
+        <h2 class="seo-section-title">How the Base64 Encoder/Decoder Works</h2>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">1</div>
+            <h3>Enter Text</h3>
+            <p>Paste your plain text or Base64 encoded string into the input panel text area.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">2</div>
+            <h3>Encode/Decode</h3>
+            <p>Click "Encode Text" to convert text to Base64, or click "Decode Base64" to restore the original text string.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">3</div>
+            <h3>Copy Result</h3>
+            <p>Instantly copy the output code to your clipboard for application use or debugging logs.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Science & Formula Section -->
+      <section class="tool-panel seo-content-rich" style="margin-top: 32px;">
+        <h2 class="seo-section-title">The Mathematics of Base64 Translation</h2>
+        <p>Base64 mapping takes every 3 bytes (24 bits) of input data and partitions them into 4 groups of 6 bits each. Since $2^6 = 64$, each 6-bit chunk maps directly to one character in the 64-character index table. Because of this conversion, the encoded string is mathematically guaranteed to grow by approximately **33%** in size compared to the raw source data.</p>
+        <div class="seo-formula-box">
+          Bit Allocation Schema:<br>
+          <code>Input:  [Byte 1 (8 bits)] [Byte 2 (8 bits)] [Byte 3 (8 bits)]</code><br>
+          <code>Output: [Char 1 (6 bits)] [Char 2 (6 bits)] [Char 3 (6 bits)] [Char 4 (6 bits)]</code>
+        </div>
+        <p>When decoding, the process is reversed: 4 Base64 characters are mapped back to their 6-bit index positions and reassembled into the original 24-bit (3 byte) stream, resolving the padding bytes where required.</p>
+
+        <!-- Tip Box -->
+        <div class="tool-tip-box" style="margin-top: 24px;">
+          <div class="tool-tip-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 16v-4M12 8h.01"/></svg>
+          </div>
+          <div class="tool-tip-content">
+            <strong>Developer Tip:</strong> Use Base64 encoding to embed small raster icons directly inside HTML/CSS files as data URLs, reducing server round-trips and improving page speed.
+          </div>
+        </div>
+
+        <!-- Reference Table -->
+        <h3 style="margin-top: 24px; margin-bottom: 12px; font-size: 16px; font-weight: 700;">Base64 Encoding vs Decoding Reference</h3>
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--color-border); padding-bottom: 8px;">
+                <th style="padding: 8px;">Source Data Length</th>
+                <th style="padding: 8px;">Modulo 3 Remainder</th>
+                <th style="padding: 8px;">Padding Appended</th>
+                <th style="padding: 8px;">Output Length Increase</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;">Multiple of 3 bytes</td>
+                <td style="padding: 8px;">0</td>
+                <td style="padding: 8px;">None (No padding)</td>
+                <td style="padding: 8px;">~33.3%</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;">1 byte remainder</td>
+                <td style="padding: 8px;">1</td>
+                <td style="padding: 8px;"><code>==</code> (Two equals)</td>
+                <td style="padding: 8px;">~33.3% (including padding)</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;">2 bytes remainder</td>
+                <td style="padding: 8px;">2</td>
+                <td style="padding: 8px;"><code>=</code> (One equal)</td>
+                <td style="padding: 8px;">~33.3% (including padding)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
-  
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid"><a href="../port-scanner/index.html" class="related-tool-card"><strong class="related-tool-name">Port Scanner Simulator</strong><span class="related-tool-link">Try this tool</span></a><a href="../url-parser/index.html" class="related-tool-card"><strong class="related-tool-name">URL Parser &amp; Inspector</strong><span class="related-tool-link">Try this tool</span></a><a href="../xml-to-json/index.html" class="related-tool-card"><strong class="related-tool-name">XML to JSON Converter</strong><span class="related-tool-link">Try this tool</span></a></div></section>
+
+    <section class="related-tools">
+      <h2 class="related-tools-heading">Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="../jwt-decoder/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v6z" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-dark">
+              <span class="category-text-badge text-dark">Developer</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">JWT Decoder</strong>
+          <p class="related-tool-desc">Decode and inspect JSON Web Tokens locally in your browser.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+        <a href="../url-parser/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 0 0-7.07 17.07l1.41-1.41A8 8 0 1 1 12 20v2a10 10 0 0 0 0-20z" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-dark">
+              <span class="category-text-badge text-dark">Developer</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">URL Parser &amp; Inspector</strong>
+          <p class="related-tool-desc">Inspect relative paths, protocol schemes, and query parameters dynamically.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+        <a href="../json-formatter/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-dark">
+              <span class="category-text-badge text-dark">Developer</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">JSON Formatter</strong>
+          <p class="related-tool-desc">Beautify, validate, minify, and inspect JSON payloads using tree nodes.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+      </div>
+    </section>
   </main>
   <script src="../../script.js"></script>
   

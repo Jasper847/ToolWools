@@ -188,27 +188,219 @@
         <span aria-current="page">Password Generator</span>
       </nav>
 
-      <div class="tool-badge-category">Developer Tools</div>
-      <h1 class="tool-title">Password Generator</h1>
-      <p class="tool-subtitle">Generate cryptographically strong random passwords</p>
-      <div class="tool-controls-row">
-        <label>Length: <input type="range" id="length" min="6" max="128" value="20"> <span id="length-val">20</span></label>
+      <!-- Tool Header -->
+      <div class="tool-header tool-header-dark">
+        <div class="tool-header-icon tool-icon-dark">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="white" stroke-width="2.5"/><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="white" stroke-width="2.5"/><circle cx="12" cy="16" r="1.5" fill="white"/></svg>
+        </div>
+        <div>
+          <div class="tool-badge-category">Developer Tools</div>
+          <h1 class="tool-title" id="main-heading">Password Generator</h1>
+          <p class="tool-subtitle">Generate cryptographically secure high-entropy random passwords instantly · 100% browser-based · Zero data uploads</p>
+        </div>
       </div>
-      <div class="tool-controls-row">
-        <label><input type="checkbox" id="opt-upper" checked> Uppercase</label>
-        <label><input type="checkbox" id="opt-lower" checked> Lowercase</label>
-        <label><input type="checkbox" id="opt-digits" checked> Numbers</label>
-        <label><input type="checkbox" id="opt-symbols" checked> Symbols</label>
+
+      <!-- Tool Workspace -->
+      <div class="tool-workspace">
+        <div class="tool-panel tool-card">
+          <div class="card-title-sec">
+            <span>Password Parameters</span>
+          </div>
+
+          <div class="tool-controls-row" style="margin-bottom: 16px;">
+            <label style="display: flex; align-items: center; gap: 12px; font-weight: 600; width: 100%;">
+              Length: 
+              <input type="range" id="length" min="6" max="128" value="20" style="flex: 1; max-width: 300px;"> 
+              <span id="length-val" style="background: var(--color-border-light); padding: 4px 10px; border-radius: 6px; font-family: monospace;">20</span>
+            </label>
+          </div>
+
+          <div class="tool-controls-row" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
+            <label style="display: flex; align-items: center; gap: 8px; font-weight: 500; cursor: pointer;"><input type="checkbox" id="opt-upper" checked style="width: 18px; height: 18px;"> Uppercase (A-Z)</label>
+            <label style="display: flex; align-items: center; gap: 8px; font-weight: 500; cursor: pointer;"><input type="checkbox" id="opt-lower" checked style="width: 18px; height: 18px;"> Lowercase (a-z)</label>
+            <label style="display: flex; align-items: center; gap: 8px; font-weight: 500; cursor: pointer;"><input type="checkbox" id="opt-digits" checked style="width: 18px; height: 18px;"> Numbers (0-9)</label>
+            <label style="display: flex; align-items: center; gap: 8px; font-weight: 500; cursor: pointer;"><input type="checkbox" id="opt-symbols" checked style="width: 18px; height: 18px;"> Symbols (!@#$%)</label>
+          </div>
+
+          <label for="password-output" class="sr-only">Generated Password Output</label>
+          <input type="text" id="password-output" class="tool-input" readonly placeholder="Click Generate..." style="font-family:'Courier New', monospace; font-size: 18px; font-weight: 700; text-align: center; padding: 16px; width: 100%; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg); letter-spacing: 1px;">
+
+          <div class="tool-bottom-actions" style="margin-top: 16px; display: flex; gap: 12px;">
+            <button id="btn-generate" class="btn btn-primary" style="flex: 1;">Generate Secure Password</button>
+            <button id="btn-copy" class="btn btn-secondary" style="flex: 1;">Copy Password</button>
+          </div>
+
+          <div id="strength" class="tool-badge" style="margin-top:16px; display: inline-block;"></div>
+        </div>
       </div>
-      <input type="text" id="password-output" class="tool-input" readonly placeholder="Click Generate..." style="font-family:monospace;font-size:16px;text-align:center;padding:16px">
-      <div class="tool-bottom-actions">
-        <button id="btn-generate" class="btn btn-primary">Generate</button>
-        <button id="btn-copy" class="btn btn-secondary">Copy</button>
-      </div>
-      <div id="strength" class="tool-badge" style="margin-top:12px"></div>
+
+      <!-- SEO FAQ Section -->
+      <section class="tool-panel seo-content-rich" style="margin-top: 32px;">
+        <h2 class="seo-section-title">Frequently Asked Questions</h2>
+        <div class="tool-faq-list">
+          <details class="tool-faq-item" open>
+            <summary class="tool-faq-q">How does the secure password generator select characters?</summary>
+            <div class="tool-faq-a">
+              <p>Unlike standard randomized algorithms that utilize <code>Math.random()</code>, this tool implements the browser's cryptographically secure pseudo-random number generator (CSPRNG) API: <code>crypto.getRandomValues()</code>. This pulls high-entropy values from the operating system, ensuring that generated passwords are mathematically unpredictable.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Why is local password generation safer than online generators?</summary>
+            <div class="tool-faq-a">
+              <p>Online password generators compile characters on a remote cloud server and send them to your browser over HTTP/S. If the server is compromised or keeps transaction logs, your passwords could be leaked. Local generation executes entirely inside your browser's local memory sandbox, meaning no strings are ever transmitted over the network.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">What parameters define password strength?</summary>
+            <div class="tool-faq-a">
+              <p>Password strength is measured in cryptographic entropy bits. Entropy increases exponentially with the length of the password and the diversity of the character sets selected. Increasing length is the single most effective way to protect against brute-force attacks.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">How long should a secure password be?</summary>
+            <div class="tool-faq-a">
+              <p>We recommend a minimum length of 16 characters for standard accounts, and 20+ characters for high-security administrator credentials. A 20-character password combining uppercase, lowercase, numbers, and symbols is practically impossible to crack using modern computing systems.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Are my generated passwords stored in database history?</summary>
+            <div class="tool-faq-a">
+              <p>No. Passwords exist only as ephemeral variables inside active memory within your current browser tab. As soon as you reload or close the page, the characters are permanently deleted, leaving no trace on your computer or our web servers.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section class="tool-panel" style="margin-top: 32px;">
+        <h2 class="seo-section-title">How the Password Generator Works</h2>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">1</div>
+            <h3>Choose Length</h3>
+            <p>Drag the slider to adjust your password length, from 6 characters up to 128 characters.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">2</div>
+            <h3>Toggle Character Pools</h3>
+            <p>Enable or disable uppercase letters, lowercase letters, numbers, and symbols to meet specific password policies.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">3</div>
+            <h3>Generate & Copy</h3>
+            <p>Click "Generate Secure Password" to compile the new string, and click "Copy Password" to copy it to your vault.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Science & Formula Section -->
+      <section class="tool-panel seo-content-rich" style="margin-top: 32px;">
+        <h2 class="seo-section-title">The Cryptography of Password Strength</h2>
+        <p>Password security is evaluated using **Shannon Entropy**, which calculates the total number of combinations a brute-force attacker must test to guess the password. The formula is written as:</p>
+        <div class="seo-formula-box">
+          Entropy Calculation Formula:<br>
+          <code>H = L × log₂(R)</code><br>
+          Where <code>H</code> is entropy in bits, <code>L</code> is password length, and <code>R</code> is character pool size.
+        </div>
+        <p>For example, if you generate a 16-character password using all four character sets (pool size $R = 94$), the entropy is: $16 \times \log_2(94) \approx 104.87 \text{ bits}$. An entropy value above **80 bits** is considered strong, while values above **100 bits** are considered cryptographically secure for the next decade.</p>
+
+        <!-- Tip Box -->
+        <div class="tool-tip-box" style="margin-top: 24px;">
+          <div class="tool-tip-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 16v-4M12 8h.01"/></svg>
+          </div>
+          <div class="tool-tip-content">
+            <strong>Security Tip:</strong> Avoid writing down or saving passwords in plain text files. Use an encrypted password manager (like 1Password or Bitwarden) to manage your credentials safely.
+          </div>
+        </div>
+
+        <!-- Reference Table -->
+        <h3 style="margin-top: 24px; margin-bottom: 12px; font-size: 16px; font-weight: 700;">Password Length vs. Brute-Force Crack Times</h3>
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--color-border); padding-bottom: 8px;">
+                <th style="padding: 8px;">Length</th>
+                <th style="padding: 8px;">Character Pools</th>
+                <th style="padding: 8px;">Entropy Bits</th>
+                <th style="padding: 8px;">Estimated Crack Time (100 Billion Guesses/sec)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;">8 chars</td>
+                <td style="padding: 8px;">Lowercase only ($R=26$)</td>
+                <td style="padding: 8px;">37.6 bits</td>
+                <td style="padding: 8px;">~2.08 seconds</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;">12 chars</td>
+                <td style="padding: 8px;">Alphanumeric ($R=62$)</td>
+                <td style="padding: 8px;">71.4 bits</td>
+                <td style="padding: 8px;">~1.02 years</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;">16 chars</td>
+                <td style="padding: 8px;">Alphanumeric + Symbols ($R=94$)</td>
+                <td style="padding: 8px;">104.9 bits</td>
+                <td style="padding: 8px;">~7.88 Trillion Years</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;">20 chars</td>
+                <td style="padding: 8px;">Alphanumeric + Symbols ($R=94$)</td>
+                <td style="padding: 8px;">131.1 bits</td>
+                <td style="padding: 8px;">Uncrackable (Age of Universe)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
-  
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid"><a href="../port-scanner/index.html" class="related-tool-card"><strong class="related-tool-name">Port Scanner Simulator</strong><span class="related-tool-link">Try this tool</span></a><a href="../base64-encoder/index.html" class="related-tool-card"><strong class="related-tool-name">Base64 Encoder / Decoder</strong><span class="related-tool-link">Try this tool</span></a><a href="../xml-to-json/index.html" class="related-tool-card"><strong class="related-tool-name">XML to JSON Converter</strong><span class="related-tool-link">Try this tool</span></a></div></section>
+
+    <section class="related-tools">
+      <h2 class="related-tools-heading">Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="../port-scanner/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M21 12H3M12 3v18" stroke="white" stroke-width="1.5"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-dark">
+              <span class="category-text-badge text-dark">Developer</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">Port Scanner Simulator</strong>
+          <p class="related-tool-desc">Analyze responses for open socket setups on simulated host interfaces.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+        <a href="../uuid-generator/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-dark">
+              <span class="category-text-badge text-dark">Developer</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">UUID Generator</strong>
+          <p class="related-tool-desc">Generate secure RFC4122 version-4 universally unique identifiers.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+        <a href="../base64-encoder/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" stroke-width="2"/><path d="M14 2v6h6" stroke="white" stroke-width="2"/><circle cx="10" cy="14" r="2" stroke="white" stroke-width="1.5"/><path d="M16 16l-2-2" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-dark">
+              <span class="category-text-badge text-dark">Developer</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">Base64 Encoder/Decoder</strong>
+          <p class="related-tool-desc">Encode text strings to Base64 or decode them back to plain text offline.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+      </div>
+    </section>
   </main>
   <script src="../../script.js"></script>
   

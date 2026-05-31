@@ -32,25 +32,73 @@
   <link rel="stylesheet" href="../tool-shared.css">
 
   <script type="application/ld+json">
-  {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "SQL Formatter & Beautifier — Prettify Database Queries",
-  "description": "Format, indent, and beautify SQL statements instantly. Select keyword capitalization style, indentation options, and format multiple queries in browser.",
-  "url": "https://toolwools.com/tools/sql-formatter/",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "creator": {
-    "@type": "Organization",
-    "name": "ToolWools",
-    "url": "https://toolwools.com"
-  }
-}
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "SQL Formatter & Beautifier — Prettify Database Queries",
+      "description": "Format, indent, and beautify SQL statements instantly. Select keyword capitalization style, indentation options, and format multiple queries in browser.",
+      "url": "https://toolwools.com/tools/sql-formatter/",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "ToolWools",
+        "url": "https://toolwools.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does browser-side SQL formatting work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It parses the raw database query locally in browser memory and formats it using keyword capitalization rules and custom indentation rules."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will formatting SQL queries leak database passwords or credentials?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, the parser executes entirely client-side. No network connections are made."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which SQL dialects are supported?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It formats standard ANSI SQL commands like SELECT, INSERT, UPDATE, DELETE, and JOIN clauses, compatible with MySQL, PostgreSQL, MS SQL, Oracle, and SQLite."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the SQL Formatter highlight syntax errors?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It normalizes formatting but doesn't validate database schema bindings. It will structure queries even if columns or table names are invalid."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the maximum query size I can format?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can format queries up to several megabytes, bounded only by browser memory constraints."
+          }
+        }
+      ]
+    }
+  ]
   </script>
 </head>
 <body>

@@ -174,7 +174,8 @@
     </div>
   </header>
 
-  <main class="tool-container" id="main-content">
+  <main class="tool-page" id="main-content">
+    <div class="tool-container">
       <nav class="tool-breadcrumb" aria-label="Breadcrumb">
         <a href="../../index.html">Home</a>
         <span aria-hidden="true"> › </span>
@@ -183,22 +184,199 @@
         <span aria-current="page">AI Image Prompt Builder</span>
       </nav>
 
-        <div class="tool-header">
-      <div class="tool-header-icon tool-icon-dark">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M6 6L2 10L6 14M14 6L18 10L14 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <!-- Tool Header -->
+      <div class="tool-header tool-header-purple">
+        <div class="tool-header-icon tool-icon-purple">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="tool-badge-category">AI Tools</div>
+          <h1 class="tool-title" id="main-heading">AI Image Prompt Builder</h1>
+          <p class="tool-subtitle">Build structured, high-relevance image prompts for Midjourney, DALL-E, and Stable Diffusion · 100% browser-based · Zero data uploads</p>
+        </div>
       </div>
-      <div>
-        <div class="tool-badge-category"></div>
-        <h1 class="tool-title"></h1>
-        <p class="tool-subtitle"></p>
+
+      <!-- Tool Workspace -->
+      <div class="tool-workspace tool-panel tool-card" id="tool-workspace">
+        <noscript>
+          <div class="tool-badge" style="margin-top:24px;padding:20px;text-align:center;font-size:15px;background:var(--color-primary-bg);border-radius:12px">
+            <strong>JavaScript Required</strong><br>This tool requires JavaScript to function. Please enable JavaScript in your browser settings and reload the page.
+          </div>
+        </noscript>
       </div>
+
+      <!-- SEO FAQ Section -->
+      <section class="tool-panel seo-content-rich" style="margin-top: 32px;">
+        <h2 class="seo-section-title">Frequently Asked Questions</h2>
+        <div class="tool-faq-list">
+          <details class="tool-faq-item" open>
+            <summary class="tool-faq-q">What is an AI Image Prompt Builder?</summary>
+            <div class="tool-faq-a">
+              <p>An AI Image Prompt Builder is a structural assistant designed to help digital artists compile precise, descriptive text strings for generative models. By separating prompts into subjects, styles, lighting setups, moods, and camera perspectives, it reduces the randomness of diffusion generation and produces more predictable outputs.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Does this tool support Midjourney v6, DALL-E 3, and Stable Diffusion?</summary>
+            <div class="tool-faq-a">
+              <p>Yes. The artistic terminology (like "volumetric lighting", "bokeh", or "chiaroscuro") and parameter selections built into this tool are universally recognized by CLIP and T5 text encoders. This makes the compiled prompt formulas compatible across Midjourney, DALL-E 3, Stable Diffusion, and Adobe Firefly.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">How does the Randomizer button work?</summary>
+            <div class="tool-faq-a">
+              <p>The "Random" button queries our arrays of curated creative subjects, classical and modern art styles, atmospheric lighting modes, and compositions, combining them into unique image prompt concepts. This is highly useful for overcoming creative blocks or experimenting with new aesthetics.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Why does word order matter in prompt engineering?</summary>
+            <div class="tool-faq-a">
+              <p>Generative neural networks read prompts from left to right. Words placed at the beginning of the string are assigned higher attention weights by the text encoder. Placing secondary elements (like camera lenses or lighting styles) at the end ensures the AI focuses primarily on rendering your main subject.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Are my prompt ideas private and secure?</summary>
+            <div class="tool-faq-a">
+              <p>Yes, completely. The entire prompt assembly and randomization logic runs locally in your browser memory window. No inputs or generated outputs are transmitted to external servers, protecting your proprietary concepts and artistic designs.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section class="tool-panel" style="margin-top: 32px;">
+        <h2 class="seo-section-title">How the AI Image Prompt Builder Works</h2>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">1</div>
+            <h3>Define Subject</h3>
+            <p>Type the central subject, action, or character of your scene in the "Subject / Scene" input box.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">2</div>
+            <h3>Select Parameters</h3>
+            <p>Customize art styles, lighting, mood, camera perspectives, and aspect ratios using our drop-down parameter controls.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">3</div>
+            <h3>Generate & Copy</h3>
+            <p>Click "Generate Prompt" to compile the comma-separated output, and copy the string directly to your clipboard.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Science & Formula Section -->
+      <section class="tool-panel seo-content-rich" style="margin-top: 32px;">
+        <h2 class="seo-section-title">The Engineering Behind Prompt Tokenization</h2>
+        <p>Generative image models do not read raw sentences like humans. Instead, a **Text Encoder** (such as CLIP or Google's T5-XXL) parses sentences into numerical tokens, mapping them to coordinates in a high-dimensional semantic vector space. The model then uses these coordinates to guide a **U-Net** or **Diffusion Transformer (DiT)** during the denoising process.</p>
+        <div class="seo-formula-box">
+          Tokenization Flow:<br>
+          <code>User Input String ➜ Text Tokenizer (CLIP/T5) ➜ Semantic Latent Vectors ➜ Latent Diffusion Denoising</code>
+        </div>
+        <p>Providing structured, descriptive keywords (like "Studio Lighting" or "Cel-Shaded") aligns the text vector precisely with regions of the model's training dataset, producing high-fidelity outputs matching your intended style.</p>
+
+        <!-- Tip Box -->
+        <div class="tool-tip-box" style="margin-top: 24px;">
+          <div class="tool-tip-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 16v-4M12 8h.01"/></svg>
+          </div>
+          <div class="tool-tip-content">
+            <strong>Prompting Tip:</strong> Avoid buzzwords like "photorealistic" in DALL-E 3, as it is fine-tuned to ignore low-entropy descriptors. Instead, describe concrete elements like "shot on 35mm lens, film grain".
+          </div>
+        </div>
+
+        <!-- Reference Table -->
+        <h3 style="margin-top: 24px; margin-bottom: 12px; font-size: 16px; font-weight: 700;">Prompts Elements & Target Effects</h3>
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--color-border); padding-bottom: 8px;">
+                <th style="padding: 8px;">Element Type</th>
+                <th style="padding: 8px;">Purpose</th>
+                <th style="padding: 8px;">Example Keyword</th>
+                <th style="padding: 8px;">Model Weight Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><strong>Subject</strong></td>
+                <td style="padding: 8px;">Defines primary shapes and contents</td>
+                <td style="padding: 8px;"><code>"a floating astronaut"</code></td>
+                <td style="padding: 8px;">Critical (highest priority)</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><strong>Art Style</strong></td>
+                <td style="padding: 8px;">Determines rendering medium</td>
+                <td style="padding: 8px;"><code>"watercolor painting"</code></td>
+                <td style="padding: 8px;">High (shapes rendering style)</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><strong>Lighting</strong></td>
+                <td style="padding: 8px;">Controls shadows and highlights</td>
+                <td style="padding: 8px;"><code>"volumetric rays"</code></td>
+                <td style="padding: 8px;">Medium (affects depth)</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><strong>Camera Angle</strong></td>
+                <td style="padding: 8px;">Sets perspective coordinates</td>
+                <td style="padding: 8px;"><code>"bird's-eye view"</code></td>
+                <td style="padding: 8px;">Medium (affects composition)</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><strong>Aspect Ratio</strong></td>
+                <td style="padding: 8px;">Sets output width and height bounds</td>
+                <td style="padding: 8px;"><code>"--ar 16:9"</code></td>
+                <td style="padding: 8px;">Strict (defines canvas shapes)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
-      <h1 class="tool-title">AI Image Prompt Builder</h1>
-      <p class="tool-description">Build structured AI image prompts with subject, style, lighting, mood, camera angle, and aspect ratio controls.</p>
-    </div>
-    <div class="tool-workspace" id="tool-workspace"><noscript><div class="tool-badge" style="margin-top:24px;padding:20px;text-align:center;font-size:15px;background:var(--color-primary-bg);border-radius:12px"><strong>JavaScript Required</strong><br>This tool requires JavaScript to function. Please enable JavaScript in your browser settings and reload the page.</noscript></div>
-  
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid"><a href="../ai-hashtag-generator/index.html" class="related-tool-card"><strong class="related-tool-name">AI Hashtag Generator</strong><span class="related-tool-link">Try this tool</span></a><a href="../ai-keyword-extractor/index.html" class="related-tool-card"><strong class="related-tool-name">AI Keyword Extractor</strong><span class="related-tool-link">Try this tool</span></a><a href="../ai-ad-copy-generator/index.html" class="related-tool-card"><strong class="related-tool-name">AI Ad Copy Generator</strong><span class="related-tool-link">Try this tool</span></a></div></section>
+
+    <section class="related-tools">
+      <h2 class="related-tools-heading">Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="../ai-text-to-speech/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-purple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" stroke="white" stroke-width="2"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-purple">
+              <span class="category-text-badge text-purple">AI Tools</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">AI Text to Speech</strong>
+          <p class="related-tool-desc">Convert written text to natural speech using browser-native synthesis voices.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+        <a href="../ai-meta-description/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-purple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-purple">
+              <span class="category-text-badge text-purple">AI Tools</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">AI Meta Description</strong>
+          <p class="related-tool-desc">Generate search optimized meta descriptions based on page titles and contents.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+        <a href="../ai-hashtag-generator/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-purple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M10 2L12 7H18L13 11L15 17L10 13L5 17L7 11L2 7H8L10 2Z" fill="white"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-purple">
+              <span class="category-text-badge text-purple">AI Tools</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">AI Hashtag Generator</strong>
+          <p class="related-tool-desc">Compile popular social hashtags based on your descriptions or target terms.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+      </div>
+    </section>
   </main>
 
   <footer class="footer" id="footer">
