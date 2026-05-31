@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- PDF FILE LOAD ---
   function loadPdf(file) {
     if (!file.name.endsWith('.pdf') && file.type !== 'application/pdf') {
-      alert('Supported file format is PDF (.pdf) only.');
+      showToast('Only PDF (.pdf) files are supported.', 'error');
       return;
     }
 
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
           resultContainer.classList.add('active');
         } catch (innerErr) {
           writeConsoleLine(`Error processing PDF structures: ${innerErr.message}`, 'error');
-          alert('PDF rendering failed. This can happen with password-protected or corrupted PDFs.');
+          showToast('PDF processing failed. This can happen with password-protected or corrupted PDFs.', 'error');
         } finally {
           btnCompress.disabled = false;
           pdfInput.disabled = false;
