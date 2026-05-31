@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEO Schema Markup Generator — Real-time JSON-LD Creator | ToolWools</title>
+  <meta name="description" content="Generate premium Google-friendly JSON-LD schema markup for Articles, Products, FAQ pages, Local Businesses, and Events. Live visual snippet card previews.">
+  <meta name="keywords" content="schema generator, json-ld generator, structured data, seo schema, rich snippets creator">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+
+  <style>
+    /* Tool-specific Premium Styles */
+    .schema-section-form {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out forwards;
+    }
+    .schema-section-form.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Dynamic FAQ List Styling */
+    .faq-item-builder {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      margin-bottom: 12px;
+      position: relative;
+      background: var(--color-border-light);
+    }
+    [data-theme="dark"] .faq-item-builder {
+      background: rgba(255,255,255,0.02);
+    }
+    .btn-remove-faq {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: var(--color-red);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      border-radius: 4px;
+    }
+    .btn-remove-faq:hover {
+      background: rgba(239, 68, 68, 0.1);
+    }
+    .btn-add-faq {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-primary);
+      background: var(--color-primary-bg);
+      border: 1px dashed var(--color-primary-border);
+      padding: 8px 16px;
+      border-radius: var(--radius-btn);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-add-faq:hover {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    /* Mockups Styling */
+    .mockup-rich-snippet {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-card);
+      padding: 20px;
+      font-family: Arial, sans-serif; /* Mock Google style */
+      font-size: 14px;
+      color: #4d5156;
+      line-height: 1.5;
+      box-shadow: var(--shadow-card);
+    }
+    [data-theme="dark"] .mockup-rich-snippet {
+      background: #1e1e24;
+      border-color: #2e2e38;
+      color: #bdc1c6;
+    }
+    .mockup-google-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .mockup-google-site-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #f1f3f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #3c4043;
+      font-size: 14px;
+    }
+    [data-theme="dark"] .mockup-google-site-icon {
+      background: #303134;
+      color: #e8eaed;
+    }
+    .mockup-google-site-meta {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .mockup-google-site-name {
+      font-size: 12px;
+      color: #202124;
+      font-weight: 500;
+    }
+    [data-theme="dark"] .mockup-google-site-name {
+      color: #e8eaed;
+    }
+    .mockup-google-display-url {
+      font-size: 11px;
+      color: #4d5156;
+    }
+    [data-theme="dark"] .mockup-google-display-url {
+      color: #bdc1c6;
+    }
+    .mockup-google-snippet-title {
+      font-size: 18px;
+      color: #1a0dab;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+    .mockup-google-snippet-title:hover {
+      text-decoration: underline;
+    }
+    [data-theme="dark"] .mockup-google-snippet-title {
+      color: #8ab4f8;
+    }
+    .mockup-google-description {
+      font-size: 13px;
+      color: #4d5156;
+      line-height: 1.5;
+    }
+    [data-theme="dark"] .mockup-google-description {
+      color: #bdc1c6;
+    }
+    
+    /* Article visual mockup extras */
+    .mockup-article-footer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #70757a;
+      margin-top: 8px;
+      border-top: 1px solid var(--color-border-light);
+      padding-top: 8px;
+    }
+    [data-theme="dark"] .mockup-article-footer {
+      border-color: rgba(255,255,255,0.05);
+      color: #9aa0a6;
+    }
+    .mockup-article-image-preview {
+      width: 72px;
+      height: 72px;
+      border-radius: 8px;
+      background-size: cover;
+      background-position: center;
+      background-color: #f1f3f4;
+      flex-shrink: 0;
+    }
+    [data-theme="dark"] .mockup-article-image-preview {
+      background-color: #303134;
+    }
+    .mockup-google-snippet-body {
+      display: flex;
+      gap: 16px;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .mockup-google-snippet-text {
+      flex: 1;
+    }
+
+    /* Product rating star display */
+    .mockup-product-stars {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+      color: #f2a60c;
+      margin: 6px 0;
+    }
+    .mockup-product-extra-info {
+      font-size: 13px;
+      color: #70757a;
+      margin-bottom: 6px;
+    }
+    [data-theme="dark"] .mockup-product-extra-info {
+      color: #9aa0a6;
+    }
+
+    /* FAQ accordion styling */
+    .mockup-faq-accordion {
+      margin-top: 12px;
+      border-top: 1px solid var(--color-border-light);
+      padding-top: 8px;
+    }
+    [data-theme="dark"] .mockup-faq-accordion {
+      border-color: rgba(255,255,255,0.05);
+    }
+    .mockup-faq-item {
+      border-bottom: 1px solid var(--color-border-light);
+      padding: 8px 0;
+    }
+    [data-theme="dark"] .mockup-faq-item {
+      border-color: rgba(255,255,255,0.05);
+    }
+    .mockup-faq-item:last-child {
+      border-bottom: none;
+    }
+    .mockup-faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+      color: #202124;
+      cursor: pointer;
+    }
+    [data-theme="dark"] .mockup-faq-question {
+      color: #e8eaed;
+    }
+    .mockup-faq-answer {
+      font-size: 12px;
+      color: #4d5156;
+      margin-top: 4px;
+      padding-left: 4px;
+      display: none;
+    }
+    [data-theme="dark"] .mockup-faq-answer {
+      color: #bdc1c6;
+    }
+    .mockup-faq-item.open .mockup-faq-answer {
+      display: block;
+    }
+    .mockup-faq-chevron {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.2s;
+    }
+    .mockup-faq-item.open .mockup-faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* Local Business Card Layout */
+    .mockup-local-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      margin-top: 10px;
+      background: var(--color-border-light);
+    }
+    [data-theme="dark"] .mockup-local-card {
+      background: rgba(255,255,255,0.02);
+      border-color: #2e2e38;
+    }
+    .mockup-local-business-name {
+      font-weight: 600;
+      color: #1a0dab;
+    }
+    [data-theme="dark"] .mockup-local-business-name {
+      color: #8ab4f8;
+    }
+    .mockup-local-row {
+      display: flex;
+      gap: 6px;
+      font-size: 12px;
+      align-items: center;
+    }
+    .mockup-local-row svg {
+      color: var(--color-muted);
+    }
+
+    /* Event Display mockup */
+    .mockup-event-list {
+      margin-top: 12px;
+      border-top: 1px solid var(--color-border-light);
+      padding-top: 8px;
+    }
+    .mockup-event-item {
+      display: flex;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    [data-theme="dark"] .mockup-event-item {
+      border-color: rgba(255,255,255,0.05);
+    }
+    .mockup-event-item:last-child {
+      border-bottom: none;
+    }
+    .mockup-event-date-badge {
+      width: 46px;
+      height: 48px;
+      background: #f1f3f4;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: bold;
+      color: #3c4043;
+      line-height: 1.2;
+    }
+    [data-theme="dark"] .mockup-event-date-badge {
+      background: #303134;
+      color: #e8eaed;
+    }
+    .mockup-event-month {
+      color: var(--color-red);
+      font-size: 9px;
+    }
+    .mockup-event-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .mockup-event-name {
+      font-weight: 500;
+      color: #1a0dab;
+    }
+    [data-theme="dark"] .mockup-event-name {
+      color: #8ab4f8;
+    }
+    .mockup-event-loc {
+      font-size: 11px;
+      color: #70757a;
+    }
+    [data-theme="dark"] .mockup-event-loc {
+      color: #9aa0a6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-logo" aria-label="ToolWools Home">
+        <div class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="16" fill="#F4511E"/>
+            <path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="logo-text">ToolWools</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <div class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+            Tools
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="chevron-icon">
+              <path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="mega-menu" id="megaMenu">
+            <div class="mega-menu-grid">
+              <a href="../index.html?cat=seo" class="mega-item">
+                <div class="mega-icon mega-icon-orange">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="5" stroke="white" stroke-width="2"/><path d="M12 12L17 17" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">SEO Tools</span>
+                  <span class="mega-desc">Optimize your search rankings</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=image" class="mega-item">
+                <div class="mega-icon mega-icon-blue">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="white" stroke-width="2"/><circle cx="7" cy="7" r="2" fill="white"/><path d="M2 14L7 9L18 18" stroke="white" stroke-width="2"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Image Tools</span>
+                  <span class="mega-desc">Compress, convert & optimize</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=pdf" class="mega-item">
+                <div class="mega-icon mega-icon-red">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="1" width="14" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M7 6H13M7 10H13M7 14H11" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">PDF Tools</span>
+                  <span class="mega-desc">Edit, compress & convert PDFs</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=text" class="mega-item">
+                <div class="mega-icon mega-icon-green">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4H16M4 8H12M4 12H14M4 16H10" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Text Tools</span>
+                  <span class="mega-desc">Count, format & transform text</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=ai" class="mega-item">
+                <div class="mega-icon mega-icon-purple">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12 7H18L13 11L15 17L10 13L5 17L7 11L2 7H8L10 2Z" fill="white"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">AI Tools</span>
+                  <span class="mega-desc">AI-powered writing & analysis</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=dev" class="mega-item">
+                <div class="mega-icon mega-icon-dark">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 6L2 10L6 14M14 6L18 10L14 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Developer Tools</span>
+                  <span class="mega-desc">JSON, code & dev utilities</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="../index.html?cat=seo" class="nav-link">SEO Tools</a>
+        <a href="../index.html?cat=image" class="nav-link">Image Tools</a>
+        <a href="../index.html?cat=pdf" class="nav-link">PDF Tools</a>
+        <a href="../index.html?cat=ai" class="nav-link">AI Tools</a>
+        <a href="../../index.html#testimonials" class="nav-link">Pricing</a>
+        <a href="../../blog/index.html" class="nav-link">Blog</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M10 2V4M10 16V18M2 10H4M16 10H18M4.93 4.93L6.34 6.34M13.66 13.66L15.07 15.07M4.93 15.07L6.34 13.66M13.66 6.34L15.07 4.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <a href="../../index.html#cta" class="btn btn-primary nav-cta">Get Started Free</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html" class="mobile-link">All Tools</a>
+      <a href="../index.html?cat=seo" class="mobile-link">SEO Tools</a>
+      <a href="../index.html?cat=image" class="mobile-link">Image Tools</a>
+      <a href="../index.html?cat=pdf" class="mobile-link">PDF Tools</a>
+      <a href="../index.html?cat=ai" class="mobile-link">AI Tools</a>
+      <a href="../../index.html#testimonials" class="mobile-link">Pricing</a>
+      <a href="../../blog/index.html" class="mobile-link">Blog</a>
+      <a href="../../index.html#cta" class="btn btn-primary mobile-cta">Get Started Free</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="tool-page-container">
+      <!-- Tool Header -->
+      <div class="tool-header tool-header-seo">
+        <div class="tool-category-badge">SEO Tools</div>
+        <h1 class="tool-title" id="main-heading">Schema Markup Generator</h1>
+        <p class="tool-description">Instantly generate rich, search-engine-friendly JSON-LD structured data. Choose a schema type, fill in the fields, and preview Google rich snippets live.</p>
+      </div>
+
+      <!-- Tool Dashboard Layout -->
+      <div class="tool-dashboard">
+        <!-- Left: Input Form Panel -->
+        <div class="tool-card">
+          <div class="card-title-sec">
+            <span>Schema Configuration</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+          </div>
+
+          <form id="schema-form" onsubmit="event.preventDefault();">
+            <div class="form-group">
+              <label class="form-label" for="schema-select">Schema Type</label>
+              <select id="schema-select" class="form-input" style="cursor: pointer; font-weight: 500;">
+                <option value="Article">Article Schema</option>
+                <option value="Product">Product Schema</option>
+                <option value="FAQPage">FAQ Page Schema</option>
+                <option value="LocalBusiness">Local Business Schema</option>
+                <option value="Event">Event Schema</option>
+              </select>
+            </div>
+
+            <!-- ================= Article Section ================= -->
+            <div id="form-Article" class="schema-section-form active">
+              <div class="form-group-grid">
+                <div class="form-group">
+                  <label class="form-label" for="art-type">Article Sub-type</label>
+                  <select id="art-type" class="form-input">
+                    <option value="Article">General Article</option>
+                    <option value="BlogPosting" selected>Blog Posting</option>
+                    <option value="NewsArticle">News Article</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="art-url">Article URL</label>
+                  <input type="url" id="art-url" class="form-input" placeholder="e.g. https://toolwools.com/blog/saas-design" value="https://toolwools.com/blog/saas-design">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="art-headline">Headline</label>
+                <input type="text" id="art-headline" class="form-input" placeholder="e.g. 10 Secrets to High-Converting SaaS Design" value="10 Secrets to High-Converting SaaS Design">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="art-desc">Short Description / Excerpt</label>
+                <textarea id="art-desc" class="form-textarea" placeholder="Provide a summary of the article...">Learn the exact visual design patterns, glassmorphism layouts, and interactive feedback systems that triple conversion rates for premium SaaS platforms.</textarea>
+              </div>
+
+              <div class="form-group-grid">
+                <div class="form-group">
+                  <label class="form-label" for="art-image">Featured Image URL</label>
+                  <input type="text" id="art-image" class="form-input" placeholder="e.g. https://toolwools.com/og-image.png" value="https://toolwools.com/og-image.png">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="art-author">Author Name</label>
+                  <input type="text" id="art-author" class="form-input" placeholder="e.g. Sarah Jenkins" value="Sarah Jenkins">
+                </div>
+              </div>
+
+              <div class="form-group-grid">
+                <div class="form-group">
+                  <label class="form-label" for="art-pub-name">Publisher Name</label>
+                  <input type="text" id="art-pub-name" class="form-input" placeholder="e.g. ToolWools" value="ToolWools">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="art-pub-logo">Publisher Logo URL</label>
+                  <input type="text" id="art-pub-logo" class="form-input" placeholder="e.g. https://toolwools.com/logo.png" value="https://toolwools.com/logo.png">
+                </div>
+              </div>
+
+              <div class="form-group-grid">
+                <div class="form-group">
+                  <label class="form-label" for="art-published">Date Published</label>
+                  <input type="date" id="art-published" class="form-input" value="2026-05-31">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="art-modified">Date Modified</label>
+                  <input type="date" id="art-modified" class="form-input" value="2026-05-31">
+                </div>
+              </div>
+            </div>
+
+            <!-- ================= Product Section ================= -->
+            <div id="form-Product" class="schema-section-form">
+              <div class="form-group">
+                <label class="form-label" for="prod-name">Product Name</label>
+                <input type="text" id="prod-name" class="form-input" placeholder="e.g. ToolWools Pro Subscription" value="ToolWools Professional Suite">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="prod-desc">Description</label>
+                <textarea id="prod-desc" class="form-textarea" placeholder="e.g. Unlimited high-speed image compression, full API workspace access...">Access 100+ premium SEO and development tools with dedicated background worker resources, customizable sitemaps, and advanced converters.</textarea>
+              </div>
+
+              <div class="form-group-grid">
+                <div class="form-group">
+                  <label class="form-label" for="prod-image">Image URL</label>
+                  <input type="text" id="prod-image" class="form-input" placeholder="e.g. https://toolwools.com/pro-suite.png" value="https://toolwools.com/pro-suite.png">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="prod-brand">Brand</label>
+                  <input type="text" id="prod-brand" class="form-input" value="ToolWools">
+                </div>
+              </div>
+
+              <div class="form-group-grid">
+                <div class="form-group">
+                  <label class="form-label" for="prod-price">Price</label>
+                  <input type="number" step="0.01" id="prod-price" class="form-input" value="29.00">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="prod-currency">Currency</label>
+                  <select id="prod-currency" class="form-input">
+                    <option value="USD" selected>USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                    <option value="CAD">CAD (C$)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group-grid">
+                <div class="form-group">
+                  <label class="form-label" for="prod-availability">Availability</label>
+                  <select id="prod-availability" class="form-input">
+                    <option value="InStock" selected>In Stock</option>
+                    <option value="OutOfStock">Out of Stock</option>
+                    <option value="PreOrder">Pre-order</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="prod-valid-until">Price Valid Until</label>
+                  <input type="date" id="prod-valid-until" class="form-input" value="2027-12-31">
+                </div>
+              </div>
+
+              <div class="form-group-grid">
+                <div class="form-group">
+                  <label class="form-label" for="prod-rating">Rating Value (1-5)</label>
+                  <input type="number" step="0.1" min="1" max="5" id="prod-rating" class="form-input" value="4.8">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="prod-rating-count">Review Count</label>
+                  <input type="number" id="prod-rating-count" class="form-input" value="142">
+                </div>
+              </div>
+            </div>
+
+            <!-- ================= FAQPage Section ================= -->
+            <div id="form-FAQPage" class="schema-section-form">
+              <div id="faq-list-container">
+                <!-- FAQ list builder elements are appended here -->
+              </div>
+              <button type="button" class="btn-add-faq" id="btn-add-faq-row">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Add Question & Answer
+              </button>
+            </div>
+
+            <!-- ================= LocalBusiness Section ================= -->
+            <div id="form-LocalBusiness" class="schema-section-form">
+              <div class="form-group-grid">
+                <div class="form-group">
+                  <label class="form-label" for="loc-type">Business Type</label>
+                  <select id="loc-type" class="form-input">
+                    <option value="LocalBusiness" selected>General Local Business</option>
+                    <option value="Restaurant">Restaurant</option>
+                    <option value="AutomotiveBusiness">Automotive Shop</option>
+                    <option value="ProfessionalService">Professional Service</option>
+                    <option value="Store">Retail Store</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="loc-name">Business Name</label>
+                  <input type="text" id="loc-name" class="form-input" value="Apex Web Services">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="loc-image">Business Image URL</label>
+                <input type="text" id="loc-image" class="form-input" placeholder="e.g. https://apex.com/storefront.png" value="https://apex.com/storefront.png">
+              </div>
+
+              <div class="form-group-grid">
+                <div class="form-group">
+                  <label class="form-label" for="loc-phone">Phone Number</label>
+                  <input type="text" id="loc-phone" class="form-input" value="+1 (555) 123-4567">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="loc-price">Price Range</label>
+                  <select id="loc-price" class="form-input">
+                    <option value="$">$ (Inexpensive)</option>
+                    <option value="$$" selected>$$ (Moderate)</option>
+                    <option value="$$$">$$$ (Expensive)</option>
+                    <option value="$$$$">$$$$ (Ultra-premium)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="loc-street">Street Address</label>
+                <input type="text" id="loc-street" class="form-input" value="100 Innovation Way, Suite 400">
+              </div>
+
+              <div class="form-group-grid">
+                <div class="form-group">
+                  <label class="form-label" for="loc-city">City</label>
+                  <input type="text" id="loc-city" class="form-input" value="San Francisco">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="loc-state">State / Region</label>
+                  <input type="text" id="loc-state" class="form-input" value="CA">
+                </div>
+              </div>
+
+              <div class="form-group-grid">
+                <div class="form-group">
+                  <label class="form-label" for="loc-zip">Postal / Zip Code</label>
+                  <input type="text" id="loc-zip" class="form-input" value="94107">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="loc-country">Country</label>
+                  <input type="text" id="loc-country" class="form-input" value="US">
+                </div>
+              </div>
+            </div>
+
+            <!-- ================= Event Section ================= -->
+            <div id="form-Event" class="schema-section-form">
+              <div class="form-group">
+                <label class="form-label" for="evt-name">Event Name</label>
+                <input type="text" id="evt-name" class="form-input" value="SaaS Design Optimization Conference 2026">
+              </div>
+
+              <div class="form-group-grid">
+                <div class="form-group">
+                  <label class="form-label" for="evt-start">Start Date & Time</label>
+                  <input type="datetime-local" id="evt-start" class="form-input" value="2026-06-15T09:00">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="evt-end">End Date & Time</label>
+                  <input type="datetime-local" id="evt-end" class="form-input" value="2026-06-16T17:00">
+                </div>
+              </div>
+
+              <div class="form-group-grid">
+                <div class="form-group">
+                  <label class="form-label" for="evt-status">Event Status</label>
+                  <select id="evt-status" class="form-input">
+                    <option value="EventScheduled" selected>Scheduled</option>
+                    <option value="EventCancelled">Cancelled</option>
+                    <option value="EventPostponed">Postponed</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="evt-mode">Attendance Mode</label>
+                  <select id="evt-mode" class="form-input">
+                    <option value="MixedEventAttendanceMode" selected>Mixed (In-Person & Online)</option>
+                    <option value="OfflineEventAttendanceMode">In-Person Only</option>
+                    <option value="OnlineEventAttendanceMode">Online / Virtual Only</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="evt-loc-name">Location / Venue Name</label>
+                <input type="text" id="evt-loc-name" class="form-input" value="Moscone Center / Zoom webinar">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="evt-loc-url">Virtual / Registration Link</label>
+                <input type="url" id="evt-loc-url" class="form-input" value="https://toolwools.com/events/saas-design">
+              </div>
+
+              <div class="form-group-grid">
+                <div class="form-group">
+                  <label class="form-label" for="evt-price">Ticket Price</label>
+                  <input type="number" step="0.01" id="evt-price" class="form-input" value="149.00">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="evt-currency">Currency</label>
+                  <select id="evt-currency" class="form-input">
+                    <option value="USD" selected>USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Right: Preview and Code Panel -->
+        <div class="tool-card">
+          <div class="card-title-sec">
+            <span>Visual Search Mockup</span>
+          </div>
+
+          <!-- Preview Tabs -->
+          <div class="preview-tabs">
+            <div class="preview-tab active" data-target="google-tab">Google Snippet Preview</div>
+            <div class="preview-tab" data-target="code-tab">JSON-LD Code</div>
+          </div>
+
+          <!-- Tab Contents -->
+          <div class="preview-content active" id="google-tab">
+            <div class="mockup-rich-snippet">
+              <div class="mockup-google-header">
+                <div class="mockup-google-site-icon" id="mock-site-icon">T</div>
+                <div class="mockup-google-site-meta">
+                  <span class="mockup-google-site-name" id="mock-site-name">ToolWools</span>
+                  <span class="mockup-google-display-url" id="mock-site-url">https://toolwools.com</span>
+                </div>
+              </div>
+              <div class="mockup-google-snippet-body">
+                <div class="mockup-google-snippet-text">
+                  <a href="#" class="mockup-google-snippet-title" id="mock-title">10 Secrets to High-Converting SaaS Design</a>
+                  <p class="mockup-google-description" id="mock-description">Learn the exact visual design patterns, glassmorphism layouts, and interactive feedback systems that triple conversion rates for premium SaaS platforms.</p>
+                </div>
+                <div class="mockup-article-image-preview" id="mock-image-preview" style="background-image: url('https://toolwools.com/og-image.png');"></div>
+              </div>
+
+              <!-- Product Schema Rich Extras -->
+              <div id="mock-product-extras" style="display: none;">
+                <div class="mockup-product-stars">
+                  <span id="mock-stars-icons">★★★★★</span>
+                  <span id="mock-stars-val" style="color: var(--color-muted); font-size: 12px;">4.8 (142 reviews)</span>
+                </div>
+                <div class="mockup-product-extra-info">
+                  <span>Price: </span><strong id="mock-price-val">$29.00</strong> · <span id="mock-stock-val">In stock</span>
+                </div>
+              </div>
+
+              <!-- Local Business Extras -->
+              <div id="mock-local-extras" style="display: none;">
+                <div class="mockup-local-card">
+                  <div class="mockup-local-row">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    <span>Rating: <strong>4.9 ★★★★★</strong> (Local Rating)</span>
+                  </div>
+                  <div class="mockup-local-row">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span id="mock-local-address">100 Innovation Way, Suite 400, San Francisco, CA, 94107</span>
+                  </div>
+                  <div class="mockup-local-row">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <span id="mock-local-phone">+1 (555) 123-4567</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAQ Schema Rich Extras -->
+              <div id="mock-faq-extras" style="display: none;" class="mockup-faq-accordion">
+                <!-- FAQ dynamic items will be generated here -->
+              </div>
+
+              <!-- Event Schema Rich Extras -->
+              <div id="mock-event-extras" style="display: none;" class="mockup-event-list">
+                <!-- Event dynamic listings will be generated here -->
+              </div>
+
+              <!-- Article Schema footer details -->
+              <div id="mock-article-footer" class="mockup-article-footer">
+                <span>By <span id="mock-author-val">Sarah Jenkins</span></span>
+                <span>·</span>
+                <span id="mock-pub-date">Published May 31, 2026</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Code Tab -->
+          <div class="preview-content" id="code-tab">
+            <div class="result-block" style="margin-top: 0;">
+              <div class="code-header">
+                <span>JSON-LD Schema Script</span>
+                <div class="code-actions">
+                  <button class="btn-code-action" id="btn-copy-code">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    <span>Copy JSON-LD</span>
+                  </button>
+                  <button class="btn-code-action" id="btn-download-code">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span>Download JSON</span>
+                  </button>
+                </div>
+              </div>
+              <textarea class="code-content-box" id="schema-output-code" style="height: 380px;" readonly></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Universal Premium Toast Notification -->
+  <div class="premium-toast" id="copy-toast">
+    <div class="premium-toast-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+    </div>
+    <span id="toast-message">Schema copied to clipboard!</span>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer" id="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../../index.html" class="nav-logo">
+            <div class="logo-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <circle cx="16" cy="16" r="16" fill="#F4511E"/>
+                <path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="logo-text">ToolWools</span>
+          </a>
+          <p class="footer-brand-desc">All-in-one online tools platform for SEO, Images, PDFs, Text, AI and Developers.</p>
+          <div class="social-icons">
+            <a href="https://twitter.com/toolwools" aria-label="Twitter/X" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M11.9 8.45L18.35 1H16.86L11.24 7.5L6.72 1H1L7.75 10.95L1 18.8H2.49L8.41 11.9L13.18 18.8H18.9L11.9 8.45ZM9.17 11.05L8.5 10.1L3.02 2.1H6.02L9.75 7.4L10.42 8.35L16.86 17.75H13.86L9.17 11.05Z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://linkedin.com/company/toolwools" aria-label="LinkedIn" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4.5 3C3.67 3 3 3.67 3 4.5C3 5.33 3.67 6 4.5 6C5.33 6 6 5.33 6 4.5C6 3.67 5.33 3 4.5 3ZM3 8H6V17H3V8ZM8 8H11V9.5C11.5 8.5 12.8 7.7 14.5 7.7C17.5 7.7 17.5 10.2 17.5 12V17H14.5V12.5C14.5 11 14 10.5 13 10.5C11.5 10.5 11 11.5 11 12.5V17H8V8Z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://github.com/toolwools" aria-label="GitHub" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C5.58 2 2 5.58 2 10C2 13.54 4.29 16.53 7.47 17.59C7.87 17.66 8.02 17.42 8.02 17.21V15.65C5.73 16.13 5.26 14.56 5.26 14.56C4.89 13.64 4.35 13.4 4.35 13.4C3.6 12.88 4.4 12.9 4.4 12.9C5.22 12.96 5.65 13.74 5.65 13.74C6.37 14.97 7.55 14.63 8.05 14.43C8.12 13.91 8.33 13.56 8.56 13.36C6.77 13.15 4.88 12.42 4.88 9.43C4.88 8.56 5.2 7.85 5.66 7.29C5.58 7.08 5.3 6.27 5.74 5.17C5.74 5.17 6.43 4.95 8.02 5.99C8.66 5.81 9.34 5.72 10.02 5.72C10.7 5.72 11.38 5.81 12.02 5.99C13.61 4.95 14.3 5.17 14.3 5.17C14.74 6.27 14.46 7.08 14.38 7.29C14.84 7.85 15.16 8.56 15.16 9.43C15.16 12.43 13.27 13.15 11.46 13.35C11.75 13.6 12.02 14.1 12.02 14.86V17.21C12.02 17.42 12.17 17.67 12.57 17.59C15.73 16.53 18 13.54 18 10C18 5.58 14.42 2 10 2Z" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">PRODUCT</h4>
+          <a href="../index.html" class="footer-link">All Tools</a>
+          <a href="../index.html?cat=seo" class="footer-link">SEO Tools</a>
+          <a href="../index.html?cat=image" class="footer-link">Image Tools</a>
+          <a href="../index.html?cat=pdf" class="footer-link">PDF Tools</a>
+          <a href="../index.html?cat=ai" class="footer-link">AI Tools</a>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">COMPANY</h4>
+          <a href="../../index.html" class="footer-link">About Us</a>
+          <a href="../../blog/index.html" class="footer-link">Blog</a>
+          <a href="../../index.html" class="footer-link">Privacy Policy</a>
+          <a href="../../index.html" class="footer-link">Terms of Service</a>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">RESOURCES</h4>
+          <a href="../../index.html" class="footer-link">Help Center</a>
+          <a href="../../index.html" class="footer-link">FAQs</a>
+          <a href="../../index.html" class="footer-link">API Docs</a>
+        </div>
+
+        <div class="footer-col footer-newsletter">
+          <h4 class="footer-col-title">NEWSLETTER</h4>
+          <p class="footer-newsletter-text">Get updates about new tools and features.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="Enter your email" class="newsletter-input" aria-label="Email address">
+            <button type="submit" class="newsletter-btn" aria-label="Subscribe">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-copyright">© 2025 ToolWools. All rights reserved.</span>
+        <span class="footer-made">Made with <span class="heart">♥</span> for the community</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../script.js"></script>
+  <script src="generator.js"></script>
+</body>
+</html>

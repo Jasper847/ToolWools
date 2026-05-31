@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online Image Compressor | ToolWools</title>
+  <meta name="description" content="Reduce image file sizes by up to 80% while keeping perfect quality. Compress JPG, PNG, and WEBP client-side directly in your browser. Fast, secure, and free.">
+  <meta name="keywords" content="image compressor, compress image, reduce png size, reduce jpeg size, webp compressor, online image optimizer, client-side compression">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Free Online Image Compressor — ToolWools">
+  <meta property="og:description" content="Reduce image file sizes by up to 80% with no quality loss. Safe, secure browser-based image compression.">
+  <meta property="og:image" content="/og-image.png">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-logo" aria-label="ToolWools Home">
+        <div class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="16" fill="#F4511E"/>
+            <path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="logo-text">ToolWools</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <div class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+            Tools
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="chevron-icon">
+              <path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="mega-menu" id="megaMenu">
+            <div class="mega-menu-grid">
+              <a href="../index.html?cat=seo" class="mega-item">
+                <div class="mega-icon mega-icon-orange">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="5" stroke="white" stroke-width="2"/><path d="M12 12L17 17" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">SEO Tools</span>
+                  <span class="mega-desc">Optimize your search rankings</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=image" class="mega-item">
+                <div class="mega-icon mega-icon-blue">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="white" stroke-width="2"/><circle cx="7" cy="7" r="2" fill="white"/><path d="M2 14L7 9L18 18" stroke="white" stroke-width="2"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Image Tools</span>
+                  <span class="mega-desc">Compress, convert & optimize</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=pdf" class="mega-item">
+                <div class="mega-icon mega-icon-red">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="1" width="14" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M7 6H13M7 10H13M7 14H11" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">PDF Tools</span>
+                  <span class="mega-desc">Edit, compress & convert PDFs</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=text" class="mega-item">
+                <div class="mega-icon mega-icon-green">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4H16M4 8H12M4 12H14M4 16H10" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Text Tools</span>
+                  <span class="mega-desc">Count, format & transform text</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=ai" class="mega-item">
+                <div class="mega-icon mega-icon-purple">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12 7H18L13 11L15 17L10 13L5 17L7 11L2 7H8L10 2Z" fill="white"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">AI Tools</span>
+                  <span class="mega-desc">AI-powered writing & analysis</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=dev" class="mega-item">
+                <div class="mega-icon mega-icon-dark">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 6L2 10L6 14M14 6L18 10L14 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Developer Tools</span>
+                  <span class="mega-desc">JSON, code & dev utilities</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="../index.html?cat=seo" class="nav-link">SEO Tools</a>
+        <a href="../index.html?cat=image" class="nav-link">Image Tools</a>
+        <a href="../index.html?cat=pdf" class="nav-link">PDF Tools</a>
+        <a href="../index.html?cat=ai" class="nav-link">AI Tools</a>
+        <a href="../../index.html#testimonials" class="nav-link">Pricing</a>
+        <a href="../../blog/index.html" class="nav-link">Blog</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M10 2V4M10 16V18M2 10H4M16 10H18M4.93 4.93L6.34 6.34M13.66 13.66L15.07 15.07M4.93 15.07L6.34 13.66M13.66 6.34L15.07 4.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <a href="../../index.html#cta" class="btn btn-primary nav-cta">Get Started Free</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html" class="mobile-link">All Tools</a>
+      <a href="../index.html?cat=seo" class="mobile-link">SEO Tools</a>
+      <a href="../index.html?cat=image" class="mobile-link">Image Tools</a>
+      <a href="../index.html?cat=pdf" class="mobile-link">PDF Tools</a>
+      <a href="../index.html?cat=ai" class="mobile-link">AI Tools</a>
+      <a href="../../index.html#testimonials" class="mobile-link">Pricing</a>
+      <a href="../../blog/index.html" class="mobile-link">Blog</a>
+      <a href="../../index.html#cta" class="btn btn-primary mobile-cta">Get Started Free</a>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN WORKSPACE ==================== -->
+  <main class="tool-container">
+
+    <!-- Header Block -->
+    <div class="tool-header-block reveal-up">
+      <div class="tool-badge-category">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" style="margin-right:4px;">
+          <rect x="1" y="1" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="5" cy="5" r="1.5" fill="currentColor"/>
+          <path d="M1 12L5 8L9 11L12 8L15 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Image Optimization
+      </div>
+      <h1 class="tool-title">Image Compressor</h1>
+      <p class="tool-description">
+        Reduce image file sizes by up to 80% instantly. Clean client-side compression with no quality loss. Your files never leave your device.
+      </p>
+    </div>
+
+    <!-- Workspace Grid -->
+    <div class="tool-grid-workspace reveal-up">
+      
+      <!-- Left Panel: Upload and Options -->
+      <div class="tool-panel">
+        <div class="tool-panel-title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+          </svg>
+          Configure Compression
+        </div>
+
+        <!-- Upload Dropzone -->
+        <div class="upload-zone-wrapper">
+          <div class="tool-upload-zone" id="uploadZone">
+            <div class="upload-icon-wrapper">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+            </div>
+            <div class="upload-main-text">Drag & drop your image here</div>
+            <div class="upload-sub-text">or click to browse · Supports JPG, PNG, WEBP up to 50MB</div>
+            <input type="file" id="fileInput" class="file-input-hidden" accept="image/png, image/jpeg, image/webp">
+          </div>
+        </div>
+
+        <!-- Uploaded File Display Row -->
+        <div class="uploaded-file-row" id="fileRow" style="display: none;">
+          <div class="file-meta-info">
+            <div class="file-icon-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M20.4 20.4L15 15L9 21"/>
+              </svg>
+            </div>
+            <div>
+              <div class="file-name-text" id="fileName">image-file.jpg</div>
+              <div class="file-size-badge" id="fileSize">1.2 MB</div>
+            </div>
+          </div>
+          <button class="btn-remove-file" id="btnReset" aria-label="Remove image">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Parameters Panel (Disabled until file loaded) -->
+        <div style="margin-top: 32px; opacity: 0.5; pointer-events: none;" id="controlsWrapper">
+          
+          <!-- Quality Slider -->
+          <div class="control-group">
+            <div class="control-label-row">
+              <label for="qualitySlider" class="control-label">Compression Quality</label>
+              <span class="control-label-value" id="qualityVal">80%</span>
+            </div>
+            <input type="range" id="qualitySlider" class="slider-custom" min="10" max="100" value="80">
+          </div>
+
+          <!-- Format Selection -->
+          <div class="control-group">
+            <label class="control-label" style="display:block; margin-bottom: 12px;">Output Format</label>
+            <div class="option-cards-grid">
+              
+              <label class="option-card-radio">
+                <input type="radio" name="formatOption" value="original" checked>
+                <div class="option-card-content">
+                  <span class="option-card-title">Match Original</span>
+                </div>
+              </label>
+
+              <label class="option-card-radio">
+                <input type="radio" name="formatOption" value="image/jpeg">
+                <div class="option-card-content">
+                  <span class="option-card-title">JPEG</span>
+                </div>
+              </label>
+
+              <label class="option-card-radio">
+                <input type="radio" name="formatOption" value="image/png">
+                <div class="option-card-content">
+                  <span class="option-card-title">PNG</span>
+                </div>
+              </label>
+
+              <label class="option-card-radio">
+                <input type="radio" name="formatOption" value="image/webp">
+                <div class="option-card-content">
+                  <span class="option-card-title">WEBP</span>
+                </div>
+              </label>
+              
+            </div>
+          </div>
+
+          <!-- Force Compress Button -->
+          <div class="tool-action-btn-row">
+            <button class="btn btn-primary" id="btnCompress">
+              Compress Image
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M12 8L8 4M8 4L4 8M8 4V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Right Panel: Live Results / Preview -->
+      <div class="tool-panel" id="resultsPanel" style="min-height: 480px; display: flex; flex-direction: column; justify-content: center;">
+        
+        <!-- Empty State Placeholder -->
+        <div id="resultsPlaceholder" style="text-align: center; color: var(--color-muted); padding: 48px 12px;">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-muted-light); margin-bottom: 20px;">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+          <h3 style="font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--color-dark); margin-bottom: 8px;">No image compressed yet</h3>
+          <p style="font-size: 14px; max-width: 320px; margin: 0 auto; line-height: 1.5;">Upload a JPG, PNG, or WEBP image and configure settings to view live compressed details.</p>
+        </div>
+
+        <!-- Spinner loader -->
+        <div class="processing-overlay" id="loadingOverlay">
+          <div class="spinner-premium"></div>
+          <div class="processing-text">Optimizing image pixels...</div>
+          <div class="progress-bar-wrapper" id="miniProgressWrapper">
+            <div class="progress-bar-fill" id="miniProgressFill"></div>
+          </div>
+        </div>
+
+        <!-- Live Content Dashboard (hidden initially) -->
+        <div id="resultsContent" style="display: none; width: 100%;">
+          <div class="tool-panel-title" style="margin-bottom: 16px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+            Optimization Results
+          </div>
+
+          <!-- Side-by-Side Compare Slider Component -->
+          <div class="compare-component-wrapper" id="compareWrapper" style="display: block;">
+            <div class="compare-title-row">
+              <span class="control-label" style="font-size: 13px;">Drag divider to inspect quality</span>
+              <div class="compare-badge-container">
+                <span class="compare-badge compare-badge-original">Before</span>
+                <span class="compare-badge compare-badge-compressed">After</span>
+              </div>
+            </div>
+            
+            <div class="compare-slider-container" id="imageCompare">
+              <img src="" alt="Original Image" class="compare-img-original" id="compareOriginal">
+              <img src="" alt="Compressed Image" class="compare-img-compressed" id="compareCompressed">
+              <div class="compare-img-label label-original">Original</div>
+              <div class="compare-img-label label-compressed">Compressed</div>
+              <div class="compare-slider-bar" id="compareSlider">
+                <div class="compare-slider-handle">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="15 18 9 12 15 6"/>
+                  </svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="9 18 15 12 9 6"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Metrics Stats Row -->
+          <div class="results-metrics-grid">
+            <div class="metric-card-premium">
+              <span class="metric-card-label">Original Size</span>
+              <span class="metric-card-value" id="valOrigSize">1.2 MB</span>
+              <span class="metric-card-sub" id="valOrigDim">1920 x 1080px</span>
+            </div>
+            <div class="metric-card-premium">
+              <span class="metric-card-label">New Size</span>
+              <span class="metric-card-value" id="valNewSize">340 KB</span>
+              <span class="metric-card-sub" id="valNewDim">1920 x 1080px</span>
+            </div>
+            <div class="metric-card-premium">
+              <span class="metric-card-label">Savings</span>
+              <span class="metric-card-value text-success-green" id="valSavingsPercent">72%</span>
+              <span class="metric-card-sub" id="valSavingsBytes">860 KB saved</span>
+            </div>
+          </div>
+
+          <!-- Download Action Panel -->
+          <div class="results-action-row">
+            <button class="btn btn-secondary" id="btnDownloadReset">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 4v6h-6M1 20v-6h6"/>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+              </svg>
+              Clear
+            </button>
+            <a href="#" class="btn btn-primary" id="btnDownload" download="compressed_image.jpg">
+              Download File
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+              </svg>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- FAQ SECTION -->
+    <section class="tool-faq-section reveal-up">
+      <div class="faq-header">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-grid">
+        
+        <div class="faq-item-card">
+          <h3 class="faq-question">How does browser-side image compression work?</h3>
+          <p class="faq-answer">
+            When you select an image, it is read directly into your browser using standard HTML5 APIs. We draw the image onto an HTML5 Canvas and export it using high-performance pixel scaling at your specified compression density. The compression runs entirely on your GPU and CPU locally.
+          </p>
+        </div>
+
+        <div class="faq-item-card">
+          <h3 class="faq-question">Are my images sent to any server?</h3>
+          <p class="faq-answer">
+            No. Your privacy is 100% guaranteed. All processing happens right on your device. Unlike traditional web converters, we do not upload, scan, or store your pictures. It is secure, private, and works even when you are offline!
+          </p>
+        </div>
+
+        <div class="faq-item-card">
+          <h3 class="faq-question">Will I lose quality when compressing?</h3>
+          <p class="faq-answer">
+            Our compressor uses advanced lossy algorithms for JPEG and WEBP formats, and lossless compression mapping for PNG. By optimizing the color channels and removing visual redundancy invisible to the human eye, we reduce the file size dramatically while maintaining a razor-sharp output.
+          </p>
+        </div>
+
+        <div class="faq-item-card">
+          <h3 class="faq-question">Is there a limit on image dimensions?</h3>
+          <p class="faq-answer">
+            There are no arbitrary limits set by us. However, browser hardware limitations apply (usually up to 16,384 x 16,384 pixels on modern computers). Images up to 50MB in file size can be optimized smoothly.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer" id="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="../../index.html" class="nav-logo">
+            <div class="logo-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <circle cx="16" cy="16" r="16" fill="#F4511E"/>
+                <path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="logo-text">ToolWools</span>
+          </a>
+          <p class="footer-brand-desc">All-in-one online tools platform for SEO, Images, PDFs, Text, AI and Developers.</p>
+          <div class="social-icons">
+            <a href="https://twitter.com/toolwools" aria-label="Twitter/X" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M11.9 8.45L18.35 1H16.86L11.24 7.5L6.72 1H1L7.75 10.95L1 18.8H2.49L8.41 11.9L13.18 18.8H18.9L11.9 8.45ZM9.17 11.05L8.5 10.1L3.02 2.1H6.02L9.75 7.4L10.42 8.35L16.86 17.75H13.86L9.17 11.05Z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://linkedin.com/company/toolwools" aria-label="LinkedIn" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4.5 3C3.67 3 3 3.67 3 4.5C3 5.33 3.67 6 4.5 6C5.33 6 6 5.33 6 4.5C6 3.67 5.33 3 4.5 3ZM3 8H6V17H3V8ZM8 8H11V9.5C11.5 8.5 12.8 7.7 14.5 7.7C17.5 7.7 17.5 10.2 17.5 12V17H14.5V12.5C14.5 11 14 10.5 13 10.5C11.5 10.5 11 11.5 11 12.5V17H8V8Z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://github.com/toolwools" aria-label="GitHub" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C5.58 2 2 5.58 2 10C2 13.54 4.29 16.53 7.47 17.59C7.87 17.66 8.02 17.42 8.02 17.21V15.65C5.73 16.13 5.26 14.56 5.26 14.56C4.89 13.64 4.35 13.4 4.35 13.4C3.6 12.88 4.4 12.9 4.4 12.9C5.22 12.96 5.65 13.74 5.65 13.74C6.37 14.97 7.55 14.63 8.05 14.43C8.12 13.91 8.33 13.56 8.56 13.36C6.77 13.15 4.88 12.42 4.88 9.43C4.88 8.56 5.2 7.85 5.66 7.29C5.58 7.08 5.3 6.27 5.74 5.17C5.74 5.17 6.43 4.95 8.02 5.99C8.66 5.81 9.34 5.72 10.02 5.72C10.7 5.72 11.38 5.81 12.02 5.99C13.61 4.95 14.3 5.17 14.3 5.17C14.74 6.27 14.46 7.08 14.38 7.29C14.84 7.85 15.16 8.56 15.16 9.43C15.16 12.43 13.27 13.15 11.46 13.35C11.75 13.6 12.02 14.1 12.02 14.86V17.21C12.02 17.42 12.17 17.67 12.57 17.59C15.73 16.53 18 13.54 18 10C18 5.58 14.42 2 10 2Z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://instagram.com/toolwools" aria-label="Instagram" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="15" cy="5" r="1" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Product Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">PRODUCT</h4>
+          <a href="../index.html" class="footer-link">All Tools</a>
+          <a href="../index.html?cat=seo" class="footer-link">SEO Tools</a>
+          <a href="../index.html?cat=image" class="footer-link">Image Tools</a>
+          <a href="../index.html?cat=pdf" class="footer-link">PDF Tools</a>
+          <a href="../index.html?cat=ai" class="footer-link">AI Tools</a>
+          <a href="../index.html?cat=text" class="footer-link">Text Tools</a>
+        </div>
+
+        <!-- Company Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">COMPANY</h4>
+          <a href="../../index.html" class="footer-link">About Us</a>
+          <a href="../../blog/index.html" class="footer-link">Blog</a>
+          <a href="../../index.html" class="footer-link">Contact Us</a>
+          <a href="../../index.html" class="footer-link">Privacy Policy</a>
+          <a href="../../index.html" class="footer-link">Terms of Service</a>
+        </div>
+
+        <!-- Resources Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">RESOURCES</h4>
+          <a href="../../index.html" class="footer-link">Help Center</a>
+          <a href="../../index.html" class="footer-link">FAQs</a>
+          <a href="../../index.html" class="footer-link">API Docs</a>
+          <a href="../../index.html" class="footer-link">Status</a>
+          <a href="../../index.html" class="footer-link">Changelog</a>
+        </div>
+
+        <!-- Newsletter Column -->
+        <div class="footer-col footer-newsletter">
+          <h4 class="footer-col-title">NEWSLETTER</h4>
+          <p class="footer-newsletter-text">Get updates about new tools and features.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="Enter your email" class="newsletter-input" aria-label="Email address">
+            <button type="submit" class="newsletter-btn" aria-label="Subscribe">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-copyright">© 2025 ToolWools. All rights reserved.</span>
+        <span class="footer-made">Made with <span class="heart">♥</span> for the community</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../../script.js"></script>
+  <script src="compressor.js"></script>
+</body>
+</html>

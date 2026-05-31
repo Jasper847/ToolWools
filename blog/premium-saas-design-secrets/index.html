@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10 Secrets to High-Converting SaaS Design — ToolWools Blog</title>
+  <meta name="description" content="Discover the core visual hierarchy principles, layouts, copy adjustments, and psychological triggers that optimize conversion rate on modern SaaS platforms.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Style Sheets -->
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../blog.css">
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div class="progress-container">
+    <div class="reading-progress-bar"></div>
+  </div>
+
+  <!-- ==================== HEADER (NAVBAR) ==================== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-logo" aria-label="ToolWools Home">
+        <div class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="16" fill="#F4511E"/>
+            <path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="logo-text">ToolWools</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <div class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+            Tools
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="chevron-icon">
+              <path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="mega-menu" id="megaMenu">
+            <div class="mega-menu-grid">
+              <a href="../../tools/index.html?cat=seo" class="mega-item">
+                <div class="mega-icon mega-icon-orange">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="5" stroke="white" stroke-width="2"/><path d="M12 12L17 17" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">SEO Tools</span>
+                  <span class="mega-desc">Optimize your search rankings</span>
+                </div>
+              </a>
+              <a href="../../tools/index.html?cat=image" class="mega-item">
+                <div class="mega-icon mega-icon-blue">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="white" stroke-width="2"/><circle cx="7" cy="7" r="2" fill="white"/><path d="M2 14L7 9L18 18" stroke="white" stroke-width="2"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Image Tools</span>
+                  <span class="mega-desc">Compress, convert & optimize</span>
+                </div>
+              </a>
+              <a href="../../tools/index.html?cat=pdf" class="mega-item">
+                <div class="mega-icon mega-icon-red">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="1" width="14" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M7 6H13M7 10H13M7 14H11" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">PDF Tools</span>
+                  <span class="mega-desc">Edit, compress & convert PDFs</span>
+                </div>
+              </a>
+              <a href="../../tools/index.html?cat=text" class="mega-item">
+                <div class="mega-icon mega-icon-green">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4H16M4 8H12M4 12H14M4 16H10" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Text Tools</span>
+                  <span class="mega-desc">Count, format & transform text</span>
+                </div>
+              </a>
+              <a href="../../tools/index.html?cat=ai" class="mega-item">
+                <div class="mega-icon mega-icon-purple">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12 7H18L13 11L15 17L10 13L5 17L7 11L2 7H8L10 2Z" fill="white"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">AI Tools</span>
+                  <span class="mega-desc">AI-powered writing & analysis</span>
+                </div>
+              </a>
+              <a href="../../tools/index.html?cat=dev" class="mega-item">
+                <div class="mega-icon mega-icon-dark">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 6L2 10L6 14M14 6L18 10L14 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Developer Tools</span>
+                  <span class="mega-desc">JSON, code & dev utilities</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="../../tools/index.html?cat=seo" class="nav-link">SEO Tools</a>
+        <a href="../../tools/index.html?cat=image" class="nav-link">Image Tools</a>
+        <a href="../../tools/index.html?cat=pdf" class="nav-link">PDF Tools</a>
+        <a href="../../tools/index.html?cat=ai" class="nav-link">AI Tools</a>
+        <a href="../../index.html#pricing" class="nav-link">Pricing</a>
+        <a href="../index.html" class="nav-link" style="color: var(--color-primary); font-weight: 600;">Blog</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M10 2V4M10 16V18M2 10H4M16 10H18M4.93 4.93L6.34 6.34M13.66 13.66L15.07 15.07M4.93 15.07L6.34 13.66M13.66 6.34L15.07 4.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <a href="../../index.html#cta" class="btn btn-primary nav-cta">Get Started Free</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../../tools/index.html" class="mobile-link">All Tools</a>
+      <a href="../../tools/index.html?cat=seo" class="mobile-link">SEO Tools</a>
+      <a href="../../tools/index.html?cat=image" class="mobile-link">Image Tools</a>
+      <a href="../../tools/index.html?cat=pdf" class="mobile-link">PDF Tools</a>
+      <a href="../../tools/index.html?cat=ai" class="mobile-link">AI Tools</a>
+      <a href="../../index.html#pricing" class="mobile-link">Pricing</a>
+      <a href="../index.html" class="mobile-link">Blog</a>
+      <a href="../../index.html#cta" class="btn btn-primary mobile-cta">Get Started Free</a>
+    </div>
+  </header>
+
+  <main>
+    <article class="article-layout-section">
+      <!-- Article Header -->
+      <header class="article-header">
+        <div class="article-header-meta">
+          <span class="category-badge category-design">SaaS Design</span>
+          <span class="post-date-read">Published May 31, 2026 <span class="bullet-divider"></span> 8 min read</span>
+        </div>
+        <h1 class="article-header-title">10 Secrets to High-Converting SaaS Design</h1>
+        <div class="article-author-row">
+          <div class="author-avatar" style="background: #F4511E; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; width: 48px; height: 48px;">AJ</div>
+          <div style="text-align: left;">
+            <span class="author-name" style="display: block;">Alex Johnson</span>
+            <span style="font-size: 12px; color: var(--color-muted);">Lead Product Designer, ToolWools</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Featured Image Banner -->
+      <div class="article-hero-banner reveal-up">
+        <img src="../images/saas_design_secrets.png" alt="SaaS Design Dashboard Mockup">
+      </div>
+
+      <!-- Main Layout: Sidebar & Content -->
+      <div class="article-main-grid">
+        <!-- Sticky Sidebar Table of Contents -->
+        <aside class="article-sidebar">
+          <h3 class="toc-title">ON THIS PAGE</h3>
+          <nav class="toc-list">
+            <a href="#value-prop" class="toc-item active">1. Value Placement</a>
+            <a href="#visual-hierarchy" class="toc-item">2. F-Pattern Hierarchy</a>
+            <a href="#micro-copy" class="toc-item">3. High-Intent CTAs</a>
+            <a href="#cognitive-load" class="toc-item">4. Reducing Friction</a>
+            <a href="#social-proof" class="toc-item">5. Trust Integration</a>
+            <a href="#dark-mode" class="toc-item">6. HSL Ambient Hues</a>
+            <a href="#micro-interactions" class="toc-item">7. Hover Physics</a>
+            <a href="#progressive-disclosure" class="toc-item">8. Smart Disclosure</a>
+            <a href="#speed" class="toc-item">9. Speed Optimization</a>
+            <a href="#friction-reduction" class="toc-item">10. Onboarding Flow</a>
+          </nav>
+        </aside>
+
+        <!-- Main Read Section -->
+        <div class="article-content">
+          <div class="article-body">
+            <p>Design is never just about aesthetics. In the competitive landscape of software-as-a-service (SaaS), your visual interface is your direct pipeline to conversion. A well-placed button, a reduction in visual clutter, or an optimized color contrast can be the difference between a bounced visitor and an active subscriber.</p>
+
+            <p>Based on our metrics and iterative UI tests here at ToolWools, we compiled the <strong>10 design secrets</strong> that drive the highest conversion rates on modern SaaS landing pages and dashboards.</p>
+
+            <!-- 1. Value Proposition Placement -->
+            <h2 id="value-prop">1. Above-the-Fold Value Placement</h2>
+            <p>Your value proposition must be visible within three seconds of loading. Avoid vague phrases like "We empower workflows." Instead, clearly declare what your product does, who it is for, and why they should care. The header must be the absolute focal point of the page, styled using strong display typography like <code>Bricolage Grotesque</code>.</p>
+            
+            <div class="alert alert-note">
+              <svg class="alert-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="var(--color-blue)" stroke-width="2"/><path d="M10 7V13M10 13H10.01" stroke="var(--color-blue)" stroke-width="2.5" stroke-linecap="round"/></svg>
+              <div class="alert-content">
+                <strong class="alert-title">Note</strong>
+                Users spend 57% of their reading time above the fold. Placing complex dashboard illustrations or videos below the fold prevents visual overload.
+              </div>
+            </div>
+
+            <!-- 2. Visual Hierarchy & F-Pattern -->
+            <h2 id="visual-hierarchy">2. Visual Hierarchy & the F-Pattern</h2>
+            <p>Most web users scan pages in an F-pattern: reading headlines, scanning the left edge of paragraphs, and focusing on bullet points. Establish visual weight by making main headings significantly larger and darker, and using color accents like <code>#F4511E</code> on key conversion pathways.</p>
+
+            <blockquote class="reveal-up">
+              "Good design is obvious. Great design is transparent. If you force the user's brain to search for the navigation path, you have already lost the sale."
+            </blockquote>
+
+            <!-- 3. Micro-copy & CTAs -->
+            <h2 id="micro-copy">3. High-Intent CTAs over Generic Words</h2>
+            <p>Never write generic call-to-actions (CTAs) like "Submit" or "Sign Up". High-converting designs leverage action-oriented micro-copy that reinforces value. Use descriptive text that reflects user intent.</p>
+
+            <div class="image-highlight reveal-up">
+              <img src="../images/saas_design_secrets.png" alt="High intent CTA example">
+              <p class="image-caption">Figure 1: Placing visual cues near the call to action guides the user's cursor dynamically.</p>
+            </div>
+
+            <!-- 4. Reducing Cognitive Load -->
+            <h2 id="cognitive-load">4. Reducing Cognitive Load on Dashboards</h2>
+            <p>When users enter a dashboard, they can easily experience decision paralysis if they are confronted with dozens of data points. Use spacious grids, clear borders, and generous white space. Group related analytics into rounded cards (e.g. <code>border-radius: 16px;</code>) with subtle borders.</p>
+
+            <div class="alert alert-tip">
+              <svg class="alert-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="var(--color-green)" stroke-width="2"/><path d="M7 10L10 13L14 7" stroke="var(--color-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div class="alert-content">
+                <strong class="alert-title">Tip</strong>
+                Group interactive actions inside clean dropdown submenus. Only expose high-priority actions immediately.
+              </div>
+            </div>
+
+            <!-- 5. Trust Integration -->
+            <h2 id="social-proof">5. Placing Trust Indicators at Anxiety Points</h2>
+            <p>Transaction anxiety spikes near forms, pricing plans, and checkout areas. Don't hide reviews on a separate page. Place short quotes, ratings (e.g. "4.9/5 Rating"), or security trust badges right below signup inputs or CTA buttons.</p>
+
+            <!-- 6. HSL Ambient Hues -->
+            <h2 id="dark-mode">6. HSL Color Harmony & Ambient Dark Mode</h2>
+            <p>Pitch-black backgrounds (#000000) create harsh visual contrast. Instead, craft premium dark modes using rich grays and deep blues based on HSL color harmony (e.g., <code>#111827</code> or <code>#0A0A0F</code>). Add subtle backdrop filters (blur) for a glassmorphism effect that makes dashboard panels pop.</p>
+
+            <p>For example, in our CSS we define:</p>
+            <pre><code>[data-theme="dark"] {
+  --color-bg: #111827;
+  --color-surface: #1F2937;
+  --color-body: #D1D5DB;
+  --color-border: #374151;
+}</code></pre>
+
+            <!-- 7. Hover Physics -->
+            <h2 id="micro-interactions">7. Dynamic Micro-Interactions & Hover Physics</h2>
+            <p>Buttons and interactive cards shouldn't just change color instantly. Smooth transitional easing creates a physical sensation. When hovering over article or product cards, use subtle transforms to lift the card and trigger an ambient glow backdrop shadow.</p>
+
+            <pre><code>.article-card {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.article-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}</code></pre>
+
+            <!-- 8. Smart Disclosure -->
+            <h2 id="progressive-disclosure">8. Progressive Disclosure for Complexity</h2>
+            <p>Don't force users to learn all features at once. Progressive disclosure ensures that advanced dashboard options remain hidden under logical settings menus, while basic actions are highly visible. This builds user confidence quickly.</p>
+
+            <!-- 9. Speed Optimization -->
+            <h2 id="speed">9. Blazing Speed & Quantization</h2>
+            <p>No matter how gorgeous your SaaS landing page looks, a 3-second delay will tank conversions by over 50%. Convert all PNG/JPG mockups into compressed WebP images or vector SVGs, and use system fonts or Google Fonts loaded with <code>preconnect</code> directives.</p>
+            
+            <div class="alert alert-important">
+              <svg class="alert-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="var(--color-primary)" stroke-width="2"/><path d="M10 6V11M10 14H10.01" stroke="var(--color-primary)" stroke-width="2.5" stroke-linecap="round"/></svg>
+              <div class="alert-content">
+                <strong class="alert-title">Important</strong>
+                Always run quantization checks on images. Modern tools can compress details by 72% with zero visible quality degradation.
+              </div>
+            </div>
+
+            <!-- 10. Onboarding Flow -->
+            <h2 id="friction-reduction">10. Onboarding Friction Reduction</h2>
+            <p>The signup form is where conversions go to die. Keep inputs to a minimum: email and password are all you need to start. Avoid demanding names, roles, or credit cards until the user has experienced the "Aha!" moment inside the platform.</p>
+          </div>
+
+          <!-- Author Box Profile -->
+          <div class="author-profile-box reveal-up">
+            <div class="author-profile-avatar" style="background: #F4511E; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 32px;">AJ</div>
+            <div class="author-profile-details">
+              <span class="author-profile-name">Alex Johnson</span>
+              <span class="author-profile-role">Lead Product Designer</span>
+              <p class="author-profile-bio">Alex has over 10 years of experience designing SaaS products and marketing landing pages. He leads design systems at ToolWools, focusing on visual psychology and Conversion Rate Optimization (CRO).</p>
+            </div>
+          </div>
+
+          <!-- Next Article Bottom Card -->
+          <div class="next-article-section reveal-up">
+            <span class="next-article-label">Up Next</span>
+            <a href="#" class="next-article-card">
+              <div class="next-img-wrap">
+                <img class="next-img" src="../images/image_compression_web_vitals.png" alt="Image Compression">
+              </div>
+              <div class="next-content">
+                <span class="category-badge category-seo" style="margin-bottom: 8px;">SEO & Speed</span>
+                <h4 class="next-title">How to Compress Images for 100% Core Web Vitals</h4>
+                <p class="next-excerpt">Discover WebP quantization, vector SVGs, and automated optimizations that make your sites blazing fast...</p>
+                <span class="post-date-read">May 28, 2026 <span class="bullet-divider"></span> 5 min read</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer" id="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="../../index.html" class="nav-logo">
+            <div class="logo-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <circle cx="16" cy="16" r="16" fill="#F4511E"/>
+                <path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="logo-text">ToolWools</span>
+          </a>
+          <p class="footer-brand-desc">All-in-one online tools platform for SEO, Images, PDFs, Text, AI and Developers.</p>
+          <div class="social-icons">
+            <a href="#" aria-label="Twitter/X" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M11.9 8.45L18.35 1H16.86L11.24 7.5L6.72 1H1L7.75 10.95L1 18.8H2.49L8.41 11.9L13.18 18.8H18.9L11.9 8.45ZM9.17 11.05L8.5 10.1L3.02 2.1H6.02L9.75 7.4L10.42 8.35L16.86 17.75H13.86L9.17 11.05Z" fill="currentColor"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4.5 3C3.67 3 3 3.67 3 4.5C3 5.33 3.67 6 4.5 6C5.33 6 6 5.33 6 4.5C6 3.67 5.33 3 4.5 3ZM3 8H6V17H3V8ZM8 8H11V9.5C11.5 8.5 12.8 7.7 14.5 7.7C17.5 7.7 17.5 10.2 17.5 12V17H14.5V12.5C14.5 11 14 10.5 13 10.5C11.5 10.5 11 11.5 11 12.5V17H8V8Z" fill="currentColor"/></svg>
+            </a>
+            <a href="#" aria-label="GitHub" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C5.58 2 2 5.58 2 10C2 13.54 4.29 16.53 7.47 17.59C7.87 17.66 8.02 17.42 8.02 17.21V15.65C5.73 16.13 5.26 14.56 5.26 14.56C4.89 13.64 4.35 13.4 4.35 13.4C3.6 12.88 4.4 12.9 4.4 12.9C5.22 12.96 5.65 13.74 5.65 13.74C6.37 14.97 7.55 14.63 8.05 14.43C8.12 13.91 8.33 13.56 8.56 13.36C6.77 13.15 4.88 12.42 4.88 9.43C4.88 8.56 5.2 7.85 5.66 7.29C5.58 7.08 5.3 6.27 5.74 5.17C5.74 5.17 6.43 4.95 8.02 5.99C8.66 5.81 9.34 5.72 10.02 5.72C10.7 5.72 11.38 5.81 12.02 5.99C13.61 4.95 14.3 5.17 14.3 5.17C14.74 6.27 14.46 7.08 14.38 7.29C14.84 7.85 15.16 8.56 15.16 9.43C15.16 12.43 13.27 13.15 11.46 13.35C11.75 13.6 12.02 14.1 12.02 14.86V17.21C12.02 17.42 12.17 17.67 12.57 17.59C15.73 16.53 18 13.54 18 10C18 5.58 14.42 2 10 2Z" fill="currentColor"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="15" cy="5" r="1" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Product Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">PRODUCT</h4>
+          <a href="../../tools/index.html" class="footer-link">All Tools</a>
+          <a href="../../tools/index.html?cat=seo" class="footer-link">SEO Tools</a>
+          <a href="../../tools/index.html?cat=image" class="footer-link">Image Tools</a>
+          <a href="../../tools/index.html?cat=pdf" class="footer-link">PDF Tools</a>
+          <a href="../../tools/index.html?cat=ai" class="footer-link">AI Tools</a>
+          <a href="../../tools/index.html?cat=text" class="footer-link">Text Tools</a>
+        </div>
+
+        <!-- Company Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">COMPANY</h4>
+          <a href="#" class="footer-link">About Us</a>
+          <a href="../index.html" class="footer-link">Blog</a>
+          <a href="#" class="footer-link">Contact Us</a>
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+        </div>
+
+        <!-- Resources Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">RESOURCES</h4>
+          <a href="#" class="footer-link">Help Center</a>
+          <a href="#" class="footer-link">FAQs</a>
+          <a href="#" class="footer-link">API Docs</a>
+          <a href="#" class="footer-link">Status</a>
+          <a href="#" class="footer-link">Changelog</a>
+        </div>
+
+        <!-- Newsletter Column -->
+        <div class="footer-col footer-newsletter">
+          <h4 class="footer-col-title">NEWSLETTER</h4>
+          <p class="footer-newsletter-text">Get updates about new tools and features.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="Enter your email" class="newsletter-input" aria-label="Email address">
+            <button type="submit" class="newsletter-btn" aria-label="Subscribe">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-copyright">© 2025 ToolWools. All rights reserved.</span>
+        <span class="footer-made">Made with <span class="heart">♥</span> for the community</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../script.js" defer></script>
+  <script src="../blog.js" defer></script>
+</body>
+</html>

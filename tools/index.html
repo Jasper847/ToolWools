@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Tools Workspace — ToolWools</title>
+  <meta name="description" content="Access 100+ free online tools for SEO analysis, image compression, PDF editing, text formatting, AI writing, and developer utilities. All in one place, no signup required.">
+  <meta name="keywords" content="free online tools, SEO tools, image compressor, PDF editor, word counter, JSON formatter, developer tools">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="tools.css">
+</head>
+<body>
+
+  <!-- ==================== SECTION 1: NAVIGATION ==================== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo" aria-label="ToolWools Home">
+        <div class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="16" fill="#F4511E"/>
+            <path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="logo-text">ToolWools</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <div class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+            Tools
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="chevron-icon">
+              <path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="mega-menu" id="megaMenu">
+            <div class="mega-menu-grid">
+              <a href="index.html?cat=seo" class="mega-item">
+                <div class="mega-icon mega-icon-orange">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="5" stroke="white" stroke-width="2"/><path d="M12 12L17 17" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">SEO Tools</span>
+                  <span class="mega-desc">Optimize your search rankings</span>
+                </div>
+              </a>
+              <a href="index.html?cat=image" class="mega-item">
+                <div class="mega-icon mega-icon-blue">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="white" stroke-width="2"/><circle cx="7" cy="7" r="2" fill="white"/><path d="M2 14L7 9L18 18" stroke="white" stroke-width="2"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Image Tools</span>
+                  <span class="mega-desc">Compress, convert & optimize</span>
+                </div>
+              </a>
+              <a href="index.html?cat=pdf" class="mega-item">
+                <div class="mega-icon mega-icon-red">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="1" width="14" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M7 6H13M7 10H13M7 14H11" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">PDF Tools</span>
+                  <span class="mega-desc">Edit, compress & convert PDFs</span>
+                </div>
+              </a>
+              <a href="index.html?cat=text" class="mega-item">
+                <div class="mega-icon mega-icon-green">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4H16M4 8H12M4 12H14M4 16H10" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Text Tools</span>
+                  <span class="mega-desc">Count, format & transform text</span>
+                </div>
+              </a>
+              <a href="index.html?cat=ai" class="mega-item">
+                <div class="mega-icon mega-icon-purple">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12 7H18L13 11L15 17L10 13L5 17L7 11L2 7H8L10 2Z" fill="white"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">AI Tools</span>
+                  <span class="mega-desc">AI-powered writing & analysis</span>
+                </div>
+              </a>
+              <a href="index.html?cat=dev" class="mega-item">
+                <div class="mega-icon mega-icon-dark">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 6L2 10L6 14M14 6L18 10L14 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Developer Tools</span>
+                  <span class="mega-desc">JSON, code & dev utilities</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="index.html?cat=seo" class="nav-link">SEO Tools</a>
+        <a href="index.html?cat=image" class="nav-link">Image Tools</a>
+        <a href="index.html?cat=pdf" class="nav-link">PDF Tools</a>
+        <a href="index.html?cat=ai" class="nav-link">AI Tools</a>
+        <a href="../index.html#testimonials" class="nav-link">Pricing</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M10 2V4M10 16V18M2 10H4M16 10H18M4.93 4.93L6.34 6.34M13.66 13.66L15.07 15.07M4.93 15.07L6.34 13.66M13.66 6.34L15.07 4.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <a href="../index.html#cta" class="btn btn-primary nav-cta">Get Started Free</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html" class="mobile-link">All Tools</a>
+      <a href="index.html?cat=seo" class="mobile-link">SEO Tools</a>
+      <a href="index.html?cat=image" class="mobile-link">Image Tools</a>
+      <a href="index.html?cat=pdf" class="mobile-link">PDF Tools</a>
+      <a href="index.html?cat=ai" class="mobile-link">AI Tools</a>
+      <a href="../index.html#testimonials" class="mobile-link">Pricing</a>
+      <a href="../blog/index.html" class="mobile-link">Blog</a>
+      <a href="../index.html#cta" class="btn btn-primary mobile-cta">Get Started Free</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== DASHBOARD HEADER ==================== -->
+    <section class="dashboard-header">
+      <h1 class="dashboard-title">All Tools in One Workspace</h1>
+      <p class="dashboard-subtitle">Fast, secure, and 100% free browser-based tools to accelerate your workflow. No signups, no paywalls, just results.</p>
+      
+      <!-- Interactive Search Bar -->
+      <div class="search-container-wrap">
+        <div class="search-glow"></div>
+        <div class="search-box-inner">
+          <span class="search-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </span>
+          <input type="text" id="toolSearch" class="search-input" placeholder="Search 100+ tools..." aria-label="Search tools">
+          <button id="clearSearch" class="search-clear-btn" aria-label="Clear search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FILTERING TABS ==================== -->
+    <section class="dashboard-tabs-section">
+      <div class="tabs-container">
+        <div class="tabs-scroll">
+          <button class="tab active" data-category="all">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6" height="6" rx="1" fill="currentColor"/><rect x="9" y="1" width="6" height="6" rx="1" fill="currentColor"/><rect x="1" y="9" width="6" height="6" rx="1" fill="currentColor"/><rect x="9" y="9" width="6" height="6" rx="1" fill="currentColor"/></svg>
+            All Tools
+          </button>
+          <button class="tab" data-category="seo">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 10L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            SEO
+          </button>
+          <button class="tab" data-category="image">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="5" cy="5" r="1.5" fill="currentColor"/><path d="M1 12L5 8L9 11L12 8L15 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Images
+          </button>
+          <button class="tab" data-category="pdf">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="1" width="12" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 5H11M5 8H11M5 11H9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            PDF
+          </button>
+          <button class="tab" data-category="text">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 3H13M3 6H10M3 9H12M3 12H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Text
+          </button>
+          <button class="tab" data-category="ai">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L9.5 5.5L14 6L10.5 9L11.5 14L8 11.5L4.5 14L5.5 9L2 6L6.5 5.5L8 1Z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+            AI Tools
+          </button>
+          <button class="tab" data-category="dev">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 4L1 8L5 12M11 4L15 8L11 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Developer
+          </button>
+          <button class="tab-scroll-btn" aria-label="Scroll tabs">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TOOLS GRID ==================== -->
+    <section class="dashboard-grid-section">
+      <div class="tools-grid">
+        
+        <!-- ==================== ACTIVE TOOLS (HIGHLIGHTED) ==================== -->
+        
+        <!-- Active Tool 1: Image Compressor -->
+        <a href="image-compressor/index.html" class="tool-card reveal-up" data-category="image">
+          <div class="tool-icon-wrap tool-icon-orange">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="3" stroke="white" stroke-width="2"/><circle cx="8.5" cy="8.5" r="2.5" stroke="white" stroke-width="1.5"/><path d="M2 16L8 10L14 15L18 11L22 15" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M16 6L20 6M18 4V8" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="tool-name">Image Compressor</h3>
+          <p class="tool-desc">Compress JPG, PNG, WEBP, and AVIF images by up to 80% without losing quality.</p>
+          <span class="tool-link">Open Tool →</span>
+        </a>
+
+        <!-- Active Tool 2: SEO Meta Tag Generator -->
+        <a href="meta-tag-generator/index.html" class="tool-card reveal-up" data-category="seo">
+          <div class="tool-icon-wrap tool-icon-blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 7L3 12L7 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 7L21 12L17 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 4L10 20" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="tool-name">SEO Meta Tag Generator</h3>
+          <p class="tool-desc">Generate search engine friendly meta tags, Open Graph cards, and Twitter tags in seconds.</p>
+          <span class="tool-link">Open Tool →</span>
+        </a>
+
+        <!-- Active Tool 3: Word Counter -->
+        <a href="word-counter/index.html" class="tool-card reveal-up" data-category="text">
+          <div class="tool-icon-wrap tool-icon-green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 6H20M4 10H16M4 14H18M4 18H12" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M19 14V22" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M19 14L17 17M19 14L21 17" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="tool-name">Word Counter</h3>
+          <p class="tool-desc">Analyze word counts, character lengths, paragraphs, reading speed, and text density details.</p>
+          <span class="tool-link">Open Tool →</span>
+        </a>
+
+        <!-- ==================== PLANNED SEO TOOLS (16) ==================== -->
+        <div class="tool-card coming-soon reveal-up" data-category="seo">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="white" stroke-width="2"/><path d="M12 3C12 3 8 8 8 12C8 16 12 21 12 21" stroke="white" stroke-width="1.5"/><path d="M12 3C12 3 16 8 16 12" stroke="white" stroke-width="1.5"/><path d="M3 12H21" stroke="white" stroke-width="1.5"/></svg></div>
+          <h3 class="tool-name">Domain Authority Checker</h3>
+          <p class="tool-desc">Check domain metrics, Moz DA, page authority, and total backlink counts.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="seo">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke="white" stroke-width="2"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Backlink Checker</h3>
+          <p class="tool-desc">Analyze link profiles, referring domains, anchor texts, and dofollow vs nofollow links.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="seo">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21.21 15.89A10 10 0 1 1 8 2.83" stroke="white" stroke-width="2"/><path d="M22 12A10 10 0 0 0 12 2v10z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Keyword Density Checker</h3>
+          <p class="tool-desc">Extract prominent keywords from text or URLs to check search density balance.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="seo">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="white" stroke-width="2"/><path d="M8 11h6" stroke="white" stroke-width="1.5"/></svg></div>
+          <h3 class="tool-name">SERP Analyzer</h3>
+          <p class="tool-desc">Simulate and optimize search result titles and descriptions for mobile and desktop screens.</p>
+        </div>
+        <a href="xml-sitemap-generator/index.html" class="tool-card reveal-up" data-category="seo">
+          <div class="tool-icon-wrap tool-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 19h16v2H4zm8-16v12m-4-4l4 4 4-4" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">XML Sitemap Generator</h3>
+          <p class="tool-desc">Generate valid XML sitemaps to submit to Google, Bing, and Yandex Webmaster tools.</p>
+          <span class="tool-link">Open Tool →</span>
+        </a>
+        <div class="tool-card coming-soon reveal-up" data-category="seo">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Robots.txt Generator</h3>
+          <p class="tool-desc">Instantly build proper robots.txt files to manage search bot crawling limits.</p>
+        </div>
+        <a href="schema-markup-generator/index.html" class="tool-card reveal-up" data-category="seo">
+          <div class="tool-icon-wrap tool-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 3h18v18H3z" stroke="white" stroke-width="2"/><path d="M21 3L9 15l-4-4" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Schema Markup Generator</h3>
+          <p class="tool-desc">Create structured JSON-LD schemas for articles, products, events, and local stores.</p>
+          <span class="tool-link">Open Tool →</span>
+        </a>
+        <div class="tool-card coming-soon reveal-up" data-category="seo">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M17 2l4 4-4 4M3 12h18M7 22l-4-4 4-4" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Redirect Checker</h3>
+          <p class="tool-desc">Trace URL redirect path redirects (301, 302) to audit response cycles.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="seo">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Broken Link Finder</h3>
+          <p class="tool-desc">Scan web content or URLs to identify status errors and broken 404 links.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="seo">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" stroke="white" stroke-width="2"/><path d="M13 2v7h7" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Page Speed Tips</h3>
+          <p class="tool-desc">Identify page load bottlenecks and get optimized performance suggestions.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="seo">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="white" stroke-width="2"/><path d="M12 6v12M6 12h12" stroke="white" stroke-width="1.5"/></svg></div>
+          <h3 class="tool-name">Hreflang Tag Generator</h3>
+          <p class="tool-desc">Generate hreflang tags for multi-language and multi-regional websites.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="seo">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 0 0-7.07 17.07l1.41-1.41A8 8 0 1 1 12 20v2a10 10 0 0 0 0-20z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">URL Encoder / Decoder</h3>
+          <p class="tool-desc">Easily encode or decode queries, strings, and URLs for safe data exchanges.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="seo">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="2" stroke="white" stroke-width="2"/><path d="M12 18h.01" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Mobile Friendliness</h3>
+          <p class="tool-desc">Test mobile responsive issues and view site rendering adjustments.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="seo">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Domain Suggestor</h3>
+          <p class="tool-desc">Discover brandable domains based on keywords and check name availability.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="seo">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="white" stroke-width="2"/><path d="M22 4L12 14.01l-3-3" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Google Index Checker</h3>
+          <p class="tool-desc">Determine if web pages are successfully crawled and indexed by Google Search.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="seo">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M9 17v-5M12 17V9M15 17v-3" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Website Audit Tool</h3>
+          <p class="tool-desc">Identify markup errors, technical issues, metadata tags, and core SEO flaws.</p>
+        </div>
+
+        <!-- ==================== PLANNED IMAGE TOOLS (16) ==================== -->
+        <a href="image-converter/index.html" class="tool-card reveal-up" data-category="image">
+          <div class="tool-icon-wrap tool-icon-orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 12l-7 7-7-7" stroke="white" stroke-width="2"/><path d="M12 5v14" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Image Converter</h3>
+          <p class="tool-desc">Convert images instantly to PNG, JPG, WebP, SVG, AVIF, or ICO formats.</p>
+          <span class="tool-link">Open Tool →</span>
+        </a>
+        <div class="tool-card coming-soon reveal-up" data-category="image">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 14h6v6H4zm10-10h6v6h-6z" stroke="white" stroke-width="2"/><path d="M2 2h20v20H2z" stroke="white" stroke-width="1.5"/></svg></div>
+          <h3 class="tool-name">Image Resizer</h3>
+          <p class="tool-desc">Resize image dimensions by height, width, percentage, or custom aspect ratios.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="image">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/><path d="M8 12h8" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">SVG Optimizer</h3>
+          <p class="tool-desc">Clean up and minify SVG code files, removing metadata to reduce load weight.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="image">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="white" stroke-width="2"/><path d="M12 8l-4 4h8z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">ICO Converter</h3>
+          <p class="tool-desc">Create high-quality .ico files from standard pictures to use as website favicons.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="image">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 2v6M18 2v6M2 6h20v14H2z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Image Cropper</h3>
+          <p class="tool-desc">Crop your photos precisely with intuitive boundaries and grid alignments.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="image">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.5a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1-1.5 1.5z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">AI Background Remover</h3>
+          <p class="tool-desc">Remove image backgrounds instantly in the browser using web-based neural nets.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="image">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Photo Enhancer</h3>
+          <p class="tool-desc">Boost clarity, balance contrasts, and repair blurry areas with lighting adjustments.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="image">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v6z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Image Color Picker</h3>
+          <p class="tool-desc">Upload a picture to pick exact colors and generate HEX, RGB, or HSL color values.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="image">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="white" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">EXIF Data Viewer</h3>
+          <p class="tool-desc">View and delete metadata, locations, cameras, and private EXIF info from pictures.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="image">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Image Watermarker</h3>
+          <p class="tool-desc">Protect creative rights by overlaying custom text or logo watermarks on images.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="image">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M21 12H3M12 3v18" stroke="white" stroke-width="1.5"/></svg></div>
+          <h3 class="tool-name">GIF Maker</h3>
+          <p class="tool-desc">Combine separate video clips or image sequences into lightweight animated GIFs.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="image">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z" stroke="white" stroke-width="2"/><circle cx="9" cy="10" r="1" fill="white"/><circle cx="15" cy="10" r="1" fill="white"/><path d="M9 15s1.5 2 3 2 3-2 3-2" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Meme Generator</h3>
+          <p class="tool-desc">Design viral memes using popular template cards and customizable top/bottom texts.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="image">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l.57-.57" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Image Rotate & Flip</h3>
+          <p class="tool-desc">Rotate pictures clockwise, counter-clockwise, or flip them vertically and horizontally.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="image">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M3 12h18" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">WebP Converter</h3>
+          <p class="tool-desc">Batch convert old JPEG/PNG photos to efficient modern WebP formats.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="image">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" stroke-width="2"/><path d="M14 2v6h6" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Base64 to Image</h3>
+          <p class="tool-desc">Decode a Base64 text string back into viewable and downloadable image files.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="image">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Blur Backdrop Generator</h3>
+          <p class="tool-desc">Generate beautiful ambient gradient backgrounds from uploaded images.</p>
+        </div>
+
+        <!-- ==================== PLANNED PDF TOOLS (16) ==================== -->
+        <a href="pdf-compressor/index.html" class="tool-card reveal-up" data-category="pdf">
+          <div class="tool-icon-wrap tool-icon-red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" stroke-width="2"/><path d="M14 2v6h6" stroke="white" stroke-width="2"/><path d="M9 15l3-3 3 3M12 12v7" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">PDF Compressor</h3>
+          <p class="tool-desc">Compress PDFs online in the browser without reducing document reading resolution.</p>
+          <span class="tool-link">Open Tool →</span>
+        </a>
+        <div class="tool-card coming-soon reveal-up" data-category="pdf">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M12 3v18M3 12h18" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Merge PDF</h3>
+          <p class="tool-desc">Combine separate PDF documents into a single consolidated file in your chosen order.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="pdf">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" stroke-width="2"/><path d="M14 2v6h6" stroke="white" stroke-width="2"/><path d="M3 12h18" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Split PDF</h3>
+          <p class="tool-desc">Extract specific ranges of pages or split a PDF into separate files.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="pdf">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" stroke-width="2"/><path d="M14 2v6h6" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">PDF to Word</h3>
+          <p class="tool-desc">Convert PDF document data back to editable DOCX formats layout systems.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="pdf">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" stroke-width="2"/><path d="M14 2v6h6" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Word to PDF</h3>
+          <p class="tool-desc">Easily turn standard DOCX Word documents into highly compatible PDF documents.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="pdf">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" stroke-width="2"/><circle cx="10" cy="13" r="2.5" stroke="white" stroke-width="1.5"/></svg></div>
+          <h3 class="tool-name">PDF to JPG</h3>
+          <p class="tool-desc">Extract all document pages as separate high-resolution JPG images.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="pdf">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" stroke-width="2"/><path d="M14 2v6h6" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">JPG to PDF</h3>
+          <p class="tool-desc">Turn JPG/PNG images into custom size multi-page PDF documents.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="pdf">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l.57-.57" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Rotate PDF</h3>
+          <p class="tool-desc">Fix incorrect document page orientations by rotating specific ranges.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="pdf">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 20h9M3 20h9M12 4v16" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Edit PDF</h3>
+          <p class="tool-desc">Rearrange pages, add text comments, draw lines, or redact private info.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="pdf">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 7h-8M19 11h-6M19 15H9" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">PDF Page Remover</h3>
+          <p class="tool-desc">Select and purge unwanted pages from a document to reduce file size.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="pdf">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="white" stroke-width="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Unlock PDF</h3>
+          <p class="tool-desc">Remove passwords and restrictions to copy, print, or edit locked PDF files.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="pdf">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="white" stroke-width="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Protect PDF</h3>
+          <p class="tool-desc">Secure confidential records by encoding PDFs with robust user passwords.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="pdf">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v6z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Add Watermark to PDF</h3>
+          <p class="tool-desc">Stamp custom text or visual logos over all pages of PDF document files.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="pdf">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" stroke-width="2"/><path d="M14 2v6h6" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">HTML to PDF</h3>
+          <p class="tool-desc">Download complete public web pages directly into print-friendly PDF formatting.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="pdf">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v6z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">EPUB to PDF</h3>
+          <p class="tool-desc">Convert generic EPUB digital e-books layout files into printable PDF files.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="pdf">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="white" stroke-width="2"/><path d="M12 6v12M6 12h12" stroke="white" stroke-width="1.5"/></svg></div>
+          <h3 class="tool-name">PDF Page Numberer</h3>
+          <p class="tool-desc">Stitch clean page numbers in footer regions across all PDF sheets.</p>
+        </div>
+
+        <!-- ==================== PLANNED TEXT TOOLS (16) ==================== -->
+        <div class="tool-card coming-soon reveal-up" data-category="text">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Case Converter</h3>
+          <p class="tool-desc">Instantly convert sentence cases to UPPERCASE, lowercase, Title Case, or Sentence case.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="text">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Lorem Ipsum Generator</h3>
+          <p class="tool-desc">Generate customized blocks of dummy placeholder text in words, sentences, or paragraphs.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="text">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 7h-8M19 11h-6M19 15H9" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Remove Duplicate Lines</h3>
+          <p class="tool-desc">Clean up list parameters by finding and deleting identical redundant data rows.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="text">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Text to Slug Generator</h3>
+          <p class="tool-desc">Format arbitrary text headings into clean, SEO-friendly web URL slugs.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="text">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Find and Replace</h3>
+          <p class="tool-desc">Search for specific strings within texts to swap them out in bulk clicks.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="text">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Markdown Editor</h3>
+          <p class="tool-desc">Draft markdown files with instant split-pane HTML conversions preview.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="text">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M21 12H3M12 3v18" stroke="white" stroke-width="1.5"/></svg></div>
+          <h3 class="tool-name">Text Diff Tool</h3>
+          <p class="tool-desc">Compare two separate drafts side-by-side to highlight character changes.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="text">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Line Break Remover</h3>
+          <p class="tool-desc">Strip unnecessary carriage returns and break tags to flatten text.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="text">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">String Reverser</h3>
+          <p class="tool-desc">Flip characters backwards or reverse the word ordering in a document.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="text">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 10h16M4 14h16" stroke="white" stroke-width="2"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="white" stroke-width="1.5"/></svg></div>
+          <h3 class="tool-name">Binary to Text</h3>
+          <p class="tool-desc">Decode binary numbers (0s and 1s) into readable ASCII strings.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="text">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M3 12h18" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Morse Code Translator</h3>
+          <p class="tool-desc">Encode regular text into international Morse dashes and dots.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="text">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">URL Slug Generator</h3>
+          <p class="tool-desc">Convert string characters into clean, dash-separated routing URL slug words.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="text">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M3 12h18" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Random Word Generator</h3>
+          <p class="tool-desc">Create lists of arbitrary words for brainstorming exercises.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="text">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M17 18h2a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2" stroke="white" stroke-width="2"/><rect x="3" y="8" width="12" height="12" rx="2" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Letter Counter</h3>
+          <p class="tool-desc">Count alphabetical characters in text, ignoring punctuation symbols.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="text">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Regex Tester</h3>
+          <p class="tool-desc">Validate regular expression match groups against test string inputs.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="text">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 22h20L12 2z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Text to Base64</h3>
+          <p class="tool-desc">Encode string data into standard Base64 text formats for safe transit.</p>
+        </div>
+
+        <!-- ==================== PLANNED AI TOOLS (16) ==================== -->
+        <div class="tool-card coming-soon reveal-up" data-category="ai">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">AI Article Writer</h3>
+          <p class="tool-desc">Generate structured blog posts, articles, and long-form outline ideas using AI.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="ai">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">AI Text Summarizer</h3>
+          <p class="tool-desc">Condense long articles, reports, or text files into digestible summary points.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="ai">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="white" stroke-width="2"/><path d="M22 4L12 14.01l-3-3" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">AI Grammar Checker</h3>
+          <p class="tool-desc">Review textual inputs to instantly fix spelling errors and optimize word syntax.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="ai">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l.57-.57" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">AI Paraphrasing Tool</h3>
+          <p class="tool-desc">Rewrite sentences and paragraphs to optimize readability and prevent plagiarism.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="ai">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">AI Title Generator</h3>
+          <p class="tool-desc">Discover catchy blog headlines and creative video titles from brief topic descriptions.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="ai">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 2v6M18 2v6M2 6h20v14H2z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">AI Product Descript</h3>
+          <p class="tool-desc">Create compelling marketing copy descriptions for online retail storefront cards.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="ai">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 8h18M3 12h18M3 16h18" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">AI Subject Lines</h3>
+          <p class="tool-desc">Generate high-open-rate subject lines for newsletters and sales campaigns.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="ai">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v1" stroke="white" stroke-width="2"/><rect x="18" y="8" width="5" height="8" rx="1" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">AI Code Explainer</h3>
+          <p class="tool-desc">Paste tricky code blocks and get clear, human-readable explanations of logic.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="ai">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">AI Translator</h3>
+          <p class="tool-desc">Translate paragraphs across 50+ languages while preserving natural contextual tones.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="ai">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/><path d="M8 12s1.5 2 4 2 4-2 4-2" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">AI Sentiment Analyzer</h3>
+          <p class="tool-desc">Evaluate the emotional tone of text reviews (positive, negative, or neutral).</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="ai">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 0 1 10 10v2a10 10 0 0 1-10 10 10 10 0 0 1-10-10v-2A10 10 0 0 1 12 2z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">AI Text to Speech</h3>
+          <p class="tool-desc">Synthesize realistic human voices from written paragraphs in standard audio files.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="ai">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v6z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">AI Image Prompt Builder</h3>
+          <p class="tool-desc">Optimize raw image ideas into descriptive details for Midjourney, DALL-E, or Stable Diffusion.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="ai">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">AI Keyword Extractor</h3>
+          <p class="tool-desc">Extract key business topics, entities, and search phrases from text structures.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="ai">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2c5.522 0 10 4.477 10 10a10 10 0 0 1-10 10C6.477 22 2 17.523 2 12a10 10 0 0 1 10-10z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">AI Hashtag Generator</h3>
+          <p class="tool-desc">Create highly viral social hashtags based on image concepts or text descriptions.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="ai">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">AI Meta Description</h3>
+          <p class="tool-desc">Synthesize click-worthy SEO meta descriptions directly from article body paragraphs.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="ai">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M21 12H3M12 3v18" stroke="white" stroke-width="1.5"/></svg></div>
+          <h3 class="tool-name">AI Ad Copy Generator</h3>
+          <p class="tool-desc">Generate high-converting ad copy for Google, Facebook, and LinkedIn campaigns.</p>
+        </div>
+
+        <!-- ==================== PLANNED DEVELOPER TOOLS (18) ==================== -->
+        <a href="json-formatter/index.html" class="tool-card reveal-up" data-category="dev">
+          <div class="tool-icon-wrap tool-icon-dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M8 3H6C4.9 3 4 3.9 4 5V8C4 9.1 3.1 10 2 10V14C3.1 14 4 14.9 4 16V19C4 20.1 4.9 21 6 21H8" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M16 3H18C19.1 3 20 3.9 20 5V8C20 9.1 20.9 10 22 10V14C20.9 14 20 14.9 20 16V19C20 20.1 19.1 21 18 21H16" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="12" r="1.5" fill="white"/><circle cx="15" cy="12" r="1.5" fill="white"/></svg></div>
+          <h3 class="tool-name">JSON Formatter</h3>
+          <p class="tool-desc">Validate, format, indent, and parse nested JSON datasets inside browser boxes.</p>
+          <span class="tool-link">Open Tool →</span>
+        </a>
+        <div class="tool-card coming-soon reveal-up" data-category="dev">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-17h2v2h-2V5zm0 4h2v8h-2V9z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Base64 Encoder / Decoder</h3>
+          <p class="tool-desc">Convert binary, files, or regular strings to Base64 formats and vice versa.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="dev">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M8 5v14M16 5v14M12 5v14" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">HTML Beautifier / Minifier</h3>
+          <p class="tool-desc">Format un-indented HTML files or compress layout tags to save document size.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="dev">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v6z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">CSS Beautifier / Minifier</h3>
+          <p class="tool-desc">Format styled sheets cleanly or strip white spacing to make stylesheets load fast.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="dev">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-17h2v2h-2V5zm0 4h2v8h-2V9z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">JS Beautifier / Minifier</h3>
+          <p class="tool-desc">Obfuscate raw code lines or format complex scripting layers inside browser tabs.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="dev">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">MD5 & SHA Hash Generator</h3>
+          <p class="tool-desc">Encrypt strings instantly into secure MD5, SHA-1, SHA-256, or SHA-512 outputs.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="dev">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M3 12h18" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">XML to JSON Converter</h3>
+          <p class="tool-desc">Map tag attributes within layout files directly into key-value JSON trees.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="dev">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v6z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">JSON to CSV Converter</h3>
+          <p class="tool-desc">Flatten tabular arrays inside JSON lists into downloadable sheet comma variables.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="dev">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M21 12H3M12 3v18" stroke="white" stroke-width="1.5"/></svg></div>
+          <h3 class="tool-name">SQL Formatter</h3>
+          <p class="tool-desc">Indent complex database queries cleanly to optimize query visibility standards.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="dev">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v6z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">JWT Decoder</h3>
+          <p class="tool-desc">Decode headers, payloads, and signatures of JSON Web Tokens instantly.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="dev">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 0 0-7.07 17.07l1.41-1.41A8 8 0 1 1 12 20v2a10 10 0 0 0 0-20z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">URL Parser</h3>
+          <p class="tool-desc">Inspect relative directory components, protocol paths, and query string keys.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="dev">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Cron Expression Generator</h3>
+          <p class="tool-desc">Easily build timing parameters and schedule tasks using plain text settings.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="dev">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/><path d="M12 2a10 10 0 0 0-7.07 17.07" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Hex to RGB / HSL Converter</h3>
+          <p class="tool-desc">Swap digital color code parameters between CSS formats instantly.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="dev">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="white" stroke-width="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Password Generator</h3>
+          <p class="tool-desc">Produce strong, highly secure, randomized passwords with special character preferences.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="dev">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">UUID Generator</h3>
+          <p class="tool-desc">Generate secure RFC4122 version-4 universally unique identifier parameters.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="dev">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v6z" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">User Agent Parser</h3>
+          <p class="tool-desc">Deconstruct user agent strings to check engine versions and system attributes.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="dev">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M21 12H3M12 3v18" stroke="white" stroke-width="1.5"/></svg></div>
+          <h3 class="tool-name">Port Scanner Simulator</h3>
+          <p class="tool-desc">Analyze responses for open socket setups on simulated host interfaces.</p>
+        </div>
+        <div class="tool-card coming-soon reveal-up" data-category="dev">
+          <div class="card-top-status"><span class="badge-coming">Coming Soon</span><span class="lock-icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
+          <div class="tool-icon-wrap tool-icon-dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/></svg></div>
+          <h3 class="tool-name">Color Palette Generator</h3>
+          <p class="tool-desc">Discover premium modern color schemes and harmonized contrast combinations.</p>
+        </div>
+
+      </div>
+
+      <!-- Empty Search State -->
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+        </div>
+        <h4 class="empty-title">No tools found</h4>
+        <p class="empty-desc">We couldn't find any tools matching <span id="emptyQuery" style="font-weight: 600;"></span> in this category. Try switching tabs or clearing your search.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== SECTION 10: FOOTER ==================== -->
+  <footer class="footer" id="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="../index.html" class="nav-logo">
+            <div class="logo-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <circle cx="16" cy="16" r="16" fill="#F4511E"/>
+                <path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="logo-text">ToolWools</span>
+          </a>
+          <p class="footer-brand-desc">All-in-one online tools platform for SEO, Images, PDFs, Text, AI and Developers.</p>
+          <div class="social-icons">
+            <a href="https://twitter.com/toolwools" aria-label="Twitter/X" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M11.9 8.45L18.35 1H16.86L11.24 7.5L6.72 1H1L7.75 10.95L1 18.8H2.49L8.41 11.9L13.18 18.8H18.9L11.9 8.45ZM9.17 11.05L8.5 10.1L3.02 2.1H6.02L9.75 7.4L10.42 8.35L16.86 17.75H13.86L9.17 11.05Z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://linkedin.com/company/toolwools" aria-label="LinkedIn" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4.5 3C3.67 3 3 3.67 3 4.5C3 5.33 3.67 6 4.5 6C5.33 6 6 5.33 6 4.5C6 3.67 5.33 3 4.5 3ZM3 8H6V17H3V8ZM8 8H11V9.5C11.5 8.5 12.8 7.7 14.5 7.7C17.5 7.7 17.5 10.2 17.5 12V17H14.5V12.5C14.5 11 14 10.5 13 10.5C11.5 10.5 11 11.5 11 12.5V17H8V8Z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://github.com/toolwools" aria-label="GitHub" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C5.58 2 2 5.58 2 10C2 13.54 4.29 16.53 7.47 17.59C7.87 17.66 8.02 17.42 8.02 17.21V15.65C5.73 16.13 5.26 14.56 5.26 14.56C4.89 13.64 4.35 13.4 4.35 13.4C3.6 12.88 4.4 12.9 4.4 12.9C5.22 12.96 5.65 13.74 5.65 13.74C6.37 14.97 7.55 14.63 8.05 14.43C8.12 13.91 8.33 13.56 8.56 13.36C6.77 13.15 4.88 12.42 4.88 9.43C4.88 8.56 5.2 7.85 5.66 7.29C5.58 7.08 5.3 6.27 5.74 5.17C5.74 5.17 6.43 4.95 8.02 5.99C8.66 5.81 9.34 5.72 10.02 5.72C10.7 5.72 11.38 5.81 12.02 5.99C13.61 4.95 14.3 5.17 14.3 5.17C14.74 6.27 14.46 7.08 14.38 7.29C14.84 7.85 15.16 8.56 15.16 9.43C15.16 12.43 13.27 13.15 11.46 13.35C11.75 13.6 12.02 14.1 12.02 14.86V17.21C12.02 17.42 12.17 17.67 12.57 17.59C15.73 16.53 18 13.54 18 10C18 5.58 14.42 2 10 2Z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://instagram.com/toolwools" aria-label="Instagram" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="15" cy="5" r="1" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Product Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">PRODUCT</h4>
+          <a href="index.html" class="footer-link">All Tools</a>
+          <a href="index.html?cat=seo" class="footer-link">SEO Tools</a>
+          <a href="index.html?cat=image" class="footer-link">Image Tools</a>
+          <a href="index.html?cat=pdf" class="footer-link">PDF Tools</a>
+          <a href="index.html?cat=ai" class="footer-link">AI Tools</a>
+          <a href="index.html?cat=text" class="footer-link">Text Tools</a>
+        </div>
+
+        <!-- Company Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">COMPANY</h4>
+          <a href="../index.html" class="footer-link">About Us</a>
+          <a href="../blog/index.html" class="footer-link">Blog</a>
+          <a href="../index.html#footer" class="footer-link">Contact Us</a>
+          <a href="../index.html" class="footer-link">Privacy Policy</a>
+          <a href="../index.html" class="footer-link">Terms of Service</a>
+        </div>
+
+        <!-- Resources Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">RESOURCES</h4>
+          <a href="../index.html" class="footer-link">Help Center</a>
+          <a href="../index.html" class="footer-link">FAQs</a>
+          <a href="../index.html" class="footer-link">API Docs</a>
+          <a href="../index.html" class="footer-link">Status</a>
+          <a href="../index.html" class="footer-link">Changelog</a>
+        </div>
+
+        <!-- Newsletter Column -->
+        <div class="footer-col footer-newsletter">
+          <h4 class="footer-col-title">NEWSLETTER</h4>
+          <p class="footer-newsletter-text">Get updates about new tools and features.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="Enter your email" class="newsletter-input" aria-label="Email address">
+            <button type="submit" class="newsletter-btn" aria-label="Subscribe">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-copyright">© 2025 ToolWools. All rights reserved.</span>
+        <span class="footer-made">Made with <span class="heart">♥</span> for the community</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

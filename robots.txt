@@ -1,0 +1,21 @@
+# robots.txt for ToolWools.com
+User-agent: *
+Allow: /
+
+Sitemap: https://toolwools.com/sitemap.xml
+
+# Allow all crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /

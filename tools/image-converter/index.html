@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Converter — Convert PNG, JPG, WebP, ICO online | ToolWools</title>
+  <meta name="description" content="Convert images between PNG, JPEG, WebP, and ICO formats instantly inside your browser. Batch-ready canvas renderer with aspect ratio lock and quality controls.">
+  <meta name="keywords" content="image converter, png to jpg, jpg to webp, webp to png, png to ico, favicon generator">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+
+  <style>
+    /* Tool-specific Premium Styles */
+    .dropzone-container {
+      border: 2px dashed var(--color-border);
+      border-radius: var(--radius-card);
+      padding: 40px 20px;
+      text-align: center;
+      background: var(--color-bg);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .dropzone-container:hover, .dropzone-container.dragover {
+      border-color: var(--color-primary);
+      background: var(--color-primary-bg);
+    }
+    .dropzone-icon {
+      font-size: 40px;
+      color: var(--color-muted-light);
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .dropzone-text {
+      font-weight: 500;
+      color: var(--color-dark);
+      margin-bottom: 4px;
+    }
+    .dropzone-subtext {
+      font-size: 13px;
+      color: var(--color-muted);
+    }
+    
+    /* Target Format Cards */
+    .format-selector-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .format-card {
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-btn);
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--color-body);
+      background: var(--color-surface);
+      transition: all 0.2s;
+    }
+    .format-card:hover {
+      border-color: var(--color-muted);
+    }
+    .format-card.active {
+      border-color: var(--color-primary);
+      background: var(--color-primary-bg);
+      color: var(--color-primary);
+    }
+    
+    /* Preview area & canvas wrapper */
+    .canvas-preview-wrap {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-card);
+      padding: 16px;
+      background: var(--color-border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 280px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+    [data-theme="dark"] .canvas-preview-wrap {
+      background: rgba(255,255,255,0.01);
+      border-color: #2e2e38;
+    }
+    #preview-canvas {
+      max-width: 100%;
+      max-height: 380px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-radius: 4px;
+      display: none;
+    }
+    .canvas-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--color-muted);
+      gap: 8px;
+    }
+    
+    /* Stats rows */
+    .info-stats-box {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background: var(--color-surface);
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .stats-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .stats-row:last-child {
+      margin-bottom: 0;
+    }
+    .stats-label {
+      color: var(--color-muted);
+    }
+    .stats-val {
+      font-weight: 600;
+      color: var(--color-dark);
+    }
+    
+    .btn-download-converted {
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      font-weight: 700;
+      width: 100%;
+      padding: 12px 24px;
+      border-radius: var(--radius-btn);
+      cursor: pointer;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(244, 81, 30, 0.2);
+      transition: all 0.2s;
+    }
+    .btn-download-converted:hover {
+      background: var(--color-primary-hover);
+      transform: translateY(-1px);
+    }
+    .btn-download-converted:disabled {
+      background: var(--color-muted-light);
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-logo" aria-label="ToolWools Home">
+        <div class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="16" fill="#F4511E"/>
+            <path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="logo-text">ToolWools</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <div class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+            Tools
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="chevron-icon">
+              <path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="mega-menu" id="megaMenu">
+            <div class="mega-menu-grid">
+              <a href="../index.html?cat=seo" class="mega-item">
+                <div class="mega-icon mega-icon-orange">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="5" stroke="white" stroke-width="2"/><path d="M12 12L17 17" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">SEO Tools</span>
+                  <span class="mega-desc">Optimize your search rankings</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=image" class="mega-item">
+                <div class="mega-icon mega-icon-blue">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="white" stroke-width="2"/><circle cx="7" cy="7" r="2" fill="white"/><path d="M2 14L7 9L18 18" stroke="white" stroke-width="2"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Image Tools</span>
+                  <span class="mega-desc">Compress, convert & optimize</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=pdf" class="mega-item">
+                <div class="mega-icon mega-icon-red">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="1" width="14" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M7 6H13M7 10H13M7 14H11" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">PDF Tools</span>
+                  <span class="mega-desc">Edit, compress & convert PDFs</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=text" class="mega-item">
+                <div class="mega-icon mega-icon-green">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4H16M4 8H12M4 12H14M4 16H10" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Text Tools</span>
+                  <span class="mega-desc">Count, format & transform text</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=ai" class="mega-item">
+                <div class="mega-icon mega-icon-purple">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12 7H18L13 11L15 17L10 13L5 17L7 11L2 7H8L10 2Z" fill="white"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">AI Tools</span>
+                  <span class="mega-desc">AI-powered writing & analysis</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=dev" class="mega-item">
+                <div class="mega-icon mega-icon-dark">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 6L2 10L6 14M14 6L18 10L14 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Developer Tools</span>
+                  <span class="mega-desc">JSON, code & dev utilities</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="../index.html?cat=seo" class="nav-link">SEO Tools</a>
+        <a href="../index.html?cat=image" class="nav-link">Image Tools</a>
+        <a href="../index.html?cat=pdf" class="nav-link">PDF Tools</a>
+        <a href="../index.html?cat=ai" class="nav-link">AI Tools</a>
+        <a href="../../index.html#testimonials" class="nav-link">Pricing</a>
+        <a href="../../blog/index.html" class="nav-link">Blog</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M10 2V4M10 16V18M2 10H4M16 10H18M4.93 4.93L6.34 6.34M13.66 13.66L15.07 15.07M4.93 15.07L6.34 13.66M13.66 6.34L15.07 4.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <a href="../../index.html#cta" class="btn btn-primary nav-cta">Get Started Free</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html" class="mobile-link">All Tools</a>
+      <a href="../index.html?cat=seo" class="mobile-link">SEO Tools</a>
+      <a href="../index.html?cat=image" class="mobile-link">Image Tools</a>
+      <a href="../index.html?cat=pdf" class="mobile-link">PDF Tools</a>
+      <a href="../index.html?cat=ai" class="mobile-link">AI Tools</a>
+      <a href="../../index.html#testimonials" class="mobile-link">Pricing</a>
+      <a href="../../blog/index.html" class="mobile-link">Blog</a>
+      <a href="../../index.html#cta" class="btn btn-primary mobile-cta">Get Started Free</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="tool-page-container">
+      <!-- Tool Header -->
+      <div class="tool-header tool-header-image">
+        <div class="tool-category-badge" style="background: var(--color-primary-bg); color: var(--color-primary);">Image Tools</div>
+        <h1 class="tool-title" id="main-heading">Image Converter</h1>
+        <p class="tool-description">Convert PNG, JPEG, WebP, and ICO images right inside your browser. No file size limits. No uploads to external servers. High-fidelity results.</p>
+      </div>
+
+      <!-- Tool Dashboard Layout -->
+      <div class="tool-dashboard">
+        <!-- Left: Upload & Settings -->
+        <div class="tool-card">
+          <div class="card-title-sec">
+            <span>Source Image</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+
+          <!-- Drag and drop zone -->
+          <div class="dropzone-container" id="drop-zone">
+            <input type="file" id="image-input" accept="image/*" style="display: none;">
+            <div class="dropzone-icon">📥</div>
+            <div class="dropzone-text">Click to choose image or drag here</div>
+            <div class="dropzone-subtext">Supports PNG, JPG, WebP, GIF, BMP, SVG</div>
+          </div>
+
+          <!-- Select target format -->
+          <div class="form-group">
+            <label class="form-label">Target Format</label>
+            <div class="format-selector-grid">
+              <div class="format-card active" data-format="png">PNG</div>
+              <div class="format-card" data-format="jpeg">JPEG</div>
+              <div class="format-card" data-format="webp">WEBP</div>
+              <div class="format-card" data-format="ico">ICO</div>
+            </div>
+          </div>
+
+          <!-- Image optimization settings -->
+          <div class="form-group-grid">
+            <div class="form-group">
+              <label class="form-label" for="scale-width">Width (px)</label>
+              <input type="number" id="scale-width" class="form-input" placeholder="Original Width" disabled>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="scale-height">Height (px)</label>
+              <input type="number" id="scale-height" class="form-input" placeholder="Original Height" disabled>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 8px;">
+            <label class="checkbox-label" for="aspect-lock">
+              <input type="checkbox" id="aspect-lock" checked disabled>
+              <span>Lock Aspect Ratio</span>
+            </label>
+          </div>
+
+          <div class="form-group" id="quality-wrapper" style="display: none;">
+            <label class="form-label" for="quality-range">Output Quality (<span id="quality-val">90</span>%)</label>
+            <input type="range" id="quality-range" min="10" max="100" value="90" class="form-input" style="height: 10px; padding: 0;">
+          </div>
+        </div>
+
+        <!-- Right: Preview and details -->
+        <div class="tool-card">
+          <div class="card-title-sec">
+            <span>Result Preview</span>
+          </div>
+
+          <div class="canvas-preview-wrap">
+            <canvas id="preview-canvas"></canvas>
+            <div class="canvas-placeholder" id="canvas-placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>Choose an image to preview rendering</span>
+            </div>
+          </div>
+
+          <div class="info-stats-box">
+            <div class="stats-row">
+              <span class="stats-label">Original File:</span>
+              <span class="stats-val" id="orig-details">-</span>
+            </div>
+            <div class="stats-row">
+              <span class="stats-label">Output Format:</span>
+              <span class="stats-val" id="out-format-val">PNG</span>
+            </div>
+            <div class="stats-row">
+              <span class="stats-label">Output Size:</span>
+              <span class="stats-val" id="out-size-val">Calculating...</span>
+            </div>
+          </div>
+
+          <button class="btn-download-converted" id="btn-download" disabled>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Download Converted Image</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Universal Premium Toast Notification -->
+  <div class="premium-toast" id="copy-toast">
+    <div class="premium-toast-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+    </div>
+    <span id="toast-message">Image successfully converted!</span>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer" id="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../../index.html" class="nav-logo">
+            <div class="logo-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <circle cx="16" cy="16" r="16" fill="#F4511E"/>
+                <path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="logo-text">ToolWools</span>
+          </a>
+          <p class="footer-brand-desc">All-in-one online tools platform for SEO, Images, PDFs, Text, AI and Developers.</p>
+          <div class="social-icons">
+            <a href="https://twitter.com/toolwools" aria-label="Twitter/X" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M11.9 8.45L18.35 1H16.86L11.24 7.5L6.72 1H1L7.75 10.95L1 18.8H2.49L8.41 11.9L13.18 18.8H18.9L11.9 8.45ZM9.17 11.05L8.5 10.1L3.02 2.1H6.02L9.75 7.4L10.42 8.35L16.86 17.75H13.86L9.17 11.05Z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://linkedin.com/company/toolwools" aria-label="LinkedIn" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4.5 3C3.67 3 3 3.67 3 4.5C3 5.33 3.67 6 4.5 6C5.33 6 6 5.33 6 4.5C6 3.67 5.33 3 4.5 3ZM3 8H6V17H3V8ZM8 8H11V9.5C11.5 8.5 12.8 7.7 14.5 7.7C17.5 7.7 17.5 10.2 17.5 12V17H14.5V12.5C14.5 11 14 10.5 13 10.5C11.5 10.5 11 11.5 11 12.5V17H8V8Z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://github.com/toolwools" aria-label="GitHub" class="social-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C5.58 2 2 5.58 2 10C2 13.54 4.29 16.53 7.47 17.59C7.87 17.66 8.02 17.42 8.02 17.21V15.65C5.73 16.13 5.26 14.56 5.26 14.56C4.89 13.64 4.35 13.4 4.35 13.4C3.6 12.88 4.4 12.9 4.4 12.9C5.22 12.96 5.65 13.74 5.65 13.74C6.37 14.97 7.55 14.63 8.05 14.43C8.12 13.91 8.33 13.56 8.56 13.36C6.77 13.15 4.88 12.42 4.88 9.43C4.88 8.56 5.2 7.85 5.66 7.29C5.58 7.08 5.3 6.27 5.74 5.17C5.74 5.17 6.43 4.95 8.02 5.99C8.66 5.81 9.34 5.72 10.02 5.72C10.7 5.72 11.38 5.81 12.02 5.99C13.61 4.95 14.3 5.17 14.3 5.17C14.74 6.27 14.46 7.08 14.38 7.29C14.84 7.85 15.16 8.56 15.16 9.43C15.16 12.43 13.27 13.15 11.46 13.35C11.75 13.6 12.02 14.1 12.02 14.86V17.21C12.02 17.42 12.17 17.67 12.57 17.59C15.73 16.53 18 13.54 18 10C18 5.58 14.42 2 10 2Z" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">PRODUCT</h4>
+          <a href="../index.html" class="footer-link">All Tools</a>
+          <a href="../index.html?cat=seo" class="footer-link">SEO Tools</a>
+          <a href="../index.html?cat=image" class="footer-link">Image Tools</a>
+          <a href="../index.html?cat=pdf" class="footer-link">PDF Tools</a>
+          <a href="../index.html?cat=ai" class="footer-link">AI Tools</a>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">COMPANY</h4>
+          <a href="../../index.html" class="footer-link">About Us</a>
+          <a href="../../blog/index.html" class="footer-link">Blog</a>
+          <a href="../../index.html" class="footer-link">Privacy Policy</a>
+          <a href="../../index.html" class="footer-link">Terms of Service</a>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">RESOURCES</h4>
+          <a href="../../index.html" class="footer-link">Help Center</a>
+          <a href="../../index.html" class="footer-link">FAQs</a>
+          <a href="../../index.html" class="footer-link">API Docs</a>
+        </div>
+
+        <div class="footer-col footer-newsletter">
+          <h4 class="footer-col-title">NEWSLETTER</h4>
+          <p class="footer-newsletter-text">Get updates about new tools and features.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="Enter your email" class="newsletter-input" aria-label="Email address">
+            <button type="submit" class="newsletter-btn" aria-label="Subscribe">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-copyright">© 2025 ToolWools. All rights reserved.</span>
+        <span class="footer-made">Made with <span class="heart">♥</span> for the community</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../script.js"></script>
+  <script src="converter.js"></script>
+</body>
+</html>
