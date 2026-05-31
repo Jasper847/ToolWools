@@ -546,3 +546,151 @@ document.addEventListener('DOMContentLoaded', () => {
     return dismiss;
   };
 })();
+
+
+/* =============================================
+   HERO + FOOTER REDESIGN — Interactive JS
+   1. Word-cycle typing effect on hero headline
+   2. Scroll indicator hide on scroll
+   3. Back-to-top button
+   4. Parallax on hero orbs
+   ============================================= */
+(function () {
+  'use strict';
+
+  /* ------------------------------------------
+     1. WORD-CYCLE TYPING EFFECT
+     Cycles through words on the hero headline
+     ------------------------------------------ */
+  const WORDS = ['workflow', 'productivity', 'creativity', 'business', 'projects', 'team'];
+  const heroWord = document.getElementById('hero-word');
+
+  if (heroWord) {
+    let current = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingTimer;
+
+    function type() {
+      const word = WORDS[current];
+      if (isDeleting) {
+        heroWord.textContent = word.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        heroWord.textContent = word.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      let speed = isDeleting ? 60 : 100;
+
+      if (!isDeleting && charIndex === word.length) {
+        speed = 2000; // Pause at full word
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        current = (current + 1) % WORDS.length;
+        speed = 300; // Pause before typing new word
+      }
+
+      typingTimer = setTimeout(type, speed);
+    }
+
+    // Start after hero animations load
+    setTimeout(type, 2400);
+
+    // Respect reduced motion — show static word
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      clearTimeout(typingTimer);
+      heroWord.textContent = WORDS[0];
+    }
+  }
+
+  /* ------------------------------------------
+     2. SCROLL INDICATOR — hide after first scroll
+     ------------------------------------------ */
+  const scrollBtn = document.getElementById('heroScrollBtn');
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', () => {
+      const stats = document.getElementById('stats');
+      if (stats) {
+        stats.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+
+    let scrollHidden = false;
+    window.addEventListener('scroll', () => {
+      if (!scrollHidden && window.scrollY > 80) {
+        scrollBtn.classList.add('hidden');
+        scrollHidden = true;
+      }
+    }, { passive: true });
+  }
+
+  /* ------------------------------------------
+     3. BACK-TO-TOP BUTTON
+     ------------------------------------------ */
+  const backToTopBtn = document.getElementById('backToTop');
+  if (backToTopBtn) {
+    // Show/hide based on scroll position
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* ------------------------------------------
+     4. PARALLAX ON HERO ORBS
+     Subtle movement on mouse/scroll for depth
+     ------------------------------------------ */
+  const orbs = document.querySelectorAll('.hero-orb');
+  if (orbs.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // Scroll parallax
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      orbs.forEach((orb, i) => {
+        const speed = (i + 1) * 0.12;
+        orb.style.transform = `translateY(${scrollY * speed}px)`;
+      });
+    }, { passive: true });
+
+    // Mouse parallax (desktop only)
+    if (window.innerWidth > 768) {
+      const hero = document.getElementById('hero');
+      hero && hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
+        const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
+        orbs.forEach((orb, i) => {
+          const depth = (i + 1) * 8;
+          orb.style.transform = `translate(${x * depth}px, ${y * depth}px)`;
+        });
+      });
+      hero && hero.addEventListener('mouseleave', () => {
+        orbs.forEach(orb => { orb.style.transform = ''; });
+      });
+    }
+  }
+
+  /* ------------------------------------------
+     5. HERO SECTION PARALLAX — content
+     Hero title moves slightly on scroll
+     ------------------------------------------ */
+  const heroContent = document.querySelector('.hero-content');
+  if (heroContent && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (scrollY < 600) {
+        heroContent.style.transform = `translateY(${scrollY * 0.15}px)`;
+        heroContent.style.opacity = `${1 - scrollY / 500}`;
+      }
+    }, { passive: true });
+  }
+
+})();
