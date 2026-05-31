@@ -4,6 +4,26 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
+  // 0. AUTO DETECT TOOL CATEGORY & PAGE STRUCTURE
+  // ==========================================
+  const mainToolPage = document.querySelector('main.tool-page, main.tool-container');
+  if (mainToolPage) {
+    document.body.classList.add('tool-page-body');
+    const catBadge = document.querySelector('.tool-badge-category, .tool-category-badge');
+    if (catBadge) {
+      const text = catBadge.textContent.toLowerCase();
+      let catClass = 'category-dev';
+      if (text.includes('seo')) catClass = 'category-seo';
+      else if (text.includes('image') || text.includes('optimization')) catClass = 'category-image';
+      else if (text.includes('pdf')) catClass = 'category-pdf';
+      else if (text.includes('text')) catClass = 'category-text';
+      else if (text.includes('ai')) catClass = 'category-ai';
+      else if (text.includes('developer') || text.includes('dev')) catClass = 'category-dev';
+      document.body.classList.add(catClass);
+    }
+  }
+
+  // ==========================================
   // 1. DARK MODE TOGGLE
   // ==========================================
   const themeToggle = document.getElementById('themeToggle');

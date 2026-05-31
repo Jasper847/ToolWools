@@ -102,6 +102,9 @@ body {
   color: var(--color-body);
   background-color: var(--color-bg);
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 a {
@@ -265,6 +268,7 @@ body,
 }
 main {
   animation: pageEnter 0.4s cubic-bezier(0.21,0.47,0.32,0.98) both;
+  flex: 1 0 auto;
 }
 
 /* Loading skeleton shimmer */
