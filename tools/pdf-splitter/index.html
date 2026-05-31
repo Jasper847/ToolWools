@@ -6,7 +6,7 @@
   <link rel="canonical" href="https://toolwools.com/tools/pdf-splitter/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/favicon.svg">
-  <meta name="theme-color" content="#F4511E">
+  <meta name="theme-color" content="#EF4444">
   <title>PDF Splitter — Split PDF Pages Online | ToolWools</title>
   <meta name="description" content="Split PDF files into individual pages or extract custom page ranges instantly. Fast, secure client-side utility, no files are uploaded to any server. Free.">
   
@@ -21,7 +21,7 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="PDF Splitter — Split PDF Pages Online | ToolWools">
-  <meta name="twitter:description" content="Split PDF files into individual pages or extract custom page ranges instantly. Fast, secure client-side utility, no file">
+  <meta name="twitter:description" content="Split PDF files into individual pages or extract custom page ranges instantly. Fast, secure client-side utility, no files are uploaded to any server. Free.">
   <meta name="twitter:image" content="https://toolwools.com/og-image.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,55 +30,141 @@
   <link rel="stylesheet" href="../../styles.css">
   <link rel="stylesheet" href="../tools.css">
   <link rel="stylesheet" href="../tool-shared.css">
+
   <style>
+    /* Sibling selector to hide placeholder when file row becomes visible */
+    #file-info-row:not([style*="display: none"]) ~ #preview-placeholder {
+      display: none !important;
+    }
+    
     .split-mode-selector {
       display: flex;
-      gap: 16px;
-      margin-bottom: 24px;
+      gap: 12px;
+      margin-bottom: 20px;
+      margin-top: 8px;
     }
     .split-mode-btn {
       flex: 1;
-      padding: 16px;
+      padding: 12px 10px;
       text-align: center;
       border: 1.5px solid var(--color-border);
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-btn);
       cursor: pointer;
       font-weight: 700;
+      font-size: 13px;
       background: var(--color-surface);
       user-select: none;
       transition: all 0.2s;
     }
+    .split-mode-btn:hover {
+      border-color: var(--color-muted);
+    }
     .split-mode-btn.active {
-      border-color: var(--color-primary);
-      background: var(--color-primary-bg);
-      color: var(--color-primary);
+      border-color: var(--color-red);
+      background: rgba(239, 68, 68, 0.05);
+      color: var(--color-red);
+    }
+    .btn-split-execute {
+      background: var(--color-red);
+      color: white;
+      border: none;
+      font-weight: 700;
+      width: 100%;
+      padding: 12px 24px;
+      border-radius: var(--radius-btn);
+      cursor: pointer;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+      transition: all 0.2s;
+    }
+    .btn-split-execute:hover:not(:disabled) {
+      background: #dc2626;
+      transform: translateY(-1px);
+    }
+    .btn-split-execute:disabled {
+      background: var(--color-muted-light);
+      cursor: not-allowed;
+      box-shadow: none;
     }
   </style>
 
   <script type="application/ld+json">
   {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "PDF Splitter — Split PDF Pages Online",
-  "description": "Split PDF files into individual pages or extract custom page ranges instantly. Fast, secure client-side utility, no files are uploaded to any server. Free.",
-  "url": "https://toolwools.com/tools/pdf-splitter/",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "creator": {
-    "@type": "Organization",
-    "name": "ToolWools",
-    "url": "https://toolwools.com"
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF Splitter — Split PDF Pages Online",
+    "description": "Split PDF files into individual pages or extract custom page ranges instantly. Fast, secure client-side utility, no files are uploaded to any server. Free.",
+    "url": "https://toolwools.com/tools/pdf-splitter/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "ToolWools",
+      "url": "https://toolwools.com"
+    }
   }
-}
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the PDF Splitter separate pages?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tool parses the document byte array in browser memory using pdf-lib. It copies the specified page tree indexes, creates new PDF catalogs, and builds corresponding page nodes sequentially."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between split modes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Split into single pages extracts each page as a separate PDF file and packages them into a single downloadable ZIP archive. Extract page range compiles only the specified page range into a single new PDF document."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I define custom page ranges?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can define custom page selections using commas to separate individual pages and hyphens to define ranges (e.g. 1-4, 7, 9-12)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are hyperlinks and form fields preserved?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, page catalog node replication retains original link targets, annotations, form layout elements, and embedded font structures."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it safe to split sensitive files?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, it is 100% secure. Everything processes locally in your browser memory sandbox via JavaScript. No files are uploaded to ToolWools servers."
+        }
+      }
+    ]
+  }
   </script>
 </head>
 <body>
   <a href="#main-content" class="skip-to-content">Skip to content</a>
+  
   <!-- ==================== HEADER ==================== -->
   <header class="navbar" id="navbar">
     <div class="nav-container">
@@ -201,77 +287,342 @@
     </div>
   </header>
 
+  <!-- ==================== MAIN CONTENT ==================== -->
   <main id="main-content" class="tool-page">
     <div class="tool-container">
       <nav class="tool-breadcrumb" aria-label="Breadcrumb">
         <a href="../../index.html">Home</a>
-        <span aria-hidden="true">›</span>
+        <span aria-hidden="true"> › </span>
         <a href="../index.html">Tools</a>
-        <span aria-hidden="true">›</span>
+        <span aria-hidden="true"> › </span>
         <span aria-current="page">Split PDF</span>
       </nav>
 
       <div class="tool-header">
-        <div class="tool-header-icon tool-icon-red">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" stroke-width="2"/>
-            <path d="M14 2v6h6" stroke="white" stroke-width="2"/>
-            <path d="M9 12h6M12 9v6" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <div class="tool-header-icon tool-icon-red" style="display: flex; align-items: center; justify-content: center; color: white;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <path d="M14 2v6h6"/>
+            <path d="M9 12h6M12 9v6"/>
           </svg>
         </div>
         <div>
-          <div class="tool-badge-category">PDF Tools</div>
-      <h1 class="tool-title">PDF Splitter &amp; Extractor</h1>
+          <div class="tool-badge-category" style="background: rgba(239, 68, 68, 0.08); color: var(--color-red); border-color: rgba(239, 68, 68, 0.15);">PDF Tools</div>
+          <h1 class="tool-title">PDF Splitter Pro — Extract &amp; Separate Pages</h1>
           <p class="tool-subtitle">Split PDF files into individual single-page documents, or extract specific range selections safely in your browser.</p>
+          <p style="font-size: 13px; color: var(--color-muted); margin-top: 8px; font-weight: 500;">Trusted by administrators, developers, and students · 100% client-side splitting · No data tracking</p>
         </div>
       </div>
 
-      <div class="dropzone-container" id="dropzone" style="margin-bottom: 24px;">
-        <input type="file" id="file-input" class="file-input-hidden" accept="application/pdf">
-        <div class="dropzone-icon" style="background: rgba(239, 68, 68, 0.08); color: var(--color-red);">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 4v12m-4-4l4 4 4-4M4 20h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        </div>
-        <div class="dropzone-text">Drag &amp; drop a PDF here or click to select</div>
-        <div class="dropzone-subtext">Processes document fully client-side. No size limits.</div>
-      </div>
+      <!-- Main Workspace -->
+      <div class="tool-workspace" id="tool-workspace">
+        <div class="tool-grid-workspace reveal-up">
+          
+          <!-- Left Panel: Dropzone & Settings -->
+          <div class="tool-panel">
+            <div class="tool-panel-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+              </svg>
+              Upload PDF
+            </div>
 
-      <div class="uploaded-file-row" id="file-info-row" style="display: none; margin-bottom: 24px;">
-        <div class="file-meta-info">
-          <div class="file-icon-badge" style="color: var(--color-red);">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/></svg>
+            <!-- Upload Dropzone -->
+            <div class="upload-zone-wrapper">
+              <div class="tool-upload-zone" id="dropzone" role="button" tabindex="0" aria-label="Upload PDF to split">
+                <div class="upload-icon-wrapper" style="color: var(--color-red);">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M12 11v6M9 14l3-3 3 3"/>
+                  </svg>
+                </div>
+                <div class="upload-main-text">Drag &amp; drop a PDF here</div>
+                <div class="upload-sub-text">or click to browse · Local browser processing</div>
+                <input type="file" id="file-input" class="file-input-hidden" accept="application/pdf">
+              </div>
+            </div>
+
+            <!-- Split Settings panel (hidden initially) -->
+            <div id="split-settings" style="display: none; margin-top: 24px;">
+              <div class="control-group">
+                <label class="control-label">Select Splitting Mode</label>
+                <div class="split-mode-selector">
+                  <div class="split-mode-btn active" id="mode-all">Split into Single Pages (.zip)</div>
+                  <div class="split-mode-btn" id="mode-range">Extract Page Range (.pdf)</div>
+                </div>
+              </div>
+
+              <!-- Custom Range input -->
+              <div id="range-input-wrapper" style="display: none; margin-top: 16px; margin-bottom: 20px;">
+                <label class="control-label" for="range-input">Enter Page Range</label>
+                <input type="text" id="range-input" class="tool-input" placeholder="e.g. 1-3, 5, 8-10" style="margin-top: 8px; width: 100%;">
+                <p style="font-size: 11px; color: var(--color-muted); margin-top: 6px; line-height: 1.4;">Use commas to separate individual pages and hyphens to define page ranges (1-indexed).</p>
+              </div>
+
+              <div class="tool-action-btn-row" style="margin-top: 28px;">
+                <button id="btn-split" class="btn btn-primary" style="width: 100%; background: var(--color-red); border-color: var(--color-red);">
+                  Execute Split PDF
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 14h18M3 10h18"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
           </div>
-          <div>
-            <div class="file-name-text" id="file-name">document.pdf</div>
-            <div class="file-size-badge" id="file-pages-count">0 pages • 0 KB</div>
+
+          <!-- Right Panel: File Metadata Preview -->
+          <div class="tool-panel" style="min-height: 380px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="tool-panel-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/>
+              </svg>
+              Document Metadata
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
+              
+              <!-- File Info Row (hidden until PDF loaded) -->
+              <div class="uploaded-file-row" id="file-info-row" style="display: none; align-items: center; justify-content: space-between; padding: 16px; background: var(--color-border-light); border: 1.5px solid var(--color-border); border-radius: 12px; gap: 12px;">
+                <div class="file-meta-info" style="display: flex; align-items: center; gap: 12px;">
+                  <div class="file-icon-badge" style="color: var(--color-red); background: rgba(239, 68, 68, 0.08); display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+                  </div>
+                  <div>
+                    <div class="file-name-text" id="file-name" style="font-weight: 600; color: var(--color-dark); max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">document.pdf</div>
+                    <div class="file-size-badge" id="file-pages-count" style="font-size: 12px; color: var(--color-muted);">0 pages • 0 KB</div>
+                  </div>
+                </div>
+                <button class="btn-remove-file" id="btn-remove" aria-label="Remove PDF" style="background: none; border: none; color: var(--color-muted); cursor: pointer; font-size: 20px; font-weight: 500; transition: color 0.2s;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+              </div>
+
+              <!-- Empty State Placeholder -->
+              <div id="preview-placeholder" style="text-align: center; color: var(--color-muted); padding: 48px 12px;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-muted-light); margin-bottom: 12px;">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/>
+                </svg>
+                <p style="font-size: 14px;">No PDF loaded yet</p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Rich SEO Content -->
+      <div class="seo-content-rich">
+        
+        <!-- How It Works Section -->
+        <section class="seo-steps-section">
+          <div class="seo-section-title-wrap">
+            <h2 class="seo-section-title">How the PDF Splitter Works</h2>
+            <p class="seo-section-subtitle">Separate pages locally in three steps</p>
+          </div>
+          <div class="seo-steps-grid">
+            <div class="seo-step-card">
+              <div class="seo-step-num">1</div>
+              <h3 class="seo-step-title">Upload PDF</h3>
+              <p class="seo-step-desc">Drag and drop your PDF file into the active zone, or select a file from local folders. The file loads in client-side memory.</p>
+            </div>
+            <div class="seo-step-card">
+              <div class="seo-step-num">2</div>
+              <h3 class="seo-step-title">Choose Split Mode</h3>
+              <p class="seo-step-desc">Select either full page extraction (creates a ZIP packaging each page separately) or define custom page ranges.</p>
+            </div>
+            <div class="seo-step-card">
+              <div class="seo-step-num">3</div>
+              <h3 class="seo-step-title">Split &amp; Save</h3>
+              <p class="seo-step-desc">Click "Execute Split PDF" to build the target documents locally in browser sandbox and download them instantly.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Technical Deep-Dive -->
+        <section class="seo-technical-section">
+          <h2>The Mathematics of Page Trees &amp; Browser-Side ZIP Archiving</h2>
+          <p>A PDF file represents page sequences as leaf nodes in a balanced tree structures. When splitting a document, standard tools often corrupt page index references. Our JavaScript-based splitter utilizes byte-level node duplication to preserve structures:</p>
+          
+          <ul>
+            <li><strong>Page Node Mapping:</strong> The copier reads the source cross-reference catalog, duplicates page content stream pointers, and builds a brand new catalog for each output.</li>
+            <li><strong>ZIP Archiving:</strong> In single-page mode, `jszip` allocates memory blocks for each generated PDF blob, compiles them into a unified folder container, and generates the download link locally.</li>
+          </ul>
+
+          <div class="seo-formula-box">
+            <h4>B-Tree Page Leaf Allocation Formula</h4>
+            <p>For a page count $N$, pages are mapped to tree nodes $P_i$ within the page index catalog. When extracting indices $S \subset [0, N-1]$:</p>
+            <code>Document_new = Catalog( { P_i | i ∈ S } )</code>
+            <p style="margin-top:8px;">The tool recreates the parent node references for only the subset $S$, preventing orphan node links in the resulting PDF code.</p>
+          </div>
+        </section>
+
+        <!-- Tip Box -->
+        <div class="tool-tip-box">
+          <div class="tool-tip-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9.663 17h4.673M12 3v1m6.364.364l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <div class="tool-tip-content">
+            <strong>Pro Tip:</strong> When extracting page ranges, you can mix ranges and individual pages (e.g. <strong>1-3, 5, 8-10</strong>) to build a custom document compiling different sections.
           </div>
         </div>
-        <button class="btn-remove-file" id="btn-remove" aria-label="Remove PDF">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
+
+        <!-- Reference Table -->
+        <section class="seo-table-section">
+          <div class="tool-panel-title">
+            <div style="display:flex;align-items:center;gap:8px">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM21 9H3M21 15H3M12 3v18"></path></svg>
+              <h2>PDF Splitter Output Specifications</h2>
+            </div>
+          </div>
+          <div class="seo-table-container">
+            <table class="seo-table">
+              <thead>
+                <tr>
+                  <th>Split Mode</th>
+                  <th>Output File Format</th>
+                  <th>Container Package</th>
+                  <th>Best Use Case Context</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Split All Pages</strong></td>
+                  <td>Multiple PDFs</td>
+                  <td>.ZIP Archive</td>
+                  <td>Deconstructing book chapters, separating bulk invoice sheets, archiving page assets</td>
+                </tr>
+                <tr>
+                  <td><strong>Page Range Extract</strong></td>
+                  <td>Single PDF</td>
+                  <td>Direct .PDF File</td>
+                  <td>Extracting article sections, isolating contract agreements, removing blank cover pages</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="seo-faq-section">
+          <div class="seo-section-title-wrap">
+            <h2 class="seo-section-title">Frequently Asked Questions</h2>
+            <p class="seo-section-subtitle">Answers to common PDF splitting questions</p>
+          </div>
+          <div class="tool-faq-list">
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">How does the PDF Splitter separate pages?</summary>
+              <div class="tool-faq-a">
+                <p>The tool uses the browser-side library `pdf-lib` to read the document byte structure. The JavaScript copies the requested page index structures (text contents, graphics, resources) and packages them into fresh PDF outputs in browser memory.</p>
+              </div>
+            </details>
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">What is the difference between the split modes?</summary>
+              <div class="tool-faq-a">
+                <p>Splitting into single pages isolates every page as an individual PDF document and combines them into a single downloadable ZIP archive. Page range extracts compile only the specified page numbers into a single new PDF document.</p>
+              </div>
+            </details>
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">How do I define custom page ranges?</summary>
+              <div class="tool-faq-a">
+                <p>You can input specific page patterns using commas to separate pages and hyphens to define ranges (e.g. 1-4, 6, 8-10). The tool validates and sorts the list in ascending order prior to processing.</p>
+              </div>
+            </details>
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">Are hyperlinks and form fields preserved?</summary>
+              <div class="tool-faq-a">
+                <p>Yes. The copier copies the page objects directly from the source catalog. This retains internal hyperlinks, fillable forms, and vector formatting.</p>
+              </div>
+            </details>
+            <details class="tool-faq-item">
+              <summary class="tool-faq-q">Is it safe to split sensitive files?</summary>
+              <div class="tool-faq-a">
+                <p>Yes. All operations run locally inside your browser memory sandbox. Your documents are never uploaded to any remote server, keeping legal deeds, statements, and IDs secure.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- SEO Articles -->
+        <section class="seo-text-section">
+          <h2>Understanding PDF Internal Page trees: Node Structure Copiers</h2>
+          <p>Unlike raw txt assets, PDF files represent canvas frames as nodes in a B-Tree structure. Simple converters that cut files by bytes break these catalog pointers, leading to corrupted, unreadable outputs. By utilizing browser-native script parsing, we duplicate page references, adjust internal names, and rebuild cross-reference lists, ensuring that split documents open cleanly on all screen devices.</p>
+        </section>
+
+        <section class="seo-text-section">
+          <h2>Browser-Side PDF Processing: Speed &amp; Security Benefits</h2>
+          <p>Using cloud editors to split contracts and personal files poses security threats. Processing files locally in your browser memory removes remote upload waiting times and guarantees confidentiality. Works completely offline, enabling you to extract pages and organize documents in seconds without server dependencies.</p>
+        </section>
+
       </div>
 
-      <div id="split-settings" style="display: none; margin-bottom: 24px;">
-        <div class="tool-label">Select Splitting Mode</div>
-        <div class="split-mode-selector">
-          <div class="split-mode-btn active" id="mode-all">Split Into Single Pages (.zip)</div>
-          <div class="split-mode-btn" id="mode-range">Extract Page Range (.pdf)</div>
+      <!-- Related Tools Section -->
+      <section class="related-tools">
+        <h2 class="related-tools-heading">Related Tools</h2>
+        <div class="related-tools-grid">
+          <a href="../pdf-merger/index.html" class="related-tool-card">
+            <div class="related-tool-card-top">
+              <div class="related-tool-icon-wrapper" style="background: var(--color-red); color: white; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15l3-3 3 3"/>
+                </svg>
+              </div>
+              <span class="related-tool-category-badge category-text-badge" style="background: rgba(239, 68, 68, 0.06); color: var(--color-red); border-color: rgba(239, 68, 68, 0.12);">PDF Tools</span>
+            </div>
+            <div class="related-tool-card-body">
+              <h3 class="related-tool-name">PDF Merger</h3>
+              <p class="related-tool-desc">Combine multiple PDF documents into a single organized file in your chosen order securely.</p>
+            </div>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+          <a href="../pdf-page-extractor/index.html" class="related-tool-card">
+            <div class="related-tool-card-top">
+              <div class="related-tool-icon-wrapper" style="background: var(--color-red); color: white; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l3-3 3 3M12 12v6"/>
+                </svg>
+              </div>
+              <span class="related-tool-category-badge category-text-badge" style="background: rgba(239, 68, 68, 0.06); color: var(--color-red); border-color: rgba(239, 68, 68, 0.12);">PDF Tools</span>
+            </div>
+            <div class="related-tool-card-body">
+              <h3 class="related-tool-name">PDF Page Extractor</h3>
+              <p class="related-tool-desc">Extract specific pages or page selections from PDF documents using custom filters locally.</p>
+            </div>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+          <a href="../pdf-compressor/index.html" class="related-tool-card">
+            <div class="related-tool-card-top">
+              <div class="related-tool-icon-wrapper" style="background: var(--color-red); color: white; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="9" y1="9" x2="15" y2="15"/>
+                  <line x1="15" y1="9" x2="9" y2="15"/>
+                </svg>
+              </div>
+              <span class="related-tool-category-badge category-text-badge" style="background: rgba(239, 68, 68, 0.06); color: var(--color-red); border-color: rgba(239, 68, 68, 0.12);">PDF Tools</span>
+            </div>
+            <div class="related-tool-card-body">
+              <h3 class="related-tool-name">PDF Compressor</h3>
+              <p class="related-tool-desc">Reduce the storage footprint of PDF documents using optimized content stream deflation.</p>
+            </div>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
         </div>
+      </section>
 
-        <div id="range-input-wrapper" style="display: none; margin-bottom: 20px;">
-          <label class="tool-label" for="range-input">Enter Page Range</label>
-          <input type="text" id="range-input" class="tool-input" placeholder="e.g. 1-3, 5, 8-10">
-          <div class="dropzone-subtext" style="margin-top: 4px;">Use commas to separate single pages or dash ranges (1-indexed)</div>
-        </div>
+      <!-- Closing CTA Banner -->
+      <section class="seo-cta-banner">
+        <h2>Split and Separate Your PDF Pages Instantly</h2>
+        <p>Upload your file above, select your desired splitting mode, and download your split outputs securely.</p>
+        <a href="#tool-workspace" class="seo-cta-btn">↑ Back to PDF Splitter Workspace</a>
+      </section>
 
-        <div class="tool-bottom-actions">
-          <button id="btn-split" class="btn btn-primary" style="background: var(--color-red); border-color: var(--color-red); color: white;">Execute Split PDF</button>
-        </div>
-      </div>
     </div>
-  
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid"><a href="../pdf-merger/index.html" class="related-tool-card"><strong class="related-tool-name">PDF Merger</strong><span class="related-tool-link">Try this tool</span></a><a href="../jpg-to-pdf/index.html" class="related-tool-card"><strong class="related-tool-name">JPG to PDF Converter</strong><span class="related-tool-link">Try this tool</span></a><a href="../pdf-page-numberer/index.html" class="related-tool-card"><strong class="related-tool-name">PDF Page Numberer</strong><span class="related-tool-link">Try this tool</span></a></div></section>
   </main>
 
+  <!-- ==================== FOOTER ==================== -->
   <footer class="footer" id="footer">
     <div class="footer-container">
       <div class="footer-grid">
@@ -297,7 +648,7 @@
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4.5 3C3.67 3 3 3.67 3 4.5C3 5.33 3.67 6 4.5 6C5.33 6 6 5.33 6 4.5C6 3.67 5.33 3 4.5 3ZM3 8H6V17H3V8ZM8 8H11V9.5C11.5 8.5 12.8 7.7 14.5 7.7C17.5 7.7 17.5 10.2 17.5 12V17H14.5V12.5C14.5 11 14 10.5 13 10.5C11.5 10.5 11 11.5 11 12.5V17H8V8Z" fill="currentColor"/></svg>
             </a>
             <a href="https://github.com/toolwools" aria-label="GitHub" class="social-icon">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C5.58 2 2 5.58 2 10C2 13.54 4.29 16.53 7.47 17.59C7.87 17.66 8.02 17.42 8.02 17.21V15.65C5.73 16.13 5.26 14.56 5.26 14.56C4.89 13.64 4.35 13.4 4.35 13.4C3.6 12.88 4.4 12.9 4.4 12.9C5.22 12.96 5.65 13.74 5.65 13.74C6.37 14.97 7.55 14.63 8.05 14.43C8.12 13.91 8.33 13.56 8.56 13.36C6.77 13.15 4.88 12.42 4.88 9.43C4.88 8.56 5.2 7.85 5.66 7.29C5.58 7.08 5.3 6.27 5.74 5.17C5.74 5.17 6.43 4.95 8.02 5.99C8.66 5.81 9.34 5.72 10.02 5.72C10.7 5.72 11.38 5.81 12.02 5.99C13.61 4.95 14.3 5.17 14.3 5.17C14.74 6.27 14.46 7.08 14.38 7.29C14.84 7.85 15.16 8.56 15.16 9.43C15.16 12.43 13.27 13.15 11.46 13.35C11.75 13.6 12.02 14.1 12.02 14.86V17.21C12.02 17.42 12.17 17.67 12.57 17.59C15.73 16.53 18 13.54 18 10C18 5.58 14.42 2 10 2Z" fill="currentColor"/></svg>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C5.58 2 2 5.58 2 10C2 13.54 4.29 16.53 7.47 17.59C7.87 17.66 8.02 17.42 8.02 17.21V15.65C5.73 16.13 5.26 14.56 5.26 14.56C4.89 13.64 4.35 13.4 4.35 13.4C3.6 12.88 4.4 12.9 4.4 12.9C5.22 12.96 5.65 13.74 5.65 13.74C6.37 14.97 7.55 14.63 8.05 14.43C8.12 13.91 8.33 13.56 8.56 13.36C6.77 13.15 4.88 12.42 4.88 9.43C4.88 8.56 5.2 7.85 5.66 7.29C5.58 7.08 5.3 6.27 5.74 5.17C5.74 5.17 6.43 4.95 8.02 5.99C8.66 5.81 9.34 5.72 10.02 5.72C10.7 5.72 11.38 5.81 12.02 5.99C13.61 4.95 14.3 5.17 14.3 5.17+C14.74 6.27 14.46 7.08 14.38 7.29C14.84 7.85 15.16 8.56 15.16 9.43C15.16 12.43 13.27 13.15 11.46 13.35C11.75 13.6 12.02 14.1 12.02 14.86V17.21C12.02 17.42 12.17 17.67 12.57 17.59C15.73 16.53 18 13.54 18 10C18 5.58 14.42 2 10 2Z" fill="currentColor"/></svg>
             </a>
             <a href="https://instagram.com/toolwools" aria-label="Instagram" class="social-icon">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="15" cy="5" r="1" fill="currentColor"/></svg>
@@ -357,8 +708,8 @@
   </footer>
 
   <!-- PDF-lib & JSZip CDNs -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" crossorigin="anonymous"></script>
   <script src="../../script.js"></script>
   <script src="pdf-splitter.js"></script>
 </body>
