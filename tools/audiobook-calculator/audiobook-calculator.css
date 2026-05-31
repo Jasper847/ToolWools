@@ -570,3 +570,67 @@
     margin-bottom: 24px;
   }
 }
+
+/* === CALCULATOR TABS === */
+.ab-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+  padding: 4px;
+  background: var(--color-bg);
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  overflow-x: auto;
+}
+
+.ab-tab {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.ab-tab:hover {
+  color: var(--color-dark);
+  background: var(--color-surface);
+}
+
+.ab-tab.active {
+  color: #fff;
+  background: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(var(--color-primary-rgb), 0.3);
+}
+
+.ab-tab-content {
+  min-height: 400px;
+}
+
+[data-theme="dark"] .ab-tabs {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .ab-tab:hover {
+  background: var(--color-bg);
+}
+
+@media (max-width: 560px) {
+  .ab-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ab-tab {
+    font-size: 12px;
+    padding: 10px 12px;
+    min-width: max-content;
+  }
+}
