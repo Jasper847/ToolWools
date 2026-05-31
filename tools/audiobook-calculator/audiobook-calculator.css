@@ -72,7 +72,7 @@
 
 .ab-result-card {
   padding: 24px 16px;
-  background: var(--color-surface);
+  background: var(--color-bg);
   border: 1.5px solid var(--color-border);
   border-radius: 16px;
   text-align: center;
@@ -111,7 +111,7 @@
 
 .ab-compare-col {
   padding: 16px 8px;
-  background: var(--color-surface);
+  background: var(--color-bg);
   border: 1px solid var(--color-border);
   border-radius: 14px;
   text-align: center;
@@ -301,7 +301,7 @@
 }
 [data-theme="dark"] .ab-result-card,
 [data-theme="dark"] .ab-compare-col {
-  background: var(--color-surface);
+  background: var(--color-bg);
 }
 [data-theme="dark"] .ab-faq-q {
   background: var(--color-surface);
