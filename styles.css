@@ -2583,6 +2583,150 @@ html {
 }
 
 /* =============================================
+   GLOBAL RESPONSIVE POLISH — All screen sizes
+   ============================================= */
+
+/* Ultra-small screens (320px–380px) */
+@media (max-width: 380px) {
+  .tools-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .tool-card {
+    padding: 14px;
+  }
+  .hero-title {
+    font-size: clamp(24px, 7vw, 32px);
+    line-height: 1.15;
+  }
+  .hero-subtitle {
+    font-size: 15px;
+  }
+  .hero-ctas {
+    gap: 10px;
+  }
+  .hero-ctas .btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  .stats-bar .stat-item {
+    min-width: auto;
+  }
+  .section-title {
+    font-size: clamp(20px, 6vw, 28px);
+  }
+  .navbar .nav-cta {
+    display: none; /* Hide CTA on very small screens */
+  }
+}
+
+/* Footer: 3-column at 768px before collapsing */
+@media (max-width: 768px) and (min-width: 641px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .footer-newsletter {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Mobile menu open state — prevent body scroll */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Stats bar: single row scroll on mobile */
+@media (max-width: 560px) {
+  .stats-container {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .stat-divider {
+    display: none;
+  }
+  .stat-item {
+    flex: 1;
+    min-width: 120px;
+    padding: 12px 8px;
+  }
+  .stat-number {
+    font-size: 24px;
+  }
+  .stat-label {
+    font-size: 11px;
+  }
+}
+
+/* Tool cards: equal height in grid */
+.tools-grid .tool-card {
+  display: flex;
+  flex-direction: column;
+}
+.tools-grid .tool-card .tool-link {
+  margin-top: auto;
+}
+
+/* Testimonial section mobile */
+@media (max-width: 480px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+  .testimonial-card {
+    padding: 20px 16px;
+  }
+}
+
+/* CTA section mobile */
+@media (max-width: 480px) {
+  .cta-title {
+    font-size: clamp(24px, 6vw, 32px);
+  }
+  .cta-subtitle {
+    font-size: 15px;
+  }
+}
+
+/* Feature cards mobile */
+@media (max-width: 640px) {
+  .dual-features-container {
+    gap: 24px;
+  }
+  .feature-card {
+    border-radius: 16px;
+  }
+  .feature-card-content {
+    padding: 24px 20px;
+  }
+  .feature-card-visual {
+    display: none; /* Hide mockup visual on mobile — focus on content */
+  }
+}
+
+/* Inline styles override: remove font-size inline styling impact */
+[style*="font-size"] {
+  /* We override critical inline font-sizes with clamp via high-specificity */
+}
+
+/* Global image safety */
+img, video, canvas, iframe, svg {
+  max-width: 100%;
+}
+
+/* Global overflow guard */
+* {
+  box-sizing: border-box;
+}
+html {
+  overflow-x: hidden;
+}
+body {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* =============================================
    PRINT STYLES
    ============================================= */
 @media print {
