@@ -1,0 +1,311 @@
+/* Audiobook Calculator — Premium Styles */
+
+.ab-speed-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.ab-speed-card {
+  position: relative;
+  padding: 16px 8px;
+  border: 2px solid var(--color-border);
+  border-radius: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.21, 0.47, 0.32, 0.98);
+  background: var(--color-surface);
+}
+
+.ab-speed-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(var(--color-primary-rgb), 0.12);
+}
+
+.ab-speed-card.active {
+  border-color: var(--color-primary);
+  background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.08), rgba(var(--color-primary-rgb), 0.02));
+  box-shadow: 0 4px 16px rgba(var(--color-primary-rgb), 0.15);
+}
+
+.ab-speed-card.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-primary);
+  border-radius: 14px 14px 0 0;
+}
+
+.ab-speed-value {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-dark);
+  margin-bottom: 4px;
+}
+
+.ab-speed-tag {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-primary);
+  background: rgba(var(--color-primary-rgb), 0.1);
+  padding: 2px 8px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-top: 6px;
+}
+
+/* Results Grid */
+.ab-results-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.ab-result-card {
+  padding: 24px 16px;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: 16px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ab-result-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.ab-result-value {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 6px;
+  transition: all 0.3s ease;
+}
+
+.ab-result-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-muted);
+}
+
+/* Comparison Table */
+.ab-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin: 24px 0;
+}
+
+.ab-compare-col {
+  padding: 20px 12px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.ab-compare-col.active {
+  border-color: var(--color-primary);
+  background: rgba(var(--color-primary-rgb), 0.04);
+  box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.1);
+}
+
+.ab-compare-speed {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-dark);
+  margin-bottom: 8px;
+}
+
+.ab-compare-time {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-dark);
+  margin-bottom: 4px;
+}
+
+.ab-compare-saved {
+  font-size: 12px;
+  color: var(--color-green, #10B981);
+  font-weight: 600;
+}
+
+/* Input Controls */
+.ab-input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.ab-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ab-input-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ab-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.ab-slider-row input[type="range"] {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--color-border);
+  appearance: none;
+  outline: none;
+}
+
+.ab-slider-row input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(var(--color-primary-rgb), 0.3);
+}
+
+.ab-slider-value {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-primary);
+  min-width: 60px;
+  text-align: right;
+}
+
+/* FAQ Accordion */
+.ab-faq-list {
+  margin-top: 32px;
+}
+
+.ab-faq-item {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.ab-faq-item:hover {
+  border-color: var(--color-primary-border, var(--color-primary));
+}
+
+.ab-faq-q {
+  width: 100%;
+  padding: 18px 20px;
+  background: var(--color-surface);
+  border: none;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-dark);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s ease;
+}
+
+.ab-faq-q:hover {
+  background: var(--color-bg);
+}
+
+.ab-faq-q::after {
+  content: '+';
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--color-muted);
+  transition: transform 0.3s ease;
+}
+
+.ab-faq-item.open .ab-faq-q::after {
+  transform: rotate(45deg);
+  color: var(--color-primary);
+}
+
+.ab-faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 20px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+.ab-faq-item.open .ab-faq-a {
+  max-height: 300px;
+  padding: 0 20px 18px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .ab-speed-grid, .ab-comparison-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .ab-results-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .ab-speed-grid, .ab-comparison-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .ab-results-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ab-input-grid {
+    grid-template-columns: 1fr;
+  }
+  .ab-result-card {
+    padding: 16px 12px;
+  }
+}
+
+/* Dark mode */
+[data-theme="dark"] .ab-speed-card {
+  background: var(--color-surface);
+}
+[data-theme="dark"] .ab-speed-card.active {
+  background: rgba(var(--color-primary-rgb), 0.1);
+}
+[data-theme="dark"] .ab-result-card,
+[data-theme="dark"] .ab-compare-col {
+  background: var(--color-surface);
+}
+[data-theme="dark"] .ab-faq-q {
+  background: var(--color-surface);
+}
+[data-theme="dark"] .ab-faq-q:hover {
+  background: var(--color-bg);
+}
