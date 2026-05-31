@@ -474,7 +474,7 @@
    LAYOUT POLISHING & ALIGNMENT OVERRIDES
    ============================================= */
 
-/* Center section headings inside full-width panels */
+/* Center section headings inside full-width panels (FAQ, How It Works, Science) */
 .tool-container > section.tool-panel .tool-panel-title {
   justify-content: center;
   text-align: center;
@@ -485,8 +485,8 @@
   width: 100%;
 }
 
-/* Center descriptive paragraphs under section headings */
-.tool-container > section.tool-panel > p {
+/* Center only the intro paragraph (first direct child p after panel-title) */
+.tool-container > section.tool-panel > p:first-of-type {
   text-align: center;
   max-width: 800px;
   margin: 0 auto 24px;
@@ -516,9 +516,17 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
 }
 
+/* Bottom spacing before footer */
+.related-tools {
+  padding-bottom: 64px;
+}
+
 @media (max-width: 768px) {
   .related-tools-heading {
     margin-bottom: 24px;
+  }
+  .related-tools {
+    padding-bottom: 40px;
   }
 }
 
@@ -881,3 +889,284 @@
   border-color: #382c24;
 }
 
+/* =============================================
+   SEO CONTENT SECTIONS — Proper CSS Classes
+   ============================================= */
+
+/* Wrapper for SEO content rich text */
+.seo-content-rich {
+  font-size: 14px;
+  color: var(--color-muted);
+  line-height: 1.8;
+}
+
+.seo-content-rich h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  margin: 24px 0 8px;
+  color: var(--color-dark);
+}
+
+.seo-content-rich h4 {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  margin: 16px 0 8px;
+  color: var(--color-dark);
+}
+
+.seo-content-rich p {
+  margin-bottom: 16px;
+}
+
+.seo-content-rich ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.seo-content-rich ul li {
+  margin-bottom: 6px;
+  line-height: 1.7;
+}
+
+/* Formula display box */
+.seo-formula-box {
+  background: var(--color-bg);
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  font-family: 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 14px;
+  color: var(--color-dark);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+[data-theme="dark"] .seo-formula-box {
+  background: #0f172a;
+  border-color: #1e293b;
+}
+
+/* Step cards grid */
+.seo-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.seo-step-card {
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: var(--color-surface);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.seo-step-card:hover {
+  border-color: rgba(var(--color-primary-rgb), 0.2);
+  transform: translateY(-2px);
+}
+
+.seo-step-num {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+
+.seo-step-card h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--color-dark);
+}
+
+.seo-step-card p {
+  font-size: 13px;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+/* SEO CTA banner */
+.seo-cta-banner {
+  margin-top: 48px;
+  padding: 32px;
+  background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.04), rgba(var(--color-primary-rgb), 0.01));
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  text-align: center;
+}
+
+.seo-cta-banner h2 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-dark);
+  margin-bottom: 8px;
+}
+
+.seo-cta-banner p {
+  font-size: 15px;
+  color: var(--color-muted);
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto 16px;
+}
+
+.seo-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.seo-cta-btn:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-2px);
+}
+
+/* SEO text section (1.5x vs 2x, Speed Listening vs Reading) */
+.seo-text-section {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-border);
+}
+
+.seo-text-section h2 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--color-dark);
+}
+
+.seo-text-section p {
+  font-size: 14px;
+  color: var(--color-muted);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.seo-text-section p:last-child {
+  margin-bottom: 0;
+}
+
+.seo-text-section strong {
+  color: var(--color-dark);
+}
+
+/* SEO reference table section */
+.seo-table-section {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-border);
+}
+
+.seo-table-section h2 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  color: var(--color-dark);
+}
+
+.seo-table-section > p {
+  font-size: 14px;
+  color: var(--color-muted);
+  margin-bottom: 16px;
+}
+
+.seo-ref-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.seo-ref-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  min-width: 500px;
+}
+
+.seo-ref-table th {
+  padding: 12px 16px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--color-dark);
+  background: var(--color-bg);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.seo-ref-table th:first-child {
+  text-align: left;
+}
+
+.seo-ref-table td {
+  padding: 10px 16px;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border-light);
+  color: var(--color-dark);
+}
+
+.seo-ref-table td:first-child {
+  text-align: left;
+  font-weight: 600;
+}
+
+.seo-ref-table .highlight-col {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.seo-ref-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.seo-ref-table tbody tr:hover {
+  background: var(--color-bg);
+}
+
+[data-theme="dark"] .seo-ref-table th {
+  background: #111827;
+}
+
+/* Responsive mobile adjustments */
+@media (max-width: 640px) {
+  .seo-cta-banner {
+    padding: 24px 16px;
+  }
+  .seo-cta-banner h2 {
+    font-size: 18px;
+  }
+  .seo-text-section h2,
+  .seo-table-section h2 {
+    font-size: 17px;
+  }
+  .seo-steps-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .seo-step-card,
+  .seo-cta-btn {
+    transition: none;
+    transform: none !important;
+  }
+}
