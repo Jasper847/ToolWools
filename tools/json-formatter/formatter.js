@@ -314,4 +314,203 @@ document.addEventListener('DOMContentLoaded', () => {
   // Auto load sample on first launch to show visual power
   jsonInput.value = JSON.stringify(sampleJson, null, 2);
   handleFormat();
+
+  // ==========================================
+  // PHASE 2 ADDITIONS: Sort Keys, JSONPath, YAML
+  // ==========================================
+
+  // --- SORT KEYS (deep recursive) ---
+  function sortObjectKeys(obj) {
+    if (Array.isArray(obj)) return obj.map(sortObjectKeys);
+    if (obj !== null && typeof obj === 'object') {
+      const sorted = {};
+      Object.keys(obj).sort().forEach(key => {
+        sorted[key] = sortObjectKeys(obj[key]);
+      });
+      return sorted;
+    }
+    return obj;
+  }
+
+  // Create Sort Keys button if not already in DOM
+  let btnSort = document.getElementById('btn-sort-keys');
+  if (!btnSort) {
+    btnSort = document.createElement('button');
+    btnSort.id = 'btn-sort-keys';
+    btnSort.className = 'action-btn';
+    btnSort.textContent = 'Sort Keys';
+    btnSort.title = 'Sort all object keys alphabetically (recursive)';
+    // Insert after the format button
+    if (btnFormat && btnFormat.parentNode) {
+      btnFormat.parentNode.insertBefore(btnSort, btnMinify);
+    }
+  }
+  btnSort.addEventListener('click', () => {
+    errorBanner.classList.remove('show');
+    successBanner.classList.remove('show');
+    try {
+      const obj = parseInput();
+      const sorted = sortObjectKeys(obj);
+      const formatted = JSON.stringify(sorted, null, 2);
+      jsonInput.value = formatted;
+      jsonOutput.value = formatted;
+      treeRoot.innerHTML = '';
+      treeRoot.appendChild(createTreeHtml(sorted));
+      successBanner.classList.add('show');
+      showToast('Keys sorted alphabetically (all levels).', 'success');
+    } catch (err) {
+      errorMessage.textContent = err.message;
+      errorBanner.classList.add('show');
+    }
+  });
+
+  // --- JSONPath QUERY ---
+  // Simple JSONPath evaluator (supports dot notation & bracket notation basics)
+  function queryJsonPath(obj, path) {
+    if (!path || path === '$') return obj;
+    // Normalize: remove leading $. or $
+    let normalized = path.replace(/^\$\.?/, '');
+    if (!normalized) return obj;
+
+    const segments = [];
+    // Split on dots and brackets
+    normalized.replace(/\[(\d+)\]/g, '.$1').split('.').forEach(seg => {
+      if (seg !== '') segments.push(seg);
+    });
+
+    let current = obj;
+    for (const seg of segments) {
+      if (current === null || current === undefined) return undefined;
+      if (Array.isArray(current)) {
+        const idx = parseInt(seg, 10);
+        if (!isNaN(idx)) { current = current[idx]; continue; }
+      }
+      if (typeof current === 'object') { current = current[seg]; continue; }
+      return undefined;
+    }
+    return current;
+  }
+
+  let btnJsonPath = document.getElementById('btn-jsonpath');
+  let jsonPathInput = document.getElementById('jsonpath-input');
+  if (!btnJsonPath) {
+    // Create JSONPath input + button
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = 'display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap;';
+    jsonPathInput = document.createElement('input');
+    jsonPathInput.id = 'jsonpath-input';
+    jsonPathInput.type = 'text';
+    jsonPathInput.placeholder = 'JSONPath query, e.g. $.server.region';
+    jsonPathInput.style.cssText = 'flex:1;min-width:180px;padding:8px 12px;border-radius:8px;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text);font-size:13px;';
+    btnJsonPath = document.createElement('button');
+    btnJsonPath.id = 'btn-jsonpath';
+    btnJsonPath.className = 'action-btn';
+    btnJsonPath.textContent = 'Query';
+    btnJsonPath.title = 'Run JSONPath query on the input JSON';
+    wrapper.appendChild(jsonPathInput);
+    wrapper.appendChild(btnJsonPath);
+
+    // Insert after the action buttons bar
+    const actionsBar = btnFormat ? btnFormat.closest('.actions-bar, .code-actions, .toolbar-actions') : null;
+    if (actionsBar && actionsBar.parentNode) {
+      actionsBar.parentNode.insertBefore(wrapper, actionsBar.nextSibling);
+    } else {
+      // Fallback: append before the input textarea
+      jsonInput.parentNode.insertBefore(wrapper, jsonInput);
+    }
+  }
+  btnJsonPath.addEventListener('click', () => {
+    errorBanner.classList.remove('show');
+    successBanner.classList.remove('show');
+    try {
+      const obj = parseInput();
+      const path = jsonPathInput.value.trim();
+      const result = queryJsonPath(obj, path);
+      if (result === undefined) {
+        showToast('Path returned no results.', 'warning');
+        jsonOutput.value = 'undefined';
+      } else {
+        const formatted = JSON.stringify(result, null, 2);
+        jsonOutput.value = formatted;
+        treeRoot.innerHTML = '';
+        treeRoot.appendChild(createTreeHtml(result));
+        successBanner.classList.add('show');
+        showToast('JSONPath query executed.', 'success');
+      }
+    } catch (err) {
+      errorMessage.textContent = err.message;
+      errorBanner.classList.add('show');
+    }
+  });
+  // Allow Enter key in path input
+  jsonPathInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); btnJsonPath.click(); }
+  });
+
+  // --- JSON ↔ YAML CONVERSION ---
+  let btnToYaml = document.getElementById('btn-to-yaml');
+  let btnFromYaml = document.getElementById('btn-from-yaml');
+  if (!btnToYaml) {
+    btnToYaml = document.createElement('button');
+    btnToYaml.id = 'btn-to-yaml';
+    btnToYaml.className = 'action-btn';
+    btnToYaml.textContent = 'JSON → YAML';
+    btnToYaml.title = 'Convert the current JSON to YAML';
+    if (btnDownload && btnDownload.parentNode) {
+      btnDownload.parentNode.insertBefore(btnToYaml, btnDownload.nextSibling);
+    }
+  }
+  if (!btnFromYaml) {
+    btnFromYaml = document.createElement('button');
+    btnFromYaml.id = 'btn-from-yaml';
+    btnFromYaml.className = 'action-btn';
+    btnFromYaml.textContent = 'YAML → JSON';
+    btnFromYaml.title = 'Parse YAML in the input and convert to JSON';
+    if (btnToYaml && btnToYaml.parentNode) {
+      btnToYaml.parentNode.insertBefore(btnFromYaml, btnToYaml.nextSibling);
+    }
+  }
+
+  btnToYaml.addEventListener('click', () => {
+    errorBanner.classList.remove('show');
+    successBanner.classList.remove('show');
+    if (typeof jsyaml === 'undefined') {
+      showToast('YAML library not loaded. Please refresh the page.', 'error');
+      return;
+    }
+    try {
+      const obj = parseInput();
+      const yaml = jsyaml.dump(obj, { indent: 2, lineWidth: 120, noRefs: true });
+      jsonOutput.value = yaml;
+      successBanner.classList.add('show');
+      showToast('Converted to YAML.', 'success');
+    } catch (err) {
+      errorMessage.textContent = err.message;
+      errorBanner.classList.add('show');
+    }
+  });
+
+  btnFromYaml.addEventListener('click', () => {
+    errorBanner.classList.remove('show');
+    successBanner.classList.remove('show');
+    if (typeof jsyaml === 'undefined') {
+      showToast('YAML library not loaded. Please refresh the page.', 'error');
+      return;
+    }
+    try {
+      const raw = jsonInput.value.trim();
+      if (!raw) throw new Error('Input is empty.');
+      const obj = jsyaml.load(raw);
+      const formatted = JSON.stringify(obj, null, 2);
+      jsonInput.value = formatted;
+      jsonOutput.value = formatted;
+      treeRoot.innerHTML = '';
+      treeRoot.appendChild(createTreeHtml(obj));
+      successBanner.classList.add('show');
+      showToast('YAML parsed and converted to JSON.', 'success');
+    } catch (err) {
+      errorMessage.textContent = err.message;
+      errorBanner.classList.add('show');
+    }
+  });
 });

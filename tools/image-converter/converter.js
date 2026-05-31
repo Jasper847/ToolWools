@@ -148,8 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
       targetFormat = card.getAttribute('data-format');
       outFormatVal.textContent = targetFormat.toUpperCase();
 
-      // Show quality controls only for compression formats (jpg, webp)
-      if (targetFormat === 'jpeg' || targetFormat === 'webp') {
+      // Show quality controls only for compression formats (jpg, webp, avif)
+      if (targetFormat === 'jpeg' || targetFormat === 'webp' || targetFormat === 'avif') {
         qualityWrapper.style.display = 'block';
       } else {
         qualityWrapper.style.display = 'none';
@@ -195,6 +195,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const icoBlob = createIcoBlob(pngBlob, w, h);
         saveBlobOutput(icoBlob);
       }, 'image/png');
+    } else if (targetFormat === 'avif') {
+      // AVIF — uses browser's native encoder if available
+      canvas.toBlob((blob) => {
+        if (blob && blob.type === 'image/avif') {
+          saveBlobOutput(blob);
+        } else {
+          // Browser doesn't support AVIF encoding — fall back to WebP with notice
+          showToast('Your browser does not support AVIF encoding. Falling back to WebP.', 'warning');
+          canvas.toBlob((fallback) => { saveBlobOutput(fallback); }, 'image/webp', quality);
+        }
+      }, 'image/avif', quality);
     }
   }
 
