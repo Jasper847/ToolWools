@@ -99,6 +99,54 @@
   }
 }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the Letter Counter analyze text?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tool loops through every character of your text locally in your browser. It calculates the counts of total letters, vowels, consonants, digits, and spaces, and maps the frequency distribution of alphabetical letters (A to Z) on a responsive chart."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the letter frequency distribution chart?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The distribution chart is a visual representation of how often each letter (from A to Z) appears in your text. The bar length represents the relative frequency of each letter, normalized against the most frequent character in the text."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this tool differentiate between vowels and consonants?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. In the stats panel, the tool displays separate counts for Vowels (A, E, I, O, U) and Consonants (all other alphabetical letters) so you can analyze structural details of your text."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this tool assist in solving cryptography ciphers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. Frequency analysis is a primary tool for breaking simple substitution ciphers (such as Caesar ciphers or ROT13). Since certain letters appear with predictable frequencies in English, comparing cipher text frequencies with average English frequencies can reveal key patterns."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are uppercase and lowercase letters counted together?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The counting logic normalizes characters to uppercase before processing, so 'a' and 'A' are grouped together into a single frequency tally for each letter of the alphabet."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a href="#main-content" class="skip-to-content">Skip to content</a>
@@ -226,53 +274,295 @@
 
   <main id="main-content" class="tool-page">
     <div class="tool-container">
+
+      <!-- Breadcrumb -->
       <nav class="tool-breadcrumb" aria-label="Breadcrumb">
         <a href="../../index.html">Home</a>
-        <span aria-hidden="true">›</span>
+        <span aria-hidden="true"> › </span>
         <a href="../index.html">Tools</a>
-        <span aria-hidden="true">›</span>
+        <span aria-hidden="true"> › </span>
         <span aria-current="page">Letter Counter</span>
       </nav>
 
+      <!-- Tool Header -->
       <div class="tool-header">
-        <div class="tool-header-icon tool-icon-green">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <div class="tool-header-icon" style="background: var(--color-green); color: white; display: flex; align-items: center; justify-content: center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke="white" stroke-width="2"/>
           </svg>
         </div>
         <div>
           <div class="tool-badge-category">Text Tools</div>
-      <h1 class="tool-title">Letter Counter Pro</h1>
-          <p class="tool-subtitle">Analyze character frequencies inside text strings. Count letters, vowels, consonants, spaces, and display distribution charts.</p>
+          <h1 class="tool-title">Letter Counter Pro — Alphabet Frequency Mapper</h1>
+          <p class="tool-subtitle">Analyze alphabetical distributions, count vowels and consonants, and view letter frequency charts in real-time.</p>
+          <p style="font-size:13px;color:var(--color-muted);margin-top:8px;font-weight:500">Trusted by cryptanalysts, writers and linguistic students · Local frequency mapping · Zero tracking telemetry</p>
         </div>
       </div>
 
-      <div class="stats-grid" style="grid-template-columns: repeat(5, 1fr); margin-bottom: 24px;">
-        <div class="stat-card"><span class="stat-value" id="stat-letters">0</span><span class="stat-label">Total Letters</span></div>
-        <div class="stat-card"><span class="stat-value" id="stat-vowels">0</span><span class="stat-label">Vowels</span></div>
-        <div class="stat-card"><span class="stat-value" id="stat-consonants">0</span><span class="stat-label">Consonants</span></div>
-        <div class="stat-card"><span class="stat-value" id="stat-digits">0</span><span class="stat-label">Digits</span></div>
-        <div class="stat-card"><span class="stat-value" id="stat-spaces">0</span><span class="stat-label">Spaces</span></div>
-      </div>
+      <!-- Main Workspace -->
+      <div class="tool-workspace" id="tool-workspace">
+        <div class="tool-grid-workspace reveal-up" style="display: flex; flex-direction: column; gap: 24px;">
+          <!-- Editor and stats panel -->
+          <div class="tool-panel">
+            <div class="tool-panel-title">
+              <div style="display:flex;align-items:center;gap:8px">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4Z"></path></svg>
+                <span>Text Input Analyzer</span>
+              </div>
+            </div>
 
-      <div style="margin-bottom: 24px;">
-        <label class="tool-label" for="input">Enter Your Text</label>
-        <textarea id="input" class="tool-textarea" rows="10" placeholder="Type or paste your text content here to calculate details..." autofocus></textarea>
-      </div>
+            <!-- Stats Grid -->
+            <div class="counter-grid" style="grid-template-columns: repeat(5, 1fr); margin-bottom: 16px;">
+              <div class="counter-stat-card"><span class="counter-value" id="stat-letters">0</span><span class="counter-label">Total Letters</span></div>
+              <div class="counter-stat-card"><span class="counter-value" id="stat-vowels">0</span><span class="counter-label">Vowels</span></div>
+              <div class="counter-stat-card"><span class="counter-value" id="stat-consonants">0</span><span class="counter-label">Consonants</span></div>
+              <div class="counter-stat-card"><span class="counter-value" id="stat-digits">0</span><span class="counter-label">Digits</span></div>
+              <div class="counter-stat-card"><span class="counter-value" id="stat-spaces">0</span><span class="counter-label">Spaces</span></div>
+            </div>
 
-      <div class="tool-bottom-actions" style="margin-bottom: 32px;">
-        <button id="btn-clear" class="btn btn-secondary">Clear Text</button>
-      </div>
+            <!-- Input area -->
+            <div style="margin-bottom: 16px;">
+              <label class="tool-label" for="input" style="font-weight: 600; margin-bottom: 8px; display: block;">Enter Your Text</label>
+              <textarea id="input" class="counter-textarea" style="height: 180px;" placeholder="Type or paste your text content here to calculate details..." autofocus></textarea>
+            </div>
 
-      <div class="frequency-chart-container" id="chart-section" style="display: none;">
-        <div class="frequency-chart-title">Letter Frequency Distribution (A - Z)</div>
-        <div id="chart-bars">
-          <!-- Bars will be dynamically populated -->
+            <!-- Clear Action Button -->
+            <div class="action-row" style="justify-content: flex-end;">
+              <button id="btn-clear" class="btn-action" style="color: var(--color-red); border-color: rgba(239, 68, 68, 0.2);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2-2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+                Clear Text
+              </button>
+            </div>
+          </div>
+
+          <!-- Chart Panel -->
+          <div class="tool-panel frequency-chart-container" id="chart-section" style="display: none; margin-top: 0;">
+            <div class="tool-panel-title">
+              <div style="display:flex;align-items:center;gap:8px">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                <span>Letter Frequency Distribution (A - Z)</span>
+              </div>
+            </div>
+            <div id="chart-bars" style="margin-top: 16px;">
+              <!-- Bars will be dynamically populated -->
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- FAQ Section (Semantic & Pre-rendered for NLP SEO) -->
+      <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <h2>Frequently Asked Questions</h2>
+          </div>
+        </div>
+        <div class="tool-faq-list">
+          <details class="tool-faq-item" open>
+            <summary class="tool-faq-q">How does the Letter Counter analyze text?</summary>
+            <div class="tool-faq-a">
+              <p>The tool loops through every character of your text locally in your browser. It calculates the counts of total letters, vowels, consonants, digits, and spaces, and maps the frequency distribution of alphabetical letters (A to Z) on a responsive chart.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">What is the letter frequency distribution chart?</summary>
+            <div class="tool-faq-a">
+              <p>The distribution chart is a visual representation of how often each letter (from A to Z) appears in your text. The bar length represents the relative frequency of each letter, normalized against the most frequent character in the text.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Can this tool differentiate between vowels and consonants?</summary>
+            <div class="tool-faq-a">
+              <p>Yes. In the stats panel, the tool displays separate counts for Vowels (A, E, I, O, U) and Consonants (all other alphabetical letters) so you can analyze structural details of your text.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Can this tool assist in solving cryptography ciphers?</summary>
+            <div class="tool-faq-a">
+              <p>Absolutely. Frequency analysis is a primary tool for breaking simple substitution ciphers (such as Caesar ciphers or ROT13). Since certain letters appear with predictable frequencies in English, comparing cipher text frequencies with average English frequencies can reveal key patterns.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Are uppercase and lowercase letters counted together?</summary>
+            <div class="tool-faq-a">
+              <p>Yes. The counting logic normalizes characters to uppercase before processing, so 'a' and 'A' are grouped together into a single frequency tally for each letter of the alphabet.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- How It Works Section (Semantic step-by-step layout) -->
+      <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            <h2>How the Letter Counter Works</h2>
+          </div>
+        </div>
+        <p>Our Letter Counter analyzes raw characters locally in your browser. It processes strings in memory using these distinct steps:</p>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">STEP 1</div>
+            <h3>Provide Text</h3>
+            <p>Paste your copy or type directly into the main analyzer block. The system detects input changes and triggers calculations immediately.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">STEP 2</div>
+            <h3>Distribution Analysis</h3>
+            <p>The parser tallies letters, identifies vowels vs consonants, and indexes letter frequencies in an internal key-value hash object.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">STEP 3</div>
+            <h3>Inspect Chart</h3>
+            <p>Review the visual letter distribution bars. The chart renders letter occurrences sorted alphabetically, highlighting density balances.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEO Scientific Copy & Formulas -->
+      <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M3 20h9M12 4v16"></path></svg>
+            <h2>The Science & Linguistics of Frequency Distribution</h2>
+          </div>
+        </div>
+        <div class="seo-content-rich">
+          <h3>ETAOIN SHRDLU: English Letter Frequencies</h3>
+          <p>Letters do not appear with equal probability in natural languages. In written English, character distribution follows a well-documented statistical curve known as the **ETAOIN SHRDLU** order. The relative frequency average for standard English text is mapped as:</p>
+          <div class="seo-formula-box">
+            Most Frequent: E (~12.7%) · T (~9.1%) · A (~8.2%) · O (~7.5%) · I (~7.0%)
+            <br>
+            Rarest Letters: J (~0.15%) · X (~0.15%) · Q (~0.10%) · Z (~0.07%)
+          </div>
+          <p>Analyzing letter distribution allows linguists and search engines to classify languages, test readability metrics, and optimize keyboard layouts (like QWERTY vs. Dvorak).</p>
+
+          <h3>Linguistic Parsing Algorithms</h3>
+          <p>The analyzer loops through characters sequentially to index text. When processing a string, lowercase characters are mapped to uppercase equivalent codes. A standard index lookup matches characters against specific classes:</p>
+          <ul>
+            <li><strong>Vowels:</strong> Matches standard letters (A, E, I, O, U) with case insensitivity.</li>
+            <li><strong>Consonants:</strong> Matches standard alphabet characters excluding vowels.</li>
+            <li><strong>Spaces & Tabs:</strong> Tallies whitespace delimiters (`\s` or tab indent markers).</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Tip Box -->
+      <div class="tool-tip-box" style="margin-top:24px">
+        <div class="tool-tip-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+        </div>
+        <div class="tool-tip-content">
+          <strong>Linguistic Tip:</strong> Letter frequency analysis can help you identify ciphers or substitution patterns in encoded messages. In short texts, a high frequency of letters like E, T, or A usually indicates standard English syntax.
+        </div>
+      </div>
+
+      <!-- Related Tools Section -->
+      <section class="related-tools">
+        <h2 class="related-tools-heading">Related Tools</h2>
+        <div class="related-tools-grid">
+          <a href="../character-counter/index.html" class="related-tool-card">
+            <div class="related-tool-card-top">
+              <div class="related-tool-icon-wrapper tool-icon-green" style="background: var(--color-green); color: white; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="4" y1="9" x2="20" y2="9"></line>
+                  <line x1="4" y1="15" x2="20" y2="15"></line>
+                  <line x1="10" y1="3" x2="8" y2="21"></line>
+                  <line x1="16" y1="3" x2="14" y2="21"></line>
+                </svg>
+              </div>
+              <span class="related-tool-category-badge category-text-badge">Text Tools</span>
+            </div>
+            <div class="related-tool-card-body">
+              <h3 class="related-tool-name">Character Counter Pro</h3>
+              <p class="related-tool-desc">Count characters with or without spaces, count digits, lines, and unique words in real-time.</p>
+            </div>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+          <a href="../word-counter/index.html" class="related-tool-card">
+            <div class="related-tool-card-top">
+              <div class="related-tool-icon-wrapper tool-icon-green" style="background: var(--color-green); color: white; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+              </div>
+              <span class="related-tool-category-badge category-text-badge">Text Tools</span>
+            </div>
+            <div class="related-tool-card-body">
+              <h3 class="related-tool-name">Premium Word Counter</h3>
+              <p class="related-tool-desc">Count words, characters, sentences, paragraphs, and estimate reading/speaking times instantly.</p>
+            </div>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+          <a href="../morse-code-translator/index.html" class="related-tool-card">
+            <div class="related-tool-card-top">
+              <div class="related-tool-icon-wrapper tool-icon-green" style="background: var(--color-green); color: white; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line>
+                </svg>
+              </div>
+              <span class="related-tool-category-badge category-text-badge">Text Tools</span>
+            </div>
+            <div class="related-tool-card-body">
+              <h3 class="related-tool-name">Morse Code Translator</h3>
+              <p class="related-tool-desc">Convert plain text messages into Morse code audio and visual signals instantly online.</p>
+            </div>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Closing CTA Banner -->
+      <section class="seo-cta-banner">
+        <h2>Map and Analyze Letter Frequencies Instantly</h2>
+        <p>Type or paste your text above. Explore vowels, consonants, numbers, and letter distribution charts parsed entirely in your browser.</p>
+        <a href="#tool-workspace" class="seo-cta-btn">↑ Back to Letter Analyzer</a>
+      </section>
+
+      <!-- SEO Articles -->
+      <section class="seo-text-section">
+        <h2>Linguistic Analysis: The Importance of Letter Frequency in English</h2>
+        <p>In linguistic studies, mapping the occurrence of individual letters plays a fundamental role in decoding patterns, establishing text authorship, and calculating readability. Throughout history, typographers and printers noted that certain letters are used far more frequently than others. This directly influenced the design of early typewriters, typesetting machines, and today’s modern keyboards, placing the most common keys in easily reachable positions to maximize typing efficiency.</p>
+        <p>By using our Letter Counter Pro, writers, linguistic researchers, and students can analyze any English text block to check if it conforms to standard English distribution curves or features unique stylistic variances.</p>
+      </section>
+
+      <section class="seo-text-section">
+        <h2>Using Letter Counters for Cryptography, Ciphers, and Word Games</h2>
+        <p>Beyond linguistics, letter frequency counts are the primary weapon for breaking classic substitution ciphers. Because English letters have stable relative frequencies, cipher text can be deciphered by counting the frequency of each encrypted letter and mapping them to standard English letter occurrences (such as replacing the most common cipher character with 'E').</p>
+        <p>Word game enthusiasts also leverage frequency counts to solve puzzles, anagrams, and optimize scoring strategies in games like Scrabble or Wordle, where playing high-probability letters increases win ratios. Our tool provides clean, accurate frequency breakdowns in real-time to help you decipher, write, and play smarter.</p>
+      </section>
+
+      <!-- Reference Table -->
+      <section class="seo-table-section">
+        <h2>English Character Frequency Reference Table</h2>
+        <p>Average frequency percentages for character types in standard English text:</p>
+        <div class="seo-ref-table-wrap">
+          <table class="seo-ref-table">
+            <thead>
+              <tr>
+                <th>Character Class</th>
+                <th>Standard Matches</th>
+                <th>English Average Frequency</th>
+                <th>Typical Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Vowels</td><td>A, E, I, O, U</td><td>~38.2% of characters</td><td>Provide phonetic structure and readability</td></tr>
+              <tr><td>Consonants</td><td>B, C, D, F, G, H, J, K, L, M, N, P, Q, R, S, T, V, W, X, Y, Z</td><td>~61.8% of characters</td><td>Add grammatical distinction and structure</td></tr>
+              <tr><td>Top Letter (E)</td><td>E / e</td><td>~12.7% of characters</td><td>Most frequent alphabetical letter in English</td></tr>
+              <tr><td>Rare Letters</td><td>J, Q, X, Z</td><td>Under 0.5% combined</td><td>Least frequent alphabet letters</td></tr>
+              <tr><td>Digits</td><td>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</td><td>Variable (context-specific)</td><td>Represent counts, metrics, data items</td></tr>
+              <tr><td>Whitespace</td><td>Space, Tab, Newline</td><td>~15% – 20% of text</td><td>Separate words, mark paragraph breaks</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:13px;color:var(--color-muted);margin-top:12px">Use the analyzer above to map the exact frequencies of your unique text blocks.</p>
+      </section>
     </div>
-  
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid"><a href="../binary-to-text/index.html" class="related-tool-card"><strong class="related-tool-name">Binary to Text Converter</strong><span class="related-tool-link">Try this tool</span></a><a href="../find-and-replace/index.html" class="related-tool-card"><strong class="related-tool-name">Find and Replace</strong><span class="related-tool-link">Try this tool</span></a><a href="../morse-code-translator/index.html" class="related-tool-card"><strong class="related-tool-name">Morse Code Translator</strong><span class="related-tool-link">Try this tool</span></a></div></section>
   </main>
 
   <footer class="footer" id="footer">

@@ -19,4 +19,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   input.addEventListener('input', analyze);
   analyze();
+
+  // Copy & Clear Action Buttons
+  const btnCopy = document.getElementById('btn-copy');
+  const btnClear = document.getElementById('btn-clear');
+  const copyToast = document.getElementById('copy-toast');
+
+  if (btnCopy) {
+    btnCopy.addEventListener('click', () => {
+      if (!input.value) return;
+      navigator.clipboard.writeText(input.value).then(() => {
+        if (copyToast) {
+          copyToast.classList.add('show');
+          setTimeout(() => copyToast.classList.remove('show'), 2000);
+        }
+      });
+    });
+  }
+
+  if (btnClear) {
+    btnClear.addEventListener('click', () => {
+      input.value = '';
+      analyze();
+    });
+  }
 });
+
