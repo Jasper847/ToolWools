@@ -1,34 +1,149 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://toolwools.com/tools/pdf-merger/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <meta name="theme-color" content="#F4511E">
-  <title>PDF Merger — Combine PDF Files Online | ToolWools</title>
-  <meta name="description" content="Merge multiple PDF files into one document. Drag to reorder, then download. Client-side, private, free.">
+  <title>PDF Merger — Combine PDF Files Online Free | ToolWools</title>
+  <meta name="description" content="Merge multiple PDF files into one document in seconds. Drag to reorder pages, preview before merging, then download. 100% client-side — your files never leave your browser.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../styles.css">
   <link rel="stylesheet" href="../tools.css">
+  <link rel="stylesheet" href="../tool-shared.css">
 </head>
 <body>
-  <main class="tool-page">
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-logo" aria-label="ToolWools Home">
+        <div class="logo-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#F4511E"/><path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/><path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+        <span class="logo-text">ToolWools</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="../index.html" class="nav-link">All Tools</a>
+        <a href="../index.html?cat=pdf" class="nav-link">PDF Tools</a>
+        <a href="../../blog/index.html" class="nav-link">Blog</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/><path d="M10 2V4M10 16V18M2 10H4M16 10H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <a href="../../index.html#cta" class="btn btn-primary nav-cta">Get Started Free</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html" class="mobile-link">All Tools</a>
+      <a href="../index.html?cat=pdf" class="mobile-link">PDF Tools</a>
+      <a href="../../index.html#cta" class="btn btn-primary mobile-cta">Get Started Free</a>
+    </div>
+  </header>
+
+  <main id="main-content" class="tool-page">
     <div class="tool-container">
-      <h1 class="tool-title">PDF Merger</h1>
-      <p class="tool-subtitle">Combine multiple PDFs into a single document</p>
-      <div class="upload-zone" id="upload-zone">
-        <p>Drag & drop PDF files or click to browse (multiple)</p>
+      <nav class="tool-breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html">Home</a><span aria-hidden="true">›</span>
+        <a href="../index.html">Tools</a><span aria-hidden="true">›</span>
+        <span aria-current="page">PDF Merger</span>
+      </nav>
+
+      <div class="tool-header">
+        <div class="tool-header-icon tool-icon-red">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="white" stroke-width="2"/><path d="M14 2v6h6" stroke="white" stroke-width="2"/><path d="M9 13h6M12 10v6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <h1 class="tool-title">PDF Merger</h1>
+          <p class="tool-subtitle">Combine multiple PDF files into a single document. Drag and drop to reorder, then download. Everything runs in your browser — your files never leave your device.</p>
+        </div>
+      </div>
+
+      <!-- Privacy badge -->
+      <div style="display:flex;align-items:center;gap:8px;padding:12px 16px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:12px;margin-bottom:24px;font-size:13px;color:var(--color-green);font-weight:600">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        100% Private — Your PDF files are processed locally and never uploaded to any server
+      </div>
+
+      <!-- Upload Zone -->
+      <div class="upload-zone" id="upload-zone" role="button" tabindex="0" aria-label="Upload PDF files">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style="color:var(--color-muted);margin-bottom:12px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="1.5"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.5"/><path d="M12 11v6M9 14l3-3 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <p style="font-weight:600;color:var(--color-dark);margin-bottom:4px">Drop PDF files here or click to browse</p>
+        <p style="font-size:13px;color:var(--color-muted)">Select multiple PDF files • Drag to reorder after upload</p>
         <input type="file" id="file-input" accept="application/pdf" multiple hidden>
       </div>
-      <ul id="file-list" class="file-list"></ul>
-      <div class="tool-bottom-actions">
-        <button id="btn-merge" class="btn btn-primary" disabled>Merge PDFs</button>
-        <button id="btn-clear" class="btn btn-secondary">Clear</button>
+
+      <!-- File List -->
+      <div id="file-list-section" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <p style="font-size:14px;font-weight:600;color:var(--color-dark)">Files to merge (<span id="file-count">0</span>) — <span style="font-weight:400;color:var(--color-muted)">Drag to reorder</span></p>
+          <button id="btn-add-more" class="btn btn-secondary" style="font-size:13px;padding:6px 14px">+ Add More</button>
+        </div>
+        <ul id="file-list" class="file-list" aria-label="PDF files to merge"></ul>
+
+        <div class="stats-grid" style="grid-template-columns:repeat(3,1fr)">
+          <div class="stat-card"><span class="stat-value" id="stat-files">0</span><span class="stat-label">Files</span></div>
+          <div class="stat-card"><span class="stat-value" id="stat-pages">—</span><span class="stat-label">Total Pages</span></div>
+          <div class="stat-card"><span class="stat-value" id="stat-size">—</span><span class="stat-label">Total Size</span></div>
+        </div>
+
+        <!-- Output filename -->
+        <label class="tool-label" for="output-name" style="margin-top:16px">Output Filename</label>
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:16px">
+          <input type="text" id="output-name" class="tool-input" value="merged" placeholder="merged" style="flex:1">
+          <span style="font-size:14px;color:var(--color-muted)">.pdf</span>
+        </div>
+
+        <div class="tool-bottom-actions">
+          <button id="btn-merge" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Merge &amp; Download PDF
+          </button>
+          <button id="btn-clear" class="btn btn-secondary">Clear All</button>
+        </div>
+
+        <!-- Progress -->
+        <div id="progress-wrap" style="display:none">
+          <div class="tool-progress"><div class="tool-progress-bar" id="progress-bar" style="width:0%"></div></div>
+          <p id="status-text" style="font-size:13px;color:var(--color-muted);text-align:center"></p>
+        </div>
       </div>
-      <div id="status" class="tool-badge" style="margin-top:12px"></div>
+
+      <div class="tool-info-grid">
+        <div class="tool-info-card">
+          <h3>How to merge PDFs</h3>
+          <ul>
+            <li>Upload 2 or more PDF files</li>
+            <li>Drag and drop to set the order</li>
+            <li>Click "Merge &amp; Download PDF"</li>
+            <li>Your merged PDF downloads automatically</li>
+          </ul>
+        </div>
+        <div class="tool-info-card">
+          <h3>Privacy &amp; Security</h3>
+          <ul>
+            <li>All processing happens in your browser</li>
+            <li>No files are uploaded to any server</li>
+            <li>Works completely offline after page load</li>
+            <li>Your files are never stored or shared</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </main>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-bottom">
+        <span class="footer-copyright">© 2026 ToolWools. All rights reserved.</span>
+        <span class="footer-made">Made with <span class="heart">♥</span> for the community</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" crossorigin="anonymous"></script>
   <script src="../../script.js"></script>
   <script src="pdf-merger.js"></script>
 </body>

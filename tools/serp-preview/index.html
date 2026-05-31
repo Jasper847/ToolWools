@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="canonical" href="https://toolwools.com/tools/serp-preview/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#F4511E"><title>SERP Preview Tool — Google Search Result Simulator | ToolWools</title><meta name="description" content="Preview how your page appears in Google search results. Simulate title, URL, and meta description. Check character limits, pixel widths, and optimize for CTR. Free."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../styles.css"><link rel="stylesheet" href="../tools.css"><link rel="stylesheet" href="../tool-shared.css"></head><body>
+<a href="#main-content" class="skip-to-content">Skip to content</a>
+<header class="navbar" id="navbar"><div class="nav-container"><a href="../../index.html" class="nav-logo"><div class="logo-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#F4511E"/><path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/><path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg></div><span class="logo-text">ToolWools</span></a><nav class="nav-links" id="navLinks"><a href="../index.html" class="nav-link">All Tools</a><a href="../index.html?cat=seo" class="nav-link">SEO Tools</a></nav><div class="nav-actions"><button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"><svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/><path d="M10 2V4M10 16V18M2 10H4M16 10H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><a href="../../index.html#cta" class="btn btn-primary nav-cta">Get Started Free</a><button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div></div><div class="mobile-menu" id="mobileMenu"><a href="../index.html" class="mobile-link">All Tools</a><a href="../../index.html#cta" class="btn btn-primary mobile-cta">Get Started Free</a></div></header>
+<main id="main-content" class="tool-page"><div class="tool-container">
+<nav class="tool-breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span aria-hidden="true">›</span><a href="../index.html">Tools</a><span aria-hidden="true">›</span><span aria-current="page">SERP Preview</span></nav>
+<div class="tool-header"><div class="tool-header-icon tool-icon-blue"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><div><h1 class="tool-title">SERP Preview Tool</h1><p class="tool-subtitle">Simulate exactly how your page appears in Google search results — including title tag, URL, and meta description. Real-time character &amp; pixel-width limits based on current Google standards.</p></div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+<div>
+<label class="tool-label" for="title-input">Page Title Tag <span id="title-char-badge" class="serp-char-count ok" style="float:right">0/60</span></label>
+<input type="text" id="title-input" class="tool-input" value="Best Free Online Tools 2026 | ToolWools" placeholder="Page title tag..." style="width:100%;margin-bottom:16px">
+<label class="tool-label" for="url-input">URL / Slug <span style="font-size:11px;color:var(--color-muted);font-weight:400">(shown below title)</span></label>
+<input type="text" id="url-input" class="tool-input" value="https://toolwools.com" placeholder="https://example.com/page-slug" style="width:100%;margin-bottom:16px">
+<label class="tool-label" for="desc-input">Meta Description <span id="desc-char-badge" class="serp-char-count ok" style="float:right">0/160</span></label>
+<textarea id="desc-input" class="tool-textarea" rows="4" placeholder="Enter your meta description...">Free online tools for text, images, SEO, and developer utilities. No signup required — use 150+ tools instantly in your browser.</textarea>
+<label class="tool-label" for="date-input" style="margin-top:12px">Date (optional)</label>
+<input type="date" id="date-input" class="tool-input" style="width:160px">
+</div>
+<div>
+<div class="split-pane-label" style="margin-bottom:8px">Google Desktop Preview</div>
+<div style="background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;font-family:Arial,sans-serif;max-width:600px">
+<div class="serp-url" id="serp-url">toolwools.com</div>
+<div class="serp-title" id="serp-title">Best Free Online Tools 2026 | ToolWools</div>
+<div class="serp-description" id="serp-desc">Free online tools for text, images, SEO, and developer utilities. No signup required — use 150+ tools instantly in your browser.</div>
+</div>
+<div class="split-pane-label" style="margin:16px 0 8px">Google Mobile Preview</div>
+<div style="background:#fff;border:1px solid #ddd;border-radius:12px;padding:16px;font-family:Arial,sans-serif;max-width:380px">
+<div class="serp-url" id="serp-url-m" style="font-size:11px">toolwools.com</div>
+<div class="serp-title" id="serp-title-m" style="font-size:16px">Best Free Online Tools 2026 | ToolWools</div>
+<div class="serp-description" id="serp-desc-m" style="font-size:12px">Free online tools for text, images, SEO...</div>
+</div>
+</div>
+</div>
+<div class="checklist" id="checks-list" style="margin-top:20px"></div>
+<div class="tool-bottom-actions"><button id="btn-copy-meta" class="btn btn-primary">Copy Meta Tags HTML</button><button id="btn-copy-og" class="btn btn-secondary">Copy OG Tags</button></div>
+<label class="tool-label" for="meta-output" style="margin-top:8px">Generated Meta HTML</label>
+<textarea id="meta-output" class="tool-textarea" rows="8" readonly style="font-family:'Fira Code',monospace;font-size:12px"></textarea>
+</div></main>
+<footer class="footer"><div class="footer-container"><div class="footer-bottom"><span class="footer-copyright">© 2026 ToolWools. All rights reserved.</span></div></div></footer>
+<script src="../../script.js"></script><script src="serp-preview.js"></script></body></html>
