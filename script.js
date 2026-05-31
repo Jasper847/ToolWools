@@ -167,16 +167,29 @@ document.addEventListener('DOMContentLoaded', () => {
   animateElements.forEach(el => scrollObserver.observe(el));
 
   // ==========================================
-  // 6. TOOL CATEGORY TABS
+  // 6. TOOL CATEGORY TABS (with ARIA)
   // ==========================================
   const tabs = document.querySelectorAll('.tab[data-category]');
   const toolCards = document.querySelectorAll('.tool-card[data-category]');
 
+  // Add ARIA tab pattern
+  const tabsContainer = tabs.length ? tabs[0].parentElement : null;
+  if (tabsContainer) {
+    tabsContainer.setAttribute('role', 'tablist');
+    tabsContainer.setAttribute('aria-label', 'Tool categories');
+  }
+  tabs.forEach((tab, i) => {
+    tab.setAttribute('role', 'tab');
+    tab.setAttribute('aria-selected', tab.classList.contains('active') ? 'true' : 'false');
+    tab.setAttribute('id', 'tab-' + (tab.getAttribute('data-category') || i));
+  });
+
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      // Update active tab
-      tabs.forEach(t => t.classList.remove('active'));
+      // Update active tab + ARIA
+      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
       tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
 
       const category = tab.getAttribute('data-category');
 
@@ -347,8 +360,34 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         tab.click();
       }
+      // Arrow key navigation for tab role
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const allTabs = Array.from(document.querySelectorAll('.tab[data-category]'));
+        const idx = allTabs.indexOf(tab);
+        let next;
+        if (e.key === 'ArrowRight') next = allTabs[(idx + 1) % allTabs.length];
+        else next = allTabs[(idx - 1 + allTabs.length) % allTabs.length];
+        if (next) { next.focus(); next.click(); }
+      }
     });
   });
+
+  // ==========================================
+  // 12b. ARIA-CURRENT ON NAV LINKS
+  // ==========================================
+  (function setAriaCurrent() {
+    var currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+    document.querySelectorAll('.nav-link, .mobile-link, .footer-link').forEach(function(link) {
+      var href = link.getAttribute('href');
+      if (!href) return;
+      // Resolve relative hrefs
+      try {
+        var resolved = new URL(href, window.location.href).pathname.replace(/\/$/, '') || '/';
+        if (resolved === currentPath) link.setAttribute('aria-current', 'page');
+      } catch(e) {}
+    });
+  })();
 
   // ==========================================
   // 13. INITIAL REVEAL-UP TRIGGER FOR ABOVE-FOLD

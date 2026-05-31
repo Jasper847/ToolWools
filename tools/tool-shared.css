@@ -1,0 +1,367 @@
+/* =============================================
+   TOOLWOOLS — Shared Tool Page Components (Phase 4)
+   Provides consistent styling for all tool pages.
+   ============================================= */
+
+/* Tool page layout */
+.tool-page {
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.tool-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-6) var(--space-11);
+}
+
+.tool-title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-dark);
+  margin-bottom: var(--space-2);
+  line-height: 1.15;
+}
+
+.tool-subtitle {
+  font-size: var(--text-base);
+  color: var(--color-muted);
+  margin-bottom: var(--space-7);
+  line-height: 1.6;
+}
+
+/* Textarea */
+.tool-textarea {
+  width: 100%;
+  padding: var(--space-4);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  color: var(--color-dark);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  resize: vertical;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: var(--space-4);
+}
+.tool-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.12);
+}
+.tool-textarea[readonly] {
+  background: var(--color-bg);
+  cursor: default;
+}
+
+/* Inputs */
+.tool-input {
+  padding: 10px 14px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-dark);
+  font-size: var(--text-base);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  flex: 1;
+}
+.tool-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.12);
+}
+.tool-input-sm {
+  padding: 8px 12px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-dark);
+  font-size: var(--text-sm);
+  width: 80px;
+}
+.tool-input-sm:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.12);
+}
+
+/* Select */
+.tool-select {
+  padding: 8px 14px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-dark);
+  font-size: var(--text-base);
+  cursor: pointer;
+}
+.tool-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.12);
+}
+
+/* Control rows */
+.tool-controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+.tool-controls-row label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-base);
+  color: var(--color-dark);
+  cursor: pointer;
+}
+
+/* Action buttons grid */
+.tool-actions-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+.tool-actions-grid .action-btn {
+  padding: 10px 16px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-dark);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.tool-actions-grid .action-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--color-primary-bg);
+}
+
+/* Bottom actions bar */
+.tool-bottom-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+/* Badge/pill */
+.tool-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--color-primary-bg);
+  color: var(--color-primary);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+/* Stats grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  text-align: center;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.stat-card:hover {
+  border-color: var(--color-primary-border);
+  transform: translateY(-2px);
+}
+.stat-card .stat-value {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: var(--space-1);
+}
+.stat-card .stat-label {
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Upload zone */
+.upload-zone {
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-9) var(--space-6);
+  text-align: center;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  margin-bottom: var(--space-4);
+}
+.upload-zone:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-bg);
+}
+.upload-zone.dragover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-bg);
+  transform: scale(1.01);
+}
+
+/* File list */
+.file-list {
+  list-style: none;
+  margin: var(--space-4) 0;
+}
+.file-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-dark);
+}
+.file-list-item .btn-remove {
+  background: none;
+  border: none;
+  color: var(--color-red);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+.file-list-item .btn-remove:hover {
+  background: rgba(var(--color-red-rgb), 0.1);
+}
+
+/* Density table */
+.density-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.density-table th,
+.density-table td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+.density-table th {
+  font-weight: 600;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  font-size: var(--text-xs);
+  letter-spacing: 0.05em;
+}
+.density-table td {
+  color: var(--color-dark);
+}
+.density-table tr:hover td {
+  background: var(--color-primary-bg);
+}
+
+/* Responsive: tool pages */
+@media (max-width: 640px) {
+  .tool-container {
+    padding: var(--space-6) var(--space-4) var(--space-9);
+  }
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .tool-controls-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .tool-bottom-actions {
+    flex-direction: column;
+  }
+  .tool-bottom-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Container queries for tool panels */
+@supports (container-type: inline-size) {
+  .tool-container {
+    container-type: inline-size;
+  }
+  @container (max-width: 500px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .tool-actions-grid {
+      flex-direction: column;
+    }
+  }
+}
+
+/* Dark mode overrides for tool components */
+[data-theme="dark"] .tool-textarea {
+  background: var(--color-bg);
+  border-color: var(--color-border);
+}
+[data-theme="dark"] .tool-input,
+[data-theme="dark"] .tool-input-sm,
+[data-theme="dark"] .tool-select {
+  background: var(--color-bg);
+  border-color: var(--color-border);
+}
+[data-theme="dark"] .stat-card {
+  background: var(--color-bg);
+  border-color: var(--color-border);
+}
+[data-theme="dark"] .upload-zone {
+  border-color: var(--color-border);
+}
+[data-theme="dark"] .upload-zone:hover,
+[data-theme="dark"] .upload-zone.dragover {
+  border-color: var(--color-primary);
+  background: rgba(var(--color-primary-rgb), 0.08);
+}
+[data-theme="dark"] .tool-actions-grid .action-btn {
+  background: var(--color-bg);
+  border-color: var(--color-border);
+}
+[data-theme="dark"] .tool-actions-grid .action-btn:hover {
+  background: rgba(var(--color-primary-rgb), 0.1);
+}
+[data-theme="dark"] .density-table tr:hover td {
+  background: rgba(var(--color-primary-rgb), 0.06);
+}
+
+/* Scrollbar theming for dark mode */
+[data-theme="dark"] ::-webkit-scrollbar-track { background: var(--color-bg); }
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+
+/* Responsive table wrapper */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: var(--space-4);
+}
+
+/* Print styles for tool pages */
+@media print {
+  .navbar, .footer, .tool-bottom-actions, .upload-zone, .skip-to-content { display: none !important; }
+  .tool-container { padding: 0; max-width: 100%; }
+  .tool-textarea { border: 1px solid #000; }
+}
