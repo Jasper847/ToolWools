@@ -55,6 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileMenu.classList.toggle('open');
     const isOpen = hamburger.classList.contains('active');
     hamburger.setAttribute('aria-expanded', isOpen);
+    // Prevent body scroll when menu is open
+    document.body.classList.toggle('menu-open', isOpen);
   });
 
   // Close mobile menu on link click
@@ -63,8 +65,21 @@ document.addEventListener('DOMContentLoaded', () => {
       hamburger.classList.remove('active');
       mobileMenu.classList.remove('open');
       hamburger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
     });
   });
+
+  // Close mobile menu on scroll
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    if (mobileMenu.classList.contains('open') && Math.abs(window.scrollY - lastScrollY) > 60) {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+    }
+    lastScrollY = window.scrollY;
+  }, { passive: true });
 
   // ==========================================
   // 3. DROPDOWN MEGA MENU
