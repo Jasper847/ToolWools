@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function handleFile(file) {
     // Validate file type (must be image)
     if (!file.type.match('image.*')) {
-      alert('Unsupported file type. Please upload an image (PNG, JPG, WEBP).');
+      showToast('Unsupported file type. Please upload an image (PNG, JPG, or WEBP).', 'error');
       return;
     }
 
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     originalImage.onerror = () => {
-      alert('Error loading image. Please try another file.');
+      showToast('Could not load that image. Please try another file.', 'error');
       resetState();
     };
 
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Perform canvas.toBlob compression
     canvas.toBlob((blob) => {
       if (!blob) {
-        alert('Compression failed. Try a smaller quality range or alternative format.');
+        showToast('Compression failed. Try a different quality level or output format.', 'error');
         loadingOverlay.style.display = 'none';
         return;
       }

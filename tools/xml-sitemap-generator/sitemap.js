@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     scannedFiles = Array.from(filesList).filter(file => file.name.endsWith('.html') || file.name.endsWith('.htm'));
     
     if (scannedFiles.length === 0) {
-      alert('Please upload valid HTML files (.html or .htm).');
+      showToast('Please upload valid HTML files (.html or .htm).', 'warning');
       htmlUploadStatus.textContent = 'Choose HTML files or drag here';
       return;
     }
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
   btnCrawl.addEventListener('click', () => {
     let rootUrl = siteUrlInput.value.trim();
     if (!rootUrl) {
-      alert('Please input your website Root URL.');
+      showToast('Please enter your website root URL.', 'warning');
       return;
     }
 
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       new URL(rootUrl);
     } catch (e) {
-      alert('Invalid URL formatting.');
+      showToast('That URL does not look valid. Please check the format.', 'error');
       return;
     }
 
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (activeMethod === 'manual') {
       const rawText = manualUrlsTextarea.value.trim();
       if (!rawText) {
-        alert('Please enter at least one URL path.');
+        showToast('Please enter at least one URL path.', 'warning');
         return;
       }
       paths = rawText.split('\n')
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .filter(line => line.length > 0);
     } else {
       if (scannedFiles.length === 0) {
-        alert('Please upload HTML files to scan.');
+        showToast('Please upload HTML files to scan.', 'warning');
         return;
       }
       

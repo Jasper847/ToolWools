@@ -363,3 +363,112 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, 100);
 });
+
+
+/* =============================================
+   GLOBAL TOAST SYSTEM (site-wide)
+   Provides window.showToast(message, type, duration)
+   type: 'info' | 'success' | 'error' | 'warning'
+   Self-contained: injects its own styles + container,
+   so it works on every page that loads script.js.
+   ============================================= */
+(function () {
+  if (window.showToast) return; // avoid double-definition
+
+  var STYLE_ID = 'tw-toast-styles';
+  var CONTAINER_ID = 'tw-toast-container';
+
+  function injectStyles() {
+    if (document.getElementById(STYLE_ID)) return;
+    var css = ''
+      + '#' + CONTAINER_ID + '{position:fixed;z-index:99999;bottom:24px;right:24px;display:flex;'
+      + 'flex-direction:column;gap:12px;max-width:380px;width:calc(100% - 48px);pointer-events:none;}'
+      + '.tw-toast{pointer-events:auto;display:flex;align-items:flex-start;gap:12px;padding:14px 16px;'
+      + 'border-radius:14px;background:#1A1A2E;color:#fff;box-shadow:0 12px 32px rgba(0,0,0,0.28);'
+      + 'font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:14px;line-height:1.45;'
+      + 'border:1px solid rgba(255,255,255,0.08);transform:translateY(16px) scale(0.98);opacity:0;'
+      + 'transition:transform .28s cubic-bezier(.16,1,.3,1),opacity .28s ease;will-change:transform,opacity;}'
+      + '.tw-toast.tw-show{transform:translateY(0) scale(1);opacity:1;}'
+      + '.tw-toast-icon{flex-shrink:0;width:22px;height:22px;display:flex;align-items:center;justify-content:center;'
+      + 'border-radius:50%;margin-top:1px;}'
+      + '.tw-toast-icon svg{width:14px;height:14px;}'
+      + '.tw-toast-msg{flex:1;font-weight:500;color:#fff;}'
+      + '.tw-toast-close{flex-shrink:0;background:none;border:none;color:rgba(255,255,255,0.55);cursor:pointer;'
+      + 'padding:0;line-height:1;font-size:18px;transition:color .2s ease;}'
+      + '.tw-toast-close:hover{color:#fff;}'
+      + '.tw-toast-success .tw-toast-icon{background:#10B981;color:#fff;}'
+      + '.tw-toast-error .tw-toast-icon{background:#EF4444;color:#fff;}'
+      + '.tw-toast-warning .tw-toast-icon{background:#F59E0B;color:#fff;}'
+      + '.tw-toast-info .tw-toast-icon{background:#2563EB;color:#fff;}'
+      + '@media (max-width:520px){#' + CONTAINER_ID + '{bottom:16px;right:16px;left:16px;width:auto;}}'
+      + '@media (prefers-reduced-motion:reduce){.tw-toast{transition:opacity .2s ease;transform:none;}}';
+    var style = document.createElement('style');
+    style.id = STYLE_ID;
+    style.textContent = css;
+    document.head.appendChild(style);
+  }
+
+  function getContainer() {
+    var c = document.getElementById(CONTAINER_ID);
+    if (!c) {
+      c = document.createElement('div');
+      c.id = CONTAINER_ID;
+      c.setAttribute('role', 'status');
+      c.setAttribute('aria-live', 'polite');
+      document.body.appendChild(c);
+    }
+    return c;
+  }
+
+  var ICONS = {
+    success: '<svg viewBox="0 0 20 20" fill="none"><path d="M5 10l3 3 7-7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    error: '<svg viewBox="0 0 20 20" fill="none"><path d="M6 6l8 8M14 6l-8 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>',
+    warning: '<svg viewBox="0 0 20 20" fill="none"><path d="M10 5v6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="10" cy="15" r="1.3" fill="currentColor"/></svg>',
+    info: '<svg viewBox="0 0 20 20" fill="none"><path d="M10 9v6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="10" cy="5.5" r="1.3" fill="currentColor"/></svg>'
+  };
+
+  window.showToast = function (message, type, duration) {
+    if (!message) return;
+    type = ICONS[type] ? type : 'info';
+    duration = typeof duration === 'number' ? duration : 3800;
+
+    injectStyles();
+    var container = getContainer();
+
+    var toast = document.createElement('div');
+    toast.className = 'tw-toast tw-toast-' + type;
+
+    var icon = document.createElement('span');
+    icon.className = 'tw-toast-icon';
+    icon.innerHTML = ICONS[type];
+
+    var msg = document.createElement('span');
+    msg.className = 'tw-toast-msg';
+    msg.textContent = message;
+
+    var close = document.createElement('button');
+    close.className = 'tw-toast-close';
+    close.setAttribute('aria-label', 'Dismiss notification');
+    close.innerHTML = '&times;';
+
+    toast.appendChild(icon);
+    toast.appendChild(msg);
+    toast.appendChild(close);
+    container.appendChild(toast);
+
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { toast.classList.add('tw-show'); });
+    });
+
+    var timer;
+    function dismiss() {
+      clearTimeout(timer);
+      toast.classList.remove('tw-show');
+      setTimeout(function () { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 300);
+    }
+    close.addEventListener('click', dismiss);
+    if (duration > 0) timer = setTimeout(dismiss, duration);
+
+    return dismiss;
+  };
+})();

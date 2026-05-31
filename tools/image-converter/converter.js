@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- IMAGE LOADING SYSTEM ---
   function loadImage(file) {
     if (!file.type.startsWith('image/')) {
-      alert('File is not a supported image type.');
+      showToast('That file is not a supported image type.', 'error');
       return;
     }
 
