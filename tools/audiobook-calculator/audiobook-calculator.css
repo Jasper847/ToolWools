@@ -580,3 +580,154 @@
 [data-theme="dark"] .ab-tabs{background:var(--color-surface);border-color:var(--color-border)}
 [data-theme="dark"] .ab-tab:hover{background:var(--color-bg)}
 @media(max-width:560px){.ab-tabs{flex-wrap:nowrap;-webkit-overflow-scrolling:touch}.ab-tab{font-size:12px;padding:10px 12px;min-width:max-content}}
+
+/* =============================================
+   FIX: Spacing, Padding, Responsive, Typography
+   ============================================= */
+
+/* Fix A: Constrain speed grid width + improve mobile */
+.ab-speed-grid {
+  max-width: 700px;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+/* Fix B: Comparison grid proper columns */
+.ab-comparison-grid {
+  max-width: 800px;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+/* Fix C: Results grid intermediate breakpoint */
+@media (max-width: 900px) {
+  .ab-results-grid { grid-template-columns: repeat(2, 1fr); }
+  .ab-speed-grid { grid-template-columns: repeat(4, 1fr); }
+  .ab-comparison-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .ab-results-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .ab-speed-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .ab-comparison-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .ab-result-card { padding: 16px 10px; }
+  .ab-result-value { font-size: clamp(20px, 5vw, 28px); }
+  .ab-speed-card { padding: 12px 6px; }
+  .ab-speed-value { font-size: 16px; }
+  .ab-speed-tag { font-size: 9px; padding: 2px 6px; }
+  .ab-compare-col { padding: 12px 6px; }
+  .ab-compare-speed { font-size: 13px; }
+  .ab-compare-time { font-size: 12px; }
+  .ab-compare-saved { font-size: 11px; }
+}
+
+@media (max-width: 400px) {
+  .ab-speed-grid { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .ab-comparison-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .ab-results-grid { gap: 8px; }
+  .ab-result-card { padding: 14px 8px; border-radius: 12px; }
+  .ab-result-value { font-size: 18px; }
+  .ab-result-label { font-size: 10px; }
+  .ab-speed-card { padding: 10px 4px; border-radius: 10px; }
+  .ab-speed-value { font-size: 14px; }
+}
+
+/* Fix D: Firefox slider thumb */
+.ab-slider-row input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(var(--color-primary-rgb), 0.3);
+}
+
+.ab-slider-row input[type="range"]::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--color-border);
+}
+
+/* Fix E: Input grid mobile stacking */
+@media (max-width: 480px) {
+  .ab-input-grid { grid-template-columns: 1fr; gap: 12px; }
+  .ab-slider-row { flex-direction: column; align-items: stretch; gap: 8px; }
+  .ab-slider-value { text-align: center; }
+}
+
+/* Fix F: SEO table scroll hint */
+.ab-table-scroll {
+  position: relative;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.ab-table-scroll::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40px;
+  background: linear-gradient(90deg, transparent, var(--color-surface));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+@media (max-width: 600px) {
+  .ab-table-scroll::after { opacity: 1; }
+}
+
+/* Fix G: Badge overflow on mobile */
+@media (max-width: 560px) {
+  .tool-badge {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+}
+
+/* Fix H: Consistent input sizing */
+.ab-input-grid .tool-input {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  padding: 14px 12px;
+}
+
+/* Fix I: Content container spacing consistency */
+.ab-tab-content {
+  padding: 0 4px;
+}
+
+@media (max-width: 640px) {
+  .ab-tab-content { padding: 0; }
+  .ab-tabs { margin-bottom: 16px; border-radius: 10px; }
+  .ab-tab { padding: 10px 10px; font-size: 11px; border-radius: 8px; }
+}
+
+/* Typography consistency */
+.ab-input-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--color-muted);
+}
+
+/* Ensure no overflow on narrow screens */
+.tool-workspace {
+  overflow-x: hidden;
+}
+
+/* Progress bar smooth */
+.ab-progress-bar {
+  background: var(--color-border);
+  border-radius: 8px;
+  height: 10px;
+  overflow: hidden;
+  margin: 16px 0;
+}
+.ab-progress-fill {
+  background: var(--color-primary);
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.4s cubic-bezier(0.21, 0.47, 0.32, 0.98);
+}
