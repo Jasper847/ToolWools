@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/pdf-merger/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>PDF Merger — Combine PDF Files Online | ToolWools</title>
+  <meta name="description" content="Merge multiple PDF files into one document. Drag to reorder, then download. Client-side, private, free.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-container">
+      <h1 class="tool-title">PDF Merger</h1>
+      <p class="tool-subtitle">Combine multiple PDFs into a single document</p>
+      <div class="upload-zone" id="upload-zone">
+        <p>Drag & drop PDF files or click to browse (multiple)</p>
+        <input type="file" id="file-input" accept="application/pdf" multiple hidden>
+      </div>
+      <ul id="file-list" class="file-list"></ul>
+      <div class="tool-bottom-actions">
+        <button id="btn-merge" class="btn btn-primary" disabled>Merge PDFs</button>
+        <button id="btn-clear" class="btn btn-secondary">Clear</button>
+      </div>
+      <div id="status" class="tool-badge" style="margin-top:12px"></div>
+    </div>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="../../script.js"></script>
+  <script src="pdf-merger.js"></script>
+</body>
+</html>

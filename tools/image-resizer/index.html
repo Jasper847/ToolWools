@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/image-resizer/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>Image Resizer — Resize Images Online | ToolWools</title>
+  <meta name="description" content="Resize images to exact dimensions or by percentage. Maintain aspect ratio, choose output format. Free, in-browser.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-container">
+      <h1 class="tool-title">Image Resizer</h1>
+      <p class="tool-subtitle">Resize images to exact dimensions or by percentage</p>
+      <div class="upload-zone" id="upload-zone">
+        <p>Drag & drop an image or click to browse</p>
+        <input type="file" id="file-input" accept="image/*" hidden>
+      </div>
+      <div id="controls" style="display:none">
+        <div class="tool-controls-row">
+          <label>Width: <input type="number" id="width" class="tool-input-sm" min="1"></label>
+          <label>Height: <input type="number" id="height" class="tool-input-sm" min="1"></label>
+          <label><input type="checkbox" id="lock-ratio" checked> Lock ratio</label>
+        </div>
+        <div class="tool-controls-row">
+          <label>Format:
+            <select id="format" class="tool-select">
+              <option value="image/png">PNG</option>
+              <option value="image/jpeg">JPEG</option>
+              <option value="image/webp">WEBP</option>
+            </select>
+          </label>
+        </div>
+        <div class="tool-bottom-actions">
+          <button id="btn-resize" class="btn btn-primary">Resize & Download</button>
+        </div>
+        <p id="info" class="tool-badge" style="margin-top:12px"></p>
+      </div>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+  <script src="image-resizer.js"></script>
+</body>
+</html>

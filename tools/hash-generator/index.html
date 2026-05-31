@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/hash-generator/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>Hash Generator — SHA-1, SHA-256, SHA-512 | ToolWools</title>
+  <meta name="description" content="Generate SHA-1, SHA-256, and SHA-512 hashes from text using the Web Crypto API. Secure, client-side, free.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-container">
+      <h1 class="tool-title">Hash Generator</h1>
+      <p class="tool-subtitle">Generate cryptographic hashes using Web Crypto API</p>
+      <textarea id="input" class="tool-textarea" rows="6" placeholder="Enter text to hash..."></textarea>
+      <div class="tool-bottom-actions">
+        <button class="btn btn-primary" data-algo="SHA-1">SHA-1</button>
+        <button class="btn btn-primary" data-algo="SHA-256">SHA-256</button>
+        <button class="btn btn-primary" data-algo="SHA-512">SHA-512</button>
+      </div>
+      <div class="stats-grid" style="margin-top:16px">
+        <div class="stat-card" style="grid-column:1/-1"><span class="stat-label" id="algo-label">Hash</span><input type="text" id="hash-output" class="tool-input" readonly placeholder="Hash will appear here..." style="font-family:monospace;font-size:13px"></div>
+      </div>
+      <div class="tool-bottom-actions"><button id="btn-copy" class="btn btn-secondary">Copy Hash</button></div>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+  <script src="hash-generator.js"></script>
+</body>
+</html>

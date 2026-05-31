@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/pdf-page-extractor/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>PDF Page Extractor — Extract Pages from PDF | ToolWools</title>
+  <meta name="description" content="Extract specific pages from a PDF document. Enter page ranges, download a new PDF. Client-side, private.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-container">
+      <h1 class="tool-title">PDF Page Extractor</h1>
+      <p class="tool-subtitle">Extract specific pages from a PDF document</p>
+      <div class="upload-zone" id="upload-zone">
+        <p>Drag & drop a PDF or click to browse</p>
+        <input type="file" id="file-input" accept="application/pdf" hidden>
+      </div>
+      <div id="controls" style="display:none">
+        <p id="page-info" class="tool-badge"></p>
+        <div class="tool-controls-row">
+          <input type="text" id="pages-input" class="tool-input" placeholder="e.g. 1,3,5-8">
+        </div>
+        <div class="tool-bottom-actions">
+          <button id="btn-extract" class="btn btn-primary">Extract Pages</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="../../script.js"></script>
+  <script src="pdf-page-extractor.js"></script>
+</body>
+</html>

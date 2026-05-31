@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/text-diff/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>Text Diff — Compare Two Texts | ToolWools</title>
+  <meta name="description" content="Compare two texts side by side and highlight differences. Line-by-line diff tool, free and instant.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+  <style>
+    .diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media(max-width:768px){.diff-grid{grid-template-columns:1fr}}
+    .diff-output{font-family:monospace;font-size:13px;line-height:1.6;white-space:pre-wrap;padding:16px;border-radius:12px;background:var(--color-surface);border:1px solid var(--color-border);max-height:400px;overflow:auto}
+    .diff-add{background:#d1fae5;color:#065f46}
+    .diff-remove{background:#fee2e2;color:#991b1b}
+    [data-theme="dark"] .diff-add{background:#064e3b;color:#6ee7b7}
+    [data-theme="dark"] .diff-remove{background:#450a0a;color:#fca5a5}
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-container">
+      <h1 class="tool-title">Text Diff</h1>
+      <p class="tool-subtitle">Compare two texts and highlight the differences</p>
+
+      <div class="diff-grid">
+        <textarea id="text-a" class="tool-textarea" rows="10" placeholder="Original text..."></textarea>
+        <textarea id="text-b" class="tool-textarea" rows="10" placeholder="Modified text..."></textarea>
+      </div>
+
+      <div class="tool-bottom-actions" style="margin-top:16px">
+        <button id="btn-compare" class="btn btn-primary">Compare</button>
+      </div>
+
+      <div id="diff-result" class="diff-output" style="margin-top:16px"></div>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+  <script src="text-diff.js"></script>
+</body>
+</html>

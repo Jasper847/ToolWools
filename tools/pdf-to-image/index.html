@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/pdf-to-image/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>PDF to Image — Convert PDF Pages to PNG | ToolWools</title>
+  <meta name="description" content="Convert each page of a PDF to a high-quality PNG image. Client-side rendering, no upload to servers.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-container">
+      <h1 class="tool-title">PDF to Image</h1>
+      <p class="tool-subtitle">Convert PDF pages to high-quality PNG images</p>
+      <div class="upload-zone" id="upload-zone">
+        <p>Drag & drop a PDF or click to browse</p>
+        <input type="file" id="file-input" accept="application/pdf" hidden>
+      </div>
+      <div id="controls" style="display:none">
+        <p id="page-info" class="tool-badge"></p>
+        <div class="tool-controls-row">
+          <label>Scale: <input type="range" id="scale" min="1" max="3" step="0.5" value="2"> <span id="scale-val">2</span>x</label>
+        </div>
+        <div class="tool-bottom-actions">
+          <button id="btn-convert" class="btn btn-primary">Convert All Pages</button>
+        </div>
+      </div>
+      <div id="output" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:20px"></div>
+    </div>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+  <script src="../../script.js"></script>
+  <script src="pdf-to-image.js"></script>
+</body>
+</html>

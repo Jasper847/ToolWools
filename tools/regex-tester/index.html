@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/regex-tester/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>Regex Tester — Live Regular Expression Testing | ToolWools</title>
+  <meta name="description" content="Test regular expressions live with match highlighting, capture groups, and flags. Free online regex tool.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+  <style>.match-hl{background:#fde68a;border-radius:3px;padding:1px 2px}[data-theme="dark"] .match-hl{background:#92400e;color:#fef3c7}</style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-container">
+      <h1 class="tool-title">Regex Tester</h1>
+      <p class="tool-subtitle">Test regular expressions with live highlighting</p>
+      <div class="tool-controls-row">
+        <input type="text" id="pattern" class="tool-input" placeholder="Regular expression, e.g. \d+">
+        <input type="text" id="flags" class="tool-input-sm" value="gi" placeholder="Flags" style="width:60px">
+      </div>
+      <textarea id="test-string" class="tool-textarea" rows="8" placeholder="Enter test string here..."></textarea>
+      <div id="match-info" class="tool-badge" style="margin:12px 0">0 matches</div>
+      <div id="highlighted" class="tool-textarea" style="min-height:100px;white-space:pre-wrap;word-break:break-word"></div>
+      <div id="groups" style="margin-top:12px;font-size:13px;color:var(--color-muted)"></div>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+  <script src="regex-tester.js"></script>
+</body>
+</html>

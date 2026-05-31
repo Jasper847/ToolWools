@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/image-cropper/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>Image Cropper — Crop Images Online | ToolWools</title>
+  <meta name="description" content="Crop images to custom dimensions with pixel-perfect inputs. Preview and download. Free, in-browser, no signup.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-container">
+      <h1 class="tool-title">Image Cropper</h1>
+      <p class="tool-subtitle">Crop images to custom dimensions</p>
+      <div class="upload-zone" id="upload-zone">
+        <p>Drag & drop an image or click to browse</p>
+        <input type="file" id="file-input" accept="image/*" hidden>
+      </div>
+      <div id="controls" style="display:none">
+        <div class="tool-controls-row">
+          <label>X: <input type="number" id="crop-x" class="tool-input-sm" value="0" min="0"></label>
+          <label>Y: <input type="number" id="crop-y" class="tool-input-sm" value="0" min="0"></label>
+          <label>W: <input type="number" id="crop-w" class="tool-input-sm" min="1"></label>
+          <label>H: <input type="number" id="crop-h" class="tool-input-sm" min="1"></label>
+        </div>
+        <div class="tool-bottom-actions">
+          <button id="btn-crop" class="btn btn-primary">Crop & Download</button>
+        </div>
+        <canvas id="preview-canvas" style="max-width:100%;margin-top:16px;border-radius:12px;border:1px solid var(--color-border)"></canvas>
+      </div>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+  <script src="image-cropper.js"></script>
+</body>
+</html>

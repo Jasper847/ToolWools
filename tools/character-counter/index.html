@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/character-counter/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>Character Counter Pro — Letters, Spaces, Lines | ToolWools</title>
+  <meta name="description" content="Count characters with and without spaces, letters, digits, special characters, lines, and unique words. Real-time analysis.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-container">
+      <h1 class="tool-title">Character Counter Pro</h1>
+      <p class="tool-subtitle">Real-time character, letter, digit, and line analysis</p>
+
+      <textarea id="input" class="tool-textarea" rows="10" placeholder="Type or paste text to analyze..."></textarea>
+
+      <div class="stats-grid" id="stats-grid">
+        <div class="stat-card"><span class="stat-value" id="s-chars">0</span><span class="stat-label">Characters</span></div>
+        <div class="stat-card"><span class="stat-value" id="s-chars-ns">0</span><span class="stat-label">No Spaces</span></div>
+        <div class="stat-card"><span class="stat-value" id="s-letters">0</span><span class="stat-label">Letters</span></div>
+        <div class="stat-card"><span class="stat-value" id="s-digits">0</span><span class="stat-label">Digits</span></div>
+        <div class="stat-card"><span class="stat-value" id="s-special">0</span><span class="stat-label">Special</span></div>
+        <div class="stat-card"><span class="stat-value" id="s-spaces">0</span><span class="stat-label">Spaces</span></div>
+        <div class="stat-card"><span class="stat-value" id="s-lines">0</span><span class="stat-label">Lines</span></div>
+        <div class="stat-card"><span class="stat-value" id="s-words">0</span><span class="stat-label">Words</span></div>
+        <div class="stat-card"><span class="stat-value" id="s-unique">0</span><span class="stat-label">Unique Words</span></div>
+      </div>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+  <script src="character-counter.js"></script>
+</body>
+</html>
