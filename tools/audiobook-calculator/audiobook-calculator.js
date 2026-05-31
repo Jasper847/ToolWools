@@ -66,8 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
     resFaster.textContent = `${r.pctSaved}%`;
     resBooks.textContent = `${r.booksPerYear}`;
 
-    badgeDays.textContent = `📅 ${r.daysToFinish} day${r.daysToFinish !== 1 ? 's' : ''} to finish this book`;
-    badgeOriginal.textContent = `🎧 ${r.original.h}h ${r.original.m}m original duration`;
+    badgeDays.textContent = `At your pace, you'll finish in ${r.daysToFinish} day${r.daysToFinish !== 1 ? 's' : ''}`;
+    badgeOriginal.textContent = `Original runtime: ${r.original.h}h ${r.original.m}m`;
     dailyHoursVal.textContent = `${dailyHours}h/day`;
 
     // Render speed pills grid
