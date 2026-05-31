@@ -1,9 +1,13 @@
 /* =============================================
-   TOOLWOOLS — Image Compressor Logic (Premium)
-   Supports client-side image compression using Canvas
-   Handles drag-and-drop uploads, formats, quality slider,
-   byte savings calculation, side-by-side comparison,
-   and memory-leak safe downloads.
+   TOOLWOOLS — Image Compressor Logic (Phase 2)
+   Supports:
+   - Batch upload (up to 50 files via drag-and-drop or picker)
+   - Per-file Canvas compression with quality slider
+   - Output format: Original / JPEG / PNG / WEBP
+   - Before/after comparison slider (single file)
+   - Individual download per file
+   - "Download All as ZIP" via JSZip
+   - Memory-leak safe blob management
    ============================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,329 +18,304 @@ document.addEventListener('DOMContentLoaded', () => {
   const fileName = document.getElementById('fileName');
   const fileSize = document.getElementById('fileSize');
   const btnReset = document.getElementById('btnReset');
-  
+
   const controlsWrapper = document.getElementById('controlsWrapper');
   const qualitySlider = document.getElementById('qualitySlider');
   const qualityVal = document.getElementById('qualityVal');
   const formatOptions = document.getElementsByName('formatOption');
   const btnCompress = document.getElementById('btnCompress');
-  
+
   const resultsPlaceholder = document.getElementById('resultsPlaceholder');
   const loadingOverlay = document.getElementById('loadingOverlay');
   const miniProgressFill = document.getElementById('miniProgressFill');
   const resultsContent = document.getElementById('resultsContent');
-  
+
   const compareOriginal = document.getElementById('compareOriginal');
   const compareCompressed = document.getElementById('compareCompressed');
   const compareSlider = document.getElementById('compareSlider');
-  const compareWrapper = document.getElementById('compareWrapper');
-  
+
   const valOrigSize = document.getElementById('valOrigSize');
   const valOrigDim = document.getElementById('valOrigDim');
   const valNewSize = document.getElementById('valNewSize');
   const valNewDim = document.getElementById('valNewDim');
   const valSavingsPercent = document.getElementById('valSavingsPercent');
   const valSavingsBytes = document.getElementById('valSavingsBytes');
-  
+
   const btnDownload = document.getElementById('btnDownload');
   const btnDownloadReset = document.getElementById('btnDownloadReset');
 
-  // State Variables
-  let originalFile = null;
-  let originalImage = null; // HTMLImageElement
-  let originalUrl = null;
-  let compressedUrl = null;
+  // === STATE ===
+  const MAX_FILES = 50;
+  let fileQueue = []; // [{file, image, originalUrl, compressedUrl, compressedBlob, fileName}]
+  let activeIndex = 0;
   let compressTimeout = null;
 
   // ==========================================
-  // 1. DRAG AND DROP & UPLOAD EVENT LISTENERS
+  // 1. UPLOAD HANDLERS
   // ==========================================
+  uploadZone.addEventListener('click', () => fileInput.click());
 
-  // Open file selector on upload zone click
-  uploadZone.addEventListener('click', () => {
-    fileInput.click();
-  });
-
-  // Handle file input selection
   fileInput.addEventListener('change', (e) => {
-    if (e.target.files.length > 0) {
-      handleFile(e.target.files[0]);
-    }
+    if (e.target.files.length > 0) handleFiles(Array.from(e.target.files));
   });
 
-  // Drag over upload zone styling
-  uploadZone.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    uploadZone.classList.add('dragover');
-  });
-
-  uploadZone.addEventListener('dragleave', () => {
-    uploadZone.classList.remove('dragover');
-  });
-
+  uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('dragover'); });
+  uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
   uploadZone.addEventListener('drop', (e) => {
     e.preventDefault();
     uploadZone.classList.remove('dragover');
-    if (e.dataTransfer.files.length > 0) {
-      handleFile(e.dataTransfer.files[0]);
-    }
+    if (e.dataTransfer.files.length > 0) handleFiles(Array.from(e.dataTransfer.files));
   });
 
   // ==========================================
-  // 2. CORE FILE HANDLING
+  // 2. BATCH FILE HANDLING
   // ==========================================
-  function handleFile(file) {
-    // Validate file type (must be image)
-    if (!file.type.match('image.*')) {
-      showToast('Unsupported file type. Please upload an image (PNG, JPG, or WEBP).', 'error');
+  function handleFiles(files) {
+    const images = files.filter(f => f.type.match('image.*'));
+    if (images.length === 0) {
+      showToast('No supported image files found. Please upload PNG, JPG, or WEBP.', 'error');
       return;
     }
+    if (images.length > MAX_FILES) {
+      showToast(`Maximum ${MAX_FILES} files allowed. Only the first ${MAX_FILES} will be processed.`, 'warning');
+      images.length = MAX_FILES;
+    }
 
-    // Set active state variables
-    originalFile = file;
-    
-    // Revoke old object URLs to prevent memory leak
-    cleanupUrls();
+    // Reset previous state
+    cleanupAll();
+    fileQueue = [];
+    activeIndex = 0;
 
-    // Display file row meta details
-    fileName.textContent = file.name;
-    fileSize.textContent = formatBytes(file.size);
-    
+    // Build queue
+    images.forEach(file => {
+      fileQueue.push({ file, image: null, originalUrl: null, compressedUrl: null, compressedBlob: null, fileName: file.name });
+    });
+
+    // Update UI
+    const label = fileQueue.length === 1
+      ? fileQueue[0].file.name
+      : `${fileQueue.length} images selected`;
+    const totalSize = fileQueue.reduce((s, f) => s + f.file.size, 0);
+
+    fileName.textContent = label;
+    fileSize.textContent = formatBytes(totalSize);
     uploadZone.style.display = 'none';
     fileRow.style.display = 'flex';
 
-    // Transition loading overlay state
     resultsPlaceholder.style.display = 'none';
     resultsContent.style.display = 'none';
     loadingOverlay.style.display = 'flex';
-    miniProgressFill.style.width = '20%';
+    miniProgressFill.style.width = '10%';
 
-    // Load file into an image element for Canvas manipulation
-    originalUrl = URL.createObjectURL(file);
-    originalImage = new Image();
-    
-    originalImage.onload = () => {
-      miniProgressFill.style.width = '60%';
-      // Enable controls panel
-      controlsWrapper.style.opacity = '1';
-      controlsWrapper.style.pointerEvents = 'all';
-      
-      // Trigger automatic compression
-      compressImage();
-    };
+    controlsWrapper.style.opacity = '1';
+    controlsWrapper.style.pointerEvents = 'all';
 
-    originalImage.onerror = () => {
-      showToast('Could not load that image. Please try another file.', 'error');
-      resetState();
-    };
+    // Load all images then compress
+    loadAllImages();
+  }
 
-    originalImage.src = originalUrl;
+  function loadAllImages() {
+    let loaded = 0;
+    fileQueue.forEach((item, idx) => {
+      item.originalUrl = URL.createObjectURL(item.file);
+      item.image = new Image();
+      item.image.onload = () => {
+        loaded++;
+        miniProgressFill.style.width = `${10 + Math.round((loaded / fileQueue.length) * 40)}%`;
+        if (loaded === fileQueue.length) compressAll();
+      };
+      item.image.onerror = () => {
+        loaded++;
+        showToast(`Could not load "${item.file.name}". Skipping.`, 'warning');
+        fileQueue.splice(idx, 1);
+        if (loaded === fileQueue.length) {
+          if (fileQueue.length === 0) { resetState(); return; }
+          compressAll();
+        }
+      };
+      item.image.src = item.originalUrl;
+    });
   }
 
   // ==========================================
-  // 3. CANVAS COMPRESSION ALGORITHM
+  // 3. COMPRESSION ENGINE
   // ==========================================
-  function compressImage() {
-    if (!originalFile || !originalImage) return;
+  function getTargetMime() {
+    let selected = 'original';
+    for (const radio of formatOptions) { if (radio.checked) { selected = radio.value; break; } }
+    if (selected === 'original') return null; // use source type
+    const supported = ['image/jpeg', 'image/png', 'image/webp'];
+    return supported.includes(selected) ? selected : 'image/jpeg';
+  }
 
-    // Show loading UI
-    resultsContent.style.display = 'none';
+  function compressAll() {
     loadingOverlay.style.display = 'flex';
-    miniProgressFill.style.width = '70%';
+    resultsContent.style.display = 'none';
+    miniProgressFill.style.width = '55%';
 
-    // Get Target Format MimeType
-    let selectedFormat = 'original';
-    for (const radio of formatOptions) {
-      if (radio.checked) {
-        selectedFormat = radio.value;
-        break;
-      }
-    }
-
-    let mimeType = originalFile.type;
-    if (selectedFormat !== 'original') {
-      mimeType = selectedFormat;
-    }
-
-    // Standardize mimeTypes (some browsers might not support certain output conversions)
-    // JPEG/WEBP are widely supported, PNG is supported.
-    const supportedTypes = ['image/jpeg', 'image/png', 'image/webp'];
-    if (!supportedTypes.includes(mimeType)) {
-      mimeType = 'image/jpeg'; // fallback
-    }
-
-    // Get Compression Quality (range 0 to 1)
     const quality = parseInt(qualitySlider.value, 10) / 100;
+    let done = 0;
 
-    // Setup HTML5 Canvas
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    
-    // Maintain full dimensions
-    canvas.width = originalImage.naturalWidth;
-    canvas.height = originalImage.naturalHeight;
+    fileQueue.forEach((item) => {
+      const mimeType = getTargetMime() || item.file.type || 'image/jpeg';
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = item.image.naturalWidth;
+      canvas.height = item.image.naturalHeight;
 
-    // Premium detail: Handle transparent PNG conversion to JPG
-    if (mimeType === 'image/jpeg') {
-      ctx.fillStyle = '#ffffff'; // White background prevents black margins in transparency
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-
-    // Draw image onto canvas
-    ctx.drawImage(originalImage, 0, 0, canvas.width, canvas.height);
-    
-    miniProgressFill.style.width = '90%';
-
-    // Perform canvas.toBlob compression
-    canvas.toBlob((blob) => {
-      if (!blob) {
-        showToast('Compression failed. Try a different quality level or output format.', 'error');
-        loadingOverlay.style.display = 'none';
-        return;
+      if (mimeType === 'image/jpeg') {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
       }
+      ctx.drawImage(item.image, 0, 0, canvas.width, canvas.height);
 
-      miniProgressFill.style.width = '100%';
+      canvas.toBlob((blob) => {
+        if (item.compressedUrl) URL.revokeObjectURL(item.compressedUrl);
+        item.compressedBlob = blob || new Blob([], {type: mimeType});
+        item.compressedUrl = URL.createObjectURL(item.compressedBlob);
 
-      // Revoke previous compressed URL
-      if (compressedUrl) {
-        URL.revokeObjectURL(compressedUrl);
-      }
+        // Build clean download name
+        let ext = mimeType.split('/')[1] || 'jpg';
+        if (ext === 'jpeg') ext = 'jpg';
+        const baseName = item.file.name.substring(0, item.file.name.lastIndexOf('.')) || item.file.name;
+        item.downloadName = `${baseName}_optimized.${ext}`;
 
-      // Generate new URL for the compressed blob
-      compressedUrl = URL.createObjectURL(blob);
+        done++;
+        miniProgressFill.style.width = `${55 + Math.round((done / fileQueue.length) * 40)}%`;
+        if (done === fileQueue.length) onAllCompressed();
+      }, mimeType, quality);
+    });
+  }
 
-      // Render original and compressed images to comparison viewports
-      compareOriginal.src = originalUrl;
-      compareCompressed.src = compressedUrl;
-
-      // Reset compare slider to 50% split view
-      if (compareSlider && compareCompressed) {
-        compareSlider.style.left = '50%';
-        compareCompressed.style.clipPath = 'inset(0 0 0 50%)';
-      }
-
-      // Calculate Metrics and Byte Savings
-      const originalBytes = originalFile.size;
-      const compressedBytes = blob.size;
-      const savingsBytes = originalBytes - compressedBytes;
-      let savingsPercent = Math.max(0, Math.round((savingsBytes / originalBytes) * 100));
-
-      // Update Dashboard Metric Cards
-      valOrigSize.textContent = formatBytes(originalBytes);
-      valOrigDim.textContent = `${originalImage.naturalWidth} x ${originalImage.naturalHeight}px`;
-
-      valNewSize.textContent = formatBytes(compressedBytes);
-      valNewDim.textContent = `${originalImage.naturalWidth} x ${originalImage.naturalHeight}px`;
-
-      // Configure Savings display (handle cases where compression increases size slightly)
-      if (savingsBytes <= 0) {
-        valSavingsPercent.textContent = '0%';
-        valSavingsBytes.textContent = 'Already fully optimized';
-        valSavingsPercent.classList.remove('text-success-green');
-      } else {
-        valSavingsPercent.textContent = `${savingsPercent}%`;
-        valSavingsBytes.textContent = `${formatBytes(savingsBytes)} saved`;
-        valSavingsPercent.classList.add('text-success-green');
-      }
-
-      // Wire Download Link Button
-      let extension = mimeType.split('/')[1] || 'jpg';
-      if (extension === 'jpeg') extension = 'jpg';
-      
-      // Construct a clean filename
-      const baseName = originalFile.name.substring(0, originalFile.name.lastIndexOf('.')) || originalFile.name;
-      const cleanDownloadName = `${baseName}_optimized.${extension}`;
-      
-      btnDownload.href = compressedUrl;
-      btnDownload.setAttribute('download', cleanDownloadName);
-
-      // Transition layouts (hide spinner, show workspace dashboard)
-      setTimeout(() => {
-        loadingOverlay.style.display = 'none';
-        resultsContent.style.display = 'block';
-      }, 200);
-
-    }, mimeType, quality);
+  function onAllCompressed() {
+    miniProgressFill.style.width = '100%';
+    setTimeout(() => {
+      loadingOverlay.style.display = 'none';
+      resultsContent.style.display = 'block';
+      showStats(0);
+    }, 200);
   }
 
   // ==========================================
-  // 4. CONTROL INTERACTIONS & ANIMATIONS
+  // 4. DISPLAY STATS FOR ACTIVE FILE
   // ==========================================
+  function showStats(idx) {
+    if (!fileQueue[idx]) return;
+    activeIndex = idx;
+    const item = fileQueue[idx];
+    const origBytes = item.file.size;
+    const compBytes = item.compressedBlob ? item.compressedBlob.size : 0;
+    const saved = origBytes - compBytes;
+    const pct = origBytes > 0 ? Math.max(0, Math.round((saved / origBytes) * 100)) : 0;
 
-  // Live quality slider interaction with debounce to keep CPU usage highly efficient
-  qualitySlider.addEventListener('input', (e) => {
-    const value = e.target.value;
-    qualityVal.textContent = `${value}%`;
+    valOrigSize.textContent = formatBytes(origBytes);
+    valOrigDim.textContent = `${item.image.naturalWidth} x ${item.image.naturalHeight}px`;
+    valNewSize.textContent = formatBytes(compBytes);
+    valNewDim.textContent = `${item.image.naturalWidth} x ${item.image.naturalHeight}px`;
 
-    clearTimeout(compressTimeout);
-    compressTimeout = setTimeout(() => {
-      compressImage();
-    }, 120); // 120ms debounce
-  });
+    if (saved <= 0) {
+      valSavingsPercent.textContent = '0%';
+      valSavingsBytes.textContent = 'Already optimized';
+      valSavingsPercent.classList.remove('text-success-green');
+    } else {
+      valSavingsPercent.textContent = `${pct}%`;
+      valSavingsBytes.textContent = `${formatBytes(saved)} saved`;
+      valSavingsPercent.classList.add('text-success-green');
+    }
 
-  // Re-run compression instantly on format radio toggle
-  formatOptions.forEach(radio => {
-    radio.addEventListener('change', () => {
-      compressImage();
+    // Comparison images
+    if (compareOriginal) compareOriginal.src = item.originalUrl;
+    if (compareCompressed) compareCompressed.src = item.compressedUrl;
+    if (compareSlider && compareCompressed) {
+      compareSlider.style.left = '50%';
+      compareCompressed.style.clipPath = 'inset(0 0 0 50%)';
+    }
+
+    // Download button — single or ZIP
+    if (fileQueue.length === 1) {
+      btnDownload.href = item.compressedUrl;
+      btnDownload.setAttribute('download', item.downloadName);
+      btnDownload.textContent = 'Download';
+    } else {
+      btnDownload.removeAttribute('href');
+      btnDownload.removeAttribute('download');
+      btnDownload.textContent = `Download All (${fileQueue.length}) as ZIP`;
+    }
+  }
+
+  // ==========================================
+  // 5. DOWNLOAD — SINGLE OR ZIP
+  // ==========================================
+  btnDownload.addEventListener('click', (e) => {
+    if (fileQueue.length <= 1) return; // single file uses native <a> download
+
+    e.preventDefault();
+    if (typeof JSZip === 'undefined') {
+      showToast('ZIP library not loaded. Please refresh and try again.', 'error');
+      return;
+    }
+
+    const zip = new JSZip();
+    fileQueue.forEach(item => {
+      if (item.compressedBlob) zip.file(item.downloadName, item.compressedBlob);
+    });
+
+    zip.generateAsync({ type: 'blob' }).then(content => {
+      const url = URL.createObjectURL(content);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'toolwools_optimized_images.zip';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
+      showToast(`${fileQueue.length} images compressed and zipped successfully!`, 'success');
     });
   });
 
-  // Manual Trigger
-  btnCompress.addEventListener('click', () => {
+  // ==========================================
+  // 6. CONTROLS
+  // ==========================================
+  qualitySlider.addEventListener('input', (e) => {
+    qualityVal.textContent = `${e.target.value}%`;
     clearTimeout(compressTimeout);
-    compressImage();
+    compressTimeout = setTimeout(() => compressAll(), 150);
   });
 
-  // Reset System Trigger
+  formatOptions.forEach(radio => radio.addEventListener('change', () => compressAll()));
+  btnCompress.addEventListener('click', () => { clearTimeout(compressTimeout); compressAll(); });
   btnReset.addEventListener('click', resetState);
   btnDownloadReset.addEventListener('click', resetState);
 
   // ==========================================
-  // 5. MEMORY AND CONVENIENCE HELPERS
+  // 7. CLEANUP & HELPERS
   // ==========================================
-
   function resetState() {
-    cleanupUrls();
-    originalFile = null;
-    originalImage = null;
-    
-    // Clear Input file node values
+    cleanupAll();
+    fileQueue = [];
+    activeIndex = 0;
     fileInput.value = '';
-    
-    // Revert visual layouts
     fileRow.style.display = 'none';
     uploadZone.style.display = 'block';
-    
-    // Disable controls panel
     controlsWrapper.style.opacity = '0.5';
     controlsWrapper.style.pointerEvents = 'none';
-    
-    // Reset quality to default 80
     qualitySlider.value = 80;
     qualityVal.textContent = '80%';
-    
-    // Reset format radios to 'original'
     formatOptions[0].checked = true;
-
-    // Reset results dashboard view
     resultsContent.style.display = 'none';
     loadingOverlay.style.display = 'none';
     resultsPlaceholder.style.display = 'block';
   }
 
-  function cleanupUrls() {
-    if (originalUrl) {
-      URL.revokeObjectURL(originalUrl);
-      originalUrl = null;
-    }
-    if (compressedUrl) {
-      URL.revokeObjectURL(compressedUrl);
-      compressedUrl = null;
-    }
+  function cleanupAll() {
+    fileQueue.forEach(item => {
+      if (item.originalUrl) URL.revokeObjectURL(item.originalUrl);
+      if (item.compressedUrl) URL.revokeObjectURL(item.compressedUrl);
+    });
   }
 
   // ==========================================
-  // 6. COMPARISON SLIDER DRAG LOGIC
+  // 8. COMPARISON SLIDER
   // ==========================================
   let isDragging = false;
   const imageCompareContainer = document.getElementById('imageCompare');
@@ -346,59 +325,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const drag = (e) => {
       if (!isDragging) return;
-      
       const rect = imageCompareContainer.getBoundingClientRect();
       let pageX = e.pageX || (e.touches && e.touches[0].pageX);
       if (pageX === undefined) return;
-      
-      let x = pageX - rect.left;
-      
-      // Constrain inside bounds
-      if (x < 0) x = 0;
-      if (x > rect.width) x = rect.width;
-      
-      const percentage = (x / rect.width) * 100;
-      
-      // Update slider handle position
-      compareSlider.style.left = `${percentage}%`;
-      // Update clipped width of compressed image
-      compareCompressed.style.clipPath = `inset(0 0 0 ${percentage}%)`;
+      let x = Math.max(0, Math.min(pageX - rect.left, rect.width));
+      const pct = (x / rect.width) * 100;
+      compareSlider.style.left = `${pct}%`;
+      compareCompressed.style.clipPath = `inset(0 0 0 ${pct}%)`;
     };
 
-    const startDragging = (e) => {
-      e.preventDefault();
-      isDragging = true;
-      imageCompareContainer.classList.add('dragging');
-      document.addEventListener('mousemove', drag);
-      document.addEventListener('touchmove', drag);
-    };
+    const startDrag = (e) => { e.preventDefault(); isDragging = true; imageCompareContainer.classList.add('dragging'); document.addEventListener('mousemove', drag); document.addEventListener('touchmove', drag); };
+    const stopDrag = () => { if (!isDragging) return; isDragging = false; imageCompareContainer.classList.remove('dragging'); document.removeEventListener('mousemove', drag); document.removeEventListener('touchmove', drag); };
 
-    const stopDragging = () => {
-      if (!isDragging) return;
-      isDragging = false;
-      imageCompareContainer.classList.remove('dragging');
-      document.removeEventListener('mousemove', drag);
-      document.removeEventListener('touchmove', drag);
-    };
-
-    // Listen on handle click and drag
-    compareSlider.addEventListener('mousedown', startDragging);
-    compareSlider.addEventListener('touchstart', startDragging, { passive: false });
-
-    // Stop drag globally
-    document.addEventListener('mouseup', stopDragging);
-    document.addEventListener('touchend', stopDragging);
+    compareSlider.addEventListener('mousedown', startDrag);
+    compareSlider.addEventListener('touchstart', startDrag, { passive: false });
+    document.addEventListener('mouseup', stopDrag);
+    document.addEventListener('touchend', stopDrag);
   }
-
   initCompareSlider();
 
-  // Byte size formatter utility
   function formatBytes(bytes, decimals = 1) {
     if (bytes === 0) return '0 Bytes';
     const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
     const sizes = ['Bytes', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(decimals)) + ' ' + sizes[i];
   }
 });

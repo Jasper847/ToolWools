@@ -1,3 +1,11 @@
+/* =============================================
+   TOOLWOOLS — XML Sitemap Generator (Phase 2)
+   - Honest validation (no fake "200 OK" crawl)
+   - Real HTML file link extraction via DOMParser
+   - Manual URL list input
+   - Configurable change frequency, priority, lastmod
+   ============================================= */
+
 document.addEventListener('DOMContentLoaded', () => {
   // Elements
   const siteUrlInput = document.getElementById('site-url');
@@ -11,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const tabInputFiles = document.getElementById('tab-input-files');
   const manualContainer = document.getElementById('method-manual-container');
   const filesContainer = document.getElementById('method-files-container');
-  
+
   const manualUrlsTextarea = document.getElementById('manual-urls');
   const htmlFilesInput = document.getElementById('html-files-input');
   const htmlDropZone = document.getElementById('html-drop-zone');
@@ -23,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const progressPercentage = document.getElementById('progress-percentage');
   const progressFill = document.getElementById('progress-fill');
   const consoleLog = document.getElementById('console-log');
-  
+
   const xmlOutput = document.getElementById('xml-output');
   const btnCopyXml = document.getElementById('btn-copy-xml');
   const btnDownloadXml = document.getElementById('btn-download-xml');
@@ -32,8 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const toastMessage = document.getElementById('toast-message');
 
   // State
-  let activeMethod = 'manual'; // manual or files
+  let activeMethod = 'manual';
   let scannedFiles = [];
+  let extractedPaths = [];
 
   // Update slider label
   prioritySlider.addEventListener('input', (e) => {
@@ -58,75 +67,107 @@ document.addEventListener('DOMContentLoaded', () => {
     manualContainer.style.display = 'none';
     activeMethod = 'files';
     clearConsole();
-    writeConsoleLine('Switched to HTML file scanning mode. Choose/drop files to begin.', 'info');
+    writeConsoleLine('Switched to HTML file scanning mode. Upload files to extract links.', 'info');
   });
 
-  // --- HTML UPLOAD DRAG/DROP EVENTS ---
-  htmlDropZone.addEventListener('click', () => {
-    htmlFilesInput.click();
-  });
-
-  htmlDropZone.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    htmlDropZone.classList.add('dragover');
-  });
-
-  htmlDropZone.addEventListener('dragleave', () => {
-    htmlDropZone.classList.remove('dragover');
-  });
-
+  // --- HTML UPLOAD DRAG/DROP ---
+  htmlDropZone.addEventListener('click', () => htmlFilesInput.click());
+  htmlDropZone.addEventListener('dragover', (e) => { e.preventDefault(); htmlDropZone.classList.add('dragover'); });
+  htmlDropZone.addEventListener('dragleave', () => htmlDropZone.classList.remove('dragover'));
   htmlDropZone.addEventListener('drop', (e) => {
     e.preventDefault();
     htmlDropZone.classList.remove('dragover');
-    if (e.dataTransfer.files.length > 0) {
-      handleFilesSelected(e.dataTransfer.files);
-    }
+    if (e.dataTransfer.files.length > 0) handleFilesSelected(e.dataTransfer.files);
   });
-
   htmlFilesInput.addEventListener('change', (e) => {
-    if (e.target.files.length > 0) {
-      handleFilesSelected(e.target.files);
-    }
+    if (e.target.files.length > 0) handleFilesSelected(e.target.files);
   });
 
   function handleFilesSelected(filesList) {
-    // Filter for HTML
-    scannedFiles = Array.from(filesList).filter(file => file.name.endsWith('.html') || file.name.endsWith('.htm'));
-    
+    scannedFiles = Array.from(filesList).filter(f => f.name.endsWith('.html') || f.name.endsWith('.htm'));
     if (scannedFiles.length === 0) {
       showToast('Please upload valid HTML files (.html or .htm).', 'warning');
       htmlUploadStatus.textContent = 'Choose HTML files or drag here';
       return;
     }
+    htmlUploadStatus.textContent = `${scannedFiles.length} HTML file(s) loaded`;
+    writeConsoleLine(`Loaded ${scannedFiles.length} HTML file(s). Ready to extract links.`, 'success');
 
-    htmlUploadStatus.textContent = `${scannedFiles.length} HTML files loaded`;
-    writeConsoleLine(`Successfully loaded ${scannedFiles.length} HTML files for scanning.`, 'success');
+    // Extract links from HTML files
+    extractLinksFromFiles();
+  }
+
+  // --- REAL LINK EXTRACTION from HTML files ---
+  async function extractLinksFromFiles() {
+    extractedPaths = [];
+    const parser = new DOMParser();
+
+    for (const file of scannedFiles) {
+      try {
+        const text = await file.text();
+        const doc = parser.parseFromString(text, 'text/html');
+        const anchors = doc.querySelectorAll('a[href]');
+        const fileBasePath = file.name === 'index.html' || file.name === 'index.htm' ? '/' : '/' + file.name;
+
+        // Add the file itself as a path
+        if (!extractedPaths.includes(fileBasePath)) {
+          extractedPaths.push(fileBasePath);
+        }
+
+        // Extract relative links
+        anchors.forEach(a => {
+          let href = a.getAttribute('href');
+          if (!href) return;
+          // Skip anchors, mailto, tel, javascript, external
+          if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+          if (href.startsWith('http://') || href.startsWith('https://')) return; // external
+          // Normalize
+          if (!href.startsWith('/')) href = '/' + href;
+          href = href.split('#')[0].split('?')[0]; // remove hash & query
+          if (href && !extractedPaths.includes(href)) {
+            extractedPaths.push(href);
+          }
+        });
+
+        writeConsoleLine(`Parsed "${file.name}" — found ${anchors.length} links.`, 'info');
+      } catch (err) {
+        writeConsoleLine(`Error reading "${file.name}": ${err.message}`, 'error');
+      }
+    }
+
+    // Deduplicate
+    extractedPaths = [...new Set(extractedPaths)];
+    writeConsoleLine(`Total unique paths extracted: ${extractedPaths.length}`, 'success');
   }
 
   // --- TIMESTAMPS ---
   function getTimestamp() {
-    const now = new Date();
-    return `[${now.toTimeString().split(' ')[0]}]`;
+    return `[${new Date().toTimeString().split(' ')[0]}]`;
   }
 
-  // --- TERMINAL LOG WRITER ---
-  function clearConsole() {
-    consoleLog.innerHTML = '';
-  }
+  // --- TERMINAL LOG ---
+  function clearConsole() { consoleLog.innerHTML = ''; }
 
   function writeConsoleLine(message, type = 'info') {
     const line = document.createElement('div');
     line.className = 'terminal-line';
-    line.innerHTML = `
-      <span class="terminal-time">${getTimestamp()}</span>
-      <span class="terminal-msg ${type}">${message}</span>
-    `;
+    line.innerHTML = `<span class="terminal-time">${getTimestamp()}</span><span class="terminal-msg ${type}">${message}</span>`;
     consoleLog.appendChild(line);
     consoleLog.scrollTop = consoleLog.scrollHeight;
   }
 
-  // --- COMPILE XML SITEMAP FROM DATA ---
-  function executeSitemapCompilation(rootUrl, pathList) {
+  // --- URL VALIDATION ---
+  function isValidUrl(str) {
+    try { new URL(str); return true; } catch { return false; }
+  }
+
+  function isValidPath(path) {
+    // Basic path validation: starts with / and no weird chars
+    return /^\/[^\s]*$/.test(path);
+  }
+
+  // --- COMPILE XML SITEMAP ---
+  function compileSitemap(rootUrl, pathList) {
     const defaultPriority = parseFloat(prioritySlider.value);
     const globalFreq = changeFreqSelect.value;
     const lastmodChoice = lastmodSelect.value;
@@ -136,16 +177,15 @@ document.addEventListener('DOMContentLoaded', () => {
     xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
     pathList.forEach(path => {
-      // Clean duplicate slashes
-      let fullPath = rootUrl;
-      if (path === '/') {
-        // Root page
+      let fullUrl = rootUrl;
+      if (path !== '/' && path !== '') {
+        const sep = (rootUrl.endsWith('/') || path.startsWith('/')) ? '' : '/';
+        fullUrl = `${rootUrl}${sep}${path}`;
       } else {
-        const separator = (rootUrl.endsWith('/') || path.startsWith('/')) ? '' : '/';
-        fullPath = `${rootUrl}${separator}${path}`;
+        if (!fullUrl.endsWith('/')) fullUrl += '/';
       }
 
-      // Priority adjustments based on routing depth
+      // Priority based on depth
       let priority = defaultPriority;
       if (path === '/' || path === '') {
         priority = 1.0;
@@ -155,49 +195,41 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       xml += `  <url>\n`;
-      xml += `    <loc>${fullPath}</loc>\n`;
-      
+      xml += `    <loc>${escapeXml(fullUrl)}</loc>\n`;
       if (lastmodChoice === 'custom' || lastmodChoice === 'server') {
         xml += `    <lastmod>${todayStr}</lastmod>\n`;
       }
-      
       xml += `    <changefreq>${globalFreq}</changefreq>\n`;
       xml += `    <priority>${priority.toFixed(1)}</priority>\n`;
       xml += `  </url>\n`;
     });
 
     xml += `</urlset>`;
-    
-    xmlOutput.value = xml;
-    btnCopyXml.disabled = false;
-    btnDownloadXml.disabled = false;
+    return xml;
   }
 
-  // --- CRAWL PIPELINE TRIGGER ---
+  function escapeXml(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+  }
+
+  // --- GENERATE SITEMAP ---
   btnCrawl.addEventListener('click', () => {
     let rootUrl = siteUrlInput.value.trim();
     if (!rootUrl) {
       showToast('Please enter your website root URL.', 'warning');
       return;
     }
-
     if (!rootUrl.startsWith('http://') && !rootUrl.startsWith('https://')) {
       rootUrl = 'https://' + rootUrl;
       siteUrlInput.value = rootUrl;
     }
-
-    try {
-      new URL(rootUrl);
-    } catch (e) {
+    if (!isValidUrl(rootUrl)) {
       showToast('That URL does not look valid. Please check the format.', 'error');
       return;
     }
+    if (rootUrl.endsWith('/')) rootUrl = rootUrl.slice(0, -1);
 
-    if (rootUrl.endsWith('/')) {
-      rootUrl = rootUrl.slice(0, -1);
-    }
-
-    // Extract Paths list
+    // Get paths
     let paths = [];
     if (activeMethod === 'manual') {
       const rawText = manualUrlsTextarea.value.trim();
@@ -205,29 +237,19 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast('Please enter at least one URL path.', 'warning');
         return;
       }
-      paths = rawText.split('\n')
-        .map(line => line.trim())
-        .filter(line => line.length > 0);
+      paths = rawText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
     } else {
-      if (scannedFiles.length === 0) {
-        showToast('Please upload HTML files to scan.', 'warning');
+      if (extractedPaths.length === 0) {
+        showToast('Please upload HTML files to extract links from.', 'warning');
         return;
       }
-      
-      // Clean names
-      paths = scannedFiles.map(file => {
-        let name = file.name;
-        if (name === 'index.html' || name === 'index.htm') {
-          return '/';
-        }
-        return '/' + name;
-      });
+      paths = [...extractedPaths];
     }
 
-    // Remove duplicates
-    paths = Array.from(new Set(paths));
+    // Deduplicate
+    paths = [...new Set(paths)];
 
-    // UI state locking
+    // Lock UI
     btnCrawl.disabled = true;
     siteUrlInput.disabled = true;
     changeFreqSelect.disabled = true;
@@ -240,80 +262,107 @@ document.addEventListener('DOMContentLoaded', () => {
     progressContainer.classList.add('active');
     progressFill.style.width = '0%';
     progressPercentage.textContent = '0%';
-    progressStatus.textContent = 'Running parser...';
+    progressStatus.textContent = 'Validating paths...';
     clearConsole();
 
-    // Simulated parsing delay ticks to make it feel high-end
-    let currentIdx = 0;
-    const totalPaths = paths.length;
+    writeConsoleLine(`Sitemap generation started for: ${rootUrl}`, 'info');
+    writeConsoleLine(`Processing ${paths.length} unique path(s)...`, 'info');
 
-    writeConsoleLine(`XML sitemap builder compilation initialized for: ${rootUrl}`, 'info');
-    writeConsoleLine(`Discovered ${totalPaths} unique route targets. Starting validator...`, 'info');
+    // Validate paths with honest progress (no fake HTTP)
+    let validPaths = [];
+    let invalidCount = 0;
+    let idx = 0;
 
-    function tickCrawl() {
-      if (currentIdx >= totalPaths) {
-        // Complete
-        progressFill.style.width = '100%';
-        progressPercentage.textContent = '100%';
-        progressStatus.textContent = 'Sitemap compiled!';
-        writeConsoleLine(`Successfully compiled compliant sitemap.xml with ${totalPaths} loc blocks.`, 'success');
-        
-        executeSitemapCompilation(rootUrl, paths);
-
-        // Unlock
-        btnCrawl.disabled = false;
-        siteUrlInput.disabled = false;
-        changeFreqSelect.disabled = false;
-        lastmodSelect.disabled = false;
-        prioritySlider.disabled = false;
+    function processNext() {
+      if (idx >= paths.length) {
+        // Done
+        finishGeneration(rootUrl, validPaths, invalidCount);
         return;
       }
 
-      const p = paths[currentIdx];
-      const percent = Math.round((currentIdx / totalPaths) * 100);
-      progressFill.style.width = `${percent}%`;
-      progressPercentage.textContent = `${percent}%`;
-      progressStatus.textContent = `Validating path: ${p}...`;
+      const p = paths[idx];
+      const pct = Math.round(((idx + 1) / paths.length) * 90);
+      progressFill.style.width = `${pct}%`;
+      progressPercentage.textContent = `${pct}%`;
+      progressStatus.textContent = `Validating: ${p}`;
 
-      const separator = (rootUrl.endsWith('/') || p.startsWith('/')) ? '' : '/';
-      writeConsoleLine(`Verified URL: ${rootUrl}${separator}${p} — 200 OK.`, 'info');
+      // Check if it's a valid-looking path
+      const normalizedPath = p.startsWith('/') ? p : '/' + p;
+      if (isValidPath(normalizedPath)) {
+        validPaths.push(normalizedPath);
+        writeConsoleLine(`✓ Valid path: ${normalizedPath}`, 'info');
+      } else {
+        invalidCount++;
+        writeConsoleLine(`✗ Invalid path skipped: ${p}`, 'error');
+      }
 
-      currentIdx++;
-      const speed = Math.max(50, 400 - (totalPaths * 10)); // Accelerate slightly for large counts
-      setTimeout(tickCrawl, speed);
+      idx++;
+      // Small delay for visual feedback (honest — just UI pacing, not pretending to fetch)
+      setTimeout(processNext, Math.max(20, 150 - paths.length * 2));
     }
 
-    setTimeout(tickCrawl, 300);
+    setTimeout(processNext, 100);
   });
 
-  // --- CLIPBOARD & DOWNLOAD ACTIONS ---
+  function finishGeneration(rootUrl, validPaths, invalidCount) {
+    if (validPaths.length === 0) {
+      progressFill.style.width = '100%';
+      progressPercentage.textContent = '100%';
+      progressStatus.textContent = 'No valid paths found.';
+      writeConsoleLine('No valid paths to include. Sitemap is empty.', 'error');
+      unlockUI();
+      return;
+    }
+
+    progressFill.style.width = '95%';
+    progressPercentage.textContent = '95%';
+    progressStatus.textContent = 'Compiling XML...';
+
+    const xml = compileSitemap(rootUrl, validPaths);
+    xmlOutput.value = xml;
+
+    progressFill.style.width = '100%';
+    progressPercentage.textContent = '100%';
+    progressStatus.textContent = 'Sitemap generated!';
+
+    writeConsoleLine(`Sitemap compiled: ${validPaths.length} URLs included.`, 'success');
+    if (invalidCount > 0) {
+      writeConsoleLine(`${invalidCount} invalid path(s) were skipped.`, 'info');
+    }
+
+    btnCopyXml.disabled = false;
+    btnDownloadXml.disabled = false;
+    unlockUI();
+  }
+
+  function unlockUI() {
+    btnCrawl.disabled = false;
+    siteUrlInput.disabled = false;
+    changeFreqSelect.disabled = false;
+    lastmodSelect.disabled = false;
+    prioritySlider.disabled = false;
+  }
+
+  // --- CLIPBOARD & DOWNLOAD ---
   btnCopyXml.addEventListener('click', () => {
     xmlOutput.select();
     navigator.clipboard.writeText(xmlOutput.value).then(() => {
-      toastMessage.textContent = 'XML Sitemap copied to clipboard!';
-      copyToast.classList.add('show');
-      setTimeout(() => {
-        copyToast.classList.remove('show');
-      }, 3000);
+      showToast('XML sitemap copied to clipboard!', 'success');
     });
   });
 
   btnDownloadXml.addEventListener('click', () => {
     const text = xmlOutput.value;
+    if (!text) return;
     const blob = new Blob([text], { type: 'application/xml' });
-    const anchor = document.createElement('a');
-    anchor.download = 'sitemap.xml';
-    anchor.href = window.URL.createObjectURL(blob);
-    anchor.dataset.downloadurl = ['application/xml', anchor.download, anchor.href].join(':');
-    anchor.style.display = 'none';
-    document.body.appendChild(anchor);
-    anchor.click();
-    document.body.removeChild(anchor);
-
-    toastMessage.textContent = 'sitemap.xml file downloaded!';
-    copyToast.classList.add('show');
-    setTimeout(() => {
-      copyToast.classList.remove('show');
-    }, 3000);
+    const a = document.createElement('a');
+    a.download = 'sitemap.xml';
+    a.href = URL.createObjectURL(a);
+    a.href = URL.createObjectURL(blob);
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    showToast('sitemap.xml downloaded!', 'success');
   });
 });

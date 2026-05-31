@@ -89,8 +89,70 @@ document.addEventListener('DOMContentLoaded', () => {
     const speakingTimeSec = (wordCount / 130) * 60;
     timeSpeaking.textContent = formatDuration(speakingTimeSec);
 
-    // 7. Keyword Density Analysis
+    // 7. Readability Score (Flesch-Kincaid Grade Level)
+    updateReadability(text, wordCount, sentenceCount);
+
+    // 8. Keyword Density Analysis
     updateKeywordDensity(wordsArray);
+  }
+
+  // --- FLESCH-KINCAID READABILITY ---
+  function countSyllables(word) {
+    word = word.toLowerCase().replace(/[^a-z]/g, '');
+    if (word.length <= 2) return 1;
+    // Exceptions
+    word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');
+    word = word.replace(/^y/, '');
+    const matches = word.match(/[aeiouy]{1,2}/g);
+    return matches ? matches.length : 1;
+  }
+
+  function updateReadability(text, wordCount, sentenceCount) {
+    // Need a display element — create if missing
+    let readabilityEl = document.getElementById('stat-readability');
+    if (!readabilityEl) {
+      // Try to inject after the speaking time stat
+      const timeSpeakingParent = timeSpeaking.closest('.stat-card, .stat-item, .metric-card, .time-stat');
+      if (timeSpeakingParent && timeSpeakingParent.parentNode) {
+        const card = timeSpeakingParent.cloneNode(true);
+        const label = card.querySelector('.stat-label, .metric-label, .time-label, h4, span:last-child');
+        const value = card.querySelector('.stat-value, .metric-value, .time-value, span:first-child, [id]');
+        if (label) label.textContent = 'Readability';
+        if (value) { value.id = 'stat-readability'; value.textContent = '—'; }
+        timeSpeakingParent.parentNode.insertBefore(card, timeSpeakingParent.nextSibling);
+        readabilityEl = document.getElementById('stat-readability');
+      }
+    }
+    if (!readabilityEl) return; // DOM not compatible
+
+    if (wordCount < 10 || sentenceCount === 0) {
+      readabilityEl.textContent = '—';
+      readabilityEl.title = 'Enter at least 10 words for a readability score.';
+      return;
+    }
+
+    // Count total syllables
+    const words = text.trim().split(/\s+/).filter(w => w.length > 0);
+    let totalSyllables = 0;
+    words.forEach(w => { totalSyllables += countSyllables(w); });
+
+    // Flesch-Kincaid Grade Level
+    const fkGrade = 0.39 * (wordCount / sentenceCount) + 11.8 * (totalSyllables / wordCount) - 15.59;
+    const grade = Math.max(0, Math.round(fkGrade * 10) / 10);
+
+    // Flesch Reading Ease (for tooltip)
+    const fre = 206.835 - 1.015 * (wordCount / sentenceCount) - 84.6 * (totalSyllables / wordCount);
+    const ease = Math.max(0, Math.min(100, Math.round(fre * 10) / 10));
+
+    let label = '';
+    if (grade <= 5) label = 'Very Easy';
+    else if (grade <= 8) label = 'Easy';
+    else if (grade <= 12) label = 'Average';
+    else if (grade <= 16) label = 'Difficult';
+    else label = 'Very Difficult';
+
+    readabilityEl.textContent = `Grade ${grade}`;
+    readabilityEl.title = `Flesch-Kincaid: Grade ${grade} (${label}) • Reading Ease: ${ease}/100`;
   }
 
   // Keyword Density Logic
