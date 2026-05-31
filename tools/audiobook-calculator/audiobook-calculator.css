@@ -731,3 +731,202 @@
   border-radius: 8px;
   transition: width 0.4s cubic-bezier(0.21, 0.47, 0.32, 0.98);
 }
+
+/* =============================================
+   COMPARISON TABLE - Modern and Responsive Look
+   ============================================= */
+.ab-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-card);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+  margin-top: 16px;
+}
+
+.ab-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-family: var(--font-body), sans-serif;
+}
+
+.ab-comparison-table th {
+  background-color: #3b4dbd; /* Premium deep blue from screenshot */
+  color: #ffffff;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 16px 24px;
+  border: none;
+}
+
+.ab-comparison-table td {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--color-border-light);
+  font-size: 14px;
+  color: var(--color-dark);
+  vertical-align: middle;
+}
+
+.ab-comparison-table tbody tr {
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.ab-comparison-table tbody tr:hover {
+  background-color: var(--color-bg);
+}
+
+.ab-comparison-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Active Highlight Row */
+.ab-comparison-table tbody tr.active {
+  background-color: #eafaf1 !important; /* Premium light green highlight */
+  border-left: 4px solid var(--color-green, #10B981);
+}
+
+.ab-comparison-table tbody tr.active td {
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+/* Selected Badge tag */
+.ab-selected-tag {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: #4b6584;
+  background-color: #d1d8e0;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 6px;
+  line-height: 1.2;
+}
+
+/* Badges for 'Best For' */
+.ab-best-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.badge-poetry {
+  color: #c0392b;
+  background-color: #fadbd8;
+}
+
+.badge-beginners {
+  color: #d35400;
+  background-color: #fdebd0;
+}
+
+.badge-most {
+  color: #27ae60;
+  background-color: #d4efdf;
+  font-weight: 800;
+}
+
+.badge-nonfiction {
+  color: #2980b9;
+  background-color: #d6eaf8;
+}
+
+.badge-rereads {
+  color: #34495e;
+  background-color: #ebedef;
+}
+
+.badge-advanced {
+  color: #8e44ad;
+  background-color: #f5eef8;
+}
+
+.badge-elite {
+  color: #7d3c98;
+  background-color: #f4ecf7;
+}
+
+.badge-review {
+  color: #c0392b;
+  background-color: #f9ebea;
+}
+
+/* Callout Tip Box */
+.ab-tip-box {
+  display: flex;
+  gap: 16px;
+  background-color: var(--color-primary-bg, #fff3ee);
+  border: 1px solid var(--color-primary-border, #ffd0b5);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  align-items: flex-start;
+}
+
+.ab-tip-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.ab-tip-content {
+  font-size: 13px;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+.ab-tip-content strong {
+  color: var(--color-dark);
+}
+
+/* Responsive Table Adaptations */
+@media (max-width: 640px) {
+  .ab-comparison-table th, 
+  .ab-comparison-table td {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  .ab-best-badge {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+}
+
+/* Dark Mode Overrides for Table */
+[data-theme="dark"] .ab-comparison-table th {
+  background-color: #1f2937; /* Dark slate header */
+  color: #f9fafb;
+}
+
+[data-theme="dark"] .ab-comparison-table tbody tr.active {
+  background-color: #0a1f14 !important; /* Premium dark green highlight */
+  border-left-color: var(--color-green);
+}
+
+[data-theme="dark"] .ab-selected-tag {
+  color: #cbd5e1;
+  background-color: #475569;
+}
+
+[data-theme="dark"] .badge-poetry { color: #fca5a5; background-color: #451a1a; }
+[data-theme="dark"] .badge-beginners { color: #fdba74; background-color: #43200e; }
+[data-theme="dark"] .badge-most { color: #86efac; background-color: #064e3b; }
+[data-theme="dark"] .badge-nonfiction { color: #93c5fd; background-color: #1e3a8a; }
+[data-theme="dark"] .badge-rereads { color: #cbd5e1; background-color: #334155; }
+[data-theme="dark"] .badge-advanced { color: #d8b4fe; background-color: #3b0764; }
+[data-theme="dark"] .badge-elite { color: #e9d5ff; background-color: #4a044e; }
+[data-theme="dark"] .badge-review { color: #fca5a5; background-color: #4a0404; }
+
+[data-theme="dark"] .ab-tip-box {
+  background-color: #1a1008;
+  border-color: #382c24;
+}
+

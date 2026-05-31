@@ -1,13 +1,14 @@
 /* Audiobook Speed Calculator v2 — 4 Modes, 20 Presets, Custom Speed */
 document.addEventListener('DOMContentLoaded', () => {
   const SPEEDS = [
-    { value: 1.0, label: '1×', tag: null },
-    { value: 1.25, label: '1.25×', tag: 'Popular' },
-    { value: 1.5, label: '1.5×', tag: 'Sweet Spot' },
-    { value: 1.75, label: '1.75×', tag: null },
-    { value: 2.0, label: '2×', tag: 'Power' },
-    { value: 2.5, label: '2.5×', tag: null },
-    { value: 3.0, label: '3×', tag: 'Max' },
+    { value: 1.0, label: '1x', tag: null, bestFor: 'Theatrical / Poetry', badgeClass: 'badge-poetry' },
+    { value: 1.25, label: '1.25x', tag: 'Popular', bestFor: 'All Beginners', badgeClass: 'badge-beginners' },
+    { value: 1.5, label: '1.5x', tag: 'Sweet Spot', bestFor: 'Most Listeners ★', badgeClass: 'badge-most' },
+    { value: 1.75, label: '1.75x', tag: null, bestFor: 'Non-Fiction', badgeClass: 'badge-nonfiction' },
+    { value: 2.0, label: '2x', tag: 'Power', bestFor: 'Re-reads', badgeClass: 'badge-rereads' },
+    { value: 2.25, label: '2.25x', tag: null, bestFor: 'Advanced', badgeClass: 'badge-advanced' },
+    { value: 2.5, label: '2.5x', tag: null, bestFor: 'Elite', badgeClass: 'badge-elite' },
+    { value: 3.0, label: '3x', tag: 'Max', bestFor: 'Review Only', badgeClass: 'badge-review' }
   ];
   const BOOKS = [
     {t:'Atomic Habits',h:5,m:35},{t:'The Psychology of Money',h:5,m:48},{t:'Project Hail Mary',h:16,m:10},
@@ -39,6 +40,53 @@ document.addEventListener('DOMContentLoaded', () => {
   <button class="ab-tab ${tab==='deadline'?'active':''}" data-t="deadline">🎯 Finish By</button>
 </div>
 <div class="ab-tab-content">${tab==='speed'?speedUI(total,s,adj,saved,pct,bpy,days):tab==='wordcount'?wordUI():tab==='progress'?progressUI():deadlineUI()}</div>`;
+    
+    // Render the dynamic responsive comparison table
+    const tableBody = document.getElementById('compareTableBody');
+    if (tableBody) {
+      tableBody.innerHTML = SPEEDS.map(sp => {
+        const isSelected = sp.value === s;
+        const m = total / sp.value;
+        const hm = toHM(m);
+        const savedMins = total - m;
+        const p = total > 0 ? (savedMins / total) * 100 : 0;
+        const daysToFinish = total > 0 ? Math.ceil(m / (dailyHours * 60)) : 0;
+
+        const formattedTime = total > 0 ? `${hm.h}h${hm.m > 0 ? ' ' + hm.m + 'm' : ''}` : '—';
+        const formattedSaved = total > 0 && savedMins > 0 ? `${toHM(savedMins).h}h${toHM(savedMins).m > 0 ? ' ' + toHM(savedMins).m + 'm' : ''}` : '—';
+        const formattedPct = total > 0 && p > 0 ? `${p.toFixed(1)}%` : '—';
+        const formattedDays = total > 0 ? `${daysToFinish} day${daysToFinish !== 1 ? 's' : ''}` : '—';
+
+        return `
+          <tr class="${isSelected ? 'active' : ''}" data-speed="${sp.value}">
+            <td style="font-weight: 700;">
+              <span>${sp.label}</span>
+              ${isSelected ? '<br><span class="ab-selected-tag">Selected</span>' : ''}
+            </td>
+            <td style="font-weight: ${isSelected ? '700' : '500'};">${formattedTime}</td>
+            <td>${formattedSaved}</td>
+            <td>${formattedPct}</td>
+            <td>${formattedDays}</td>
+            <td>
+              <span class="ab-best-badge ${sp.badgeClass}">${sp.bestFor}</span>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      // Add click listeners to rows to select speed
+      tableBody.querySelectorAll('tr').forEach(row => {
+        row.style.cursor = 'pointer';
+        row.addEventListener('click', () => {
+          speed = parseFloat(row.dataset.speed);
+          customSpd = ''; // Reset custom speed if selecting preset
+          const csInput = document.getElementById('cs');
+          if (csInput) csInput.value = '';
+          render();
+        });
+      });
+    }
+
     wire();
   }
 
@@ -59,9 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="ab-result-card"><div class="ab-result-value">${fmt(sv)}</div><div class="ab-result-label">Time You'll Save</div></div>
 <div class="ab-result-card"><div class="ab-result-value">${pct}%</div><div class="ab-result-label">Speed Increase</div></div>
 <div class="ab-result-card"><div class="ab-result-value">${bpy}</div><div class="ab-result-label">Books Per Year</div></div></div>
-<div style="display:flex;gap:10px;flex-wrap:wrap;margin:16px 0"><span class="tool-badge">Finish in ${days} day${days!==1?'s':''}</span><span class="tool-badge">Original: ${hours}h ${minutes}m</span><span class="tool-badge">${Math.round(150*s)} words/min</span></div>
-<h3 style="font-family:var(--font-display);font-size:17px;font-weight:700;margin:28px 0 12px;color:var(--color-dark)">All speeds for this audiobook:</h3>
-<div class="ab-comparison-grid">${SPEEDS.map(sp=>{const m=total/sp.value,hm=toHM(m),p=total>0?Math.round(((total-m)/total)*100):0;return`<div class="ab-compare-col${sp.value===s?' active':''}" data-s="${sp.value}" style="cursor:pointer"><div class="ab-compare-speed">${sp.label}</div><div class="ab-compare-time">${hm.h}h ${hm.m}m</div><div class="ab-compare-saved">${p>0?'-'+p+'%':'Normal'}</div><div style="font-size:10px;color:var(--color-muted);margin-top:4px">${Math.round(150*sp.value)} WPM</div></div>`;}).join('')}</div>`;
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin:16px 0"><span class="tool-badge">Finish in ${days} day${days!==1?'s':''}</span><span class="tool-badge">Original: ${hours}h ${minutes}m</span><span class="tool-badge">${Math.round(150*s)} words/min</span></div>`;
   }
 
   function wordUI(){return `
@@ -88,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('ah')?.addEventListener('input',e=>{hours=Math.max(0,Math.min(200,parseInt(e.target.value)||0));render();});
       document.getElementById('am')?.addEventListener('input',e=>{minutes=Math.max(0,Math.min(59,parseInt(e.target.value)||0));render();});
       document.querySelectorAll('.ab-speed-card').forEach(c=>c.addEventListener('click',()=>{speed=parseFloat(c.dataset.s);customSpd='';render();}));
-      document.querySelectorAll('.ab-compare-col[data-s]').forEach(c=>c.addEventListener('click',()=>{speed=parseFloat(c.dataset.s);customSpd='';render();}));
       document.getElementById('cs')?.addEventListener('input',e=>{customSpd=e.target.value;render();});
       document.getElementById('dh')?.addEventListener('input',e=>{dailyHours=parseFloat(e.target.value);render();});
     }

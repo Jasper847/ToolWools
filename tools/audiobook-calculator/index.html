@@ -323,14 +323,39 @@
             <div class="tool-badge" id="badgeOriginal">🎧 10h 30m original duration</div>
           </div>
 
-          <!-- Speed Comparison Grid -->
-          <h3 style="font-family:var(--font-display);font-size:16px;font-weight:700;margin:24px 0 12px;color:var(--color-dark)">Speed Comparison</h3>
-          <div class="ab-comparison-grid" id="compareGrid">
-            <!-- Generated via JS -->
-          </div>
         </div>
       </div>
     </div>
+
+    <!-- Complete Speed Comparison Table Section -->
+    <section class="tool-panel reveal-up" style="margin-top:24px">
+      <div class="tool-panel-title" style="border-bottom:none;margin-bottom:20px;padding-bottom:0">
+        <h2 style="font-size:14px;letter-spacing:1px;text-transform:uppercase;color:var(--color-muted);font-weight:800;font-family:var(--font-display)">Complete Speed Comparison — Your Audiobook at Every Speed</h2>
+      </div>
+      <div class="ab-table-responsive">
+        <table class="ab-comparison-table">
+          <thead>
+            <tr>
+              <th>Speed</th>
+              <th>Adjusted Length</th>
+              <th>Time Saved</th>
+              <th>% Saved</th>
+              <th>Days to Finish</th>
+              <th>Best For</th>
+            </tr>
+          </thead>
+          <tbody id="compareTableBody">
+            <!-- Dynamically populated via JS -->
+          </tbody>
+        </table>
+      </div>
+      <div class="ab-tip-box" style="margin-top:24px">
+        <span class="ab-tip-icon" aria-hidden="true">💡</span>
+        <div class="ab-tip-content">
+          <strong>Tip:</strong> If you are new to speed listening, start at 1.25x for your first book at that speed, then increase by 0.25x increments every few days. Your brain adapts quickly — most listeners reach 1.5x within two weeks.
+        </div>
+      </div>
+    </section>
 
       <!-- FAQ Section (Semantic & Pre-rendered for NLP SEO) -->
       <section class="tool-panel reveal-up" style="margin-top:24px">
