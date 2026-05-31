@@ -661,13 +661,27 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Card C: Audiobook Calculator -->
-        <div class="feature-card reveal-up">
-          <div class="feature-card-content">
+    <!-- ==================== SECTION 7B: FEATURED AUDIOBOOK DEMO ==================== -->
+    <section class="featured-demo reveal-up" id="audiobook-demo">
+      <div class="featured-container">
+        <!-- Floating Badge -->
+        <div class="floating-badge">
+          <div class="floating-badge-inner" style="background: var(--color-primary);">
+            <span class="floating-badge-number" style="color: white;">-33%</span>
+            <span class="floating-badge-label" style="color: white; opacity: 0.9;">Time Saved</span>
+          </div>
+          <svg class="floating-badge-arrow" width="40" height="30" viewBox="0 0 40 30"><path d="M35 5C25 -5 10 5 5 20" stroke="#F4511E" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M2 15L5 20L10 17" stroke="#F4511E" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </div>
+
+        <div class="featured-grid">
+          <!-- Left Column -->
+          <div class="featured-info">
             <span class="section-label">AUDIOBOOK CALCULATOR</span>
-            <h3 class="feature-card-title">Know exactly how long any audiobook takes</h3>
-            <p class="feature-card-desc">Calculate listening time at any playback speed. See time saved, books per year, and compare all speeds instantly.</p>
+            <h2 class="featured-title">Know exactly how long any audiobook takes</h2>
+            <p class="featured-desc">Calculate listening time at any playback speed. See time saved, books per year, and compare all speeds instantly.</p>
             <ul class="feature-checklist">
               <li>
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#D1FAE5"/><path d="M6 10L9 13L14 7" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -691,42 +705,63 @@
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
           </div>
-          <div class="feature-card-visual">
-            <!-- Audiobook Calculator Mockup -->
-            <div class="seo-dashboard" style="padding:24px">
-              <div class="seo-header">
-                <span class="seo-title-label">Audiobook Speed Calculator</span>
-                <span class="seo-dots">⋯</span>
+
+          <!-- Right Column: Mockup -->
+          <div class="featured-mockup">
+            <div class="mockup-window">
+              <div class="mockup-topbar">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
               </div>
-              <!-- Mini calculator mockup -->
-              <div style="text-align:center;padding:16px 0 12px">
-                <div style="font-size:12px;color:var(--color-muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600">10h 30m audiobook at 1.5× speed</div>
-                <div style="font-family:var(--font-display);font-size:42px;font-weight:800;color:var(--color-primary);line-height:1.1">7h 0m</div>
-                <div style="font-size:14px;color:#10B981;font-weight:700;margin-top:6px">↓ 3h 30m saved (33% faster)</div>
-              </div>
-              <!-- Speed pills -->
-              <div style="display:flex;justify-content:center;gap:6px;margin:16px 0 12px;flex-wrap:wrap">
-                <span style="padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600;background:var(--color-bg);color:var(--color-muted);border:1px solid var(--color-border)">1×</span>
-                <span style="padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700;background:rgba(var(--color-primary-rgb),0.1);color:var(--color-primary);border:1.5px solid var(--color-primary)">1.5×</span>
-                <span style="padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600;background:var(--color-bg);color:var(--color-muted);border:1px solid var(--color-border)">2×</span>
-                <span style="padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600;background:var(--color-bg);color:var(--color-muted);border:1px solid var(--color-border)">3×</span>
-              </div>
-              <!-- Stats row -->
-              <div class="seo-metrics" style="margin-top:12px">
-                <div class="seo-metric">
-                  <span class="seo-metric-label">Books/Year</span>
-                  <span class="seo-metric-value">52.1 <span class="metric-up">▲+50%</span></span>
+              <div class="mockup-content">
+                <!-- Mini calculator mockup -->
+                <div class="home-audiobook-mockup">
+                  <div class="mockup-calc-header">
+                    <span class="mockup-calc-title">Audiobook Speed Calculator</span>
+                    <div class="mockup-calc-badge">Demo</div>
+                  </div>
+                  <div class="mockup-calc-body">
+                    <div class="mockup-calc-input-row">
+                      <div class="mockup-calc-input-group">
+                        <label>Hours</label>
+                        <div class="mockup-calc-val">10</div>
+                      </div>
+                      <div class="mockup-calc-input-group">
+                        <label>Minutes</label>
+                        <div class="mockup-calc-val">30</div>
+                      </div>
+                    </div>
+                    
+                    <div class="mockup-calc-divider"></div>
+                    
+                    <div class="mockup-speed-selector">
+                      <div class="mockup-speed-pills">
+                        <span class="mockup-pill">1×</span>
+                        <span class="mockup-pill active">1.5×</span>
+                        <span class="mockup-pill">2×</span>
+                        <span class="mockup-pill">3×</span>
+                      </div>
+                    </div>
+
+                    <div class="mockup-calc-main-result">
+                      <span class="mockup-calc-label">Duration at 1.5× Speed</span>
+                      <h3 class="mockup-calc-result-val">7h 0m</h3>
+                      <span class="mockup-calc-savings">↓ 3h 30m saved (33% faster)</span>
+                    </div>
+
+                    <div class="mockup-calc-stats">
+                      <div class="mockup-calc-stat">
+                        <span class="mockup-calc-stat-label">Books / Year</span>
+                        <span class="mockup-calc-stat-val">52.1 <span class="metric-up">▲+50%</span></span>
+                      </div>
+                      <div class="mockup-calc-stat">
+                        <span class="mockup-calc-stat-label">Days to Finish</span>
+                        <span class="mockup-calc-stat-val">4 days</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="seo-metric">
-                  <span class="seo-metric-label">Days to Finish</span>
-                  <span class="seo-metric-value">4 days</span>
-                </div>
-              </div>
-              <!-- Mini comparison -->
-              <div class="seo-status-list" style="margin-top:12px">
-                <div class="seo-status"><span class="status-dot status-green"></span>1.25× = 8h 24m<span class="status-value">-20%</span></div>
-                <div class="seo-status"><span class="status-dot status-green"></span>1.5× = 7h 0m<span class="status-value">-33%</span></div>
-                <div class="seo-status"><span class="status-dot status-green"></span>2× = 5h 15m<span class="status-value">-50%</span></div>
               </div>
             </div>
           </div>

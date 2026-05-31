@@ -1107,6 +1107,167 @@ html {
   text-decoration: underline;
 }
 
+
+/* --- Featured Audiobook Showcase Demo --- */
+#audiobook-demo {
+  background: linear-gradient(135deg, var(--color-bg) 0%, rgba(var(--color-primary-rgb), 0.03) 50%, var(--color-bg) 100%);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.home-audiobook-mockup {
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.mockup-calc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.mockup-calc-title {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-dark);
+}
+
+.mockup-calc-badge {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  background: rgba(var(--color-primary-rgb), 0.1);
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.mockup-calc-input-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.mockup-calc-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mockup-calc-input-group label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mockup-calc-val {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-dark);
+  text-align: center;
+}
+
+.mockup-calc-divider {
+  height: 1px;
+  background: var(--color-border-light);
+  margin: 16px 0;
+}
+
+.mockup-speed-pills {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.mockup-pill {
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--color-bg);
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mockup-pill.active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.25);
+}
+
+.mockup-calc-main-result {
+  text-align: center;
+  padding: 16px;
+  background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-surface) 100%);
+  border-radius: 12px;
+  border: 1px solid var(--color-border-light);
+  margin-bottom: 16px;
+}
+
+.mockup-calc-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-muted);
+  text-transform: uppercase;
+}
+
+.mockup-calc-result-val {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin: 8px 0;
+  line-height: 1;
+}
+
+.mockup-calc-savings {
+  font-size: 13px;
+  color: #10B981;
+  font-weight: 700;
+}
+
+.mockup-calc-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.mockup-calc-stat {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-light);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.mockup-calc-stat-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-muted);
+  margin-bottom: 8px;
+}
+
+.mockup-calc-stat-val {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
 /* FIX 17: PREMIUM MOCKUP WINDOW */
 .featured-mockup {
   position: relative;
