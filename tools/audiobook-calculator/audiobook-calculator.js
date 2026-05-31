@@ -9,15 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { value: 3.0, label: '3×', tag: 'Max' },
   ];
 
-  const FAQS = [
-    { q: 'How does the Audiobook Speed Calculator work?', a: 'Enter the original runtime, select a speed from 1× to 3×, set your daily listening goal, and the calculator instantly shows your new duration, time saved, days to finish, and books per year — with no sign-up required.' },
-    { q: 'What is the best audiobook speed for beginners?', a: 'Start at 1.25× for the first week, then move to 1.5× after you feel comfortable. The 1.25× to 1.5× range saves 20–33% of your listening time with minimal comprehension loss.' },
-    { q: 'Can you really understand audiobooks at 2× speed?', a: 'Yes — with practice. Studies show comprehension loss is minimal up to 1.5× for most listeners. Above 2× depends on content complexity. Increase speed gradually by 0.25× per week.' },
-    { q: 'How many books can I finish per year at 1.5× speed?', a: 'At 1.5× you can listen to 50% more books than at normal speed. If you previously finished 20 books per year, 1.5× would let you finish approximately 30.' },
-    { q: 'Which audiobook apps support playback speed control?', a: 'Audible (0.5×–3.5×), Apple Books (0.5×–2×), Spotify (0.5×–3.5×), Libby/OverDrive (up to 3×), and Speechify (up to 4.5×) all support variable speed.' },
-    { q: 'Does faster listening reduce memory retention?', a: 'Research shows minimal retention loss at speeds up to 1.5×. For complex non-fiction, staying at 1× or 1.25× is recommended. Taking notes after each session improves retention at any speed.' },
-    { q: 'Is the Audiobook Speed Calculator free to use?', a: 'Yes, completely free. No account, no subscription, no data collection. All calculations happen in your browser — nothing is sent to any server.' },
-  ];
+
 
   let hours = 10, minutes = 30, speed = 1.5, dailyHours = 2;
 
@@ -29,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const speedGrid = document.getElementById('speedGrid');
   const compareGrid = document.getElementById('compareGrid');
-  const faqList = document.getElementById('faqList');
 
   const resDuration = document.getElementById('resDuration');
   const resSaved = document.getElementById('resSaved');
@@ -63,27 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  // Render FAQs once (static data)
-  function renderFAQs() {
-    if (!faqList) return;
-    faqList.innerHTML = FAQS.map((f, i) => `
-      <div class="ab-faq-item" id="faq-${i}">
-        <button class="ab-faq-q" aria-expanded="false" aria-controls="faq-a-${i}">${f.q}</button>
-        <div class="ab-faq-a" id="faq-a-${i}" role="region">${f.a}</div>
-      </div>
-    `).join('');
 
-    // Attach FAQ listeners
-    faqList.querySelectorAll('.ab-faq-q').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.closest('.ab-faq-item');
-        const isOpen = item.classList.contains('open');
-        faqList.querySelectorAll('.ab-faq-item').forEach(el => el.classList.remove('open'));
-        if (!isOpen) item.classList.add('open');
-        btn.setAttribute('aria-expanded', !isOpen);
-      });
-    });
-  }
 
   function update() {
     const r = calcResults();
@@ -153,7 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Initialize
-  renderFAQs();
+
   update();
 });
