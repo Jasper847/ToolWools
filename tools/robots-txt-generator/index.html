@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/robots-txt-generator/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>Robots.txt Generator — Create SEO Crawler Rules | ToolWools</title>
+  <meta name="description" content="Generate a robots.txt file for your website. Configure user agents, allow/disallow rules, and sitemap URL. Free online tool.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-container">
+      <h1 class="tool-title">Robots.txt Generator</h1>
+      <p class="tool-subtitle">Create crawler rules for search engines</p>
+      <div class="tool-controls-row" style="flex-direction:column;gap:10px">
+        <input type="text" id="sitemap-url" class="tool-input" placeholder="Sitemap URL (e.g. https://example.com/sitemap.xml)">
+        <label>User-Agent: <input type="text" id="user-agent" class="tool-input" value="*" placeholder="e.g. * or Googlebot"></label>
+        <textarea id="disallow" class="tool-textarea" rows="4" placeholder="Disallow paths (one per line)&#10;e.g.&#10;/admin/&#10;/private/"></textarea>
+        <textarea id="allow" class="tool-textarea" rows="3" placeholder="Allow paths (one per line, optional)&#10;e.g.&#10;/public/"></textarea>
+      </div>
+      <div class="tool-bottom-actions">
+        <button id="btn-generate" class="btn btn-primary">Generate</button>
+        <button id="btn-copy" class="btn btn-secondary">Copy</button>
+        <button id="btn-download" class="btn btn-secondary">Download</button>
+      </div>
+      <textarea id="output" class="tool-textarea" rows="10" readonly placeholder="Generated robots.txt will appear here..."></textarea>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+  <script src="robots-txt.js"></script>
+</body>
+</html>

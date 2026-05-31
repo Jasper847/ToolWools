@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/find-and-replace/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>Find and Replace — Bulk Text Editor | ToolWools</title>
+  <meta name="description" content="Find and replace text with regex support, case sensitivity toggle, and match counter. Free online tool, no signup.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-container">
+      <h1 class="tool-title">Find and Replace</h1>
+      <p class="tool-subtitle">Search and replace text with regex support</p>
+
+      <textarea id="input" class="tool-textarea" rows="10" placeholder="Paste your text here..."></textarea>
+
+      <div class="tool-controls-row">
+        <input type="text" id="find" class="tool-input" placeholder="Find...">
+        <input type="text" id="replace" class="tool-input" placeholder="Replace with...">
+      </div>
+      <div class="tool-controls-row">
+        <label><input type="checkbox" id="case-sensitive"> Case sensitive</label>
+        <label><input type="checkbox" id="use-regex"> Use Regex</label>
+        <span id="match-count" class="tool-badge">0 matches</span>
+      </div>
+
+      <div class="tool-bottom-actions">
+        <button id="btn-replace-all" class="btn btn-primary">Replace All</button>
+        <button id="btn-copy" class="btn btn-secondary">Copy Result</button>
+      </div>
+
+      <textarea id="output" class="tool-textarea" rows="10" readonly placeholder="Result appears here after replacing..."></textarea>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+  <script src="find-replace.js"></script>
+</body>
+</html>

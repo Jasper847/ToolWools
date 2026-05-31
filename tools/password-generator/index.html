@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/password-generator/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>Password Generator — Strong & Secure Passwords | ToolWools</title>
+  <meta name="description" content="Generate strong, random passwords with customizable length, uppercase, lowercase, numbers, and symbols. Uses crypto-random.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-container">
+      <h1 class="tool-title">Password Generator</h1>
+      <p class="tool-subtitle">Generate cryptographically strong random passwords</p>
+      <div class="tool-controls-row">
+        <label>Length: <input type="range" id="length" min="6" max="128" value="20"> <span id="length-val">20</span></label>
+      </div>
+      <div class="tool-controls-row">
+        <label><input type="checkbox" id="opt-upper" checked> Uppercase</label>
+        <label><input type="checkbox" id="opt-lower" checked> Lowercase</label>
+        <label><input type="checkbox" id="opt-digits" checked> Numbers</label>
+        <label><input type="checkbox" id="opt-symbols" checked> Symbols</label>
+      </div>
+      <input type="text" id="password-output" class="tool-input" readonly placeholder="Click Generate..." style="font-family:monospace;font-size:16px;text-align:center;padding:16px">
+      <div class="tool-bottom-actions">
+        <button id="btn-generate" class="btn btn-primary">Generate</button>
+        <button id="btn-copy" class="btn btn-secondary">Copy</button>
+      </div>
+      <div id="strength" class="tool-badge" style="margin-top:12px"></div>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+  <script src="password-generator.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/keyword-density-checker/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>Keyword Density Checker — SEO Text Analysis | ToolWools</title>
+  <meta name="description" content="Analyze keyword density of any text. See top keywords by frequency and percentage for SEO optimization. Free, instant.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-container">
+      <h1 class="tool-title">Keyword Density Checker</h1>
+      <p class="tool-subtitle">Analyze keyword frequency and density for SEO</p>
+      <textarea id="input" class="tool-textarea" rows="10" placeholder="Paste your content here to analyze keyword density..."></textarea>
+      <div class="tool-bottom-actions">
+        <button id="btn-analyze" class="btn btn-primary">Analyze</button>
+      </div>
+      <div id="results" style="margin-top:16px">
+        <table class="density-table" id="density-table" style="width:100%;border-collapse:collapse;display:none">
+          <thead><tr><th>Keyword</th><th>Count</th><th>Density</th></tr></thead>
+          <tbody id="density-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+  <script src="keyword-density.js"></script>
+</body>
+</html>

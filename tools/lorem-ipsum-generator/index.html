@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/lorem-ipsum-generator/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>Lorem Ipsum Generator — Placeholder Text | ToolWools</title>
+  <meta name="description" content="Generate lorem ipsum placeholder text by paragraphs, sentences, or words. Copy with one click. Free, no signup.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-container">
+      <h1 class="tool-title">Lorem Ipsum Generator</h1>
+      <p class="tool-subtitle">Generate placeholder text for your designs and mockups</p>
+
+      <div class="tool-controls-row">
+        <label>Amount: <input type="number" id="amount" value="5" min="1" max="100" class="tool-input-sm"></label>
+        <label>Type:
+          <select id="unit" class="tool-select">
+            <option value="paragraphs">Paragraphs</option>
+            <option value="sentences">Sentences</option>
+            <option value="words">Words</option>
+          </select>
+        </label>
+        <button id="btn-generate" class="btn btn-primary">Generate</button>
+      </div>
+
+      <textarea id="output" class="tool-textarea" rows="12" readonly placeholder="Click Generate to create placeholder text..."></textarea>
+
+      <div class="tool-bottom-actions">
+        <button id="btn-copy" class="btn btn-primary">Copy Text</button>
+      </div>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+  <script src="lorem-ipsum.js"></script>
+</body>
+</html>
