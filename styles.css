@@ -52,6 +52,7 @@
   --color-border: #E5E7EB;
   --color-border-light: #F3F4F6;
   --color-surface: #FFFFFF;
+  --color-surface-rgb: 255, 255, 255;
   --color-bg: #FAFAFA;
   --radius-sm: 8px;
   --radius-card: 16px;
@@ -74,6 +75,7 @@
   --color-border: #374151;
   --color-border-light: #1F2937;
   --color-surface: #1F2937;
+  --color-surface-rgb: 31, 41, 55;
   --color-bg: #111827;
   --color-primary-bg: #1a1008;
   --color-blue-bg: #0f172a;
@@ -122,15 +124,14 @@ img {
   height: auto;
 }
 
+input, select, textarea, button {
+  font-family: inherit;
+}
+
 button {
   border: none;
   background: none;
   cursor: pointer;
-  font-family: inherit;
-}
-
-input {
-  font-family: inherit;
 }
 
 /* Screen reader only */
@@ -215,9 +216,9 @@ select:focus-visible,
 :root {
   --space-1: 4px;
   --space-2: 8px;
-  --space-3: 12px;
+  --space-3: 16px;
   --space-4: 16px;
-  --space-5: 20px;
+  --space-5: 24px;
   --space-6: 24px;
   --space-7: 32px;
   --space-8: 40px;
@@ -647,8 +648,8 @@ html {
 }
 
 .theme-toggle {
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -673,41 +674,62 @@ html {
 .hamburger {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 4px;
-  width: 24px;
-  padding: 2px 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.hamburger:hover {
+  background: var(--color-border-light);
 }
 .hamburger span {
   display: block;
-  width: 100%;
+  width: 20px;
   height: 2px;
   background: var(--color-dark);
   border-radius: 2px;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 .hamburger.active span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+  transform: translateY(6px) rotate(45deg);
 }
 .hamburger.active span:nth-child(2) {
   opacity: 0;
 }
 .hamburger.active span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 /* Mobile Menu */
+@keyframes slideDownMenu {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 .mobile-menu {
   display: none;
-  flex-direction: column;
-  padding: 16px 24px 24px;
-  background: var(--color-surface);
+  position: absolute;
+  top: 64px;
+  left: 0;
+  right: 0;
+  background: rgba(var(--color-surface-rgb), 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--color-border);
+  padding: var(--space-4) var(--space-6);
+  flex-direction: column;
+  z-index: 999;
+  box-shadow: var(--shadow-xl);
 }
 .mobile-menu.open {
   display: flex;
+  animation: slideDownMenu 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 .mobile-link {
-  padding: 12px 0;
+  padding: var(--space-3) 0;
   font-size: 15px;
   font-weight: 500;
   color: var(--color-body);
@@ -717,7 +739,7 @@ html {
   color: var(--color-primary);
 }
 .mobile-cta {
-  margin-top: 16px;
+  margin-top: var(--space-4);
   text-align: center;
   justify-content: center;
 }
@@ -2571,14 +2593,29 @@ html {
 /* FIX 16: Extra small (<480px) */
 @media (max-width: 480px) {
   .tools-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
   .tool-card {
     padding: 16px;
   }
   .hero-title {
     font-size: clamp(28px, 8vw, 40px);
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    text-align: center;
+  }
+  .footer-brand, .footer-newsletter {
+    grid-column: 1;
+  }
+  .social-icons {
+    justify-content: center;
+  }
+  .newsletter-form {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
 
@@ -2639,15 +2676,14 @@ body.menu-open {
 /* Stats bar: single row scroll on mobile */
 @media (max-width: 560px) {
   .stats-container {
-    flex-wrap: wrap;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
   .stat-divider {
     display: none;
   }
   .stat-item {
-    flex: 1;
-    min-width: 120px;
     padding: 12px 8px;
   }
   .stat-number {
@@ -2655,6 +2691,11 @@ body.menu-open {
   }
   .stat-label {
     font-size: 11px;
+  }
+}
+@media (max-width: 400px) {
+  .stats-container {
+    grid-template-columns: 1fr;
   }
 }
 

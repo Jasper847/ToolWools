@@ -588,13 +588,13 @@
 /* Fix A: Constrain speed grid width + improve mobile */
 .ab-speed-grid {
   max-width: 700px;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(8, 1fr);
 }
 
 /* Fix B: Comparison grid proper columns */
 .ab-comparison-grid {
   max-width: 800px;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(8, 1fr);
 }
 
 /* Fix C: Results grid intermediate breakpoint */
@@ -606,8 +606,8 @@
 
 @media (max-width: 640px) {
   .ab-results-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .ab-speed-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
-  .ab-comparison-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .ab-speed-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .ab-comparison-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
   .ab-result-card { padding: 16px 10px; }
   .ab-result-value { font-size: clamp(20px, 5vw, 28px); }
   .ab-speed-card { padding: 12px 6px; }
@@ -620,7 +620,7 @@
 }
 
 @media (max-width: 400px) {
-  .ab-speed-grid { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .ab-speed-grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
   .ab-comparison-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
   .ab-results-grid { gap: 8px; }
   .ab-result-card { padding: 14px 8px; border-radius: 12px; }

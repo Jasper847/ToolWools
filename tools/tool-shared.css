@@ -1330,9 +1330,9 @@
   .related-tool-card {
     padding: 20px;
     border-radius: 14px;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
   }
 
   .related-tool-card::before {
@@ -1503,28 +1503,14 @@ main.tool-page {
 @media (max-width: 1024px) { :root { --navbar-h: 64px; } }
 @media (max-width: 640px)  { :root { --navbar-h: 60px; } }
 
-/* -----------------------------------------------
-   FIX 4: Mobile menu closes on scroll (via CSS)
-   Scroll-blur the overlay state
-   ----------------------------------------------- */
-.mobile-menu {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, padding 0.3s ease;
-  padding: 0 16px;
-}
-.mobile-menu.open {
-  max-height: 600px;
-  padding: 16px 16px 24px;
-}
+/* Mobile menu styling inherited from styles.css */
 
 /* -----------------------------------------------
    FIX 5: Tool-container overflow protection
    Prevent horizontal scroll from child content
    ----------------------------------------------- */
 .tool-container,
-.tool-workspace,
-.tool-panel {
+.tool-workspace {
   overflow-x: hidden;
 }
 
