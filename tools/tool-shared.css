@@ -1126,3 +1126,105 @@
   .tool-container { padding: 0; max-width: 100%; }
   .tool-textarea { border: 1px solid #000; }
 }
+
+/* =============================================
+   RELATED TOOLS SECTION
+   ============================================= */
+.related-tools {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-border);
+}
+
+.related-tools-heading {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--color-dark);
+}
+
+.related-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.related-tool-card {
+  display: block;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--color-dark);
+  background: var(--color-surface);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.related-tool-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.related-tool-name {
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--color-dark);
+}
+
+.related-tool-link {
+  font-size: 12px;
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+[data-theme="dark"] .related-tool-card {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .related-tool-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 640px) {
+  .related-tools-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =============================================
+   BREADCRUMB NAVIGATION
+   ============================================= */
+.tool-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-muted);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.tool-breadcrumb a {
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.tool-breadcrumb a:hover {
+  color: var(--color-primary);
+}
+
+.tool-breadcrumb span[aria-current="page"] {
+  color: var(--color-dark);
+  font-weight: 500;
+}
+
+[data-theme="dark"] .tool-breadcrumb span[aria-current="page"] {
+  color: #f0f0f0;
+}
