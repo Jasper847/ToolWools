@@ -3,18 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="canonical" href="https://toolwools.com/tools/robots-txt-generator/">
+  <link rel="canonical" href="https://toolwools.com/tools/url-slug-generator/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/favicon.svg">
   <meta name="theme-color" content="#F4511E">
-  <title>Robots.txt Generator — Create SEO Crawler Rules | ToolWools</title>
-  <meta name="description" content="Generate a robots.txt file for your website. Configure user agents, allow/disallow rules, and sitemap URL. Free online tool.">
-  <link rel="stylesheet" href="../../styles.css">
-  <link rel="stylesheet" href="../tools.css">
-  <link rel="stylesheet" href="../tool-shared.css">
+  <title>Advanced URL Slug Generator | ToolWools</title>
+  <meta name="description" content="Generate SEO-optimized URL slugs from titles. Auto-transliterate accents, strip stop words, enforce max length, preview the full URL.">
+  <meta property="og:site_name" content="ToolWools">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Advanced URL Slug Generator — ToolWools">
+  <meta property="og:description" content="Generate SEO-optimized URL slugs from titles. Auto-transliterate accents, strip stop words, enforce max length, preview the full URL.">
+  <meta property="og:url" content="https://toolwools.com/tools/url-slug-generator/">
+  <meta property="og:image" content="https://toolwools.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Advanced URL Slug Generator — ToolWools">
+  <meta name="twitter:image" content="https://toolwools.com/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+  <link rel="stylesheet" href="../tool-shared.css">
 </head>
 <body>
   <a href="#main-content" class="skip-to-content">Skip to content</a>
@@ -141,22 +150,29 @@
     </div>
   </header>
 
-  <main class="tool-page" id="main-content">
-    <div class="tool-container">
-      <h1 class="tool-title">Robots.txt Generator</h1>
-      <p class="tool-subtitle">Create crawler rules for search engines</p>
-      <div class="tool-controls-row" style="flex-direction:column;gap:10px">
-        <input type="text" id="sitemap-url" class="tool-input" placeholder="Sitemap URL (e.g. https://example.com/sitemap.xml)">
-        <label>User-Agent: <input type="text" id="user-agent" class="tool-input" value="*" placeholder="e.g. * or Googlebot"></label>
-        <textarea id="disallow" class="tool-textarea" rows="4" placeholder="Disallow paths (one per line)&#10;e.g.&#10;/admin/&#10;/private/"></textarea>
-        <textarea id="allow" class="tool-textarea" rows="3" placeholder="Allow paths (one per line, optional)&#10;e.g.&#10;/public/"></textarea>
+  <main class="tool-container" id="main-content">
+    <div class="tool-header-block">
+      <div class="tool-badge-category">Text Tools</div>
+      <h1 class="tool-title">URL Slug Generator</h1>
+      <p class="tool-description">Generate SEO-optimized URL slugs from titles. Auto-transliterate accents, strip stop words, enforce max length, preview the full URL.</p>
+    </div>
+    <div class="tool-workspace">
+      <label for="input" class="sr-only">Title or text</label>
+      <textarea id="input" class="tool-textarea" rows="3" placeholder="Enter a page title or heading...&#10;e.g. 10 Best Tips for Über SEO in 2026!"></textarea>
+      <div class="tool-controls-row">
+        <label>Domain: <input type="text" id="domain" class="tool-input" value="https://toolwools.com" placeholder="https://example.com"></label>
+        <label>Max: <input type="number" id="max-len" class="tool-input-sm" value="60" min="10" max="200"></label>
+        <label><input type="checkbox" id="opt-stop" checked> Remove stop words</label>
       </div>
       <div class="tool-bottom-actions">
-        <button id="btn-generate" class="btn btn-primary">Generate</button>
-        <button id="btn-copy" class="btn btn-secondary">Copy</button>
-        <button id="btn-download" class="btn btn-secondary">Download</button>
+        <button id="btn-generate" class="btn btn-primary">Generate URL</button>
+        <button id="btn-copy" class="btn btn-secondary">Copy URL</button>
       </div>
-      <textarea id="output" class="tool-textarea" rows="10" readonly placeholder="Generated robots.txt will appear here..."></textarea>
+      <div style="margin-top:16px;padding:16px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card)">
+        <div style="font-size:12px;color:var(--color-muted);margin-bottom:4px">Preview URL:</div>
+        <div id="url-preview" style="font-family:monospace;font-size:15px;color:var(--color-primary);word-break:break-all">https://toolwools.com/your-slug-here</div>
+      </div>
+      <div id="slug-stats" class="tool-badge" style="margin-top:12px"></div>
     </div>
   </main>
 
@@ -245,6 +261,6 @@
   </footer>
 
   <script src="../../script.js"></script>
-  <script src="robots-txt.js"></script>
+  <script src="url-slug.js"></script>
 </body>
 </html>

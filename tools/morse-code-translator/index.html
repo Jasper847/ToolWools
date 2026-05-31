@@ -3,18 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="canonical" href="https://toolwools.com/tools/robots-txt-generator/">
+  <link rel="canonical" href="https://toolwools.com/tools/morse-code-translator/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/favicon.svg">
   <meta name="theme-color" content="#F4511E">
-  <title>Robots.txt Generator — Create SEO Crawler Rules | ToolWools</title>
-  <meta name="description" content="Generate a robots.txt file for your website. Configure user agents, allow/disallow rules, and sitemap URL. Free online tool.">
-  <link rel="stylesheet" href="../../styles.css">
-  <link rel="stylesheet" href="../tools.css">
-  <link rel="stylesheet" href="../tool-shared.css">
+  <title>Morse Code Translator with Audio | ToolWools</title>
+  <meta name="description" content="Translate text to Morse code and back. Hear the Morse pattern with audio playback using Web Audio API.">
+  <meta property="og:site_name" content="ToolWools">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Morse Code Translator with Audio — ToolWools">
+  <meta property="og:description" content="Translate text to Morse code and back. Hear the Morse pattern with audio playback using Web Audio API.">
+  <meta property="og:url" content="https://toolwools.com/tools/morse-code-translator/">
+  <meta property="og:image" content="https://toolwools.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Morse Code Translator with Audio — ToolWools">
+  <meta name="twitter:image" content="https://toolwools.com/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+  <link rel="stylesheet" href="../tool-shared.css">
 </head>
 <body>
   <a href="#main-content" class="skip-to-content">Skip to content</a>
@@ -141,22 +150,23 @@
     </div>
   </header>
 
-  <main class="tool-page" id="main-content">
-    <div class="tool-container">
-      <h1 class="tool-title">Robots.txt Generator</h1>
-      <p class="tool-subtitle">Create crawler rules for search engines</p>
-      <div class="tool-controls-row" style="flex-direction:column;gap:10px">
-        <input type="text" id="sitemap-url" class="tool-input" placeholder="Sitemap URL (e.g. https://example.com/sitemap.xml)">
-        <label>User-Agent: <input type="text" id="user-agent" class="tool-input" value="*" placeholder="e.g. * or Googlebot"></label>
-        <textarea id="disallow" class="tool-textarea" rows="4" placeholder="Disallow paths (one per line)&#10;e.g.&#10;/admin/&#10;/private/"></textarea>
-        <textarea id="allow" class="tool-textarea" rows="3" placeholder="Allow paths (one per line, optional)&#10;e.g.&#10;/public/"></textarea>
-      </div>
+  <main class="tool-container" id="main-content">
+    <div class="tool-header-block">
+      <div class="tool-badge-category">Text Tools</div>
+      <h1 class="tool-title">Morse Code Translator</h1>
+      <p class="tool-description">Translate text to Morse code and back. Hear the Morse pattern with audio playback using Web Audio API.</p>
+    </div>
+    <div class="tool-workspace">
+      <label for="text-input" style="font-weight:600;display:block;margin-bottom:6px">Text</label>
+      <textarea id="text-input" class="tool-textarea" rows="4" placeholder="Type text to translate to Morse code..."></textarea>
       <div class="tool-bottom-actions">
-        <button id="btn-generate" class="btn btn-primary">Generate</button>
+        <button id="btn-to-morse" class="btn btn-primary">Text → Morse</button>
+        <button id="btn-to-text" class="btn btn-primary">Morse → Text</button>
+        <button id="btn-play" class="btn btn-secondary">▶ Play Audio</button>
         <button id="btn-copy" class="btn btn-secondary">Copy</button>
-        <button id="btn-download" class="btn btn-secondary">Download</button>
       </div>
-      <textarea id="output" class="tool-textarea" rows="10" readonly placeholder="Generated robots.txt will appear here..."></textarea>
+      <label for="morse-input" style="font-weight:600;display:block;margin-bottom:6px">Morse Code</label>
+      <textarea id="morse-input" class="tool-textarea" rows="4" placeholder="Morse output appears here...&#10;Use dots (.) and dashes (-), spaces between letters, / between words" style="font-family:monospace;font-size:18px;letter-spacing:2px"></textarea>
     </div>
   </main>
 
@@ -245,6 +255,6 @@
   </footer>
 
   <script src="../../script.js"></script>
-  <script src="robots-txt.js"></script>
+  <script src="morse-code.js"></script>
 </body>
 </html>

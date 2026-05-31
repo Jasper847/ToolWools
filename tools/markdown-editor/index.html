@@ -3,18 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="canonical" href="https://toolwools.com/tools/robots-txt-generator/">
+  <link rel="canonical" href="https://toolwools.com/tools/markdown-editor/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/favicon.svg">
   <meta name="theme-color" content="#F4511E">
-  <title>Robots.txt Generator — Create SEO Crawler Rules | ToolWools</title>
-  <meta name="description" content="Generate a robots.txt file for your website. Configure user agents, allow/disallow rules, and sitemap URL. Free online tool.">
-  <link rel="stylesheet" href="../../styles.css">
-  <link rel="stylesheet" href="../tools.css">
-  <link rel="stylesheet" href="../tool-shared.css">
+  <title>Live Markdown Editor & Preview | ToolWools</title>
+  <meta name="description" content="Write Markdown and see a live HTML preview side by side. Supports headings, lists, links, code blocks, tables, and images.">
+  <meta property="og:site_name" content="ToolWools">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Live Markdown Editor & Preview — ToolWools">
+  <meta property="og:description" content="Write Markdown and see a live HTML preview side by side. Supports headings, lists, links, code blocks, tables, and images.">
+  <meta property="og:url" content="https://toolwools.com/tools/markdown-editor/">
+  <meta property="og:image" content="https://toolwools.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Live Markdown Editor & Preview — ToolWools">
+  <meta name="twitter:image" content="https://toolwools.com/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+  <link rel="stylesheet" href="../tool-shared.css">
+  <style>.md-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;min-height:400px}@media(max-width:768px){.md-grid{grid-template-columns:1fr}}.md-preview{padding:20px;border:1px solid var(--color-border);border-radius:var(--radius-card);background:var(--color-surface);overflow:auto;line-height:1.7;font-size:15px}.md-preview h1,.md-preview h2,.md-preview h3{margin:16px 0 8px;font-family:var(--font-display)}.md-preview code{background:var(--color-bg);padding:2px 6px;border-radius:4px;font-size:13px}.md-preview pre{background:var(--color-bg);padding:16px;border-radius:8px;overflow-x:auto}.md-preview blockquote{border-left:4px solid var(--color-primary);padding-left:16px;color:var(--color-muted)}.md-preview table{border-collapse:collapse;width:100%}.md-preview th,.md-preview td{border:1px solid var(--color-border);padding:8px 12px;text-align:left}.md-preview img{max-width:100%;border-radius:8px}</style>
 </head>
 <body>
   <a href="#main-content" class="skip-to-content">Skip to content</a>
@@ -141,22 +151,27 @@
     </div>
   </header>
 
-  <main class="tool-page" id="main-content">
-    <div class="tool-container">
-      <h1 class="tool-title">Robots.txt Generator</h1>
-      <p class="tool-subtitle">Create crawler rules for search engines</p>
-      <div class="tool-controls-row" style="flex-direction:column;gap:10px">
-        <input type="text" id="sitemap-url" class="tool-input" placeholder="Sitemap URL (e.g. https://example.com/sitemap.xml)">
-        <label>User-Agent: <input type="text" id="user-agent" class="tool-input" value="*" placeholder="e.g. * or Googlebot"></label>
-        <textarea id="disallow" class="tool-textarea" rows="4" placeholder="Disallow paths (one per line)&#10;e.g.&#10;/admin/&#10;/private/"></textarea>
-        <textarea id="allow" class="tool-textarea" rows="3" placeholder="Allow paths (one per line, optional)&#10;e.g.&#10;/public/"></textarea>
+  <main class="tool-container" id="main-content">
+    <div class="tool-header-block">
+      <div class="tool-badge-category">Text Tools</div>
+      <h1 class="tool-title">Markdown Editor</h1>
+      <p class="tool-description">Write Markdown and see a live HTML preview side by side. Supports headings, lists, links, code blocks, tables, and images.</p>
+    </div>
+    <div class="tool-workspace">
+      <div class="md-grid">
+        <div>
+          <label for="md-input" style="font-weight:600;margin-bottom:8px;display:block">Markdown</label>
+          <textarea id="md-input" class="tool-textarea" style="height:100%;min-height:400px;font-family:monospace;font-size:14px" placeholder="# Hello World&#10;&#10;Write **Markdown** here and see the preview →&#10;&#10;- List item&#10;- Another item&#10;&#10;```js&#10;console.log('code block');&#10;```"></textarea>
+        </div>
+        <div>
+          <span style="font-weight:600;margin-bottom:8px;display:block">Preview</span>
+          <div id="md-preview" class="md-preview"></div>
+        </div>
       </div>
-      <div class="tool-bottom-actions">
-        <button id="btn-generate" class="btn btn-primary">Generate</button>
-        <button id="btn-copy" class="btn btn-secondary">Copy</button>
-        <button id="btn-download" class="btn btn-secondary">Download</button>
+      <div class="tool-bottom-actions" style="margin-top:16px">
+        <button id="btn-copy-html" class="btn btn-primary">Copy HTML</button>
+        <button id="btn-download" class="btn btn-secondary">Download .md</button>
       </div>
-      <textarea id="output" class="tool-textarea" rows="10" readonly placeholder="Generated robots.txt will appear here..."></textarea>
     </div>
   </main>
 
@@ -245,6 +260,6 @@
   </footer>
 
   <script src="../../script.js"></script>
-  <script src="robots-txt.js"></script>
+  <script src="markdown-editor.js"></script>
 </body>
 </html>
