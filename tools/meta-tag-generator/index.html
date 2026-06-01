@@ -37,25 +37,73 @@
   <link rel="stylesheet" href="../tool-shared.css">
 
   <script type="application/ld+json">
-  {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "SEO Meta Tag Generator — Generate SEO Meta Tags Instantly",
-  "description": "Generate premium HTML meta tags for SEO, Google, Facebook Open Graph, and Twitter Cards. Customize titles, robots settings, and preview your cards in real-time.",
-  "url": "https://toolwools.com/tools/meta-tag-generator/",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "creator": {
-    "@type": "Organization",
-    "name": "ToolWools",
-    "url": "https://toolwools.com"
-  }
-}
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "SEO Meta Tag Generator — Generate SEO Meta Tags Instantly",
+      "description": "Generate premium HTML meta tags for SEO, Google, Facebook Open Graph, and Twitter Cards. Customize titles, robots settings, and preview your cards in real-time.",
+      "url": "https://toolwools.com/tools/meta-tag-generator/",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "ToolWools",
+        "url": "https://toolwools.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are HTML meta tags?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Snippets of text code placed in the <head> of HTML documents that describe a page's content to search engine crawlers and social media platforms."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the recommended pixel/character limit for SEO titles and descriptions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Titles should ideally be between 50-60 characters, and descriptions between 150-160 characters, to fit within Google's search result display width."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between standard SEO tags and Open Graph tags?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Standard tags optimize Google and Bing search snippet listings. Open Graph tags are defined by Facebook to customize preview cards shared on social feeds."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are robots meta tags used for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "They tell search bots whether to index the page's contents (index/noindex) and whether to follow links on the page (follow/nofollow)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to host the social image URL?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, the og:image meta tag requires an absolute path link to a publicly accessible image hosted on your domain."
+          }
+        }
+      ]
+    }
+  ]
   </script>
 </head>
 <body>
@@ -183,7 +231,8 @@
     </div>
   </header>
 
-  <main id="main-content">
+  <main id="main-content" class="tool-page">
+    <div class="tool-container">
       <nav class="tool-breadcrumb" aria-label="Breadcrumb">
         <a href="../../index.html">Home</a>
         <span aria-hidden="true"> › </span>
@@ -192,212 +241,383 @@
         <span aria-current="page">SEO Meta Tag Generator</span>
       </nav>
 
-    <div class="tool-container">
       <!-- Tool Header -->
       <div class="tool-header tool-header-seo">
-        <div class="tool-category-badge">SEO Tools</div>
-        <div class="tool-badge-category">SEO Tools</div>
-      <h1 class="tool-title" id="main-heading">SEO Meta Tag Generator</h1>
-        <p class="tool-description">Create, customize, and preview Google, Open Graph, and Twitter meta tags in real-time. Optimize your site's search index and social sharing appearance.</p>
+        <div class="tool-header-icon tool-icon-orange">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/>
+            <line x1="12" y1="8" x2="12" y2="16" stroke="white" stroke-width="2"/>
+            <line x1="8" y1="12" x2="16" y2="12" stroke="white" stroke-width="2"/>
+          </svg>
+        </div>
+        <div>
+          <div class="tool-badge-category">SEO Tools</div>
+          <h1 class="tool-title" id="main-heading">SEO Meta Tag Generator</h1>
+          <p class="tool-subtitle">Generate HTML meta tags for SEO, Open Graph and Twitter Cards · Live visual SERP previews · 100% browser-based generator</p>
+        </div>
       </div>
 
-      <!-- Tool Dashboard Layout -->
-      <div class="tool-dashboard">
-        <!-- Left: Input Form Panel -->
-        <div class="tool-card">
-          <div class="card-title-sec">
-            <span>Meta Information</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4Z"></path></svg>
-          </div>
-
-          <form id="meta-form" onsubmit="event.preventDefault();">
-            <div class="form-group-grid">
-              <div class="form-group">
-                <label class="form-label" for="site-name">Site Name</label>
-                <input type="text" id="site-name" class="form-input" placeholder="e.g. ToolWools" value="ToolWools">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="site-url">Site URL</label>
-                <input type="url" id="site-url" class="form-input" placeholder="e.g. https://toolwools.com" value="https://toolwools.com">
-              </div>
+      <!-- Tool Workspace Wrap -->
+      <div class="tool-workspace tool-panel tool-card">
+        <!-- Tool Dashboard Layout -->
+        <div class="tool-dashboard">
+          <!-- Left: Input Form Panel -->
+          <div class="tool-card-nested" style="flex: 1.2; min-width: 280px;">
+            <div class="card-title-sec" style="margin-bottom: 16px;">
+              <span>Meta Information</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4Z"></path></svg>
             </div>
 
-            <div class="form-group">
-              <label class="form-label" for="site-title">Page Title (Recommended: 50-60 chars)</label>
-              <input type="text" id="site-title" class="form-input" placeholder="e.g. ToolWools — Free Online SEO Tools" value="ToolWools — Every Tool Your Workflow Will Ever Need" maxlength="100">
-              <div style="display: flex; justify-content: flex-end; font-size: 11px; margin-top: 4px; color: var(--color-muted);" id="title-counter">50 characters</div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="site-desc">Meta Description (Recommended: 150-160 chars)</label>
-              <textarea id="site-desc" class="form-textarea" placeholder="e.g. Get 100+ free online tools for SEO, image compression..." maxlength="300">100+ free SEO, image, PDF, text, AI and developer tools. No signup. No paywalls. Just fast, reliable tools that work.</textarea>
-              <div style="display: flex; justify-content: flex-end; font-size: 11px; margin-top: 4px; color: var(--color-muted);" id="desc-counter">108 characters</div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="site-keywords">Keywords (Comma separated)</label>
-              <input type="text" id="site-keywords" class="form-input" placeholder="e.g. free tools, seo, word counter" value="free online tools, SEO tools, image compressor, word counter">
-            </div>
-
-            <div class="form-group-grid">
-              <div class="form-group">
-                <label class="form-label" for="site-image">Social Image URL (1200x630px)</label>
-                <input type="text" id="site-image" class="form-input" placeholder="e.g. https://toolwools.com/og-image.png" value="https://toolwools.com/og-image.png">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="site-twitter">Twitter Username</label>
-                <input type="text" id="site-twitter" class="form-input" placeholder="e.g. @toolwools" value="@toolwools">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Robots Settings</label>
-              <div class="robot-params-grid">
-                <label class="checkbox-label" for="robot-index">
-                  <input type="checkbox" id="robot-index" checked>
-                  <span>Index</span>
-                </label>
-                <label class="checkbox-label" for="robot-follow">
-                  <input type="checkbox" id="robot-follow" checked>
-                  <span>Follow</span>
-                </label>
-                <label class="checkbox-label" for="robot-noarchive">
-                  <input type="checkbox" id="robot-noarchive">
-                  <span>No Archive</span>
-                </label>
-                <label class="checkbox-label" for="robot-nosnippet">
-                  <input type="checkbox" id="robot-nosnippet">
-                  <span>No Snippet</span>
-                </label>
-                <label class="checkbox-label" for="robot-noimageindex">
-                  <input type="checkbox" id="robot-noimageindex">
-                  <span>No Image Index</span>
-                </label>
-              </div>
-            </div>
-          </form>
-        </div>
-
-        <!-- Right: Preview and Code Panel -->
-        <div class="tool-card">
-          <div class="card-title-sec">
-            <span>Visual Live Preview</span>
-            <div style="display: flex; gap: 8px;" id="preview-device-toggle">
-              <!-- Renders for Google tab to switch desktop/mobile -->
-              <button class="btn-action btn-action-primary" id="btn-device-desktop" style="font-size: 11px; padding: 4px 8px;">Desktop</button>
-              <button class="btn-action" id="btn-device-mobile" style="font-size: 11px; padding: 4px 8px;">Mobile</button>
-            </div>
-          </div>
-
-          <!-- Preview Tabs -->
-          <div class="preview-tabs">
-            <div class="preview-tab active" data-target="google-tab" id="tab-google">Google Search</div>
-            <div class="preview-tab" data-target="facebook-tab" id="tab-facebook">Facebook Share</div>
-            <div class="preview-tab" data-target="twitter-tab" id="tab-twitter">Twitter Card</div>
-          </div>
-
-          <!-- Tab Contents -->
-          <!-- 1. Google Preview -->
-          <div class="preview-content active" id="google-tab">
-            <div class="mockup-google" id="google-desktop-view">
-              <div class="mockup-google-header">
-                <div class="mockup-google-fav" id="google-fav-char">T</div>
-                <div class="mockup-google-source">
-                  <span class="mockup-google-sitename" id="google-preview-sitename">ToolWools</span>
-                  <span class="mockup-google-url" id="google-preview-url-desktop">https://toolwools.com</span>
+            <form id="meta-form" onsubmit="event.preventDefault();">
+              <div class="form-group-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+                <div class="form-group">
+                  <label class="form-label" for="site-name" style="font-weight: 600; margin-bottom: 4px; display: block;">Site Name</label>
+                  <input type="text" id="site-name" class="form-input" placeholder="e.g. ToolWools" value="ToolWools" style="width: 100%;">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="site-url" style="font-weight: 600; margin-bottom: 4px; display: block;">Site URL</label>
+                  <input type="url" id="site-url" class="form-input" placeholder="e.g. https://toolwools.com" value="https://toolwools.com" style="width: 100%;">
                 </div>
               </div>
-              <a href="#" class="mockup-google-title" id="google-preview-title-desktop">ToolWools — Every Tool Your Workflow Will Ever Need</a>
-              <p class="mockup-google-desc" id="google-preview-desc-desktop">100+ free SEO, image, PDF, text, AI and developer tools. No signup. No paywalls. Just fast, reliable tools that work.</p>
-            </div>
-            
-            <div class="mockup-google" id="google-mobile-view" style="display: none;">
-              <div class="mockup-google-header" style="margin-bottom: 6px;">
-                <div class="mockup-google-fav" id="google-fav-char-mobile">T</div>
-                <div class="mockup-google-source">
-                  <span class="mockup-google-sitename" style="font-size: 12px;" id="google-preview-sitename-mobile">ToolWools</span>
-                  <span class="mockup-google-url" style="font-size: 11px;" id="google-preview-url-mobile">https://toolwools.com</span>
+
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="site-title" style="font-weight: 600; margin-bottom: 4px; display: block;">Page Title (Recommended: 50-60 chars)</label>
+                <input type="text" id="site-title" class="form-input" placeholder="e.g. ToolWools — Free Online SEO Tools" value="ToolWools — Every Tool Your Workflow Will Ever Need" maxlength="100" style="width: 100%;">
+                <div style="display: flex; justify-content: flex-end; font-size: 11px; margin-top: 4px; color: var(--color-muted);" id="title-counter">50 characters</div>
+              </div>
+
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="site-desc" style="font-weight: 600; margin-bottom: 4px; display: block;">Meta Description (Recommended: 150-160 chars)</label>
+                <textarea id="site-desc" class="form-textarea" placeholder="e.g. Get 100+ free online tools for SEO, image compression..." maxlength="300" style="width: 100%; height: 80px;">100+ free SEO, image, PDF, text, AI and developer tools. No signup. No paywalls. Just fast, reliable tools that work.</textarea>
+                <div style="display: flex; justify-content: flex-end; font-size: 11px; margin-top: 4px; color: var(--color-muted);" id="desc-counter">108 characters</div>
+              </div>
+
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="site-keywords" style="font-weight: 600; margin-bottom: 4px; display: block;">Keywords (Comma separated)</label>
+                <input type="text" id="site-keywords" class="form-input" placeholder="e.g. free tools, seo, word counter" value="free online tools, SEO tools, image compressor, word counter" style="width: 100%;">
+              </div>
+
+              <div class="form-group-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+                <div class="form-group">
+                  <label class="form-label" for="site-image" style="font-weight: 600; margin-bottom: 4px; display: block;">Social Image URL (1200x630px)</label>
+                  <input type="text" id="site-image" class="form-input" placeholder="e.g. https://toolwools.com/og-image.png" value="https://toolwools.com/og-image.png" style="width: 100%;">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="site-twitter" style="font-weight: 600; margin-bottom: 4px; display: block;">Twitter Username</label>
+                  <input type="text" id="site-twitter" class="form-input" placeholder="e.g. @toolwools" value="@toolwools" style="width: 100%;">
                 </div>
               </div>
-              <a href="#" class="mockup-google-title" style="font-size: 18px;" id="google-preview-title-mobile">ToolWools — Every Tool Your Workflow Will Ever Need</a>
-              <p class="mockup-google-desc" id="google-preview-desc-mobile">100+ free SEO, image, PDF, text, AI and developer tools. No signup. No paywalls. Just fast, reliable tools that work.</p>
-            </div>
+
+              <div class="form-group" style="margin-bottom: 8px;">
+                <label class="form-label" style="font-weight: 600; margin-bottom: 8px; display: block;">Robots Settings</label>
+                <div class="robot-params-grid" style="display: flex; flex-wrap: wrap; gap: 12px;">
+                  <label class="checkbox-label" for="robot-index" style="display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
+                    <input type="checkbox" id="robot-index" checked>
+                    <span style="font-size: 13px;">Index</span>
+                  </label>
+                  <label class="checkbox-label" for="robot-follow" style="display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
+                    <input type="checkbox" id="robot-follow" checked>
+                    <span style="font-size: 13px;">Follow</span>
+                  </label>
+                  <label class="checkbox-label" for="robot-noarchive" style="display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
+                    <input type="checkbox" id="robot-noarchive">
+                    <span style="font-size: 13px;">No Archive</span>
+                  </label>
+                  <label class="checkbox-label" for="robot-nosnippet" style="display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
+                    <input type="checkbox" id="robot-nosnippet">
+                    <span style="font-size: 13px;">No Snippet</span>
+                  </label>
+                  <label class="checkbox-label" for="robot-noimageindex" style="display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
+                    <input type="checkbox" id="robot-noimageindex">
+                    <span style="font-size: 13px;">No Image Index</span>
+                  </label>
+                </div>
+              </div>
+            </form>
           </div>
 
-          <!-- 2. Facebook Preview -->
-          <div class="preview-content" id="facebook-tab">
-            <div class="mockup-facebook">
-              <div class="mockup-fb-user">
-                <div class="mockup-fb-avatar">T</div>
-                <div class="mockup-fb-metadata">
-                  <span class="mockup-fb-name">ToolWools Share</span>
-                  <span class="mockup-fb-time">Just now · Public</span>
-                </div>
-              </div>
-              <div class="mockup-fb-text">Check out our latest launch! Let us know what you think. 🚀</div>
-              <div class="mockup-fb-media" id="fb-preview-media">
-                <div class="mockup-fb-media-placeholder" id="fb-preview-image-placeholder">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                  <span>Social Image Preview</span>
-                </div>
-              </div>
-              <div class="mockup-fb-details">
-                <div class="mockup-fb-domain" id="fb-preview-domain">TOOLWOOLS.COM</div>
-                <div class="mockup-fb-title" id="fb-preview-title">ToolWools — Every Tool Your Workflow Will Ever Need</div>
-                <div class="mockup-fb-desc" id="fb-preview-desc">100+ free SEO, image, PDF, text, AI and developer tools. No signup. No paywalls. Just fast, reliable tools that work.</div>
+          <!-- Right: Preview and Code Panel -->
+          <div class="tool-card-nested" style="flex: 1; min-width: 280px;">
+            <div class="card-title-sec" style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+              <span>Visual Live Preview</span>
+              <div style="display: flex; gap: 8px;" id="preview-device-toggle">
+                <!-- Renders for Google tab to switch desktop/mobile -->
+                <button class="btn-action btn-action-primary" id="btn-device-desktop" style="font-size: 11px; padding: 4px 8px;">Desktop</button>
+                <button class="btn-action" id="btn-device-mobile" style="font-size: 11px; padding: 4px 8px;">Mobile</button>
               </div>
             </div>
-          </div>
 
-          <!-- 3. Twitter Preview -->
-          <div class="preview-content" id="twitter-tab">
-            <div class="mockup-twitter">
-              <div class="mockup-tw-user">
-                <div class="mockup-tw-avatar">T</div>
-                <div class="mockup-tw-names">
-                  <span class="mockup-tw-display" id="tw-preview-sitename">ToolWools</span>
-                  <span class="mockup-tw-handle" id="tw-preview-handle">@toolwools</span>
-                </div>
-              </div>
-              <div class="mockup-tw-text">Our tool meta tags look super sleek and optimized! 📈💻</div>
-              <div class="mockup-tw-card">
-                <div class="mockup-tw-media" id="tw-preview-media">
-                  <div class="mockup-tw-media-placeholder" id="tw-preview-image-placeholder">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                    <span>Summary Card Image Preview</span>
+            <!-- Preview Tabs -->
+            <div class="preview-tabs" style="display: flex; gap: 8px; margin-bottom: 12px;">
+              <div class="preview-tab active" data-target="google-tab" id="tab-google" style="flex: 1; text-align: center; cursor: pointer; padding: 8px; font-weight: 600;">Google Search</div>
+              <div class="preview-tab" data-target="facebook-tab" id="tab-facebook" style="flex: 1; text-align: center; cursor: pointer; padding: 8px; font-weight: 600;">Facebook Share</div>
+              <div class="preview-tab" data-target="twitter-tab" id="tab-twitter" style="flex: 1; text-align: center; cursor: pointer; padding: 8px; font-weight: 600;">Twitter Card</div>
+            </div>
+
+            <!-- Tab Contents -->
+            <!-- 1. Google Preview -->
+            <div class="preview-content active" id="google-tab" style="margin-bottom: 20px;">
+              <div class="mockup-google" id="google-desktop-view">
+                <div class="mockup-google-header">
+                  <div class="mockup-google-fav" id="google-fav-char">T</div>
+                  <div class="mockup-google-source">
+                    <span class="mockup-google-sitename" id="google-preview-sitename">ToolWools</span>
+                    <span class="mockup-google-url" id="google-preview-url-desktop">https://toolwools.com</span>
                   </div>
                 </div>
-                <div class="mockup-tw-details">
-                  <div class="mockup-tw-domain" id="tw-preview-domain">toolwools.com</div>
-                  <div class="mockup-tw-title" id="tw-preview-title">ToolWools — Every Tool Your Workflow Will Ever Need</div>
-                  <div class="mockup-tw-desc" id="tw-preview-desc">100+ free SEO, image, PDF, text, AI and developer tools. No signup. No paywalls. Just fast, reliable tools that work.</div>
+                <a href="#" class="mockup-google-title" id="google-preview-title-desktop">ToolWools — Every Tool Your Workflow Will Ever Need</a>
+                <p class="mockup-google-desc" id="google-preview-desc-desktop">100+ free SEO, image, PDF, text, AI and developer tools. No signup. No paywalls. Just fast, reliable tools that work.</p>
+              </div>
+              
+              <div class="mockup-google" id="google-mobile-view" style="display: none;">
+                <div class="mockup-google-header" style="margin-bottom: 6px;">
+                  <div class="mockup-google-fav" id="google-fav-char-mobile">T</div>
+                  <div class="mockup-google-source">
+                    <span class="mockup-google-sitename" style="font-size: 12px;" id="google-preview-sitename-mobile">ToolWools</span>
+                    <span class="mockup-google-url" style="font-size: 11px;" id="google-preview-url-mobile">https://toolwools.com</span>
+                  </div>
+                </div>
+                <a href="#" class="mockup-google-title" style="font-size: 18px;" id="google-preview-title-mobile">ToolWools — Every Tool Your Workflow Will Ever Need</a>
+                <p class="mockup-google-desc" id="google-preview-desc-mobile">100+ free SEO, image, PDF, text, AI and developer tools. No signup. No paywalls. Just fast, reliable tools that work.</p>
+              </div>
+            </div>
+
+            <!-- 2. Facebook Preview -->
+            <div class="preview-content" id="facebook-tab" style="margin-bottom: 20px; display: none;">
+              <div class="mockup-facebook">
+                <div class="mockup-fb-user">
+                  <div class="mockup-fb-avatar">T</div>
+                  <div class="mockup-fb-metadata">
+                    <span class="mockup-fb-name">ToolWools Share</span>
+                    <span class="mockup-fb-time">Just now · Public</span>
+                  </div>
+                </div>
+                <div class="mockup-fb-text">Check out our latest launch! Let us know what you think. 🚀</div>
+                <div class="mockup-fb-media" id="fb-preview-media">
+                  <div class="mockup-fb-media-placeholder" id="fb-preview-image-placeholder">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                    <span>Social Image Preview</span>
+                  </div>
+                </div>
+                <div class="mockup-fb-details">
+                  <div class="mockup-fb-domain" id="fb-preview-domain">TOOLWOOLS.COM</div>
+                  <div class="mockup-fb-title" id="fb-preview-title">ToolWools — Every Tool Your Workflow Will Ever Need</div>
+                  <div class="mockup-fb-desc" id="fb-preview-desc">100+ free SEO, image, PDF, text, AI and developer tools. No signup. No paywalls. Just fast, reliable tools that work.</div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Code Outputs Section -->
-          <div class="result-block">
-            <div class="code-header">
-              <span>Generated HTML Meta Tags</span>
-              <div class="code-actions">
-                <button class="btn-code-action" id="btn-copy-tags">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                  <span>Copy HTML Meta Tags</span>
-                </button>
-                <button class="btn-code-action" id="btn-download-tags">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  <span>Download Metadata File</span>
-                </button>
+            <!-- 3. Twitter Preview -->
+            <div class="preview-content" id="twitter-tab" style="margin-bottom: 20px; display: none;">
+              <div class="mockup-twitter">
+                <div class="mockup-tw-user">
+                  <div class="mockup-tw-avatar">T</div>
+                  <div class="mockup-tw-names">
+                    <span class="mockup-tw-display" id="tw-preview-sitename">ToolWools</span>
+                    <span class="mockup-tw-handle" id="tw-preview-handle">@toolwools</span>
+                  </div>
+                </div>
+                <div class="mockup-tw-text">Our tool meta tags look super sleek and optimized! 📈💻</div>
+                <div class="mockup-tw-card">
+                  <div class="mockup-tw-media" id="tw-preview-media">
+                    <div class="mockup-tw-media-placeholder" id="tw-preview-image-placeholder">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                      <span>Summary Card Image Preview</span>
+                    </div>
+                  </div>
+                  <div class="mockup-tw-details">
+                    <div class="mockup-tw-domain" id="tw-preview-domain">toolwools.com</div>
+                    <div class="mockup-tw-title" id="tw-preview-title">ToolWools — Every Tool Your Workflow Will Ever Need</div>
+                    <div class="mockup-tw-desc" id="tw-preview-desc">100+ free SEO, image, PDF, text, AI and developer tools. No signup. No paywalls. Just fast, reliable tools that work.</div>
+                  </div>
+                </div>
               </div>
             </div>
-            <textarea class="code-content-box" id="meta-output-code" readonly></textarea>
+
+            <!-- Code Outputs Section -->
+            <div class="result-block">
+              <div class="code-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span>Generated HTML Meta Tags</span>
+                <div class="code-actions" style="display: flex; gap: 8px;">
+                  <button class="btn-code-action" id="btn-copy-tags" style="font-size: 12px; display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    <span>Copy HTML</span>
+                  </button>
+                  <button class="btn-code-action" id="btn-download-tags" style="font-size: 12px; display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span>Download</span>
+                  </button>
+                </div>
+              </div>
+              <textarea class="code-content-box" id="meta-output-code" readonly style="width: 100%; height: 180px; font-family: monospace; font-size: 12px; line-height: 1.5;"></textarea>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- FAQ Section -->
+      <section class="tool-panel tool-card" style="margin-top: 24px;">
+        <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 20px;">Frequently Asked Questions</h2>
+        <div class="tool-faq-list">
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">What are HTML meta tags?</summary>
+            <div class="tool-faq-a">
+              <p>Meta tags are HTML elements placed inside the <code>&lt;head&gt;</code> container of a webpage. They provide metadata about the page to search engine crawlers and social platforms to control indexation and card formatting.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">What is the recommended character limit for SEO titles and descriptions?</summary>
+            <div class="tool-faq-a">
+              <p>For search engine result pages (SERPs), target 50 to 60 characters for page titles and 150 to 160 characters for meta descriptions. This prevents visual truncation on desktop and mobile search screens.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">What is the difference between standard SEO tags and Open Graph tags?</summary>
+            <div class="tool-faq-a">
+              <p>Standard meta tags (Title, Description, Keywords) are parsed by search engines like Google and Bing. Open Graph tags (prefixed with <code>og:</code>) are structured data schemas defined by Facebook and LinkedIn to control social feed card previews.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">What are robots meta tags used for?</summary>
+            <div class="tool-faq-a">
+              <p>They provide granular control over indexation. <code>index</code> instructs bots to add the page to search indices; <code>follow</code> tells them to crawl links on the page. You can check flags like <code>noarchive</code> or <code>nosnippet</code> to limit search cache caching.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Do I need to host the social image URL?</summary>
+            <div class="tool-faq-a">
+              <p>Yes, the social image URL defined in <code>og:image</code> and <code>twitter:image</code> properties must be an absolute HTTPS link to a publicly accessible image hosted on your server or CDN.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section class="tool-panel tool-card" style="margin-top: 24px;">
+        <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 20px;">How the SEO Meta Tag Generator Works</h2>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">1</div>
+            <strong>Input Details</strong>
+            <p>Fill in your site name, URL, title, description, and social image paths.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">2</div>
+            <strong>Choose Preview Tab</strong>
+            <p>Switch between Google Search, Facebook Share, and Twitter Card to check real-time previews.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">3</div>
+            <strong>Copy Code</strong>
+            <p>Copy the auto-generated HTML block and paste it directly into your website's header.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Science Section -->
+      <section class="tool-panel tool-card seo-content-rich" style="margin-top: 24px;">
+        <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 16px;">The Science of Search Previews & Social Metadata</h2>
+        <p>Search engines and social crawling algorithms parse HTML documents in stream blocks. The crawler reads the document headers looking for structured meta selectors. Standardized tags like <code>&lt;title&gt;</code> and <code>&lt;meta name="description"&gt;</code> determine the relevance scoring models used by indexers to determine ranking positions and snippet layouts.</p>
+        <p>Social previews rely on the Open Graph protocol. When a URL is shared, a scraper fetch client fetches the headers and extracts the <code>og:title</code>, <code>og:description</code>, and <code>og:image</code> tags. Correct tag allocation ensures that your content cards render with higher click-through rates (CTR) on timeline feeds.</p>
+
+        <!-- Tip Box -->
+        <div class="tool-tip-box" style="margin-top: 24px;">
+          <div class="tool-tip-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 16v-4M12 8h.01"/></svg>
+          </div>
+          <div class="tool-tip-content">
+            <strong>SEO Tip:</strong> Keep your meta descriptions engaging and benefit-driven to maximize click-through rate (CTR) from search engine results.
+          </div>
+        </div>
+
+        <!-- Reference Table -->
+        <h3 style="margin-top: 24px; margin-bottom: 12px; font-size: 16px; font-weight: 700;">HTML Meta Tag Reference & Specifications</h3>
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--color-border); padding-bottom: 8px;">
+                <th style="padding: 8px;">Tag Name</th>
+                <th style="padding: 8px;">Target Platform</th>
+                <th style="padding: 8px;">Recommended Limit</th>
+                <th style="padding: 8px;">Standard Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><code>&lt;title&gt;</code></td>
+                <td style="padding: 8px;">Google / Web Browsers</td>
+                <td style="padding: 8px;">50 - 60 Characters</td>
+                <td style="padding: 8px;">Defines the title displayed on search snippets and browser tab items</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><code>description</code></td>
+                <td style="padding: 8px;">Google / Search Engines</td>
+                <td style="padding: 8px;">150 - 160 Characters</td>
+                <td style="padding: 8px;">Provides a concise summary of the page content on search listings</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><code>og:image</code></td>
+                <td style="padding: 8px;">Facebook / LinkedIn</td>
+                <td style="padding: 8px;">1200 x 630 Pixels</td>
+                <td style="padding: 8px;">Absolute link to the image displayed when sharing the page socially</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><code>twitter:card</code></td>
+                <td style="padding: 8px;">Twitter / X</td>
+                <td style="padding: 8px;">String option (e.g. summary_large_image)</td>
+                <td style="padding: 8px;">Configures the presentation style of the shared Twitter Card preview</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
-  
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid"><a href="../page-speed-tips/index.html" class="related-tool-card"><strong class="related-tool-name">Page Speed Tips Auditor</strong><span class="related-tool-link">Try this tool</span></a><a href="../og-preview/index.html" class="related-tool-card"><strong class="related-tool-name">Open Graph Preview</strong><span class="related-tool-link">Try this tool</span></a><a href="../schema-markup-generator/index.html" class="related-tool-card"><strong class="related-tool-name">Schema Markup Generator</strong><span class="related-tool-link">Try this tool</span></a></div></section>
+
+    <!-- Related Tools Section -->
+    <section class="related-tools">
+      <h2 class="related-tools-heading">Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="../og-preview/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-orange">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="white" stroke-width="2"/><circle cx="7" cy="7" r="2" fill="white"/><path d="M2 14L7 9L18 18" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-orange" style="background: rgba(244, 81, 30, 0.1);">
+              <span class="category-text-badge text-orange" style="color: #F4511E;">SEO</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">Open Graph Preview</strong>
+          <p class="related-tool-desc">Test and preview how your URLs look when shared on social networks.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+        <a href="../schema-markup-generator/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-orange">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-orange" style="background: rgba(244, 81, 30, 0.1);">
+              <span class="category-text-badge text-orange" style="color: #F4511E;">SEO</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">Schema Markup Generator</strong>
+          <p class="related-tool-desc">Generate Google-friendly JSON-LD structured data markups visually.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+        <a href="../ai-meta-description/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-orange">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-orange" style="background: rgba(244, 81, 30, 0.1);">
+              <span class="category-text-badge text-orange" style="color: #F4511E;">SEO</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">AI Meta Description Generator</strong>
+          <p class="related-tool-desc">Create highly engaging and search-optimized description templates using AI.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+      </div>
+    </section>
   </main>
 
   <!-- Universal Premium Toast Notification -->

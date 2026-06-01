@@ -184,25 +184,73 @@
   </style>
 
   <script type="application/ld+json">
-  {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Image Converter — Convert PNG, JPG, WebP, ICO online",
-  "description": "Convert images between PNG, JPEG, WebP, and ICO formats instantly inside your browser. Batch-ready canvas renderer with aspect ratio lock and quality controls.",
-  "url": "https://toolwools.com/tools/image-converter/",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "creator": {
-    "@type": "Organization",
-    "name": "ToolWools",
-    "url": "https://toolwools.com"
-  }
-}
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Image Converter — Convert PNG, JPG, WebP, ICO online",
+      "description": "Convert images between PNG, JPEG, WebP, and ICO formats instantly inside your browser. Batch-ready canvas renderer with aspect ratio lock and quality controls.",
+      "url": "https://toolwools.com/tools/image-converter/",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "ToolWools",
+        "url": "https://toolwools.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does browser-side image conversion work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It loads the uploaded file into an HTML5 Canvas element and exports it using standard toDataURL or newer blob APIs with target MIME types."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are converted images uploaded to any servers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, all conversion logic is performed client-side. No network transfers are made, preserving privacy and saving bandwidth."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which image file formats are supported?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Can read PNG, JPG/JPEG, WebP, GIF, BMP, and SVG, and export to PNG, JPEG, WebP, AVIF, and ICO favicon formats."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the maximum image resolution I can convert?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Supports high-resolution images up to several megapixels, limited only by browser memory and canvas allocation ceilings."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the converter support transparency?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "PNG and WebP preserve transparency channels (alpha channel). Converting transparency-heavy formats to JPEG will automatically render a white background."
+          }
+        }
+      ]
+    }
+  ]
   </script>
 </head>
 <body>
@@ -330,7 +378,8 @@
     </div>
   </header>
 
-  <main id="main-content">
+  <main id="main-content" class="tool-page">
+    <div class="tool-container">
       <nav class="tool-breadcrumb" aria-label="Breadcrumb">
         <a href="../../index.html">Home</a>
         <span aria-hidden="true"> › </span>
@@ -339,107 +388,278 @@
         <span aria-current="page">Image Converter</span>
       </nav>
 
-    <div class="tool-container">
       <!-- Tool Header -->
       <div class="tool-header tool-header-image">
-        <div class="tool-category-badge" style="background: var(--color-primary-bg); color: var(--color-primary);">Image Tools</div>
-        <div class="tool-badge-category">Image Tools</div>
-      <h1 class="tool-title" id="main-heading">Image Converter</h1>
-        <p class="tool-description">Convert PNG, JPEG, WebP, and ICO images right inside your browser. No file size limits. No uploads to external servers. High-fidelity results.</p>
+        <div class="tool-header-icon tool-icon-orange">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke="white" stroke-width="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5" fill="white"/>
+            <polyline points="21 15 16 10 5 21" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="tool-badge-category">Image Tools</div>
+          <h1 class="tool-title" id="main-heading">Image Converter</h1>
+          <p class="tool-subtitle">Convert PNG, JPEG, WebP, and ICO images right inside your browser · 100% offline canvas processing · Zero data uploads</p>
+        </div>
       </div>
 
-      <!-- Tool Dashboard Layout -->
-      <div class="tool-dashboard">
-        <!-- Left: Upload & Settings -->
-        <div class="tool-card">
-          <div class="card-title-sec">
-            <span>Source Image</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          </div>
+      <!-- Tool Workspace Wrap -->
+      <div class="tool-workspace tool-panel tool-card">
+        <!-- Tool Dashboard Layout -->
+        <div class="tool-dashboard">
+          <!-- Left: Upload & Settings -->
+          <div class="tool-card-nested" style="flex: 1; min-width: 280px;">
+            <div class="card-title-sec" style="margin-bottom: 16px;">
+              <span>Source Image</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
 
-          <!-- Drag and drop zone -->
-          <div class="dropzone-container" id="drop-zone">
-            <input type="file" id="image-input" accept="image/*" style="display: none;">
-            <div class="dropzone-icon">📥</div>
-            <div class="dropzone-text">Click to choose image or drag here</div>
-            <div class="dropzone-subtext">Supports PNG, JPG, WebP, GIF, BMP, SVG</div>
-          </div>
+            <!-- Drag and drop zone -->
+            <div class="dropzone-container" id="drop-zone">
+              <input type="file" id="image-input" accept="image/*" style="display: none;">
+              <div class="dropzone-icon">📥</div>
+              <div class="dropzone-text">Click to choose image or drag here</div>
+              <div class="dropzone-subtext">Supports PNG, JPG, WebP, GIF, BMP, SVG</div>
+            </div>
 
-          <!-- Select target format -->
-          <div class="form-group">
-            <label class="form-label">Target Format</label>
-            <div class="format-selector-grid">
-              <div class="format-card active" data-format="png">PNG</div>
-              <div class="format-card" data-format="jpeg">JPEG</div>
-              <div class="format-card" data-format="webp">WEBP</div>
-              <div class="format-card" data-format="avif">AVIF</div>
-              <div class="format-card" data-format="ico">ICO</div>
+            <!-- Select target format -->
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label class="form-label" style="font-weight: 600; margin-bottom: 8px; display: block;">Target Format</label>
+              <div class="format-selector-grid">
+                <div class="format-card active" data-format="png">PNG</div>
+                <div class="format-card" data-format="jpeg">JPEG</div>
+                <div class="format-card" data-format="webp">WEBP</div>
+                <div class="format-card" data-format="avif">AVIF</div>
+                <div class="format-card" data-format="ico">ICO</div>
+              </div>
+            </div>
+
+            <!-- Image optimization settings -->
+            <div class="form-group-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+              <div class="form-group">
+                <label class="form-label" for="scale-width" style="font-weight: 600; margin-bottom: 4px; display: block;">Width (px)</label>
+                <input type="number" id="scale-width" class="form-input" placeholder="Original Width" disabled style="width: 100%;">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="scale-height" style="font-weight: 600; margin-bottom: 4px; display: block;">Height (px)</label>
+                <input type="number" id="scale-height" class="form-input" placeholder="Original Height" disabled style="width: 100%;">
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 8px; margin-bottom: 16px;">
+              <label class="checkbox-label" for="aspect-lock" style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="checkbox" id="aspect-lock" checked disabled>
+                <span style="font-size: 14px;">Lock Aspect Ratio</span>
+              </label>
+            </div>
+
+            <div class="form-group" id="quality-wrapper" style="display: none; margin-bottom: 16px;">
+              <label class="form-label" for="quality-range" style="font-weight: 600; margin-bottom: 4px; display: block;">Output Quality (<span id="quality-val">90</span>%)</label>
+              <input type="range" id="quality-range" min="10" max="100" value="90" class="form-input" style="height: 10px; padding: 0; width: 100%;">
             </div>
           </div>
 
-          <!-- Image optimization settings -->
-          <div class="form-group-grid">
-            <div class="form-group">
-              <label class="form-label" for="scale-width">Width (px)</label>
-              <input type="number" id="scale-width" class="form-input" placeholder="Original Width" disabled>
+          <!-- Right: Preview and details -->
+          <div class="tool-card-nested" style="flex: 1; min-width: 280px;">
+            <div class="card-title-sec" style="margin-bottom: 16px;">
+              <span>Result Preview</span>
             </div>
-            <div class="form-group">
-              <label class="form-label" for="scale-height">Height (px)</label>
-              <input type="number" id="scale-height" class="form-input" placeholder="Original Height" disabled>
+
+            <div class="canvas-preview-wrap">
+              <canvas id="preview-canvas"></canvas>
+              <div class="canvas-placeholder" id="canvas-placeholder">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                <span>Choose an image to preview rendering</span>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group" style="margin-top: 8px;">
-            <label class="checkbox-label" for="aspect-lock">
-              <input type="checkbox" id="aspect-lock" checked disabled>
-              <span>Lock Aspect Ratio</span>
-            </label>
-          </div>
+            <div class="info-stats-box">
+              <div class="stats-row">
+                <span class="stats-label">Original File:</span>
+                <span class="stats-val" id="orig-details">-</span>
+              </div>
+              <div class="stats-row">
+                <span class="stats-label">Output Format:</span>
+                <span class="stats-val" id="out-format-val">PNG</span>
+              </div>
+              <div class="stats-row">
+                <span class="stats-label">Output Size:</span>
+                <span class="stats-val" id="out-size-val">Calculating...</span>
+              </div>
+            </div>
 
-          <div class="form-group" id="quality-wrapper" style="display: none;">
-            <label class="form-label" for="quality-range">Output Quality (<span id="quality-val">90</span>%)</label>
-            <input type="range" id="quality-range" min="10" max="100" value="90" class="form-input" style="height: 10px; padding: 0;">
+            <button class="btn-download-converted" id="btn-download" disabled>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download Converted Image</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <section class="tool-panel tool-card" style="margin-top: 24px;">
+        <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 20px;">Frequently Asked Questions</h2>
+        <div class="tool-faq-list">
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">How does browser-side image conversion work?</summary>
+            <div class="tool-faq-a">
+              <p>It loads the uploaded file into an HTML5 Canvas element and exports it using standard <code>toDataURL</code> or newer blob APIs with target MIME types. The browser recalculates pixel channels entirely locally.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Are converted images uploaded to any servers?</summary>
+            <div class="tool-faq-a">
+              <p>No, all conversion logic is performed client-side inside your browser sandbox. No network transfers are made, preserving privacy and saving mobile bandwidth.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Which image file formats are supported?</summary>
+            <div class="tool-faq-a">
+              <p>This tool reads PNG, JPG/JPEG, WebP, GIF, BMP, and SVG, and can export to PNG, JPEG, WebP, AVIF, and ICO favicon formats.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">What is the maximum image resolution I can convert?</summary>
+            <div class="tool-faq-a">
+              <p>It supports high-resolution images up to several megapixels. The primary limitation is determined by your system's browser memory and canvas allocation ceilings.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Does the converter support transparency?</summary>
+            <div class="tool-faq-a">
+              <p>PNG and WebP preserve transparency channels (alpha channel). Converting transparency-heavy formats to JPEG will automatically render a white background instead of alpha transparency.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section class="tool-panel tool-card" style="margin-top: 24px;">
+        <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 20px;">How the Image Converter Works</h2>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">1</div>
+            <strong>Upload Image</strong>
+            <p>Drag and drop or select your source image file from your device.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">2</div>
+            <strong>Set Parameters</strong>
+            <p>Choose the target format and adjust resolution settings or target quality sliders.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">3</div>
+            <strong>Convert & Download</strong>
+            <p>Click 'Download Converted Image' to save the generated image directly.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Science Section -->
+      <section class="tool-panel tool-card seo-content-rich" style="margin-top: 24px;">
+        <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 16px;">The Science of Browser-Based Image Processing</h2>
+        <p>Client-side image conversion relies on the browser's GPU rendering pipeline via the HTML5 canvas API. When an image file is loaded, it is decompressed from its serialized format (such as PNG or WebP) into an uncompressed 32-bit RGBA bitmap array in browser memory. This allows real-time pixel modifications and aspect ratio scaling.</p>
+        <p>Converting between formats involves different compression models. For lossy formats like JPEG and WebP, the canvas data is compressed using Discrete Cosine Transform (DCT) algorithms which prune high-frequency color detail. For lossless formats like PNG, the bitmap is packed using DEFLATE compression to ensure pixel-perfect fidelity without quality loss.</p>
+
+        <!-- Tip Box -->
+        <div class="tool-tip-box" style="margin-top: 24px;">
+          <div class="tool-tip-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 16v-4M12 8h.01"/></svg>
+          </div>
+          <div class="tool-tip-content">
+            <strong>Designer Tip:</strong> Use WebP format for web images to achieve superior compression ratios without losing visual fidelity.
           </div>
         </div>
 
-        <!-- Right: Preview and details -->
-        <div class="tool-card">
-          <div class="card-title-sec">
-            <span>Result Preview</span>
-          </div>
-
-          <div class="canvas-preview-wrap">
-            <canvas id="preview-canvas"></canvas>
-            <div class="canvas-placeholder" id="canvas-placeholder">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              <span>Choose an image to preview rendering</span>
-            </div>
-          </div>
-
-          <div class="info-stats-box">
-            <div class="stats-row">
-              <span class="stats-label">Original File:</span>
-              <span class="stats-val" id="orig-details">-</span>
-            </div>
-            <div class="stats-row">
-              <span class="stats-label">Output Format:</span>
-              <span class="stats-val" id="out-format-val">PNG</span>
-            </div>
-            <div class="stats-row">
-              <span class="stats-label">Output Size:</span>
-              <span class="stats-val" id="out-size-val">Calculating...</span>
-            </div>
-          </div>
-
-          <button class="btn-download-converted" id="btn-download" disabled>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            <span>Download Converted Image</span>
-          </button>
+        <!-- Reference Table -->
+        <h3 style="margin-top: 24px; margin-bottom: 12px; font-size: 16px; font-weight: 700;">Image Format Capabilities Comparison</h3>
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--color-border); padding-bottom: 8px;">
+                <th style="padding: 8px;">Format</th>
+                <th style="padding: 8px;">Transparency</th>
+                <th style="padding: 8px;">Compression</th>
+                <th style="padding: 8px;">Recommended Use Case</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><strong>PNG</strong></td>
+                <td style="padding: 8px;">Yes (Full alpha)</td>
+                <td style="padding: 8px;">Lossless (DEFLATE)</td>
+                <td style="padding: 8px;">Logos, screenshots, and graphics requiring transparent backgrounds</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><strong>JPEG</strong></td>
+                <td style="padding: 8px;">No</td>
+                <td style="padding: 8px;">Lossy (DCT)</td>
+                <td style="padding: 8px;">Digital photography and complex images without flat tones</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><strong>WebP</strong></td>
+                <td style="padding: 8px;">Yes (Full alpha)</td>
+                <td style="padding: 8px;">Lossy & Lossless</td>
+                <td style="padding: 8px;">Universal web layouts requiring fast loading and small file sizes</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><strong>ICO</strong></td>
+                <td style="padding: 8px;">Yes</td>
+                <td style="padding: 8px;">Uncompressed/PNG</td>
+                <td style="padding: 8px;">Website favicons and desktop shortcut application icons</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      </div>
+      </section>
     </div>
-  
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid"><a href="../image-watermarker/index.html" class="related-tool-card"><strong class="related-tool-name">Image Watermarker Pro</strong><span class="related-tool-link">Try this tool</span></a><a href="../base64-to-image/index.html" class="related-tool-card"><strong class="related-tool-name">Base64 to Image Decoder</strong><span class="related-tool-link">Try this tool</span></a><a href="../image-resizer/index.html" class="related-tool-card"><strong class="related-tool-name">Image Resizer</strong><span class="related-tool-link">Try this tool</span></a></div></section>
+
+    <!-- Related Tools Section -->
+    <section class="related-tools">
+      <h2 class="related-tools-heading">Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="../image-compressor/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-orange">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="white" stroke-width="2"/><circle cx="7" cy="7" r="2" fill="white"/><path d="M2 14L7 9L18 18" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-orange" style="background: rgba(244, 81, 30, 0.1);">
+              <span class="category-text-badge text-orange" style="color: #F4511E;">Image</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">Image Compressor</strong>
+          <p class="related-tool-desc">Compress, optimize, and shrink image files offline in your browser.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+        <a href="../image-resizer/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-orange">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="2" stroke="white" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.5" fill="white"/><path d="m2 15 5-5 13 13" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-orange" style="background: rgba(244, 81, 30, 0.1);">
+              <span class="category-text-badge text-orange" style="color: #F4511E;">Image</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">Image Resizer</strong>
+          <p class="related-tool-desc">Resize image dimensions in pixels, scale by percentages, and lock ratio.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+        <a href="../webp-converter/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-orange">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-orange" style="background: rgba(244, 81, 30, 0.1);">
+              <span class="category-text-badge text-orange" style="color: #F4511E;">Image</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">WebP Converter</strong>
+          <p class="related-tool-desc">Convert standard image formats to high-performance WebP formats offline.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+      </div>
+    </section>
   </main>
 
   <!-- Universal Premium Toast Notification -->

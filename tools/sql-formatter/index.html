@@ -229,13 +229,14 @@
     <div class="tool-container">
       <nav class="tool-breadcrumb" aria-label="Breadcrumb">
         <a href="../../index.html">Home</a>
-        <span aria-hidden="true">›</span>
+        <span aria-hidden="true"> › </span>
         <a href="../index.html">Tools</a>
-        <span aria-hidden="true">›</span>
+        <span aria-hidden="true"> › </span>
         <span aria-current="page">SQL Formatter</span>
       </nav>
 
-      <div class="tool-header">
+      <!-- Tool Header -->
+      <div class="tool-header tool-header-dark">
         <div class="tool-header-icon tool-icon-dark">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
             <path d="M4 6h16M4 10h12M4 14h14M4 18h8" stroke="white" stroke-width="2" stroke-linecap="round"/>
@@ -243,54 +244,213 @@
         </div>
         <div>
           <div class="tool-badge-category">Developer Tools</div>
-      <h1 class="tool-title">SQL Formatter &amp; Beautifier</h1>
-          <p class="tool-subtitle">Prettify messy SQL queries instantly. Format commands, adjust keyword casing, and structure databases queries for improved readability.</p>
+          <h1 class="tool-title" id="main-heading">SQL Formatter &amp; Beautifier</h1>
+          <p class="tool-subtitle">Prettify, format, and indent database queries instantly · 100% offline parsing · Zero data uploads</p>
         </div>
       </div>
 
-      <div class="tool-controls-row" style="flex-wrap:wrap;gap:16px;margin-bottom:16px">
-        <label style="font-size:14px;font-weight:600">Keywords: 
-          <select id="keyword-case" class="tool-select" style="margin-left:6px">
-            <option value="upper" selected>UPPERCASE</option>
-            <option value="lower">lowercase</option>
-            <option value="unchanged">Unchanged</option>
-          </select>
-        </label>
-        <label style="font-size:14px;font-weight:600">Indent: 
-          <select id="indent" class="tool-select" style="margin-left:6px">
-            <option value="2">2 spaces</option>
-            <option value="4" selected>4 spaces</option>
-            <option value="tab">Tab</option>
-          </select>
-        </label>
-      </div>
-
-      <div class="split-pane">
-        <div class="split-pane-panel">
-          <div class="split-pane-label">Unformatted SQL Query</div>
-          <textarea id="input" class="tool-textarea" rows="22" placeholder="select * from users join profiles on users.id = profiles.user_id where users.status = 'active' order by users.created_at desc;" spellcheck="false"></textarea>
+      <!-- Main Workspace -->
+      <div class="tool-workspace tool-panel tool-card">
+        <div class="tool-controls-row" style="flex-wrap:wrap;gap:16px;margin-bottom:16px">
+          <label style="font-size:14px;font-weight:600">Keywords: 
+            <select id="keyword-case" class="tool-select" style="margin-left:6px">
+              <option value="upper" selected>UPPERCASE</option>
+              <option value="lower">lowercase</option>
+              <option value="unchanged">Unchanged</option>
+            </select>
+          </label>
+          <label style="font-size:14px;font-weight:600">Indent: 
+            <select id="indent" class="tool-select" style="margin-left:6px">
+              <option value="2">2 spaces</option>
+              <option value="4" selected>4 spaces</option>
+              <option value="tab">Tab</option>
+            </select>
+          </label>
         </div>
-        <div class="split-pane-panel">
-          <div class="split-pane-label">Formatted SQL Query</div>
-          <textarea id="output" class="tool-textarea" rows="22" readonly placeholder="Beautified SQL appears here..." spellcheck="false"></textarea>
+
+        <div class="split-pane">
+          <div class="split-pane-panel">
+            <div class="split-pane-label">Unformatted SQL Query</div>
+            <textarea id="input" class="tool-textarea" rows="22" placeholder="select * from users join profiles on users.id = profiles.user_id where users.status = 'active' order by users.created_at desc;" spellcheck="false"></textarea>
+          </div>
+          <div class="split-pane-panel">
+            <div class="split-pane-label">Formatted SQL Query</div>
+            <textarea id="output" class="tool-textarea" rows="22" readonly placeholder="Beautified SQL appears here..." spellcheck="false"></textarea>
+          </div>
+        </div>
+
+        <div class="stats-grid" aria-live="polite">
+          <div class="stat-card"><span class="stat-value" id="stat-in">0</span><span class="stat-label">Chars In</span></div>
+          <div class="stat-card"><span class="stat-value" id="stat-out">0</span><span class="stat-label">Chars Out</span></div>
+          <div class="stat-card"><span class="stat-value" id="stat-lines">0</span><span class="stat-label">Lines</span></div>
+          <div class="stat-card"><span class="stat-value" id="stat-queries">0</span><span class="stat-label">Queries</span></div>
+        </div>
+
+        <div class="tool-bottom-actions">
+          <button id="btn-format" class="btn btn-primary">Format SQL</button>
+          <button id="btn-copy" class="btn btn-secondary">Copy Query</button>
+          <button id="btn-clear" class="btn btn-secondary">Clear</button>
         </div>
       </div>
 
-      <div class="stats-grid" aria-live="polite">
-        <div class="stat-card"><span class="stat-value" id="stat-in">0</span><span class="stat-label">Chars In</span></div>
-        <div class="stat-card"><span class="stat-value" id="stat-out">0</span><span class="stat-label">Chars Out</span></div>
-        <div class="stat-card"><span class="stat-value" id="stat-lines">0</span><span class="stat-label">Lines</span></div>
-        <div class="stat-card"><span class="stat-value" id="stat-queries">0</span><span class="stat-label">Queries</span></div>
-      </div>
+      <!-- FAQ Section -->
+      <section class="tool-panel tool-card" style="margin-top: 24px;">
+        <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 20px;">Frequently Asked Questions</h2>
+        <div class="tool-faq-list">
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">How does browser-side SQL formatting work?</summary>
+            <div class="tool-faq-a">
+              <p>It parses the raw database query locally in browser memory and formats it using keyword capitalization rules and custom indentation rules. No data leaves your machine.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Will formatting SQL queries leak database passwords or credentials?</summary>
+            <div class="tool-faq-a">
+              <p>No, the parser executes entirely client-side. No network connections are made, ensuring your schema structures and passwords remain completely private.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Which SQL dialects are supported?</summary>
+            <div class="tool-faq-a">
+              <p>It formats standard ANSI SQL commands like SELECT, INSERT, UPDATE, DELETE, and JOIN clauses. It is compatible with MySQL, PostgreSQL, MS SQL, Oracle, and SQLite.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Does the SQL Formatter highlight syntax errors?</summary>
+            <div class="tool-faq-a">
+              <p>It normalizes formatting but doesn't validate database schema bindings. It will structure queries even if columns or table names are invalid.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">What is the maximum query size I can format?</summary>
+            <div class="tool-faq-a">
+              <p>You can format queries up to several megabytes, bounded only by browser memory constraints.</p>
+            </div>
+          </details>
+        </div>
+      </section>
 
-      <div class="tool-bottom-actions">
-        <button id="btn-format" class="btn btn-primary">Format SQL</button>
-        <button id="btn-copy" class="btn btn-secondary">Copy Query</button>
-        <button id="btn-clear" class="btn btn-secondary">Clear</button>
-      </div>
+      <!-- How It Works Section -->
+      <section class="tool-panel tool-card" style="margin-top: 24px;">
+        <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 20px;">How the SQL Formatter Works</h2>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">1</div>
+            <strong>Input Query</strong>
+            <p>Paste your unformatted, minified, or single-line SQL query into the text area.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">2</div>
+            <strong>Set Settings</strong>
+            <p>Choose keyword casing preferences like UPPERCASE or lowercase and your desired indentation size.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">3</div>
+            <strong>Format & Copy</strong>
+            <p>Click 'Format SQL' to prettify the syntax structure, then copy or clear the output.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Science & Technical Copy Section -->
+      <section class="tool-panel tool-card seo-content-rich" style="margin-top: 24px;">
+        <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 16px;">The Science of SQL Parsing & Formatting</h2>
+        <p>Relational database query formatting relies on structured lexical scanning. The formatter parses SQL statements by breaking raw text streams into discrete tokens such as keywords, identifiers, comparison operators, and literal values. It builds a syntax block model to arrange complex nested subqueries and JOIN operations hierarchically.</p>
+        <p>Structuring database statements improves execution plan audits and query reviews. Well-indented clauses like <code>GROUP BY</code> and <code>ORDER BY</code> highlight ordering paths, making it easy to identify missing index coverages.</p>
+
+        <!-- Tip Box -->
+        <div class="tool-tip-box" style="margin-top: 24px;">
+          <div class="tool-tip-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 16v-4M12 8h.01"/></svg>
+          </div>
+          <div class="tool-tip-content">
+            <strong>Developer Tip:</strong> Keep your SQL scripts clean and commented to make database migrations and optimizations easy for engineering teams.
+          </div>
+        </div>
+
+        <!-- Reference Table -->
+        <h3 style="margin-top: 24px; margin-bottom: 12px; font-size: 16px; font-weight: 700;">SQL Clause Formatting Guidelines</h3>
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--color-border); padding-bottom: 8px;">
+                <th style="padding: 8px;">SQL Clause</th>
+                <th style="padding: 8px;">Default Behavior</th>
+                <th style="padding: 8px;">Formatting Rule</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><strong>SELECT</strong></td>
+                <td style="padding: 8px;">Capitalized, followed by fields</td>
+                <td style="padding: 8px;">Columns are indented from the clause line</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><strong>FROM</strong></td>
+                <td style="padding: 8px;">New line, aligned with SELECT</td>
+                <td style="padding: 8px;">Table references are structured inline</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><strong>JOIN</strong></td>
+                <td style="padding: 8px;">Indented under the main query</td>
+                <td style="padding: 8px;">ON constraints align below the table reference</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><strong>WHERE</strong></td>
+                <td style="padding: 8px;">New line, start of block</td>
+                <td style="padding: 8px;">Logical operators (AND/OR) break onto new lines</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
-  
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid"><a href="../jwt-decoder/index.html" class="related-tool-card"><strong class="related-tool-name">JWT Decoder</strong><span class="related-tool-link">Try this tool</span></a><a href="../regex-tester/index.html" class="related-tool-card"><strong class="related-tool-name">Regex Tester</strong><span class="related-tool-link">Try this tool</span></a><a href="../url-encoder/index.html" class="related-tool-card"><strong class="related-tool-name">URL Encoder / Decoder</strong><span class="related-tool-link">Try this tool</span></a></div></section>
+
+    <!-- Related Tools Section -->
+    <section class="related-tools">
+      <h2 class="related-tools-heading">Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="../json-formatter/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-dark">
+              <span class="category-text-badge text-dark">Developer</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">JSON Formatter</strong>
+          <p class="related-tool-desc">Beautify, validate, and parse JSON code instantly with collapsible tree views.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+        <a href="../xml-to-json/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-dark">
+              <span class="category-text-badge text-dark">Developer</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">XML to JSON Converter</strong>
+          <p class="related-tool-desc">Convert XML markup strings into readable JSON structures offline.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+        <a href="../html-beautifier/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4l4 8-4 8h16l-4-8 4-8" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-dark">
+              <span class="category-text-badge text-dark">Developer</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">HTML Beautifier</strong>
+          <p class="related-tool-desc">Format and indent messy HTML code structures instantly in browser.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+      </div>
+    </section>
   </main>
 
   <footer class="footer" id="footer">

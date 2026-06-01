@@ -32,25 +32,73 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <script type="application/ld+json">
-  {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "URL Encoder/Decoder — Encode & Decode URLs",
-  "description": "Encode or decode URLs and query parameters instantly. Supports encodeURIComponent and full URI encoding. Free online tool.",
-  "url": "https://toolwools.com/tools/url-encoder/",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "creator": {
-    "@type": "Organization",
-    "name": "ToolWools",
-    "url": "https://toolwools.com"
-  }
-}
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "URL Encoder/Decoder — Encode & Decode URLs",
+      "description": "Encode or decode URLs and query parameters instantly. Supports encodeURIComponent and full URI encoding. Free online tool.",
+      "url": "https://toolwools.com/tools/url-encoder/",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "ToolWools",
+        "url": "https://toolwools.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is URL percent-encoding?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is a mechanism for encoding arbitrary data in a Uniform Resource Identifier (URI) by replacing reserved characters with percent signs followed by their hexadecimal values."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between encode and encode full URI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Standard encode (encodeURIComponent) escapes all special characters including path separators like '/' or '?'. Encode full URI preserves base protocol and domain delimiters (like 'https://')."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do spaces get converted to %20 or plus signs (+)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "RFC-3986 specifies %20 for representing space characters, while historical HTML form submissions encode spaces as plus signs (+)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the URL Decoder handle UTF-8 non-ASCII characters?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It uses the standard JavaScript decodeURIComponent, which natively decodes multi-byte UTF-8 character sequences without corruption."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my pasted URL data private?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, all encoding and decoding operations run client-side in the sandbox of your browser. No strings are sent to any server."
+          }
+        }
+      ]
+    }
+  ]
   </script>
 </head>
 <body>
@@ -188,20 +236,199 @@
         <span aria-current="page">URL Encoder / Decoder</span>
       </nav>
 
-      <div class="tool-badge-category">Developer Tools</div>
-      <h1 class="tool-title">URL Encoder / Decoder</h1>
-      <p class="tool-subtitle">Encode and decode URL components</p>
-      <textarea id="input" class="tool-textarea" rows="6" placeholder="Enter URL or text to encode/decode..."></textarea>
-      <div class="tool-bottom-actions">
-        <button id="btn-encode" class="btn btn-primary">Encode</button>
-        <button id="btn-decode" class="btn btn-primary">Decode</button>
-        <button id="btn-encode-full" class="btn btn-secondary">Encode Full URI</button>
-        <button id="btn-copy" class="btn btn-secondary">Copy</button>
+      <!-- Tool Header -->
+      <div class="tool-header tool-header-dark">
+        <div class="tool-header-icon tool-icon-dark">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M13.828 10.172a4 4 0 0 0-5.656 0l-4 4a4 4 0 1 05.656 5.656l1.102-1.101m-.704-2.927a4 4 0 0 0 5.656 0l4-4a4 4 0 1 0-5.656-5.656l-1.1 1.1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="tool-badge-category">Developer Tools</div>
+          <h1 class="tool-title" id="main-heading">URL Encoder / Decoder</h1>
+          <p class="tool-subtitle">Percent-encode or decode URL query parameters instantly · 100% browser-based · Safe local processing</p>
+        </div>
       </div>
-      <textarea id="output" class="tool-textarea" rows="6" readonly placeholder="Result..."></textarea>
+
+      <!-- Main Workspace -->
+      <div class="tool-workspace tool-panel tool-card">
+        <div style="margin-bottom: 12px; font-size: 14px; font-weight: 600; color: var(--color-dark);">Input URL or Text</div>
+        <textarea id="input" class="tool-textarea" rows="6" placeholder="Enter URL or text to encode/decode..." style="margin-bottom: 16px;"></textarea>
+        
+        <div class="tool-bottom-actions" style="margin-bottom: 16px;">
+          <button id="btn-encode" class="btn btn-primary">Encode Component</button>
+          <button id="btn-decode" class="btn btn-primary">Decode Component</button>
+          <button id="btn-encode-full" class="btn btn-secondary">Encode Full URI</button>
+          <button id="btn-copy" class="btn btn-secondary">Copy Result</button>
+        </div>
+        
+        <div style="margin-bottom: 12px; font-size: 14px; font-weight: 600; color: var(--color-dark);">Processed Output</div>
+        <textarea id="output" class="tool-textarea" rows="6" readonly placeholder="Result..."></textarea>
+      </div>
+
+      <!-- FAQ Section -->
+      <section class="tool-panel tool-card" style="margin-top: 24px;">
+        <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 20px;">Frequently Asked Questions</h2>
+        <div class="tool-faq-list">
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">What is URL percent-encoding?</summary>
+            <div class="tool-faq-a">
+              <p>It is a mechanism for encoding arbitrary data in a Uniform Resource Identifier (URI) by replacing reserved characters with percent signs followed by their hexadecimal values.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">What is the difference between encode component and encode full URI?</summary>
+            <div class="tool-faq-a">
+              <p>Standard encode component (<code>encodeURIComponent</code>) escapes all special characters including path separators like <code>/</code> or <code>?</code>. Encode full URI preserves base protocol and domain delimiters (like <code>https://</code>).</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Why do spaces get converted to %20 or plus signs (+)?</summary>
+            <div class="tool-faq-a">
+              <p>RFC-3986 specifies <code>%20</code> for representing space characters, while historical HTML form submissions encode spaces as plus signs (<code>+</code>).</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">How does the URL Decoder handle UTF-8 non-ASCII characters?</summary>
+            <div class="tool-faq-a">
+              <p>It uses standard JavaScript decoding, which natively decodes multi-byte UTF-8 character sequences without corruption or encoding issues.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Is my pasted URL data private?</summary>
+            <div class="tool-faq-a">
+              <p>Yes, all encoding and decoding operations run client-side in the sandbox of your browser. No strings are sent to any server.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section class="tool-panel tool-card" style="margin-top: 24px;">
+        <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 20px;">How the URL Encoder/Decoder Works</h2>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">1</div>
+            <strong>Input URL</strong>
+            <p>Type or paste the raw string or query parameters into the text area.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">2</div>
+            <strong>Choose Operation</strong>
+            <p>Click 'Encode' to escape URI components, or 'Decode' to restore human-readable text.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">3</div>
+            <strong>Copy Result</strong>
+            <p>Copy the processed URL string directly to your clipboard.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Science & Technical Copy Section -->
+      <section class="tool-panel tool-card seo-content-rich" style="margin-top: 24px;">
+        <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 16px;">The Science of URI Percent-Encoding</h2>
+        <p>Uniform Resource Identifier (URI) specifications mandate that certain characters serve special syntax functions (such as <code>?</code> for query delimiters or <code>&amp;</code> for key-value grouping). In accordance with RFC-3986 guidelines, characters outside the unreserved character pool must be escaped using percent-encoding.</p>
+        <p>During the conversion cycle, non-ASCII characters are converted to their UTF-8 byte representation, and each byte is written as a percent sign followed by two hexadecimal digits. For example, the space character is mapped to decimal code 32, hex 20, yielding <code>%20</code>.</p>
+
+        <!-- Tip Box -->
+        <div class="tool-tip-box" style="margin-top: 24px;">
+          <div class="tool-tip-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 16v-4M12 8h.01"/></svg>
+          </div>
+          <div class="tool-tip-content">
+            <strong>Developer Tip:</strong> When passing query strings, decode values before checking their parameters to prevent double-encoding bugs.
+          </div>
+        </div>
+
+        <!-- Reference Table -->
+        <h3 style="margin-top: 24px; margin-bottom: 12px; font-size: 16px; font-weight: 700;">Common Percent-Encoding Hex Mappings</h3>
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--color-border); padding-bottom: 8px;">
+                <th style="padding: 8px;">Special Character</th>
+                <th style="padding: 8px;">Hex Code</th>
+                <th style="padding: 8px;">Encoding Context</th>
+                <th style="padding: 8px;">Standard Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><code>Space</code></td>
+                <td style="padding: 8px;"><code>%20</code> (or <code>+</code>)</td>
+                <td style="padding: 8px;">Query strings & paths</td>
+                <td style="padding: 8px;">Separating text words</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><code>/</code> (Slash)</td>
+                <td style="padding: 8px;"><code>%2F</code></td>
+                <td style="padding: 8px;">URI path separators</td>
+                <td style="padding: 8px;">Dividing logical folder hierarchies</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><code>?</code> (Question Mark)</td>
+                <td style="padding: 8px;"><code>%3F</code></td>
+                <td style="padding: 8px;">Query string initiator</td>
+                <td style="padding: 8px;">Demarcating base path from query arguments</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><code>&amp;</code> (Ampersand)</td>
+                <td style="padding: 8px;"><code>%26</code></td>
+                <td style="padding: 8px;">Query query dividers</td>
+                <td style="padding: 8px;">Grouping key-value parameters</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
-  
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid"><a href="../sql-formatter/index.html" class="related-tool-card"><strong class="related-tool-name">SQL Formatter &amp; Beautifier</strong><span class="related-tool-link">Try this tool</span></a><a href="../js-beautifier/index.html" class="related-tool-card"><strong class="related-tool-name">JavaScript Beautifier &amp; Formatter</strong><span class="related-tool-link">Try this tool</span></a><a href="../regex-tester/index.html" class="related-tool-card"><strong class="related-tool-name">Regex Tester</strong><span class="related-tool-link">Try this tool</span></a></div></section>
+
+    <!-- Related Tools Section -->
+    <section class="related-tools">
+      <h2 class="related-tools-heading">Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="../base64-encoder/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" stroke-width="2"/><path d="M14 2v6h6" stroke="white" stroke-width="2"/><circle cx="10" cy="14" r="2" stroke="white" stroke-width="1.5"/><path d="M16 16l-2-2" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-dark">
+              <span class="category-text-badge text-dark">Developer</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">Base64 Encoder/Decoder</strong>
+          <p class="related-tool-desc">Encode text strings to Base64 or decode them back to plain text offline.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+        <a href="../jwt-decoder/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke="white" stroke-width="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-dark">
+              <span class="category-text-badge text-dark">Developer</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">JWT Decoder</strong>
+          <p class="related-tool-desc">Inspect, parse and decode JSON Web Tokens (JWT) payload structures offline.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+        <a href="../uuid-generator/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="white" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-dark">
+              <span class="category-text-badge text-dark">Developer</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">UUID Generator</strong>
+          <p class="related-tool-desc">Generate secure UUID v1, v4, v5, and ULID parameters in bulk.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+      </div>
+    </section>
   </main>
   <script src="../../script.js"></script>
   

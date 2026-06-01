@@ -13,15 +13,15 @@
   <!-- Open Graph / Twitter -->
   <meta property="og:site_name" content="ToolWools">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="XML Sitemap Generator | ToolWools">
-  <meta property="og:description" content="Generate XML sitemaps for Google, Bing and Yandex. Customize change frequency and priority, then download.">
+  <meta property="og:title" content="XML Sitemap Generator — Create Search Console Sitemaps | ToolWools">
+  <meta property="og:description" content="Generate XML sitemaps for Google, Bing, and Yandex instantly. Customize crawl frequencies, priorities, and download compliance-grade sitemaps.">
   <meta property="og:url" content="https://toolwools.com/tools/xml-sitemap-generator/">
   <meta property="og:image" content="https://toolwools.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="XML Sitemap Generator | ToolWools">
-  <meta name="twitter:description" content="Generate XML sitemaps for Google, Bing and Yandex, then download instantly.">
+  <meta name="twitter:title" content="XML Sitemap Generator — Create Search Console Sitemaps | ToolWools">
+  <meta name="twitter:description" content="Generate XML sitemaps for Google, Bing, and Yandex, then download instantly.">
   <meta name="twitter:image" content="https://toolwools.com/og-image.png">
   <title>XML Sitemap Generator — Create Search Console Sitemaps | ToolWools</title>
   <meta name="description" content="Generate XML sitemaps for Google, Bing, and Yandex instantly. Customize crawl frequencies, priorities, and download compliance-grade sitemaps with simulated page crawlers.">
@@ -130,28 +130,114 @@
       cursor: not-allowed;
       box-shadow: none;
     }
+
+    /* HTML dropzone styling */
+    .dropzone-container {
+      border: 2px dashed var(--color-border);
+      border-radius: var(--radius-card);
+      padding: 24px 10px;
+      text-align: center;
+      background: var(--color-bg);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .dropzone-container:hover, .dropzone-container.dragover {
+      border-color: var(--color-primary);
+      background: var(--color-primary-bg);
+    }
+    .dropzone-icon {
+      font-size: 24px;
+      color: var(--color-muted-light);
+      margin-bottom: 4px;
+      display: inline-block;
+    }
+    .dropzone-text {
+      font-weight: 500;
+      color: var(--color-dark);
+      margin-bottom: 4px;
+    }
+    .dropzone-subtext {
+      font-size: 11px;
+      color: var(--color-muted);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .btn-generate-sitemap, .dropzone-container, .crawl-progress-fill {
+        transition: none !important;
+      }
+    }
   </style>
 
   <script type="application/ld+json">
-  {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "XML Sitemap Generator — Create Search Console Sitemaps",
-  "description": "Generate XML sitemaps for Google, Bing, and Yandex instantly. Customize crawl frequencies, priorities, and download compliance-grade sitemaps with simulated page crawlers.",
-  "url": "https://toolwools.com/tools/xml-sitemap-generator/",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "creator": {
-    "@type": "Organization",
-    "name": "ToolWools",
-    "url": "https://toolwools.com"
-  }
-}
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "XML Sitemap Generator — Create Search Console Sitemaps",
+      "description": "Generate XML sitemaps for Google, Bing, and Yandex instantly. Customize crawl frequencies, priorities, and download compliance-grade sitemaps with simulated page crawlers.",
+      "url": "https://toolwools.com/tools/xml-sitemap-generator/",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "ToolWools",
+        "url": "https://toolwools.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is an XML sitemap?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An XML file that lists all indexable URLs on a domain, helping search engine bots discover and crawl web pages efficiently."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where do I upload the sitemap.xml file?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Upload it to the root directory of your web host so it is accessible at yourdomain.com/sitemap.xml, and submit its link in Google Search Console."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do change frequency and priority settings affect SEO?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "They guide search crawlers on how frequently content changes (daily/weekly) and the relative importance of pages, though search engines treat them as hints rather than commands."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the maximum size for a sitemap file?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Google imposes a limit of 50,000 URLs and 50MB per sitemap file. Larger sites require sitemap index files."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I include noindex URLs in my sitemap?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, sitemaps should only contain canonical, indexable URLs that you want search engines to crawl and display in search results."
+          }
+        }
+      ]
+    }
+  ]
   </script>
 </head>
 <body>
@@ -279,7 +365,8 @@
     </div>
   </header>
 
-  <main id="main-content">
+  <main id="main-content" class="tool-page">
+    <div class="tool-container">
       <nav class="tool-breadcrumb" aria-label="Breadcrumb">
         <a href="../../index.html">Home</a>
         <span aria-hidden="true"> › </span>
@@ -288,43 +375,50 @@
         <span aria-current="page">XML Sitemap Generator</span>
       </nav>
 
-    <div class="tool-container">
       <!-- Tool Header -->
       <div class="tool-header tool-header-seo">
-        <div class="tool-category-badge">SEO Tools</div>
-        <div class="tool-badge-category">SEO Tools</div>
-      <h1 class="tool-title" id="main-heading">XML Sitemap Generator</h1>
-        <p class="tool-description">Create indexable XML sitemap files to submit to Google Search Console. Crawl your domain structure and export compliant code instantly.</p>
+        <div class="tool-header-icon tool-icon-orange">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2v8M5 10h14M5 10v4M19 10v4M12 10v8M8 18h8M8 18v4M16 18v4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="tool-badge-category">SEO Tools</div>
+          <h1 class="tool-title" id="main-heading">XML Sitemap Generator</h1>
+          <p class="tool-subtitle">Create indexable XML sitemap files to submit to Google Search Console · Customize crawl frequencies and priorities</p>
+        </div>
       </div>
 
-      <!-- Tool Dashboard Layout -->
-      <div class="tool-dashboard">
-        <!-- Left: Configuration Form -->
-        <div class="tool-card">
-          <div class="card-title-sec">
-            <span>Crawler Setup</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-
-          <form id="sitemap-form" onsubmit="event.preventDefault();">
-            <div class="form-group">
-              <label class="form-label" for="site-url">Website Root URL</label>
-              <input type="url" id="site-url" class="form-input" placeholder="e.g. https://yourdomain.com" value="https://toolwools.com">
+      <!-- Tool Workspace Wrap -->
+      <div class="tool-workspace tool-panel tool-card">
+        <!-- Tool Dashboard Layout -->
+        <div class="tool-dashboard">
+          <!-- Left: Configuration Form -->
+          <div class="tool-card-nested" style="flex: 1.2; min-width: 280px;">
+            <div class="card-title-sec" style="margin-bottom: 16px;">
+              <span>Crawler Setup</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
             </div>
 
-            <!-- Input Mode Selector -->
-            <div class="form-group">
-              <label class="form-label">URL Discovery Method</label>
-              <div class="preview-tabs" style="margin-bottom: 12px; border-bottom: none; background: var(--color-border-light); padding: 4px; border-radius: 8px;">
-                <div class="preview-tab active" id="tab-input-manual" style="padding: 6px 12px; font-size: 13px; border-radius: 6px; flex: 1; text-align: center;">Input URL List</div>
-                <div class="preview-tab" id="tab-input-files" style="padding: 6px 12px; font-size: 13px; border-radius: 6px; flex: 1; text-align: center;">Scan HTML Files</div>
+            <form id="sitemap-form" onsubmit="event.preventDefault();">
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="site-url" style="font-weight: 600; margin-bottom: 4px; display: block;">Website Root URL</label>
+                <input type="url" id="site-url" class="form-input" placeholder="e.g. https://yourdomain.com" value="https://toolwools.com" style="width: 100%;">
               </div>
-            </div>
 
-            <!-- Manual input area -->
-            <div id="method-manual-container" class="form-group">
-              <label class="form-label" for="manual-urls">URLs List (One per line)</label>
-              <textarea id="manual-urls" class="form-textarea" placeholder="e.g.&#10;/&#10;/about&#10;/pricing" style="height: 120px; font-family: monospace; font-size: 13px;">/
+              <!-- Input Mode Selector -->
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" style="font-weight: 600; margin-bottom: 8px; display: block;">URL Discovery Method</label>
+                <div class="preview-tabs" style="margin-bottom: 12px; border-bottom: none; background: var(--color-border-light); padding: 4px; border-radius: 8px; display: flex; gap: 4px;">
+                  <div class="preview-tab active" id="tab-input-manual" style="padding: 6px 12px; font-size: 13px; border-radius: 6px; flex: 1; text-align: center; cursor: pointer; font-weight: 600;">Input URL List</div>
+                  <div class="preview-tab" id="tab-input-files" style="padding: 6px 12px; font-size: 13px; border-radius: 6px; flex: 1; text-align: center; cursor: pointer; font-weight: 600;">Scan HTML Files</div>
+                </div>
+              </div>
+
+              <!-- Manual input area -->
+              <div id="method-manual-container" class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="manual-urls" style="font-weight: 600; margin-bottom: 4px; display: block;">URLs List (One per line)</label>
+                <textarea id="manual-urls" class="form-textarea" placeholder="e.g.&#10;/&#10;/about&#10;/pricing" style="width: 100%; height: 120px; font-family: monospace; font-size: 13px;">/
 /about
 /pricing
 /features
@@ -339,102 +433,262 @@
 /tools/xml-sitemap-generator
 /blog
 /blog/premium-saas-design-secrets</textarea>
-            </div>
-
-            <!-- HTML Files scanner drop zone -->
-            <div id="method-files-container" class="form-group" style="display: none;">
-              <label class="form-label">HTML Files Upload</label>
-              <div class="dropzone-container" id="html-drop-zone" style="padding: 24px 10px; margin-bottom: 12px;">
-                <input type="file" id="html-files-input" accept=".html,.htm" multiple style="display: none;">
-                <div class="dropzone-icon" style="font-size: 24px; margin-bottom: 4px;">📂</div>
-                <div class="dropzone-text" style="font-size: 13px;" id="html-upload-status">Choose HTML files or drag here</div>
-                <div class="dropzone-subtext" style="font-size: 11px;">Scans filenames for sitemap structure</div>
               </div>
-            </div>
 
-            <div class="form-group-grid">
-              <div class="form-group">
-                <label class="form-label" for="change-freq">Change Frequency</label>
-                <select id="change-freq" class="form-input">
-                  <option value="always">Always</option>
-                  <option value="hourly">Hourly</option>
-                  <option value="daily" selected>Daily</option>
-                  <option value="weekly">Weekly</option>
-                  <option value="monthly">Monthly</option>
-                  <option value="yearly">Yearly</option>
-                </select>
+              <!-- HTML Files scanner drop zone -->
+              <div id="method-files-container" class="form-group" style="display: none; margin-bottom: 16px;">
+                <label class="form-label" style="font-weight: 600; margin-bottom: 4px; display: block;">HTML Files Upload</label>
+                <div class="dropzone-container" id="html-drop-zone">
+                  <input type="file" id="html-files-input" accept=".html,.htm" multiple style="display: none;">
+                  <div class="dropzone-icon">📂</div>
+                  <div class="dropzone-text" id="html-upload-status">Choose HTML files or drag here</div>
+                  <div class="dropzone-subtext">Scans HTML DOM structure locally to extract URLs</div>
+                </div>
               </div>
-              <div class="form-group">
-                <label class="form-label" for="lastmod-toggle">Last Modified Date</label>
-                <select id="lastmod-toggle" class="form-input">
-                  <option value="server" selected>Use Server Response Date</option>
-                  <option value="custom">Use Today's Date</option>
-                  <option value="none">None (Exclude Tag)</option>
-                </select>
+
+              <div class="form-group-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+                <div class="form-group">
+                  <label class="form-label" for="change-freq" style="font-weight: 600; margin-bottom: 4px; display: block;">Change Frequency</label>
+                  <select id="change-freq" class="form-input" style="width: 100%;">
+                    <option value="always">Always</option>
+                    <option value="hourly">Hourly</option>
+                    <option value="daily" selected>Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="yearly">Yearly</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lastmod-toggle" style="font-weight: 600; margin-bottom: 4px; display: block;">Last Modified Date</label>
+                  <select id="lastmod-toggle" class="form-input" style="width: 100%;">
+                    <option value="server" selected>Use Server Response Date</option>
+                    <option value="custom">Use Today's Date</option>
+                    <option value="none">None (Exclude Tag)</option>
+                  </select>
+                </div>
               </div>
-            </div>
 
-            <div class="form-group">
-              <label class="form-label" for="default-priority">Default Priority (Slider: <span id="priority-val">0.8</span>)</label>
-              <input type="range" id="default-priority" min="0.0" max="1.0" step="0.1" value="0.8" class="form-input" style="height: 10px; padding: 0;">
-            </div>
+              <div class="form-group" style="margin-bottom: 24px;">
+                <label class="form-label" for="default-priority" style="font-weight: 600; margin-bottom: 4px; display: block;">Default Priority (Slider: <span id="priority-val">0.8</span>)</label>
+                <input type="range" id="default-priority" min="0.0" max="1.0" step="0.1" value="0.8" class="form-input" style="height: 10px; padding: 0; width: 100%;">
+              </div>
 
-            <div class="form-group" style="margin-top: 24px;">
               <button type="button" class="btn-generate-sitemap" id="btn-crawl">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
                 <span>Generate XML Sitemap</span>
               </button>
-            </div>
-          </form>
-        </div>
-
-        <!-- Right: Progress console and sitemap output -->
-        <div class="tool-card">
-          <div class="card-title-sec">
-            <span>Crawl Progress Console</span>
+            </form>
           </div>
 
-          <!-- Progress loading segment -->
-          <div class="crawl-progress-container" id="progress-container">
-            <div class="crawl-progress-meta">
-              <span id="progress-status">Initializing crawler...</span>
-              <span id="progress-percentage">0%</span>
+          <!-- Right: Progress console and sitemap output -->
+          <div class="tool-card-nested" style="flex: 1; min-width: 280px;">
+            <div class="card-title-sec" style="margin-bottom: 16px;">
+              <span>Crawl Progress Console</span>
             </div>
-            <div class="crawl-progress-bg">
-              <div class="crawl-progress-fill" id="progress-fill"></div>
-            </div>
-          </div>
 
-          <!-- Console log output -->
-          <div class="terminal-console" id="console-log">
-            <div class="terminal-line">
-              <span class="terminal-time">[00:00:00]</span>
-              <span class="terminal-msg">Terminal ready. Configure settings and click "Generate XML Sitemap".</span>
-            </div>
-          </div>
-
-          <!-- XML output block -->
-          <div class="result-block">
-            <div class="code-header">
-              <span>Sitemap Output (sitemap.xml)</span>
-              <div class="code-actions">
-                <button class="btn-code-action" id="btn-copy-xml" disabled>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                  <span>Copy XML</span>
-                </button>
-                <button class="btn-code-action" id="btn-download-xml" disabled>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  <span>Download sitemap.xml</span>
-                </button>
+            <!-- Progress loading segment -->
+            <div class="crawl-progress-container" id="progress-container">
+              <div class="crawl-progress-meta">
+                <span id="progress-status">Initializing crawler...</span>
+                <span id="progress-percentage">0%</span>
+              </div>
+              <div class="crawl-progress-bg">
+                <div class="crawl-progress-fill" id="progress-fill"></div>
               </div>
             </div>
-            <textarea class="code-content-box" id="xml-output" style="height: 220px;" readonly placeholder="Your sitemap.xml content will appear here after crawling is finished."></textarea>
+
+            <!-- Console log output -->
+            <div class="terminal-console" id="console-log">
+              <div class="terminal-line">
+                <span class="terminal-time">[00:00:00]</span>
+                <span class="terminal-msg">Terminal ready. Configure settings and click "Generate XML Sitemap".</span>
+              </div>
+            </div>
+
+            <!-- XML output block -->
+            <div class="result-block">
+              <div class="code-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span>Sitemap Output (sitemap.xml)</span>
+                <div class="code-actions" style="display: flex; gap: 8px;">
+                  <button class="btn-code-action" id="btn-copy-xml" disabled style="font-size: 12px; display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    <span>Copy XML</span>
+                  </button>
+                  <button class="btn-code-action" id="btn-download-xml" disabled style="font-size: 12px; display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span>Download</span>
+                  </button>
+                </div>
+              </div>
+              <textarea class="code-content-box" id="xml-output" style="width: 100%; height: 220px; font-family: monospace; font-size: 12px; line-height: 1.5;" readonly placeholder="Your sitemap.xml content will appear here after crawling is finished."></textarea>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- FAQ Section -->
+      <section class="tool-panel tool-card" style="margin-top: 24px;">
+        <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 20px;">Frequently Asked Questions</h2>
+        <div class="tool-faq-list">
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">What is an XML sitemap?</summary>
+            <div class="tool-faq-a">
+              <p>An XML sitemap is a structured file containing a list of indexable URLs on a website domain. Submit this file to search engines like Google and Bing to help crawler bots identify and prioritize crawling indexation loops for newly published posts.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Where do I upload the sitemap.xml file?</summary>
+            <div class="tool-faq-a">
+              <p>Upload the generated <code>sitemap.xml</code> to the root public folder of your host server (e.g. <code>https://yourdomain.com/sitemap.xml</code>). Once uploaded, verify domain ownership and submit the sitemap URL path inside Google Search Console.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">How do change frequency and priority settings affect SEO?</summary>
+            <div class="tool-faq-a">
+              <p>The <code>changefreq</code> and <code>priority</code> parameters instruct indexer spiders how often a resource updates and its relative importance compared to adjacent pages on the domain. Modern search engines treat these values as guidelines rather than strict commands.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">What is the maximum size for a sitemap file?</summary>
+            <div class="tool-faq-a">
+              <p>Standard XML sitemap schema protocols support a maximum file size of 50 Megabytes (50MB) or 50,000 URLs. If your web project exceeds these parameters, you should generate multiple sitemap splits linked under a single parent sitemap index document.</p>
+            </div>
+          </details>
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Should I include noindex URLs in my sitemap?</summary>
+            <div class="tool-faq-a">
+              <p>No. You should exclude redirects, Canonical alternatives, duplicate parameters, and pages configured with <code>noindex</code> tags from sitemaps. Sitemaps should exclusively host target canonical URLs that you want publicly displayed in search result queries.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section class="tool-panel tool-card" style="margin-top: 24px;">
+        <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 20px;">How the XML Sitemap Generator Works</h2>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">1</div>
+            <strong>Configure Domain</strong>
+            <p>Enter your website's root URL and select manual input list or scan HTML files.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">2</div>
+            <strong>Customize Options</strong>
+            <p>Set sitemap parameters like priority thresholds and lastmod timestamps.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">3</div>
+            <strong>Crawl & Export</strong>
+            <p>Click 'Generate XML Sitemap', view live logs, and download or copy the output sitemap file.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Science Section -->
+      <section class="tool-panel tool-card seo-content-rich" style="margin-top: 24px;">
+        <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 16px;">The Science of Crawl Budgets & Sitemap Protocols</h2>
+        <p>Search engine crawlers allocate a finite "crawl budget" to every host domain. A crawl budget determines the frequency and depth of crawler loops. Without a structured index map, search bots spend resource allocations visiting duplicate paths or media assets, potentially missing high-priority article posts. Uploading an XML sitemap structures search crawl flows cleanly.</p>
+        <p>The sitemaps protocol utilizes a lightweight XML schema format. Inside the <code>&lt;urlset&gt;</code> namespace, each node comprises <code>&lt;loc&gt;</code> (absolute target link), <code>&lt;lastmod&gt;</code> (ISO timestamp of the last revision), <code>&lt;changefreq&gt;</code> (approximate refresh interval hint), and <code>&lt;priority&gt;</code> (hierarchical crawl priority scaling from 0.0 to 1.0) indicators to guide search indexer cycles.</p>
+
+        <!-- Tip Box -->
+        <div class="tool-tip-box" style="margin-top: 24px;">
+          <div class="tool-tip-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 16v-4M12 8h.01"/></svg>
+          </div>
+          <div class="tool-tip-content">
+            <strong>SEO Tip:</strong> Keep your sitemap updated automatically during content publishing to ensure quick indexing of new pages.
+          </div>
+        </div>
+
+        <!-- Reference Table -->
+        <h3 style="margin-top: 24px; margin-bottom: 12px; font-size: 16px; font-weight: 700;">XML Sitemap Tag Specifications</h3>
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--color-border); padding-bottom: 8px;">
+                <th style="padding: 8px;">XML Node</th>
+                <th style="padding: 8px;">Permitted Values</th>
+                <th style="padding: 8px;">Standard Definition</th>
+                <th style="padding: 8px;">Search Crawl Influence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><code>&lt;loc&gt;</code></td>
+                <td style="padding: 8px;">Absolute URL string</td>
+                <td style="padding: 8px;">Target destination address starting with HTTPS</td>
+                <td style="padding: 8px;">Mandatory. Determines the target URL path indexing target</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><code>&lt;lastmod&gt;</code></td>
+                <td style="padding: 8px;">YYYY-MM-DD Date</td>
+                <td style="padding: 8px;">ISO timestamp tracking the final document revision date</td>
+                <td style="padding: 8px;">High. Instructs bots whether to scan again or skip unchanged cache files</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><code>&lt;changefreq&gt;</code></td>
+                <td style="padding: 8px;">daily, weekly, monthly...</td>
+                <td style="padding: 8px;">Suggested scan frequency interval</td>
+                <td style="padding: 8px;">Low/Medium. Acts as crawling target recommendation loop speed</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td style="padding: 8px;"><code>&lt;priority&gt;</code></td>
+                <td style="padding: 8px;">Range: 0.0 to 1.0</td>
+                <td style="padding: 8px;">Relative value index inside this domain map</td>
+                <td style="padding: 8px;">Medium. Directs crawler budget allocations on deep folder structures</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
-  
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid"><a href="../domain-suggestor/index.html" class="related-tool-card"><strong class="related-tool-name">Domain Name Suggestor</strong><span class="related-tool-link">Try this tool</span></a><a href="../hreflang-generator/index.html" class="related-tool-card"><strong class="related-tool-name">Hreflang Tag Generator</strong><span class="related-tool-link">Try this tool</span></a><a href="../keyword-density-checker/index.html" class="related-tool-card"><strong class="related-tool-name">Keyword Density Checker</strong><span class="related-tool-link">Try this tool</span></a></div></section>
+
+    <!-- Related Tools Section -->
+    <section class="related-tools">
+      <h2 class="related-tools-heading">Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="../robots-txt-generator/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-orange">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke="white" stroke-width="2"/><line x1="9" y1="9" x2="15" y2="9" stroke="white" stroke-width="2"/><line x1="9" y1="13" x2="15" y2="13" stroke="white" stroke-width="2"/><line x1="9" y1="17" x2="13" y2="17" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-orange" style="background: rgba(244, 81, 30, 0.1);">
+              <span class="category-text-badge text-orange" style="color: #F4511E;">SEO</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">Robots.txt Generator</strong>
+          <p class="related-tool-desc">Create search-compliant robots.txt files to manage search bot access.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+        <a href="../hreflang-generator/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-orange">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/><line x1="2" y1="12" x2="22" y2="12" stroke="white" stroke-width="2"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-orange" style="background: rgba(244, 81, 30, 0.1);">
+              <span class="category-text-badge text-orange" style="color: #F4511E;">SEO</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">Hreflang Tag Generator</strong>
+          <p class="related-tool-desc">Generate multi-regional hreflang tags for international search results.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+        <a href="../schema-markup-generator/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-orange">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke="white" stroke-width="2"/><polyline points="9 22 9 12 15 12 15 22" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-orange" style="background: rgba(244, 81, 30, 0.1);">
+              <span class="category-text-badge text-orange" style="color: #F4511E;">SEO</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">Schema Markup Generator</strong>
+          <p class="related-tool-desc">Generate Google-friendly JSON-LD structured data markups visually.</p>
+          <span class="related-tool-link">Open Tool →</span>
+        </a>
+      </div>
+    </section>
   </main>
 
   <!-- Universal Premium Toast Notification -->
