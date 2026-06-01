@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
@@ -341,29 +341,37 @@
       </section>
 
       <!-- RELATED TOOLS -->
-      <section class="related-tools">
-        <h2 class="related-title">Related AI Assistants</h2>
-        <div class="related-tools-grid">
-          <a href="../ai-ad-copy-generator/index.html" class="related-tool-card">
-            <div class="tool-icon-wrap tool-icon-purple">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="white" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="2"/></svg>
+          <section class="related-tools">
+      <h2 class="related-tools-heading">Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="../ai-ad-copy-generator/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-purple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="20" height="20" rx="4" stroke="white" stroke-width="20"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="20" stroke-linecap="round"/></svg>
             </div>
-            <div class="related-badge text-purple">AI Ad Copy</div>
-            <h3 class="related-name">AI Ad Copy Generator</h3>
-            <p class="related-desc">Formulate marketing headlines and taglines offline instantly.</p>
-            <span class="tool-link">Use Tool →</span>
-          </a>
-          <a href="../ai-meta-description/index.html" class="related-tool-card">
-            <div class="tool-icon-wrap tool-icon-purple">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="white" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="2"/></svg>
+            <div class="related-tool-category-badge category-purple">
+              <span class="category-text-badge text-purple">AI</span>
             </div>
-            <div class="related-badge text-purple">AI Meta Description</div>
-            <h3 class="related-name">AI Meta Description</h3>
-            <p class="related-desc">Generate optimized SEO search snippet description texts locally.</p>
-            <span class="tool-link">Use Tool →</span>
-          </a>
-        </div>
-      </section>
+          </div>
+          <strong class="related-tool-name">AI Ad Copy Generator</strong>
+          <p class="related-tool-desc">Generate ad copy using AIDA, PAS, BAB, 4Ps frameworks.</p>
+          <span class="related-tool-link">Open Tool</span>
+        </a>
+        <a href="../ai-meta-description/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-purple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="20" height="20" rx="4" stroke="white" stroke-width="20"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="20" stroke-linecap="round"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-purple">
+              <span class="category-text-badge text-purple">AI</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">AI Meta Description</strong>
+          <p class="related-tool-desc">Generate SEO-optimized meta descriptions with keyword targeting.</p>
+          <span class="related-tool-link">Open Tool</span>
+        </a>
+      </div>
+    </section>
 
     </div>
   </main>
@@ -446,14 +454,14 @@
         let intro = '';
         let closer = '';
 
-        const bulletList = features.map(f => `✓ ${f}`).join('\n');
+        const bulletList = features.map(f => `âœ“ ${f}`).join('\n');
 
         if (tone === 'bold') {
           tagline = `Meet the ${name}: Built to Outperform, Engineered to Last.`;
           intro = `Stop settling for average options. The ${name} is specifically designed for ${audience} who demand direct performance and uncompromising reliability. Built to handle intensive schedules, it resolves your primary workflow bottlenecks instantly.`;
           closer = `Take action today. Upgrade to the ${name} and experience high-performance quality firsthand!`;
         } else if (tone === 'luxury') {
-          tagline = `The New ${name} — Uncompromised Sophistication.`;
+          tagline = `The New ${name} â€” Uncompromised Sophistication.`;
           intro = `Indulge in a premium experience designed exclusively for ${audience}. The ${name} blends refined materials with outstanding craftsmanship, making it a stellar addition to your daily lifestyle setup. Each detail is carefully curated to offer style and comfort.`;
           closer = `Treat yourself to excellence. Order your ${name} today and elevate your expectations.`;
         } else if (tone === 'playful') {
@@ -490,3 +498,4 @@ ${closer}`;
   </script>
 </body>
 </html>
+

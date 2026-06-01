@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
@@ -376,29 +376,37 @@
       </section>
 
       <!-- RELATED TOOLS -->
-      <section class="related-tools">
-        <h2 class="related-title">Related AI Assistants</h2>
-        <div class="related-tools-grid">
-          <a href="../ai-title-generator/index.html" class="related-tool-card">
-            <div class="tool-icon-wrap tool-icon-purple">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/></svg>
+          <section class="related-tools">
+      <h2 class="related-tools-heading">Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="../ai-title-generator/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-purple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="20"/></svg>
             </div>
-            <div class="related-badge text-purple">AI Title Generator</div>
-            <h3 class="related-name">AI Title Generator</h3>
-            <p class="related-desc">Generate click-worthy SEO headlines and blog hooks instantly.</p>
-            <span class="tool-link">Use Tool →</span>
-          </a>
-          <a href="../ai-ad-copy-generator/index.html" class="related-tool-card">
-            <div class="tool-icon-wrap tool-icon-purple">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="white" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="2"/></svg>
+            <div class="related-tool-category-badge category-purple">
+              <span class="category-text-badge text-purple">AI</span>
             </div>
-            <div class="related-badge text-purple">AI Ad Copy</div>
-            <h3 class="related-name">AI Ad Copy Generator</h3>
-            <p class="related-desc">Formulate marketing taglines and social campaign copy structures.</p>
-            <span class="tool-link">Use Tool →</span>
-          </a>
-        </div>
-      </section>
+          </div>
+          <strong class="related-tool-name">AI Title Generator</strong>
+          <p class="related-tool-desc">Discover catchy blog headlines and creative video titles from brief topic descriptions.</p>
+          <span class="related-tool-link">Open Tool</span>
+        </a>
+        <a href="../ai-ad-copy-generator/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-purple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="20" height="20" rx="4" stroke="white" stroke-width="20"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="20" stroke-linecap="round"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-purple">
+              <span class="category-text-badge text-purple">AI</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">AI Ad Copy Generator</strong>
+          <p class="related-tool-desc">Generate ad copy using AIDA, PAS, BAB, 4Ps frameworks.</p>
+          <span class="related-tool-link">Open Tool</span>
+        </a>
+      </div>
+    </section>
 
     </div>
   </main>
@@ -452,7 +460,7 @@
         // Structured templates mapping subjects and preheaders
         const templates = {
           urgency: [
-            { s: `⌛ Only 24 hours left: [Focus]`, p: `Don't miss out on this exclusive deal for [Audience].` },
+            { s: `âŒ› Only 24 hours left: [Focus]`, p: `Don't miss out on this exclusive deal for [Audience].` },
             { s: `Ending tonight: [Focus] inside`, p: `Last chance to secure your spots before price increases.` },
             { s: `Last call: [Focus] closes soon`, p: `Make sure you have finalized your preferences.` },
             { s: `[Focus] - This is your final chance`, p: `Verify details before the countdown expires.` }
@@ -464,7 +472,7 @@
             { s: `Is this the secret to [Focus]?`, p: `Here is a simple trick we discovered yesterday.` }
           ],
           friendly: [
-            { s: `Hey! Quick tip for your [Focus] 🚀`, p: `A simple tweak to help [Audience] get better results.` },
+            { s: `Hey! Quick tip for your [Focus] ðŸš€`, p: `A simple tweak to help [Audience] get better results.` },
             { s: `Let's chat about [Focus]!`, p: `Hope you are having a great week. Here is some inspiration.` },
             { s: `A tiny gift for [Focus]`, p: `We made something cool for you, hope it helps.` },
             { s: `Quick update on [Focus]`, p: `Sharing a fast case study from our community.` }
@@ -539,3 +547,4 @@
   </script>
 </body>
 </html>
+

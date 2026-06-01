@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
@@ -7,7 +7,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/favicon.svg">
   <meta name="theme-color" content="#F4511E">
-  <title>AI Text Summarizer — Condense Articles Online | ToolWools</title>
+  <title>AI Text Summarizer â€” Condense Articles Online | ToolWools</title>
   <meta name="description" content="Condense long articles, essays, and text blocks into structured bullet points offline. 100% private client-side sentence extractor.">
   <link rel="stylesheet" href="../../styles.css">
   <link rel="stylesheet" href="../tools.css">
@@ -16,14 +16,14 @@
   <!-- Open Graph / Twitter -->
   <meta property="og:site_name" content="ToolWools">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AI Text Summarizer — Condense Articles Online | ToolWools">
+  <meta property="og:title" content="AI Text Summarizer â€” Condense Articles Online | ToolWools">
   <meta property="og:description" content="Condense long articles, essays, and text blocks into structured bullet points offline. 100% private client-side sentence extractor.">
   <meta property="og:url" content="https://toolwools.com/tools/ai-summarizer/">
   <meta property="og:image" content="https://toolwools.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="AI Text Summarizer — Condense Articles Online | ToolWools">
+  <meta name="twitter:title" content="AI Text Summarizer â€” Condense Articles Online | ToolWools">
   <meta name="twitter:description" content="Condense long articles, essays, and text blocks into structured bullet points offline. 100% private client-side sentence extractor.">
   <meta name="twitter:image" content="https://toolwools.com/og-image.png">
 
@@ -336,29 +336,37 @@
       </section>
 
       <!-- RELATED TOOLS -->
-      <section class="related-tools">
-        <h2 class="related-title">Related AI Assistants</h2>
-        <div class="related-tools-grid">
-          <a href="../ai-keyword-extractor/index.html" class="related-tool-card">
-            <div class="tool-icon-wrap tool-icon-purple">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="white" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="2"/></svg>
+          <section class="related-tools">
+      <h2 class="related-tools-heading">Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="../ai-keyword-extractor/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-purple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="20" height="20" rx="4" stroke="white" stroke-width="20"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="20" stroke-linecap="round"/></svg>
             </div>
-            <div class="related-badge text-purple">AI Keyword Extractor</div>
-            <h3 class="related-name">AI Keyword Extractor</h3>
-            <p class="related-desc">Extract key term keywords automatically from text blocks using TF-IDF metrics.</p>
-            <span class="tool-link">Use Tool →</span>
-          </a>
-          <a href="../ai-meta-description/index.html" class="related-tool-card">
-            <div class="tool-icon-wrap tool-icon-purple">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="white" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="2"/></svg>
+            <div class="related-tool-category-badge category-purple">
+              <span class="category-text-badge text-purple">AI</span>
             </div>
-            <div class="related-badge text-purple">AI Meta Description</div>
-            <h3 class="related-name">AI Meta Description</h3>
-            <p class="related-desc">Generate optimized search snippets from core topic parameters.</p>
-            <span class="tool-link">Use Tool →</span>
-          </a>
-        </div>
-      </section>
+          </div>
+          <strong class="related-tool-name">AI Keyword Extractor</strong>
+          <p class="related-tool-desc">Extract important keywords using TF-IDF statistical analysis.</p>
+          <span class="related-tool-link">Open Tool</span>
+        </a>
+        <a href="../ai-meta-description/index.html" class="related-tool-card">
+          <div class="related-tool-card-top">
+            <div class="related-tool-icon-wrapper tool-icon-purple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="20" height="20" rx="4" stroke="white" stroke-width="20"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="20" stroke-linecap="round"/></svg>
+            </div>
+            <div class="related-tool-category-badge category-purple">
+              <span class="category-text-badge text-purple">AI</span>
+            </div>
+          </div>
+          <strong class="related-tool-name">AI Meta Description</strong>
+          <p class="related-tool-desc">Generate SEO-optimized meta descriptions with keyword targeting.</p>
+          <span class="related-tool-link">Open Tool</span>
+        </a>
+      </div>
+    </section>
 
     </div>
   </main>
@@ -484,7 +492,7 @@
             // 5. Restore original sequence index order
             const finalSummary = topScores
               .sort((a, b) => a.idx - b.idx)
-              .map(s => `• ${s.sentence}`)
+              .map(s => `â€¢ ${s.sentence}`)
               .join('\n\n');
 
             // Render Results
@@ -511,3 +519,4 @@
   </script>
 </body>
 </html>
+
