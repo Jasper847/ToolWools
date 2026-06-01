@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/ai-translator/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>AI Translator — Offline Phrase Translation | ToolWools</title>
+  <meta name="description" content="Translate common words and phrases across 10 major languages locally in your browser. 100% secure offline dictionary translator.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+  <link rel="stylesheet" href="../tool-shared.css">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:site_name" content="ToolWools">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI Translator — Offline Phrase Translation | ToolWools">
+  <meta property="og:description" content="Translate common words and phrases across 10 major languages locally in your browser. 100% secure offline dictionary translator.">
+  <meta property="og:url" content="https://toolwools.com/tools/ai-translator/">
+  <meta property="og:image" content="https://toolwools.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Translator — Offline Phrase Translation | ToolWools">
+  <meta name="twitter:description" content="Translate common words and phrases across 10 major languages locally in your browser. 100% secure offline dictionary translator.">
+  <meta name="twitter:image" content="https://toolwools.com/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AI Translator",
+    "description": "Translate terms and phrases client-side between major languages.",
+    "url": "https://toolwools.com/tools/ai-translator/",
+    "applicationCategory": "AIApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "ToolWools",
+      "url": "https://toolwools.com"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-logo" aria-label="ToolWools Home">
+        <div class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="16" fill="#F4511E"/>
+            <path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="logo-text">ToolWools</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <div class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+            Tools
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="chevron-icon">
+              <path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="mega-menu" id="megaMenu">
+            <div class="mega-menu-grid">
+              <a href="../index.html?cat=seo" class="mega-item">
+                <div class="mega-icon mega-icon-orange">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="5" stroke="white" stroke-width="2"/><path d="M12 12L17 17" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">SEO Tools</span>
+                  <span class="mega-desc">Optimize rankings</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=image" class="mega-item">
+                <div class="mega-icon mega-icon-blue">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="white" stroke-width="2"/><circle cx="7" cy="7" r="2" fill="white"/><path d="M2 14L7 9L18 18" stroke="white" stroke-width="2"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Image Tools</span>
+                  <span class="mega-desc">Compress, convert, scale</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=pdf" class="mega-item">
+                <div class="mega-icon mega-icon-red">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="1" width="14" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M7 6H13M7 10H13M7 14H11" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">PDF Tools</span>
+                  <span class="mega-desc">Merge, split, extract, unlock</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=text" class="mega-item">
+                <div class="mega-icon mega-icon-green">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4H16M4 8H12M4 12H14M4 16H10" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Text Tools</span>
+                  <span class="mega-desc">Count, format, transform</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=ai" class="mega-item">
+                <div class="mega-icon mega-icon-purple">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12 7H18L13 11L15 17L10 13L5 17L7 11L2 7H8L10 2Z" fill="white"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">AI Tools</span>
+                  <span class="mega-desc">Writer, paraphraser, summaries</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=dev" class="mega-item">
+                <div class="mega-icon mega-icon-dark">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 6L2 10L6 14M14 6L18 10L14 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Developer</span>
+                  <span class="mega-desc">JSON, hashes, utilities</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="../index.html?cat=seo" class="nav-link">SEO</a>
+        <a href="../index.html?cat=image" class="nav-link">Images</a>
+        <a href="../index.html?cat=pdf" class="nav-link">PDF</a>
+        <a href="../index.html?cat=ai" class="nav-link">AI</a>
+        <a href="../../blog/index.html" class="nav-link">Blog</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M10 2V4M10 16V18M2 10H4M16 10H18M4.93 4.93L6.34 6.34M13.66 13.66L15.07 15.07M4.93 15.07L6.34 13.66M13.66 6.34L15.07 4.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <a href="../../index.html#cta" class="btn btn-primary nav-cta">Get Started</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html" class="mobile-link">All Tools</a>
+      <a href="../index.html?cat=seo" class="mobile-link">SEO</a>
+      <a href="../index.html?cat=image" class="mobile-link">Images</a>
+      <a href="../index.html?cat=pdf" class="mobile-link">PDF</a>
+      <a href="../index.html?cat=ai" class="mobile-link">AI</a>
+      <a href="../../index.html#cta" class="btn btn-primary mobile-cta">Get Started</a>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="tool-page" id="main-content">
+    <div class="tool-container">
+      
+      <!-- BREADCRUMBS -->
+      <nav class="tool-breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html">Home</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="../index.html">Tools</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="../index.html?cat=ai">AI Tools</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span aria-current="page">AI Translator</span>
+      </nav>
+
+      <!-- HEADER -->
+      <div class="tool-header">
+        <span class="category-badge category-ai">AI Tool</span>
+        <h1 class="tool-title">AI Translator</h1>
+        <p class="tool-subtitle">Translate common words and phrases across 10 major languages locally in your browser memory.</p>
+      </div>
+
+      <!-- WORKSPACE -->
+      <div class="tool-workspace tool-panel tool-card">
+        <div class="tool-grid-workspace">
+          <!-- Left Input Panel -->
+          <div class="tool-input-section">
+            <div class="control-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+              <div class="control-group">
+                <label class="control-label" for="srcLang">Source Language</label>
+                <select id="srcLang" class="form-control">
+                  <option value="en">English</option>
+                  <option value="es">Spanish (Español)</option>
+                  <option value="fr">French (Français)</option>
+                  <option value="de">German (Deutsch)</option>
+                  <option value="it">Italian (Italiano)</option>
+                </select>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="targetLang">Target Language</label>
+                <select id="targetLang" class="form-control">
+                  <option value="es" selected>Spanish (Español)</option>
+                  <option value="en">English</option>
+                  <option value="fr">French (Français)</option>
+                  <option value="de">German (Deutsch)</option>
+                  <option value="it">Italian (Italiano)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="rawText">Enter Text to Translate</label>
+              <textarea id="rawText" class="form-control" placeholder="Type a common phrase... e.g. Hello, how are you? or Welcome to our hotel." style="height: 180px; font-size: 13px;"></textarea>
+            </div>
+
+            <button class="btn btn-primary" id="translateBtn" style="width: 100%; height: 48px; margin-top: 16px;">
+              Translate
+            </button>
+          </div>
+
+          <!-- Right Result Panel -->
+          <div class="tool-result-section">
+            <div class="result-header">
+              <span class="result-title">Translation Output</span>
+              <button class="btn btn-outline" id="copyBtn" style="padding: 4px 12px; font-size: 12px;" disabled>Copy translation</button>
+            </div>
+            <div class="output-box" id="outputBox" style="min-height: 200px; max-height: 300px; overflow-y: auto; padding: 16px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; line-height: 1.6; white-space: pre-wrap; color: var(--text-heading);">Translated results will be shown here.</div>
+            
+            <div class="stat-card" style="margin-top: 16px; padding: 8px; background: rgba(139, 92, 246, 0.05); border-color: rgba(139, 92, 246, 0.15);">
+              <div class="stat-label" style="text-align: left; text-transform: none; font-size: 11px; color: var(--accent-color); font-weight: 500;">
+                💡 Offline Dictionary Mode: Works best with standard phrases, greetings, directions, and common vocabulary terms.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ SECTION -->
+      <section class="tool-panel tool-card">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-grid">
+          <details class="faq-details">
+            <summary class="faq-summary">How does the offline translation engine operate?</summary>
+            <div class="faq-content">
+              <p>This tool maps inputs against a client-side multilingual vocabulary dictionary covering common travel terms, directions, numbers, and basic sentence parameters across 10 major languages.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">Is my translated data kept confidential?</summary>
+            <div class="faq-content">
+              <p>Yes. The entire database mapping executes client-side. No phrases are transmitted to external servers, protecting your privacy.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">What happens if a phrase is not in the dictionary?</summary>
+            <div class="faq-content">
+              <p>If the exact phrase is missing, the engine tokenizes the sentence and performs a word-by-word translation, showing a literal representation to help you understand basic meanings.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">Does this require an internet connection?</summary>
+            <div class="faq-content">
+              <p>No. Once the page is loaded, the translation dictionary is cached in your browser, allowing you to use the tool completely offline.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">Is there a limit on translation counts?</summary>
+            <div class="faq-content">
+              <p>No. You can translate terms and vocabulary completely free of charge with no limitations.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="tool-panel tool-card">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <h3 class="step-title">Select Languages</h3>
+            <p class="step-desc">Pick your source language and desired target language in the dropdown panels.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <h3 class="step-title">Enter Phrases</h3>
+            <p class="step-desc">Type greetings, travel phrases, or simple sentences in the input editor area.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <h3 class="step-title">Extract Outcome</h3>
+            <p class="step-desc">Run the translator to lookup dictionary mappings locally and copy the result.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TECHNICAL SPECS -->
+      <section class="tool-panel tool-card">
+        <h2 class="section-title">Multilingual Mapping Metrics</h2>
+        <p class="section-subtitle">Evaluating offline dictionary pairings and language parameters.</p>
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Language Code</th>
+              <th>Language Family</th>
+              <th>Common Dictionary Categories</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>**en** (English)</td>
+              <td>Germanic (Indo-European)</td>
+              <td>Greetings, directions, numbers, travel basics</td>
+            </tr>
+            <tr>
+              <td>**es** (Spanish)</td>
+              <td>Romance (Indo-European)</td>
+              <td>Greetings, directions, numbers, travel basics</td>
+            </tr>
+            <tr>
+              <td>**fr** (French)</td>
+              <td>Romance (Indo-European)</td>
+              <td>Greetings, directions, numbers, travel basics</td>
+            </tr>
+            <tr>
+              <td>**de** (German)</td>
+              <td>Germanic (Indo-European)</td>
+              <td>Greetings, directions, numbers, travel basics</td>
+            </tr>
+            <tr>
+              <td>**it** (Italian)</td>
+              <td>Romance (Indo-European)</td>
+              <td>Greetings, directions, numbers, travel basics</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- RELATED TOOLS -->
+      <section class="related-tools">
+        <h2 class="related-title">Related AI Assistants</h2>
+        <div class="related-tools-grid">
+          <a href="../ai-paraphraser/index.html" class="related-tool-card">
+            <div class="tool-icon-wrap tool-icon-purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="white" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-badge text-purple">AI Paraphraser</div>
+            <h3 class="related-name">AI Paraphrasing Tool</h3>
+            <p class="related-desc">Paraphrase paragraphs and vary vocabulary choice offline.</p>
+            <span class="tool-link">Use Tool →</span>
+          </a>
+          <a href="../ai-summarizer/index.html" class="related-tool-card">
+            <div class="tool-icon-wrap tool-icon-purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-badge text-purple">AI Text Summarizer</div>
+            <h3 class="related-name">AI Text Summarizer</h3>
+            <p class="related-desc">Condense long articles and reports into key sentences instantly.</p>
+            <span class="tool-link">Use Tool →</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer" id="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo-text">ToolWools</span>
+          <p class="footer-brand-desc">Secure, browser-based utility tools for digital creators.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ToolWools. All tools run 100% locally in your browser.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== LOGIC ==================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const srcLang = document.getElementById('srcLang');
+      const targetLang = document.getElementById('targetLang');
+      const rawText = document.getElementById('rawText');
+      const translateBtn = document.getElementById('translateBtn');
+      const outputBox = document.getElementById('outputBox');
+      const copyBtn = document.getElementById('copyBtn');
+
+      // Static phrase dictionary mapping
+      const phraseBook = {
+        'hello': { en: 'hello', es: 'hola', fr: 'bonjour', de: 'hallo', it: 'ciao' },
+        'how are you?': { en: 'how are you?', es: '¿cómo estás?', fr: 'comment ça va?', de: 'wie geht es dir?', it: 'come stai?' },
+        'good morning': { en: 'good morning', es: 'buenos días', fr: 'bonjour', de: 'guten morgen', it: 'buongiorno' },
+        'thank you': { en: 'thank you', es: 'gracias', fr: 'merci', de: 'danke', it: 'grazie' },
+        'welcome': { en: 'welcome', es: 'bienvenido', fr: 'bienvenue', de: 'willkommen', it: 'benvenuto' },
+        'please': { en: 'please', es: 'por favor', fr: 's\'il vous plaît', de: 'bitte', it: 'per favore' },
+        'goodbye': { en: 'goodbye', es: 'adiós', fr: 'au revoir', de: 'auf wiedersehen', it: 'arrivederci' },
+        'yes': { en: 'yes', es: 'sí', fr: 'oui', de: 'ja', it: 'sì' },
+        'no': { en: 'no', es: 'no', fr: 'non', de: 'nein', it: 'no' },
+        'where is the hotel?': { en: 'where is the hotel?', es: '¿dónde está el hotel?', fr: 'où est l\'hôtel?', de: 'wo ist das hotel?', it: 'dov\'è l\'hotel?' }
+      };
+
+      // Word-by-word fallback vocabulary mapping
+      const vocabulary = {
+        'friend': { en: 'friend', es: 'amigo', fr: 'ami', de: 'freund', it: 'amico' },
+        'house': { en: 'house', es: 'casa', fr: 'maison', de: 'haus', it: 'casa' },
+        'water': { en: 'water', es: 'agua', fr: 'eau', de: 'wasser', it: 'acqua' },
+        'food': { en: 'food', es: 'comida', fr: 'nourriture', de: 'essen', it: 'cibo' },
+        'happy': { en: 'happy', es: 'feliz', fr: 'heureux', de: 'glücklich', it: 'felice' },
+        'today': { en: 'today', es: 'hoy', fr: 'aujourd\'hui', de: 'heute', it: 'oggi' }
+      };
+
+      // Theme toggle setup
+      const themeToggle = document.getElementById('themeToggle');
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+      });
+
+      // Mobile Menu Hamburger
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      hamburger.addEventListener('click', () => {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !expanded);
+        mobileMenu.classList.toggle('active');
+      });
+
+      // Copy Translation
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(outputBox.textContent.trim());
+        const prevText = copyBtn.textContent;
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => copyBtn.textContent = prevText, 1500);
+      });
+
+      translateBtn.addEventListener('click', () => {
+        const text = rawText.value.trim().toLowerCase().replace(/[¿?¡!.,]/g, '').trim();
+        const sLang = srcLang.value;
+        const tLang = targetLang.value;
+
+        if (!text) {
+          alert('Please enter text to translate.');
+          return;
+        }
+
+        translateBtn.disabled = true;
+        translateBtn.textContent = 'Translating...';
+
+        setTimeout(() => {
+          let outcome = '';
+
+          // 1. Direct phrasebook lookup
+          let matchKey = null;
+          Object.keys(phraseBook).forEach(k => {
+            if (phraseBook[k][sLang] === text) {
+              matchKey = k;
+            }
+          });
+
+          if (matchKey) {
+            outcome = phraseBook[matchKey][tLang];
+          } else {
+            // 2. Word-by-word fallback lookup
+            const words = text.split(/\s+/);
+            const translatedWords = words.map(word => {
+              let translatedWord = `[${word}]`;
+              
+              // Find matching vocab key
+              let vocabKey = null;
+              Object.keys(vocabulary).forEach(k => {
+                if (vocabulary[k][sLang] === word) {
+                  vocabKey = k;
+                }
+              });
+
+              if (vocabKey) {
+                translatedWord = vocabulary[vocabKey][tLang];
+              } else {
+                // If not in vocab, check phrasebook values for single words
+                Object.keys(phraseBook).forEach(k => {
+                  if (phraseBook[k][sLang] === word) {
+                    translatedWord = phraseBook[k][tLang];
+                  }
+                });
+              }
+              return translatedWord;
+            });
+            outcome = translatedWords.join(' ');
+          }
+
+          // Format casing matching input
+          const origInput = rawText.value.trim();
+          if (origInput[0] === origInput[0].toUpperCase()) {
+            outcome = outcome[0].toUpperCase() + outcome.slice(1);
+          }
+
+          outputBox.textContent = outcome;
+          copyBtn.disabled = false;
+          translateBtn.disabled = false;
+          translateBtn.textContent = 'Translate';
+        }, 400);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/ai-code-explainer/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>AI Code Explainer — Deconstruct Syntax Online | ToolWools</title>
+  <meta name="description" content="Explain JavaScript, Python, HTML/CSS, or SQL code blocks. Matches code structures against syntax templates to output plain-English explanations offline.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+  <link rel="stylesheet" href="../tool-shared.css">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:site_name" content="ToolWools">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI Code Explainer — Deconstruct Syntax Online | ToolWools">
+  <meta property="og:description" content="Explain JavaScript, Python, HTML/CSS, or SQL code blocks. Matches code structures against syntax templates to output plain-English explanations offline.">
+  <meta property="og:url" content="https://toolwools.com/tools/ai-code-explainer/">
+  <meta property="og:image" content="https://toolwools.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Code Explainer — Deconstruct Syntax Online | ToolWools">
+  <meta name="twitter:description" content="Explain JavaScript, Python, HTML/CSS, or SQL code blocks. Matches code structures against syntax templates to output plain-English explanations offline.">
+  <meta name="twitter:image" content="https://toolwools.com/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AI Code Explainer",
+    "description": "Deconstruct loops, syntax, variables, and queries in plain English offline in-browser.",
+    "url": "https://toolwools.com/tools/ai-code-explainer/",
+    "applicationCategory": "AIApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "ToolWools",
+      "url": "https://toolwools.com"
+    }
+  }
+  </script>
+
+  <style>
+    .explain-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .explain-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-color);
+      font-family: monospace;
+      margin-bottom: 6px;
+    }
+    .explain-desc {
+      font-size: 13px;
+      color: var(--text-heading);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-logo" aria-label="ToolWools Home">
+        <div class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="16" fill="#F4511E"/>
+            <path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="logo-text">ToolWools</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <div class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+            Tools
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="chevron-icon">
+              <path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="mega-menu" id="megaMenu">
+            <div class="mega-menu-grid">
+              <a href="../index.html?cat=seo" class="mega-item">
+                <div class="mega-icon mega-icon-orange">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="5" stroke="white" stroke-width="2"/><path d="M12 12L17 17" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">SEO Tools</span>
+                  <span class="mega-desc">Optimize rankings</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=image" class="mega-item">
+                <div class="mega-icon mega-icon-blue">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="white" stroke-width="2"/><circle cx="7" cy="7" r="2" fill="white"/><path d="M2 14L7 9L18 18" stroke="white" stroke-width="2"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Image Tools</span>
+                  <span class="mega-desc">Compress, convert, scale</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=pdf" class="mega-item">
+                <div class="mega-icon mega-icon-red">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="1" width="14" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M7 6H13M7 10H13M7 14H11" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">PDF Tools</span>
+                  <span class="mega-desc">Merge, split, extract, unlock</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=text" class="mega-item">
+                <div class="mega-icon mega-icon-green">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4H16M4 8H12M4 12H14M4 16H10" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Text Tools</span>
+                  <span class="mega-desc">Count, format, transform</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=ai" class="mega-item">
+                <div class="mega-icon mega-icon-purple">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12 7H18L13 11L15 17L10 13L5 17L7 11L2 7H8L10 2Z" fill="white"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">AI Tools</span>
+                  <span class="mega-desc">Writer, paraphraser, summaries</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=dev" class="mega-item">
+                <div class="mega-icon mega-icon-dark">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 6L2 10L6 14M14 6L18 10L14 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Developer</span>
+                  <span class="mega-desc">JSON, hashes, utilities</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="../index.html?cat=seo" class="nav-link">SEO</a>
+        <a href="../index.html?cat=image" class="nav-link">Images</a>
+        <a href="../index.html?cat=pdf" class="nav-link">PDF</a>
+        <a href="../index.html?cat=ai" class="nav-link">AI</a>
+        <a href="../../blog/index.html" class="nav-link">Blog</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M10 2V4M10 16V18M2 10H4M16 10H18M4.93 4.93L6.34 6.34M13.66 13.66L15.07 15.07M4.93 15.07L6.34 13.66M13.66 6.34L15.07 4.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <a href="../../index.html#cta" class="btn btn-primary nav-cta">Get Started</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html" class="mobile-link">All Tools</a>
+      <a href="../index.html?cat=seo" class="mobile-link">SEO</a>
+      <a href="../index.html?cat=image" class="mobile-link">Images</a>
+      <a href="../index.html?cat=pdf" class="mobile-link">PDF</a>
+      <a href="../index.html?cat=ai" class="mobile-link">AI</a>
+      <a href="../../index.html#cta" class="btn btn-primary mobile-cta">Get Started</a>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="tool-page" id="main-content">
+    <div class="tool-container">
+      
+      <!-- BREADCRUMBS -->
+      <nav class="tool-breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html">Home</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="../index.html">Tools</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="../index.html?cat=ai">AI Tools</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span aria-current="page">AI Code Explainer</span>
+      </nav>
+
+      <!-- HEADER -->
+      <div class="tool-header">
+        <span class="category-badge category-ai">AI Tool</span>
+        <h1 class="tool-title">AI Code Explainer</h1>
+        <p class="tool-subtitle">Deconstruct syntax loops, conditional logic statements, variables, and database queries in plain English.</p>
+      </div>
+
+      <!-- WORKSPACE -->
+      <div class="tool-workspace tool-panel tool-card">
+        <div class="tool-grid-workspace">
+          <!-- Left Input Panel -->
+          <div class="tool-input-section">
+            <div class="control-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+              <div class="control-group">
+                <label class="control-label" for="codeLang">Language</label>
+                <select id="codeLang" class="form-control">
+                  <option value="js">JavaScript</option>
+                  <option value="python">Python</option>
+                  <option value="sql">SQL</option>
+                  <option value="html">HTML &amp; CSS</option>
+                </select>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Sample Templates</label>
+                <button class="btn btn-outline" id="loadSampleBtn" style="height: 38px; width: 100%;">Load Example</button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="codeArea">Paste Code Block</label>
+              <textarea id="codeArea" class="form-control" placeholder="Paste your code function here..." style="height: 240px; font-family: monospace; font-size: 12px;"></textarea>
+            </div>
+
+            <button class="btn btn-primary" id="explainBtn" style="width: 100%; height: 48px; margin-top: 16px;">
+              Explain Code Block
+            </button>
+          </div>
+
+          <!-- Right Result Panel -->
+          <div class="tool-result-section">
+            <div class="result-header">
+              <span class="result-title">Syntax Explanation</span>
+              <span class="category-badge category-ai" style="font-size: 11px;">Deterministic Analysis</span>
+            </div>
+            
+            <div id="explanationContainer" style="max-height: 400px; overflow-y: auto; padding-right: 4px;">
+              <div style="text-align: center; padding: 40px 0; color: var(--text-muted);">
+                Paste code and click explain to parse its logic elements.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ SECTION -->
+      <section class="tool-panel tool-card">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-grid">
+          <details class="faq-details">
+            <summary class="faq-summary">How does the AI Code Explainer deconstruct syntax?</summary>
+            <div class="faq-content">
+              <p>This tool runs a client-side regex matching engine. It parses statements (like loops, functions, assignments, and queries) and matches them against pre-configured syntax templates to explain their structural execution.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">Is my proprietary code sent to external servers?</summary>
+            <div class="faq-content">
+              <p>No. Your code is processed entirely in your local browser sandbox. No scripts, variables, or passwords are uploaded online, keeping your files completely secure.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">Which programming languages are supported?</summary>
+            <div class="faq-content">
+              <p>The builder supports JavaScript, Python, SQL database queries, and HTML/CSS web layout sheets.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">Does it find syntax bugs or errors?</summary>
+            <div class="faq-content">
+              <p>The explainer focuses on deconstructing logic flow rather than compiler validation. For coding syntax cleanup, try our **JS Beautifier** or **CSS Formatter** utilities.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">Is there a limit on file size or lines of code?</summary>
+            <div class="faq-content">
+              <p>We recommend pasting functions under 300 lines of code to maintain immediate local rendering speeds.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="tool-panel tool-card">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <h3 class="step-title">Paste Script</h3>
+            <p class="step-desc">Paste your coding script or database query block into the secure workspace editor.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <h3 class="step-title">Analyze Elements</h3>
+            <p class="step-desc">The parser scans the code lines locally, identifying key logic variables and loops.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <h3 class="step-title">Review Output</h3>
+            <p class="step-desc">Read the plain-English explanation outlining exactly what the code accomplishes.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TECHNICAL SPECS -->
+      <section class="tool-panel tool-card">
+        <h2 class="section-title">Syntax Elements Explanation Map</h2>
+        <p class="section-subtitle">Evaluating parsed code symbols and explanation mappings.</p>
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Syntax Element</th>
+              <th>Matched Pattern</th>
+              <th>Deterministic Action Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>**Function Def**</td>
+              <td>`function`, `def`, `SELECT`</td>
+              <td>Declares an executable logic routine block or database query</td>
+            </tr>
+            <tr>
+              <td>**Conditional Run**</td>
+              <td>`if`, `elif`, `else`, `WHERE`</td>
+              <td>Branching logic executing paths based on true/false variables</td>
+            </tr>
+            <tr>
+              <td>**Loops / Iterations**</td>
+              <td>`for`, `while`, `JOIN`</td>
+              <td>Repeats code cycles across dataset arrays or database sheets</td>
+            </tr>
+            <tr>
+              <td>**Asynchronous API**</td>
+              <td>`fetch`, `async`, `await`</td>
+              <td>Queries external network links without locking UI interactions</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- RELATED TOOLS -->
+      <section class="related-tools">
+        <h2 class="related-title">Related Developer Tools</h2>
+        <div class="related-tools-grid">
+          <a href="../regex-tester/index.html" class="related-tool-card">
+            <div class="tool-icon-wrap tool-icon-dark">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="white" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-badge text-dark">Regex Tester</div>
+            <h3 class="related-name">Regex Tester</h3>
+            <p class="related-desc">Test regular expressions live with match highlighting and captures.</p>
+            <span class="tool-link">Use Tool →</span>
+          </a>
+          <a href="../js-beautifier/index.html" class="related-tool-card">
+            <div class="tool-icon-wrap tool-icon-dark">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 4l4 8-4 8h16l-4-8 4-8" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-badge text-dark">JS Beautifier</div>
+            <h3 class="related-name">JS Beautifier Pro</h3>
+            <p class="related-desc">Format, deobfuscate, and indent JavaScript codes instantly.</p>
+            <span class="tool-link">Use Tool →</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer" id="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo-text">ToolWools</span>
+          <p class="footer-brand-desc">Secure, browser-based utility tools for digital creators.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ToolWools. All tools run 100% locally in your browser.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== LOGIC ==================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const codeArea = document.getElementById('codeArea');
+      const codeLang = document.getElementById('codeLang');
+      const loadSampleBtn = document.getElementById('loadSampleBtn');
+      const explainBtn = document.getElementById('explainBtn');
+      const explanationContainer = document.getElementById('explanationContainer');
+
+      // Sample templates categorized by language
+      const samples = {
+        js: `async function fetchUserData(userId) {
+  const url = \`https://api.example.com/users/\${userId}\`;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("User not found");
+    }
+    const data = await response.json();
+    for (let i = 0; i < data.roles.length; i++) {
+      console.log("Role: " + data.roles[i]);
+    }
+    return data;
+  } catch (err) {
+    console.error("Fetch failed: ", err);
+  }
+}`,
+        python: `def calculate_average(numbers_list):
+  total = 0
+  count = 0
+  for num in numbers_list:
+    if num >= 0:
+      total += num
+      count += 1
+    else:
+      print("Warning: negative number skipped")
+  
+  if count > 0:
+    return total / count
+  return 0`,
+        sql: `SELECT users.id, users.name, COUNT(orders.id) AS total_orders
+FROM users
+LEFT JOIN orders ON users.id = orders.user_id
+WHERE orders.status = 'completed'
+GROUP BY users.id
+ORDER BY total_orders DESC;`,
+        html: `<div class="container">
+  <header class="header-nav">
+    <nav class="links">
+      <a href="/home">Home</a>
+    </nav>
+  </header>
+  <main style="display: flex; flex-direction: column;">
+    <section class="hero-section">Welcome</section>
+  </main>
+</div>`
+      };
+
+      // Theme toggle setup
+      const themeToggle = document.getElementById('themeToggle');
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+      });
+
+      // Mobile Menu Hamburger
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      hamburger.addEventListener('click', () => {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !expanded);
+        mobileMenu.classList.toggle('active');
+      });
+
+      // Load sample
+      loadSampleBtn.addEventListener('click', () => {
+        const lang = codeLang.value;
+        codeArea.value = samples[lang] || '';
+      });
+
+      explainBtn.addEventListener('click', () => {
+        const code = codeArea.value.trim();
+        if (!code) {
+          alert('Please paste some code to explain.');
+          return;
+        }
+
+        const lang = codeLang.value;
+        explainBtn.disabled = true;
+        explainBtn.textContent = 'Parsing Code...';
+
+        setTimeout(() => {
+          const explanations = explainCodeBlock(code, lang);
+          renderExplanations(explanations);
+          explainBtn.disabled = false;
+          explainBtn.textContent = 'Explain Code Block';
+        }, 500);
+      });
+
+      function explainCodeBlock(code, lang) {
+        const lines = code.split('\n');
+        const items = [];
+
+        let highLevelSummary = '';
+        if (lang === 'js') {
+          highLevelSummary = 'This JavaScript code defines a routine, handles network fetches, manages exceptions, or iterates arrays locally.';
+        } else if (lang === 'python') {
+          highLevelSummary = 'This Python script defines a structured math function, calculates values, processes lists, and formats outcomes.';
+        } else if (lang === 'sql') {
+          highLevelSummary = 'This SQL query extracts database records, joins relative tables, filters rows, and groups aggregate parameters.';
+        } else {
+          highLevelSummary = 'This HTML block defines navigation elements, main grids, and wraps relative content segments.';
+        }
+
+        items.push({
+          title: 'High-Level Summary',
+          desc: highLevelSummary
+        });
+
+        // Parse line-by-line using regular expressions matching structures
+        lines.forEach((line, idx) => {
+          const trimmed = line.trim();
+          if (!trimmed) return;
+
+          let matchFound = false;
+          let title = `Line ${idx + 1}: ${trimmed.substring(0, 30)}${trimmed.length > 30 ? '...' : ''}`;
+          let desc = '';
+
+          if (lang === 'js') {
+            if (trimmed.match(/function\s+(\w+)/)) {
+              const fname = trimmed.match(/function\s+(\w+)/)[1];
+              desc = `Declares an executable function named \`${fname}\` to hold a reusable coding routine.`;
+              matchFound = true;
+            } else if (trimmed.match(/const\s+(\w+)\s*=\s*await/)) {
+              desc = `Asynchronously fetches or awaits a response stream, resolving data before continuing execution.`;
+              matchFound = true;
+            } else if (trimmed.match(/for\s*\(/)) {
+              desc = `Starts a \`for\` loop to iterate across array items sequentially using indices.`;
+              matchFound = true;
+            } else if (trimmed.match(/try\s*\{/)) {
+              desc = `Starts a \`try-catch\` block to catch and handle any runtime exceptions or errors gracefully.`;
+              matchFound = true;
+            } else if (trimmed.match(/if\s*\(/)) {
+              desc = `Applies a conditional check to branch code flow depending on true/false statements.`;
+              matchFound = true;
+            }
+          } else if (lang === 'python') {
+            if (trimmed.match(/def\s+(\w+)/)) {
+              const fname = trimmed.match(/def\s+(\w+)/)[1];
+              desc = `Defines a reusable Python method named \`${fname}\` mapping arguments.`;
+              matchFound = true;
+            } else if (trimmed.match(/for\s+(\w+)\s+in/)) {
+              desc = `Initiates a loop iterating across sequential member items inside the specified object list.`;
+              matchFound = true;
+            } else if (trimmed.match(/if\s+/)) {
+              desc = `Performs a logical check, executing indented statements only if condition parameters hold true.`;
+              matchFound = true;
+            } else if (trimmed.match(/print\s*\(/)) {
+              desc = `Outputs debug statements or text streams to the system execution console output.`;
+              matchFound = true;
+            }
+          } else if (lang === 'sql') {
+            if (trimmed.toUpperCase().startsWith('SELECT')) {
+              desc = `Specifies the exact columns and metrics to extract from database storage tables.`;
+              matchFound = true;
+            } else if (trimmed.toUpperCase().startsWith('FROM')) {
+              desc = `Identifies the primary origin source table to query data streams from.`;
+              matchFound = true;
+            } else if (trimmed.toUpperCase().includes('JOIN')) {
+              desc = `Merges relative rows from secondary tables based on matching key ID columns.`;
+              matchFound = true;
+            } else if (trimmed.toUpperCase().startsWith('WHERE')) {
+              desc = `Applies row-level criteria filters to discard records that do not match specific values.`;
+              matchFound = true;
+            } else if (trimmed.toUpperCase().startsWith('GROUP BY')) {
+              desc = `Groups matching row segments together to calculate aggregate metrics (like counts or averages).`;
+              matchFound = true;
+            }
+          } else { // HTML
+            if (trimmed.match(/<div\b/)) {
+              desc = `Creates a content divider block tag (\`<div>\`) to wrap and layout visual items.`;
+              matchFound = true;
+            } else if (trimmed.match(/<header\b/)) {
+              desc = `Declares a semantic header block (\`<header>\`) for top-level navigation elements.`;
+              matchFound = true;
+            } else if (trimmed.match(/<nav\b/)) {
+              desc = `Specifies a navigation bar container (\`<nav>\`) to organize main website redirect links.`;
+              matchFound = true;
+            } else if (trimmed.match(/<main\b/)) {
+              desc = `Specifies the primary content block (\`<main>\`) of the web page layout tree.`;
+              matchFound = true;
+            }
+          }
+
+          if (matchFound) {
+            items.push({ title, desc });
+          }
+        });
+
+        if (items.length === 1) {
+          items.push({
+            title: 'Detailed Elements',
+            desc: 'No major syntax patterns (loops, conditional blocks, or functions) were identified. Review the language selector dropdown to ensure it matches the code input.'
+          });
+        }
+
+        return items;
+      }
+
+      function renderExplanations(items) {
+        explanationContainer.innerHTML = '';
+        items.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'explain-block';
+          div.innerHTML = `
+            <div class="explain-title">${item.title}</div>
+            <div class="explain-desc">${item.desc}</div>
+          `;
+          explanationContainer.appendChild(div);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

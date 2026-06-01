@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/word-to-pdf/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>Word to PDF Converter — Convert DOCX to PDF Online | ToolWools</title>
+  <meta name="description" content="Convert standard DOCX Word documents into clean, highly compatible PDF files directly in your browser. 100% private, client-side conversion.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+  <link rel="stylesheet" href="../tool-shared.css">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:site_name" content="ToolWools">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Word to PDF Converter — Convert DOCX to PDF Online | ToolWools">
+  <meta property="og:description" content="Convert standard DOCX Word documents into clean, highly compatible PDF files directly in your browser. 100% private, client-side conversion.">
+  <meta property="og:url" content="https://toolwools.com/tools/word-to-pdf/">
+  <meta property="og:image" content="https://toolwools.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Word to PDF Converter — Convert DOCX to PDF Online | ToolWools">
+  <meta name="twitter:description" content="Convert standard DOCX Word documents into clean, highly compatible PDF files directly in your browser. 100% private, client-side conversion.">
+  <meta name="twitter:image" content="https://toolwools.com/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Word to PDF Converter",
+    "description": "Convert DOCX Word documents to PDF in-browser instantly and privately.",
+    "url": "https://toolwools.com/tools/word-to-pdf/",
+    "applicationCategory": "PDFApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "ToolWools",
+      "url": "https://toolwools.com"
+    }
+  }
+  </script>
+  
+  <!-- Mammoth.js for parsing docx XML and jsPDF for creating PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  
+  <style>
+    .preview-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      max-height: 400px;
+      overflow-y: auto;
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-heading);
+      display: none;
+    }
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .preview-title {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-logo" aria-label="ToolWools Home">
+        <div class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="16" fill="#F4511E"/>
+            <path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="logo-text">ToolWools</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <div class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+            Tools
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="chevron-icon">
+              <path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="mega-menu" id="megaMenu">
+            <div class="mega-menu-grid">
+              <a href="../index.html?cat=seo" class="mega-item">
+                <div class="mega-icon mega-icon-orange">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="5" stroke="white" stroke-width="2"/><path d="M12 12L17 17" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">SEO Tools</span>
+                  <span class="mega-desc">Optimize rankings</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=image" class="mega-item">
+                <div class="mega-icon mega-icon-blue">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="white" stroke-width="2"/><circle cx="7" cy="7" r="2" fill="white"/><path d="M2 14L7 9L18 18" stroke="white" stroke-width="2"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Image Tools</span>
+                  <span class="mega-desc">Compress, convert, scale</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=pdf" class="mega-item">
+                <div class="mega-icon mega-icon-red">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="1" width="14" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M7 6H13M7 10H13M7 14H11" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">PDF Tools</span>
+                  <span class="mega-desc">Merge, split, extract, unlock</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=text" class="mega-item">
+                <div class="mega-icon mega-icon-green">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4H16M4 8H12M4 12H14M4 16H10" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Text Tools</span>
+                  <span class="mega-desc">Count, format, transform</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=ai" class="mega-item">
+                <div class="mega-icon mega-icon-purple">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12 7H18L13 11L15 17L10 13L5 17L7 11L2 7H8L10 2Z" fill="white"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">AI Tools</span>
+                  <span class="mega-desc">Writer, paraphraser, summaries</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=dev" class="mega-item">
+                <div class="mega-icon mega-icon-dark">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 6L2 10L6 14M14 6L18 10L14 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Developer</span>
+                  <span class="mega-desc">JSON, hashes, utilities</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="../index.html?cat=seo" class="nav-link">SEO</a>
+        <a href="../index.html?cat=image" class="nav-link">Images</a>
+        <a href="../index.html?cat=pdf" class="nav-link">PDF</a>
+        <a href="../index.html?cat=ai" class="nav-link">AI</a>
+        <a href="../../blog/index.html" class="nav-link">Blog</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M10 2V4M10 16V18M2 10H4M16 10H18M4.93 4.93L6.34 6.34M13.66 13.66L15.07 15.07M4.93 15.07L6.34 13.66M13.66 6.34L15.07 4.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <a href="../../index.html#cta" class="btn btn-primary nav-cta">Get Started</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html" class="mobile-link">All Tools</a>
+      <a href="../index.html?cat=seo" class="mobile-link">SEO</a>
+      <a href="../index.html?cat=image" class="mobile-link">Images</a>
+      <a href="../index.html?cat=pdf" class="mobile-link">PDF</a>
+      <a href="../index.html?cat=ai" class="mobile-link">AI</a>
+      <a href="../../index.html#cta" class="btn btn-primary mobile-cta">Get Started</a>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="tool-page" id="main-content">
+    <div class="tool-container">
+      
+      <!-- BREADCRUMBS -->
+      <nav class="tool-breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html">Home</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="../index.html">Tools</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="../index.html?cat=pdf">PDF Tools</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span aria-current="page">Word to PDF</span>
+      </nav>
+
+      <!-- HEADER -->
+      <div class="tool-header">
+        <span class="category-badge category-pdf">PDF Tool</span>
+        <h1 class="tool-title">Word to PDF Converter</h1>
+        <p class="tool-subtitle">Convert DOCX Word files directly to formatted PDF in your browser. Fully local operations keep your data 100% private.</p>
+      </div>
+
+      <!-- WORKSPACE -->
+      <div class="tool-workspace tool-panel tool-card">
+        <div class="tool-grid-workspace">
+          <!-- Left: Input Area -->
+          <div class="tool-input-section">
+            <div class="upload-zone" id="uploadZone">
+              <svg class="upload-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+              </svg>
+              <h3 class="upload-title">Choose or Drag DOCX File</h3>
+              <p class="upload-subtitle">Supports standard .docx files (Max 25MB)</p>
+              <input type="file" id="docxInput" accept=".docx" class="file-input-hidden" aria-label="Upload DOCX File">
+              <button class="btn btn-outline" onclick="document.getElementById('docxInput').click()">Select File</button>
+            </div>
+            
+            <div id="fileInfoBlock" style="display: none; margin-top: 16px;">
+              <div class="stat-card" style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div class="stat-num" id="fileNameText" style="font-size: 16px; text-align: left;">document.docx</div>
+                  <div class="stat-label" id="fileSizeText" style="text-align: left;">1.2 MB</div>
+                </div>
+                <button class="btn btn-outline" id="clearFileBtn" style="padding: 4px 12px; font-size: 12px;">Remove</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Convert Actions / Preview -->
+          <div class="tool-result-section">
+            <div class="control-group">
+              <label class="control-label">Conversion Mode</label>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <button class="btn btn-outline active" id="modeStandard">Standard Page</button>
+                <button class="btn btn-outline" id="modeCompact">Compact Text</button>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" id="convertBtn" style="width: 100%; height: 48px; margin-top: 16px;" disabled>
+              Convert to PDF
+            </button>
+            
+            <div class="preview-header" id="previewHeader" style="display: none; margin-top: 24px;">
+              <span class="preview-title">Document Text Preview</span>
+              <span class="category-badge category-pdf" style="font-size: 11px;">Parsed Draft</span>
+            </div>
+            <div class="preview-container" id="previewContainer"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ SECTION -->
+      <section class="tool-panel tool-card">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-grid">
+          <details class="faq-details">
+            <summary class="faq-summary">How does the Word to PDF converter protect my privacy?</summary>
+            <div class="faq-content">
+              <p>Unlike cloud converters, this tool works 100% client-side. The DOCX file parser executes inside your local browser sandbox using Mammoth.js. None of your document text or metadata is sent to any external server.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">Does it support images, custom shapes, and complex layouts?</summary>
+            <div class="faq-content">
+              <p>Basic images and text structures are supported. Highly complex layouts, shape vectors, and proprietary Word header fields may be simplified during HTML structure conversion to produce clean, readable PDF documents.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">What size limits apply to my DOCX files?</summary>
+            <div class="faq-content">
+              <p>We recommend files under 25MB to keep browser memory usage optimal and ensure swift local conversions.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">Do I need an active internet connection to run this?</summary>
+            <div class="faq-content">
+              <p>No. Once the web application is loaded, the conversion logic runs completely offline in your local browser sandbox, requiring no server calls.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">Are there daily limits on how many files I can convert?</summary>
+            <div class="faq-content">
+              <p>No. Since all files are processed locally on your computer, there are absolutely no usage limits, paywalls, or registrations required.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="tool-panel tool-card">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <h3 class="step-title">Upload DOCX</h3>
+            <p class="step-desc">Select or drop a standard Word document (`.docx`) into the secure local upload zone.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <h3 class="step-title">Preview Structure</h3>
+            <p class="step-desc">The browser parses the document tree locally, showing a quick formatted preview of headers and text.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <h3 class="step-title">Generate PDF</h3>
+            <p class="step-desc">Click convert to compile the parsed document directly into a compatible PDF and download instantly.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCIENCE & SPECS -->
+      <section class="tool-panel tool-card">
+        <h2 class="section-title">Technical Specifications</h2>
+        <p class="section-subtitle">Comparing DOCX formatting standards against compiled PDF layout elements.</p>
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Feature Parameter</th>
+              <th>DOCX Standard File</th>
+              <th>Compiled PDF Document</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>**Format Structure**</td>
+              <td>OpenXML compressed ZIP containing XML document body trees</td>
+              <td>Cross-referenced object streams mapping coordinate layouts</td>
+            </tr>
+            <tr>
+              <td>**Text Extraction**</td>
+              <td>Extracted XML text run tags (`&lt;w:t&gt;`) parsed locally</td>
+              <td>ASCII/Binary streams drawing characters with exact pixel coordinates</td>
+            </tr>
+            <tr>
+              <td>**Image Rasterization**</td>
+              <td>Media folder blobs extracted into base64 visual components</td>
+              <td>Flattens raster images into embedded stream objects</td>
+            </tr>
+            <tr>
+              <td>**Font Embeddings**</td>
+              <td>Relies on operating system font tables</td>
+              <td>System default font metrics mapped to document headers</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- RELATED TOOLS -->
+      <section class="related-tools">
+        <h2 class="related-title">Related PDF Utilities</h2>
+        <div class="related-tools-grid">
+          <a href="../pdf-compressor/index.html" class="related-tool-card">
+            <div class="tool-icon-wrap tool-icon-red">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" stroke-width="2"/><path d="M14 2v6h6" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-badge text-red">PDF Compressor</div>
+            <h3 class="related-name">PDF Compressor</h3>
+            <p class="related-desc">Reduce document sizes locally without losing text resolution standards.</p>
+            <span class="tool-link">Use Tool →</span>
+          </a>
+          <a href="../pdf-merger/index.html" class="related-tool-card">
+            <div class="tool-icon-wrap tool-icon-red">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="white" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-badge text-red">PDF Merger</div>
+            <h3 class="related-name">PDF Merger</h3>
+            <p class="related-desc">Merge multiple PDF documents together into a single, clean workspace file.</p>
+            <span class="tool-link">Use Tool →</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer" id="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo-text">ToolWools</span>
+          <p class="footer-brand-desc">Secure, browser-based utility tools for digital creators.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ToolWools. All tools run 100% locally in your browser.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== LOGIC ==================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const docxInput = document.getElementById('docxInput');
+      const uploadZone = document.getElementById('uploadZone');
+      const fileInfoBlock = document.getElementById('fileInfoBlock');
+      const fileNameText = document.getElementById('fileNameText');
+      const fileSizeText = document.getElementById('fileSizeText');
+      const clearFileBtn = document.getElementById('clearFileBtn');
+      const convertBtn = document.getElementById('convertBtn');
+      const previewHeader = document.getElementById('previewHeader');
+      const previewContainer = document.getElementById('previewContainer');
+      
+      const modeStandard = document.getElementById('modeStandard');
+      const modeCompact = document.getElementById('modeCompact');
+      
+      let selectedFile = null;
+      let parsedHtml = '';
+      let compactMode = false;
+
+      // Theme toggle setup
+      const themeToggle = document.getElementById('themeToggle');
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+      });
+
+      // Mobile Menu Hamburger
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      hamburger.addEventListener('click', () => {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !expanded);
+        mobileMenu.classList.toggle('active');
+      });
+
+      // Mode toggles
+      modeStandard.addEventListener('click', () => {
+        modeStandard.classList.add('active');
+        modeCompact.classList.remove('active');
+        compactMode = false;
+      });
+
+      modeCompact.addEventListener('click', () => {
+        modeCompact.classList.add('active');
+        modeStandard.classList.remove('active');
+        compactMode = true;
+      });
+
+      // Drag and drop setup
+      uploadZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadZone.classList.add('dragover');
+      });
+
+      uploadZone.addEventListener('dragleave', () => {
+        uploadZone.classList.remove('dragover');
+      });
+
+      uploadZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadZone.classList.remove('dragover');
+        if (e.dataTransfer.files.length > 0) {
+          handleFile(e.dataTransfer.files[0]);
+        }
+      });
+
+      docxInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+          handleFile(e.target.files[0]);
+        }
+      });
+
+      clearFileBtn.addEventListener('click', () => {
+        selectedFile = null;
+        parsedHtml = '';
+        docxInput.value = '';
+        fileInfoBlock.style.display = 'none';
+        uploadZone.style.display = 'flex';
+        convertBtn.disabled = true;
+        previewHeader.style.display = 'none';
+        previewContainer.style.display = 'none';
+        previewContainer.innerHTML = '';
+      });
+
+      function handleFile(file) {
+        if (!file.name.endsWith('.docx')) {
+          alert('Please select a valid .docx file.');
+          return;
+        }
+        selectedFile = file;
+        fileNameText.textContent = file.name;
+        fileSizeText.textContent = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
+        fileInfoBlock.style.display = 'block';
+        uploadZone.style.display = 'none';
+        convertBtn.disabled = false;
+        
+        // Render quick preview
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          const arrayBuffer = event.target.result;
+          mammoth.convertToHtml({ arrayBuffer: arrayBuffer })
+            .then((result) => {
+              parsedHtml = result.value;
+              previewContainer.innerHTML = parsedHtml || '<p style="color: var(--text-muted);">Empty document</p>';
+              previewHeader.style.display = 'flex';
+              previewContainer.style.display = 'block';
+            })
+            .catch((err) => {
+              console.error('Error parsing docx:', err);
+              previewContainer.innerHTML = `<p style="color: var(--color-error);">Error loading docx preview: ${err.message}</p>`;
+              previewHeader.style.display = 'flex';
+              previewContainer.style.display = 'block';
+            });
+        };
+        reader.readAsArrayBuffer(file);
+      }
+
+      convertBtn.addEventListener('click', () => {
+        if (!selectedFile || !parsedHtml) return;
+
+        convertBtn.disabled = true;
+        convertBtn.textContent = 'Generating PDF...';
+
+        try {
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF({
+            orientation: 'portrait',
+            unit: 'mm',
+            format: 'a4'
+          });
+
+          // Extract pure text paragraphs from HTML preview to output nicely
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = parsedHtml;
+          
+          let y = 20;
+          doc.setFont('Helvetica', 'normal');
+          doc.setFontSize(compactMode ? 10 : 12);
+          const lineSpacing = compactMode ? 5 : 7;
+          const pageHeight = doc.internal.pageSize.height;
+
+          // Simple layout printing: iterate paragraphs or headings
+          const children = tempDiv.childNodes;
+          
+          for (let i = 0; i < children.length; i++) {
+            const child = children[i];
+            const textContent = child.textContent ? child.textContent.trim() : '';
+            if (!textContent) continue;
+
+            const isHeading = child.nodeName.match(/^H[1-6]$/);
+            if (isHeading) {
+              doc.setFont('Helvetica', 'bold');
+              doc.setFontSize(compactMode ? 12 : 14);
+              y += 4;
+            } else {
+              doc.setFont('Helvetica', 'normal');
+              doc.setFontSize(compactMode ? 10 : 12);
+            }
+
+            const splitLines = doc.splitTextToSize(textContent, 170);
+            
+            for (let j = 0; j < splitLines.length; j++) {
+              if (y > pageHeight - 20) {
+                doc.addPage();
+                y = 20;
+              }
+              doc.text(splitLines[j], 20, y);
+              y += lineSpacing;
+            }
+            y += isHeading ? 4 : 2;
+          }
+
+          // Save output file
+          const outName = selectedFile.name.replace(/\.docx$/i, '') + '.pdf';
+          doc.save(outName);
+        } catch (err) {
+          alert('Failed to generate PDF: ' + err.message);
+        } finally {
+          convertBtn.disabled = false;
+          convertBtn.textContent = 'Convert to PDF';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

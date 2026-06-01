@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/ai-title-generator/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>AI Title Generator — Click-worthy Headlines | ToolWools</title>
+  <meta name="description" content="Generate blog headlines, video titles, and article hooks from brief topic descriptions locally using copywriting formulas. 100% private title builder.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+  <link rel="stylesheet" href="../tool-shared.css">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:site_name" content="ToolWools">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI Title Generator — Click-worthy Headlines | ToolWools">
+  <meta property="og:description" content="Generate blog headlines, video titles, and article hooks from brief topic descriptions locally using copywriting formulas. 100% private title builder.">
+  <meta property="og:url" content="https://toolwools.com/tools/ai-title-generator/">
+  <meta property="og:image" content="https://toolwools.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Title Generator — Click-worthy Headlines | ToolWools">
+  <meta name="twitter:description" content="Generate blog headlines, video titles, and article hooks from brief topic descriptions locally using copywriting formulas. 100% private title builder.">
+  <meta name="twitter:image" content="https://toolwools.com/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AI Title Generator",
+    "description": "Generate click-worthy blog headlines and video titles locally in-browser.",
+    "url": "https://toolwools.com/tools/ai-title-generator/",
+    "applicationCategory": "AIApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "ToolWools",
+      "url": "https://toolwools.com"
+    }
+  }
+  </script>
+
+  <style>
+    .title-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      margin-bottom: 8px;
+      transition: all 0.2s ease;
+    }
+    .title-item:hover {
+      border-color: var(--accent-color);
+      transform: translateX(4px);
+    }
+    .title-text {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-heading);
+    }
+    .char-badge {
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .badge-good { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+    .badge-long { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-logo" aria-label="ToolWools Home">
+        <div class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="16" fill="#F4511E"/>
+            <path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="logo-text">ToolWools</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <div class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+            Tools
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="chevron-icon">
+              <path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="mega-menu" id="megaMenu">
+            <div class="mega-menu-grid">
+              <a href="../index.html?cat=seo" class="mega-item">
+                <div class="mega-icon mega-icon-orange">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="5" stroke="white" stroke-width="2"/><path d="M12 12L17 17" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">SEO Tools</span>
+                  <span class="mega-desc">Optimize rankings</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=image" class="mega-item">
+                <div class="mega-icon mega-icon-blue">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="white" stroke-width="2"/><circle cx="7" cy="7" r="2" fill="white"/><path d="M2 14L7 9L18 18" stroke="white" stroke-width="2"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Image Tools</span>
+                  <span class="mega-desc">Compress, convert, scale</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=pdf" class="mega-item">
+                <div class="mega-icon mega-icon-red">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="1" width="14" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M7 6H13M7 10H13M7 14H11" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">PDF Tools</span>
+                  <span class="mega-desc">Merge, split, extract, unlock</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=text" class="mega-item">
+                <div class="mega-icon mega-icon-green">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4H16M4 8H12M4 12H14M4 16H10" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Text Tools</span>
+                  <span class="mega-desc">Count, format, transform</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=ai" class="mega-item">
+                <div class="mega-icon mega-icon-purple">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12 7H18L13 11L15 17L10 13L5 17L7 11L2 7H8L10 2Z" fill="white"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">AI Tools</span>
+                  <span class="mega-desc">Writer, paraphraser, summaries</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=dev" class="mega-item">
+                <div class="mega-icon mega-icon-dark">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 6L2 10L6 14M14 6L18 10L14 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Developer</span>
+                  <span class="mega-desc">JSON, hashes, utilities</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="../index.html?cat=seo" class="nav-link">SEO</a>
+        <a href="../index.html?cat=image" class="nav-link">Images</a>
+        <a href="../index.html?cat=pdf" class="nav-link">PDF</a>
+        <a href="../index.html?cat=ai" class="nav-link">AI</a>
+        <a href="../../blog/index.html" class="nav-link">Blog</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M10 2V4M10 16V18M2 10H4M16 10H18M4.93 4.93L6.34 6.34M13.66 13.66L15.07 15.07M4.93 15.07L6.34 13.66M13.66 6.34L15.07 4.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <a href="../../index.html#cta" class="btn btn-primary nav-cta">Get Started</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html" class="mobile-link">All Tools</a>
+      <a href="../index.html?cat=seo" class="mobile-link">SEO</a>
+      <a href="../index.html?cat=image" class="mobile-link">Images</a>
+      <a href="../index.html?cat=pdf" class="mobile-link">PDF</a>
+      <a href="../index.html?cat=ai" class="mobile-link">AI</a>
+      <a href="../../index.html#cta" class="btn btn-primary mobile-cta">Get Started</a>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="tool-page" id="main-content">
+    <div class="tool-container">
+      
+      <!-- BREADCRUMBS -->
+      <nav class="tool-breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html">Home</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="../index.html">Tools</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="../index.html?cat=ai">AI Tools</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span aria-current="page">AI Title Generator</span>
+      </nav>
+
+      <!-- HEADER -->
+      <div class="tool-header">
+        <span class="category-badge category-ai">AI Tool</span>
+        <h1 class="tool-title">AI Title Generator</h1>
+        <p class="tool-subtitle">Create highly engaging, SEO-optimized headlines and video titles from topics using classic copywriting structures.</p>
+      </div>
+
+      <!-- WORKSPACE -->
+      <div class="tool-workspace tool-panel tool-card">
+        <div class="tool-grid-workspace">
+          <!-- Left Input Panel -->
+          <div class="tool-input-section">
+            <div class="control-group">
+              <label class="control-label" for="topicInput">Enter Topic / Keyword</label>
+              <input type="text" id="topicInput" class="form-control" placeholder="e.g. Remote Work, Home Baking, Web Coding">
+            </div>
+
+            <div class="control-group" style="margin-top: 16px;">
+              <label class="control-label" for="headlineType">Headline Category</label>
+              <select id="headlineType" class="form-control">
+                <option value="all">All Styles</option>
+                <option value="lists">Lists &amp; Numbers</option>
+                <option value="howto">How-To Guides</option>
+                <option value="questions">Intriguing Questions</option>
+                <option value="ctr">CTR Triggers</option>
+                <option value="curiosity">Curiosity &amp; Secrets</option>
+              </select>
+            </div>
+
+            <button class="btn btn-primary" id="generateBtn" style="width: 100%; height: 48px; margin-top: 24px;">
+              Generate Titles
+            </button>
+          </div>
+
+          <!-- Right Result Panel -->
+          <div class="tool-result-section">
+            <div class="result-header">
+              <span class="result-title">Click to Copy Title</span>
+              <span class="category-badge category-ai" style="font-size: 11px;">SEO Limit: 60 Chars</span>
+            </div>
+            
+            <div id="titlesList" style="max-height: 400px; overflow-y: auto; padding-right: 4px;">
+              <div style="text-align: center; padding: 40px 0; color: var(--text-muted);">
+                Enter a topic and generate headlines.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ SECTION -->
+      <section class="tool-panel tool-card">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-grid">
+          <details class="faq-details">
+            <summary class="faq-summary">How does the AI Title Generator work offline?</summary>
+            <div class="faq-content">
+              <p>This tool combines your topic with high-performing headlines templates derived from copywriting best practices. It scores character lengths locally to ensure titles fit standard Google SERP snippet widths.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">What is the optimal character length for SEO titles?</summary>
+            <div class="faq-content">
+              <p>Search engines generally truncate title tags after 60 characters. The tool displays a color-coded tag showing you exactly which headlines fit this limit.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">Are my topics sent to external servers?</summary>
+            <div class="faq-content">
+              <p>No. All parsing and outline calculations are completed client-side in browser memory. None of your inputs are sent across the web.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">Can I generate titles for YouTube and social media?</summary>
+            <div class="faq-content">
+              <p>Yes. The CTR Trigger and Curiosity filters are designed to optimize click rates across video search algorithms and social timelines.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">Is there a cost to generate headlines?</summary>
+            <div class="faq-content">
+              <p>No. Like all ToolWools utilities, this builder is 100% free with no registration requirements.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="tool-panel tool-card">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <h3 class="step-title">Specify Topic</h3>
+            <p class="step-desc">Enter your primary focus keyword or subject into the input control panel.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <h3 class="step-title">Filter Style</h3>
+            <p class="step-desc">Filter by Lists, How-To, Questions, or CTR Triggers to align with your intent.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <h3 class="step-title">Click to Copy</h3>
+            <p class="step-desc">Browse generated titles, review SEO length limits, and click to copy your favorite.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TECHNICAL SPECS -->
+      <section class="tool-panel tool-card">
+        <h2 class="section-title">Technical Specifications</h2>
+        <p class="section-subtitle">Understanding SERP limits and CTR influence variables.</p>
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Headline Variable</th>
+              <th>Optimal Formatting Standard</th>
+              <th>Crawl Influence Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>**Character Length**</td>
+              <td>50 - 60 characters</td>
+              <td>Prevents trailing snippet truncation in Google results</td>
+            </tr>
+            <tr>
+              <td>**CTR Triggers**</td>
+              <td>Action verbs and clear benefits</td>
+              <td>Increases organic search click frequencies</td>
+            </tr>
+            <tr>
+              <td>**Numbers &amp; Lists**</td>
+              <td>Odd numbers or clear quantities</td>
+              <td>Improves reading scannability on index feeds</td>
+            </tr>
+            <tr>
+              <td>**Keyword Position**</td>
+              <td>First 3 words of headline</td>
+              <td>Increases context scoring relevance for search bots</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- RELATED TOOLS -->
+      <section class="related-tools">
+        <h2 class="related-title">Related AI Assistants</h2>
+        <div class="related-tools-grid">
+          <a href="../ai-meta-description/index.html" class="related-tool-card">
+            <div class="tool-icon-wrap tool-icon-purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="white" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-badge text-purple">AI Meta Description</div>
+            <h3 class="related-name">AI Meta Description</h3>
+            <p class="related-desc">Formulate search snippet summaries optimized for Google search indexes.</p>
+            <span class="tool-link">Use Tool →</span>
+          </a>
+          <a href="../ai-ad-copy-generator/index.html" class="related-tool-card">
+            <div class="tool-icon-wrap tool-icon-purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="white" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-badge text-purple">AI Ad Copy Generator</div>
+            <h3 class="related-name">AI Ad Copy Generator</h3>
+            <p class="related-desc">Generate marketing descriptions and taglines locally.</p>
+            <span class="tool-link">Use Tool →</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer" id="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo-text">ToolWools</span>
+          <p class="footer-brand-desc">Secure, browser-based utility tools for digital creators.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ToolWools. All tools run 100% locally in your browser.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== LOGIC ==================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const topicInput = document.getElementById('topicInput');
+      const headlineType = document.getElementById('headlineType');
+      const generateBtn = document.getElementById('generateBtn');
+      const titlesList = document.getElementById('titlesList');
+
+      // Theme toggle setup
+      const themeToggle = document.getElementById('themeToggle');
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+      });
+
+      // Mobile Menu Hamburger
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      hamburger.addEventListener('click', () => {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !expanded);
+        mobileMenu.classList.toggle('active');
+      });
+
+      // Capitalize first letters helper
+      function formatTopic(str) {
+        return str.replace(/\b\w/g, c => c.toUpperCase());
+      }
+
+      generateBtn.addEventListener('click', () => {
+        const topic = formatTopic(topicInput.value.trim() || 'Remote Work');
+        const category = headlineType.value;
+
+        // Headline template categories
+        const templates = {
+          lists: [
+            `10 Simple Ways to Improve [Topic] Today`,
+            `5 Crucial Secrets of [Topic] Revealed`,
+            `7 Critical Tools for [Topic] Success`,
+            `3 Shocking [Topic] Mistakes to Avoid`,
+            `15 Best [Topic] Checklist Hacks`
+          ],
+          howto: [
+            `How to Master [Topic] in 3 Easy Steps`,
+            `Step-by-Step Guide to [Topic] for Beginners`,
+            `How to Get Better at [Topic] Fast`,
+            `Learning [Topic] Without Spending Money`,
+            `How to Turn [Topic] Into a Full-Time Career`
+          ],
+          questions: [
+            `Why is [Topic] So Popular Right Now?`,
+            `Is [Topic] Really Worth the Effort?`,
+            `What is the Secret Behind [Topic]?`,
+            `Can [Topic] Double Your Earnings?`,
+            `Why Does [Topic] Often Fail?`
+          ],
+          ctr: [
+            `This is the Easiest Way to Handle [Topic]!`,
+            `Double Your [Topic] in 24 Hours or Less!`,
+            `Stop Making These [Topic] Mistakes Instantly!`,
+            `Get More out of [Topic] With This Hack!`,
+            `The Ultimate Guide to [Topic] Success!`
+          ],
+          curiosity: [
+            `The Shocking Truth About [Topic]`,
+            `What Nobody Tells You About [Topic]`,
+            `Before You Try [Topic], Read This!`,
+            `The Hidden Cost of [Topic] Exposed`,
+            `This [Topic] Hack Will Change Everything`
+          ]
+        };
+
+        let activeTemplates = [];
+        if (category === 'all') {
+          activeTemplates = [
+            ...templates.lists,
+            ...templates.howto,
+            ...templates.questions,
+            ...templates.ctr,
+            ...templates.curiosity
+          ];
+        } else {
+          activeTemplates = templates[category] || [];
+        }
+
+        generateBtn.disabled = true;
+        generateBtn.textContent = 'Generating...';
+
+        setTimeout(() => {
+          titlesList.innerHTML = '';
+
+          activeTemplates.forEach(tpl => {
+            const headline = tpl.replace(/\[Topic\]/g, topic);
+            const len = headline.length;
+            const badgeClass = len <= 60 ? 'badge-good' : 'badge-long';
+            const badgeLabel = len <= 60 ? `${len} Chars (Good)` : `${len} Chars (Long)`;
+
+            const div = document.createElement('div');
+            div.className = 'title-item';
+            div.innerHTML = `
+              <span class="title-text">${headline}</span>
+              <span class="char-badge ${badgeClass}">${badgeLabel}</span>
+            `;
+
+            // Click to copy handler
+            div.addEventListener('click', () => {
+              navigator.clipboard.writeText(headline);
+              const textSpan = div.querySelector('.title-text');
+              const prevText = textSpan.textContent;
+              textSpan.textContent = 'Copied to Clipboard!';
+              textSpan.style.color = '#10b981';
+              setTimeout(() => {
+                textSpan.textContent = prevText;
+                textSpan.style.color = 'var(--text-heading)';
+              }, 1200);
+            });
+
+            titlesList.appendChild(div);
+          });
+
+          generateBtn.disabled = false;
+          generateBtn.textContent = 'Generate Titles';
+        }, 500);
+      });
+    });
+  </script>
+</body>
+</html>

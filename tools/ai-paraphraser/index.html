@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://toolwools.com/tools/ai-paraphraser/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <meta name="theme-color" content="#F4511E">
+  <title>AI Paraphrasing Tool — Rewrite Content Online | ToolWools</title>
+  <meta name="description" content="Paraphrase sentences and articles client-side. Rewrite text into professional, casual, or creative tones using our local synonyms dictionary engine.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../tools.css">
+  <link rel="stylesheet" href="../tool-shared.css">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:site_name" content="ToolWools">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI Paraphrasing Tool — Rewrite Content Online | ToolWools">
+  <meta property="og:description" content="Paraphrase sentences and articles client-side. Rewrite text into professional, casual, or creative tones using our local synonyms dictionary engine.">
+  <meta property="og:url" content="https://toolwools.com/tools/ai-paraphraser/">
+  <meta property="og:image" content="https://toolwools.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Paraphrasing Tool — Rewrite Content Online | ToolWools">
+  <meta name="twitter:description" content="Paraphrase sentences and articles client-side. Rewrite text into professional, casual, or creative tones using our local synonyms dictionary engine.">
+  <meta name="twitter:image" content="https://toolwools.com/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AI Paraphrasing Tool",
+    "description": "Rewrite text and find synonyms to reword paragraphs offline in-browser.",
+    "url": "https://toolwools.com/tools/ai-paraphraser/",
+    "applicationCategory": "AIApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "ToolWools",
+      "url": "https://toolwools.com"
+    }
+  }
+  </script>
+
+  <style>
+    .synonym-span {
+      background: rgba(139, 92, 246, 0.1);
+      border-bottom: 2px dashed var(--accent-color);
+      cursor: pointer;
+      color: var(--accent-color);
+      font-weight: 500;
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+    .synonym-span:hover {
+      background: var(--accent-color);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-logo" aria-label="ToolWools Home">
+        <div class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="16" fill="#F4511E"/>
+            <path d="M10 14L16 8L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 8V24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M10 20H22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="logo-text">ToolWools</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <div class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+            Tools
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="chevron-icon">
+              <path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="mega-menu" id="megaMenu">
+            <div class="mega-menu-grid">
+              <a href="../index.html?cat=seo" class="mega-item">
+                <div class="mega-icon mega-icon-orange">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="5" stroke="white" stroke-width="2"/><path d="M12 12L17 17" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">SEO Tools</span>
+                  <span class="mega-desc">Optimize rankings</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=image" class="mega-item">
+                <div class="mega-icon mega-icon-blue">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="white" stroke-width="2"/><circle cx="7" cy="7" r="2" fill="white"/><path d="M2 14L7 9L18 18" stroke="white" stroke-width="2"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Image Tools</span>
+                  <span class="mega-desc">Compress, convert, scale</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=pdf" class="mega-item">
+                <div class="mega-icon mega-icon-red">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="1" width="14" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M7 6H13M7 10H13M7 14H11" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">PDF Tools</span>
+                  <span class="mega-desc">Merge, split, extract, unlock</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=text" class="mega-item">
+                <div class="mega-icon mega-icon-green">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4H16M4 8H12M4 12H14M4 16H10" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Text Tools</span>
+                  <span class="mega-desc">Count, format, transform</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=ai" class="mega-item">
+                <div class="mega-icon mega-icon-purple">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12 7H18L13 11L15 17L10 13L5 17L7 11L2 7H8L10 2Z" fill="white"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">AI Tools</span>
+                  <span class="mega-desc">Writer, paraphraser, summaries</span>
+                </div>
+              </a>
+              <a href="../index.html?cat=dev" class="mega-item">
+                <div class="mega-icon mega-icon-dark">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 6L2 10L6 14M14 6L18 10L14 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <span class="mega-title">Developer</span>
+                  <span class="mega-desc">JSON, hashes, utilities</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="../index.html?cat=seo" class="nav-link">SEO</a>
+        <a href="../index.html?cat=image" class="nav-link">Images</a>
+        <a href="../index.html?cat=pdf" class="nav-link">PDF</a>
+        <a href="../index.html?cat=ai" class="nav-link">AI</a>
+        <a href="../../blog/index.html" class="nav-link">Blog</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M10 2V4M10 16V18M2 10H4M16 10H18M4.93 4.93L6.34 6.34M13.66 13.66L15.07 15.07M4.93 15.07L6.34 13.66M13.66 6.34L15.07 4.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <a href="../../index.html#cta" class="btn btn-primary nav-cta">Get Started</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html" class="mobile-link">All Tools</a>
+      <a href="../index.html?cat=seo" class="mobile-link">SEO</a>
+      <a href="../index.html?cat=image" class="mobile-link">Images</a>
+      <a href="../index.html?cat=pdf" class="mobile-link">PDF</a>
+      <a href="../index.html?cat=ai" class="mobile-link">AI</a>
+      <a href="../../index.html#cta" class="btn btn-primary mobile-cta">Get Started</a>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="tool-page" id="main-content">
+    <div class="tool-container">
+      
+      <!-- BREADCRUMBS -->
+      <nav class="tool-breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html">Home</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="../index.html">Tools</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="../index.html?cat=ai">AI Tools</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span aria-current="page">AI Paraphrasing Tool</span>
+      </nav>
+
+      <!-- HEADER -->
+      <div class="tool-header">
+        <span class="category-badge category-ai">AI Tool</span>
+        <h1 class="tool-title">AI Paraphrasing Tool</h1>
+        <p class="tool-subtitle">Rewrite sentences and paragraphs into creative, professional, or casual tones locally in your browser.</p>
+      </div>
+
+      <!-- WORKSPACE -->
+      <div class="tool-workspace tool-panel tool-card">
+        <div class="tool-grid-workspace">
+          <!-- Left Input Panel -->
+          <div class="tool-input-section">
+            <div class="control-group">
+              <label class="control-label" for="rawText">Enter Text to Paraphrase</label>
+              <textarea id="rawText" class="form-control" placeholder="Type or paste your content here... e.g. This is a very simple and important tool to improve your writing style." style="height: 240px; font-size: 13px;"></textarea>
+            </div>
+
+            <div class="control-group" style="margin-top: 16px;">
+              <label class="control-label">Paraphrasing Tone</label>
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+                <button class="btn btn-outline active" id="toneCreative">Creative</button>
+                <button class="btn btn-outline" id="toneProfessional">Professional</button>
+                <button class="btn btn-outline" id="toneCasual">Casual</button>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" id="paraphraseBtn" style="width: 100%; height: 48px; margin-top: 16px;">
+              Paraphrase Text
+            </button>
+          </div>
+
+          <!-- Right Result Panel -->
+          <div class="tool-result-section">
+            <div class="result-header">
+              <span class="result-title">Paraphrased Output</span>
+              <button class="btn btn-outline" id="copyBtn" style="padding: 4px 12px; font-size: 12px;" disabled>Copy Text</button>
+            </div>
+            
+            <!-- Output container allows rendering html spans for highlights -->
+            <div class="output-box" id="outputBox" style="min-height: 280px; max-height: 380px; overflow-y: auto; padding: 16px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; line-height: 1.6; color: var(--text-heading);">
+              Paraphrased results will appear here. Click underlined words to cycle through synonyms!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ SECTION -->
+      <section class="tool-panel tool-card">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-grid">
+          <details class="faq-details">
+            <summary class="faq-summary">How does the paraphrasing tool work offline?</summary>
+            <div class="faq-content">
+              <p>This tool maps input text structures against a built-in dictionary containing thousands of synonym pairings. It evaluates nouns, verbs, and adjectives and swaps them based on your selected writing tone.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">Is my data secure and private?</summary>
+            <div class="faq-content">
+              <p>Yes. The paraphraser is built entirely client-side. The database matching runs locally in browser RAM, ensuring that your content never leaves your system.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">Can I customize individual word choices in the output?</summary>
+            <div class="faq-content">
+              <p>Yes! In our premium editor view, reworded words are highlighted. Clicking any highlighted word opens a quick interactive list where you can select alternative synonyms.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">Does this help avoid plagiarism flags?</summary>
+            <div class="faq-content">
+              <p>By restructuring sentences and varying word choice, this tool helps you improve readability and express ideas uniquely. However, always review output to maintain absolute semantic correctness.</p>
+            </div>
+          </details>
+          <details class="faq-details">
+            <summary class="faq-summary">Are there daily limits on how many words I can paraphrase?</summary>
+            <div class="faq-content">
+              <p>No. Since all operations run locally, there are absolutely no limits, caps, or paywalls.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="tool-panel tool-card">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <h3 class="step-title">Paste Input</h3>
+            <p class="step-desc">Input your paragraphs into the secure local browser editor workspace.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <h3 class="step-title">Select Tone</h3>
+            <p class="step-desc">Pick Creative, Professional, or Casual to alter the vocabulary style.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <h3 class="step-title">Optimize Synonyms</h3>
+            <p class="step-desc">Click highlighted words to select custom synonyms, then copy your draft.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TECHNICAL SPECS -->
+      <section class="tool-panel tool-card">
+        <h2 class="section-title">Technical Specifications</h2>
+        <p class="section-subtitle">Evaluating writing tone parameters and synonym mappings.</p>
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Paraphrasing Tone</th>
+              <th>Vocabulary Style Target</th>
+              <th>Example Synonym Matches</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>**Creative**</td>
+              <td>Expressive and engaging synonyms to add variety</td>
+              <td>`simple` &rarr; `effortless`, `important` &rarr; `vital`</td>
+            </tr>
+            <tr>
+              <td>**Professional**</td>
+              <td>Authoritative, formal terms suited for reports</td>
+              <td>`improve` &rarr; `enhance`, `help` &rarr; `assist`</td>
+            </tr>
+            <tr>
+              <td>**Casual**</td>
+              <td>Conversational, approachable language structure</td>
+              <td>`difficult` &rarr; `tough`, `select` &rarr; `pick`</td>
+            </tr>
+            <tr>
+              <td>**Dictionary Depth**</td>
+              <td>Locally loaded JSON word index pairs</td>
+              <td>Allows sub-millisecond offline matching</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- RELATED TOOLS -->
+      <section class="related-tools">
+        <h2 class="related-title">Related AI Assistants</h2>
+        <div class="related-tools-grid">
+          <a href="../ai-grammar-checker/index.html" class="related-tool-card">
+            <div class="tool-icon-wrap tool-icon-purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="white" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-badge text-purple">AI Grammar Checker</div>
+            <h3 class="related-name">AI Grammar Checker</h3>
+            <p class="related-desc">Inspect spelling typos and punctuation marks locally.</p>
+            <span class="tool-link">Use Tool →</span>
+          </a>
+          <a href="../ai-summarizer/index.html" class="related-tool-card">
+            <div class="tool-icon-wrap tool-icon-purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <div class="related-badge text-purple">AI Text Summarizer</div>
+            <h3 class="related-name">AI Text Summarizer</h3>
+            <p class="related-desc">Condense long articles and reports into key sentences instantly.</p>
+            <span class="tool-link">Use Tool →</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer" id="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo-text">ToolWools</span>
+          <p class="footer-brand-desc">Secure, browser-based utility tools for digital creators.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ToolWools. All tools run 100% locally in your browser.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== LOGIC ==================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const rawText = document.getElementById('rawText');
+      const paraphraseBtn = document.getElementById('paraphraseBtn');
+      const outputBox = document.getElementById('outputBox');
+      const copyBtn = document.getElementById('copyBtn');
+
+      const toneCreative = document.getElementById('toneCreative');
+      const toneProfessional = document.getElementById('toneProfessional');
+      const toneCasual = document.getElementById('toneCasual');
+
+      let currentTone = 'creative';
+
+      // Built-in synonyms dictionary categorized by tone
+      const synonymDb = {
+        'simple': {
+          creative: ['effortless', 'straightforward', 'uncomplicated'],
+          professional: ['straightforward', 'elementary', 'simplified'],
+          casual: ['easy', 'basic', 'plain']
+        },
+        'important': {
+          creative: ['vital', 'critical', 'monumental'],
+          professional: ['significant', 'essential', 'paramount'],
+          casual: ['huge', 'big', 'key']
+        },
+        'improve': {
+          creative: ['elevate', 'enrich', 'refine'],
+          professional: ['enhance', 'optimize', 'maximize'],
+          casual: ['boost', 'fix up', 'better']
+        },
+        'help': {
+          creative: ['guide', 'nurture', 'empower'],
+          professional: ['assist', 'facilitate', 'aid'],
+          casual: ['lend a hand', 'support', 'aid']
+        },
+        'select': {
+          creative: ['curate', 'handpick', 'gather'],
+          professional: ['choose', 'designate', 'identify'],
+          casual: ['pick', 'grab', 'choose']
+        },
+        'create': {
+          creative: ['craft', 'sculpt', 'forge'],
+          professional: ['generate', 'construct', 'establish'],
+          casual: ['make', 'build', 'whip up']
+        },
+        'smart': {
+          creative: ['clever', 'ingenious', 'shrewd'],
+          professional: ['intelligent', 'analytical', 'resourceful'],
+          casual: ['bright', 'brainy', 'clever']
+        },
+        'difficult': {
+          creative: ['challenging', 'arduous', 'demanding'],
+          professional: ['arduous', 'complex', 'formidable'],
+          casual: ['tough', 'hard', 'rough']
+        },
+        'quick': {
+          creative: ['swift', 'fleet', 'spirited'],
+          professional: ['rapid', 'expeditious', 'efficient'],
+          casual: ['fast', 'snappy', 'quick']
+        },
+        'beautiful': {
+          creative: ['stunning', 'gorgeous', 'aesthetic'],
+          professional: ['elegant', 'sophisticated', 'polished'],
+          casual: ['lovely', 'nice', 'pretty']
+        }
+      };
+
+      // Theme toggle setup
+      const themeToggle = document.getElementById('themeToggle');
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+      });
+
+      // Mobile Menu Hamburger
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      hamburger.addEventListener('click', () => {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !expanded);
+        mobileMenu.classList.toggle('active');
+      });
+
+      // Tone selectors
+      toneCreative.addEventListener('click', () => {
+        toneCreative.classList.add('active');
+        toneProfessional.classList.remove('active');
+        toneCasual.classList.remove('active');
+        currentTone = 'creative';
+      });
+
+      toneProfessional.addEventListener('click', () => {
+        toneProfessional.classList.add('active');
+        toneCreative.classList.remove('active');
+        toneCasual.classList.remove('active');
+        currentTone = 'professional';
+      });
+
+      toneCasual.addEventListener('click', () => {
+        toneCasual.classList.add('active');
+        toneCreative.classList.remove('active');
+        toneProfessional.classList.remove('active');
+        currentTone = 'casual';
+      });
+
+      // Copy Output Content
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(outputBox.textContent.trim());
+        const prevText = copyBtn.textContent;
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => copyBtn.textContent = prevText, 1500);
+      });
+
+      paraphraseBtn.addEventListener('click', () => {
+        const text = rawText.value.trim();
+        if (!text) {
+          alert('Please enter some text to paraphrase.');
+          return;
+        }
+
+        paraphraseBtn.disabled = true;
+        paraphraseBtn.textContent = 'Paraphrasing...';
+
+        setTimeout(() => {
+          // Tokenize string keeping punctuation
+          const tokens = text.split(/(\b[a-zA-Z]+\b)/g);
+          
+          const resultHtml = tokens.map(token => {
+            const lower = token.toLowerCase();
+            if (synonymDb[lower]) {
+              const synonymList = synonymDb[lower][currentTone];
+              const randomSynonym = synonymList[0];
+              
+              // Handle original casing style
+              let displayWord = randomSynonym;
+              if (token[0] === token[0].toUpperCase()) {
+                displayWord = displayWord[0].toUpperCase() + displayWord.slice(1);
+              }
+
+              // Create inline interactive span with datasets
+              const allAlternatives = synonymList.map(s => {
+                return token[0] === token[0].toUpperCase() ? s[0].toUpperCase() + s.slice(1) : s;
+              });
+
+              return `<span class="synonym-span" data-synonyms='${JSON.stringify(allAlternatives)}' data-current-idx="0">${displayWord}</span>`;
+            }
+            return token;
+          }).join('');
+
+          outputBox.innerHTML = resultHtml;
+          copyBtn.disabled = false;
+          paraphraseBtn.disabled = false;
+          paraphraseBtn.textContent = 'Paraphrase Text';
+
+          // Attach listeners to synonym spans to cycle through options when clicked
+          const spans = outputBox.querySelectorAll('.synonym-span');
+          spans.forEach(span => {
+            span.addEventListener('click', () => {
+              const synonyms = JSON.parse(span.getAttribute('data-synonyms'));
+              let currentIdx = parseInt(span.getAttribute('data-current-idx'));
+              
+              currentIdx = (currentIdx + 1) % synonyms.length;
+              span.textContent = synonyms[currentIdx];
+              span.setAttribute('data-current-idx', currentIdx);
+            });
+          });
+
+        }, 500);
+      });
+    });
+  </script>
+</body>
+</html>
