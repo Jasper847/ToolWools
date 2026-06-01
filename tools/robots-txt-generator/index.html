@@ -189,23 +189,201 @@
       </nav>
 
       <div class="tool-badge-category">SEO Tools</div>
-      <h1 class="tool-title">Robots.txt Generator</h1>
-      <p class="tool-subtitle">Create crawler rules for search engines</p>
-      <div class="tool-controls-row" style="flex-direction:column;gap:10px">
-        <input type="text" id="sitemap-url" class="tool-input" placeholder="Sitemap URL (e.g. https://example.com/sitemap.xml)">
-        <label>User-Agent: <input type="text" id="user-agent" class="tool-input" value="*" placeholder="e.g. * or Googlebot"></label>
-        <textarea id="disallow" class="tool-textarea" rows="4" placeholder="Disallow paths (one per line)&#10;e.g.&#10;/admin/&#10;/private/"></textarea>
-        <textarea id="allow" class="tool-textarea" rows="3" placeholder="Allow paths (one per line, optional)&#10;e.g.&#10;/public/"></textarea>
+      
+      <div class="tool-header">
+        <div class="tool-header-icon tool-icon-orange">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="white" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="tool-header-text">
+          <h1 class="tool-title">Robots.txt Generator</h1>
+          <p class="tool-subtitle">Generate a custom, SEO-compliant robots.txt file right inside your browser to guide search engine crawlers and optimize crawl budget.</p>
+        </div>
       </div>
-      <div class="tool-bottom-actions">
-        <button id="btn-generate" class="btn btn-primary">Generate</button>
-        <button id="btn-copy" class="btn btn-secondary">Copy</button>
-        <button id="btn-download" class="btn btn-secondary">Download</button>
+
+      <div class="tool-workspace tool-panel tool-card">
+        <div class="tool-workspace-inputs">
+          <div class="tool-input-group">
+            <label for="sitemap-url" class="tool-label">Sitemap URL</label>
+            <input type="url" id="sitemap-url" class="tool-input" placeholder="e.g. https://example.com/sitemap.xml">
+            <span class="tool-input-hint">Specify the absolute path to your XML sitemap.</span>
+          </div>
+          
+          <div class="tool-input-group">
+            <label for="user-agent" class="tool-label">User-Agent</label>
+            <input type="text" id="user-agent" class="tool-input" value="*" placeholder="e.g. * or Googlebot">
+            <span class="tool-input-hint">Use * to target all search crawlers, or specify a specific bot.</span>
+          </div>
+
+          <div class="tool-input-group">
+            <label for="disallow" class="tool-label">Disallowed Paths (One per line)</label>
+            <textarea id="disallow" class="tool-textarea" rows="4" placeholder="e.g.&#10;/admin/&#10;/private/"></textarea>
+            <span class="tool-input-hint">Directory paths or files that search engines must NOT crawl.</span>
+          </div>
+
+          <div class="tool-input-group">
+            <label for="allow" class="tool-label">Allowed Paths (One per line, optional)</label>
+            <textarea id="allow" class="tool-textarea" rows="3" placeholder="e.g.&#10;/public/"></textarea>
+            <span class="tool-input-hint">Exceptions to disallowed paths that crawlers ARE allowed to index.</span>
+          </div>
+        </div>
+
+        <div class="tool-workspace-divider"></div>
+
+        <div class="tool-workspace-outputs">
+          <div class="tool-bottom-actions">
+            <button id="btn-generate" class="btn btn-primary">Generate Rules</button>
+            <button id="btn-copy" class="btn btn-secondary">Copy Output</button>
+            <button id="btn-download" class="btn btn-secondary">Download .txt</button>
+          </div>
+          <div class="tool-input-group">
+            <label for="output" class="tool-label">Generated robots.txt Output</label>
+            <textarea id="output" class="tool-textarea tool-code-output" rows="10" readonly placeholder="Generated robots.txt will appear here..."></textarea>
+          </div>
+        </div>
       </div>
-      <textarea id="output" class="tool-textarea" rows="10" readonly placeholder="Generated robots.txt will appear here..."></textarea>
+
+      <!-- ==================== HOW IT WORKS SECTION ==================== -->
+      <section class="tool-guide">
+        <h2 class="guide-title">How to Use the Robots.txt Generator</h2>
+        <div class="guide-steps">
+          <div class="guide-step-card">
+            <div class="step-num">1</div>
+            <h3 class="step-title">Specify Sitemap URL</h3>
+            <p class="step-desc">Enter the full canonical URL to your website's sitemap.xml to help search engine crawlers find and index your pages faster.</p>
+          </div>
+          <div class="guide-step-card">
+            <div class="step-num">2</div>
+            <h3 class="step-title">Define Crawl Restrictions</h3>
+            <p class="step-desc">Specify disallowed paths like admin directories or search query pages to block crawlers, and whitelist any nested folders.</p>
+          </div>
+          <div class="guide-step-card">
+            <div class="step-num">3</div>
+            <h3 class="step-title">Generate & Download</h3>
+            <p class="step-desc">Click 'Generate Rules' to verify the directives, then copy the output code or download it directly as a standard robots.txt file.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TIP BOX & TECHNICAL DETAILS ==================== -->
+      <section class="seo-content-rich">
+        <div class="tip-box">
+          <div class="tip-icon">💡</div>
+          <p class="tip-text"><strong>SEO Best Practice:</strong> Do not use robots.txt to hide private user data or sensitive pages. Robots.txt is a public file, and malicious scrapers can still scan blocked paths. Use robust server-side authentication instead.</p>
+        </div>
+
+        <h2>The Science of Robots.txt Directives</h2>
+        <p>The robots exclusion standard (often referred to as robots.txt or RFC 9309) is a protocol adopted by major web search engines like Google, Bing, and DuckDuckGo to regulate the crawl rate and access patterns of automated web bots. When a crawler arrives at a host, it immediately fetches the robots.txt file at the root directory before crawling any other resource. By utilizing user-agent tokens and wildcards, search operators can conserve crawl budget and avoid server load spikes caused by non-essential bot traffic scraping database queries or system logs.</p>
+        
+        <h2>Directives and User-Agent Tokens</h2>
+        <p>Directives are parsed line-by-line using match-precedence rules. The <code>User-agent</code> directive targets specific bots, while <code>Disallow</code> restricts path prefix matches. Modern crawlers also parse <code>Allow</code> directives to permit scanning of public subdirectories inside otherwise restricted paths. In compliance with RFC 9309, search engines resolve conflicting path match rules by prioritizing the rule with the longest character length, ensuring flexible control over directory structures.</p>
+
+        <!-- Reference Table -->
+        <h2>Popular Search Crawlers Reference Table</h2>
+        <div class="table-container">
+          <table class="technical-table">
+            <thead>
+              <tr>
+                <th>Search Engine</th>
+                <th>Primary Bot Name</th>
+                <th>robots.txt User-Agent Identifier</th>
+                <th>Primary Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Google</td>
+                <td>Googlebot</td>
+                <td><code>Googlebot</code></td>
+                <td>Web search index crawl</td>
+              </tr>
+              <tr>
+                <td>Google (Mobile)</td>
+                <td>Googlebot-Mobile</td>
+                <td><code>Googlebot-Mobile</code></td>
+                <td>Mobile friendliness analysis</td>
+              </tr>
+              <tr>
+                <td>Bing</td>
+                <td>Bingbot</td>
+                <td><code>Bingbot</code></td>
+                <td>Microsoft Bing web index</td>
+              </tr>
+              <tr>
+                <td>Baidu</td>
+                <td>Baiduspider</td>
+                <td><code>Baiduspider</code></td>
+                <td>Chinese web index search</td>
+              </tr>
+              <tr>
+                <td>Yandex</td>
+                <td>YandexBot</td>
+                <td><code>Yandex</code></td>
+                <td>Russian web index search</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ==================== FAQ SECTION ==================== -->
+      <section class="tool-faq">
+        <h2 class="faq-heading">Frequently Asked Questions</h2>
+        
+        <details class="faq-accordion" open>
+          <summary class="faq-question">What is a robots.txt file and why do I need one?</summary>
+          <div class="faq-answer">
+            <p>A robots.txt file is a plain text file placed in the root directory of your website. It uses the Robots Exclusion Protocol to instruct web spiders and crawlers (such as Googlebot and Bingbot) which sections of your site they are allowed to index. Having a properly configured robots.txt is crucial for SEO to prevent search crawlers from wasting crawl budget on private, admin, or search-query pages.</p>
+          </div>
+        </details>
+
+        <details class="faq-accordion">
+          <summary class="faq-question">Where should the robots.txt file be hosted?</summary>
+          <div class="faq-answer">
+            <p>The robots.txt file must be placed in the main root directory of your web host. For search engines to discover it, the file must be publicly accessible via the exact address <code>https://yourdomain.com/robots.txt</code>. Placing it in subdirectories (e.g., <code>yourdomain.com/assets/robots.txt</code>) will cause bots to ignore the file entirely.</p>
+          </div>
+        </details>
+
+        <details class="faq-accordion">
+          <summary class="faq-question">Does robots.txt hide private folders from the public?</summary>
+          <div class="faq-answer">
+            <p>No, robots.txt does not secure or hide private folders. The file itself is publicly readable by anyone visiting the URL. In addition, malicious scrapers and search bots can choose to ignore robots.txt directives. To protect confidential content or pages, implement server-side authentication or use password-protected directory mechanisms.</p>
+          </div>
+        </details>
+
+        <details class="faq-accordion">
+          <summary class="faq-question">What is the difference between Disallow and Noindex?</summary>
+          <div class="faq-answer">
+            <p>The <code>Disallow</code> directive in robots.txt stops crawlers from visiting a URL, but Google can still index the URL if it finds external links pointing to it. To guarantee that a page does not appear in search results, you must allow crawlers to visit the page and use a <code>&lt;meta name="robots" content="noindex"&gt;</code> HTML header tag instead.</p>
+          </div>
+        </details>
+
+        <details class="faq-accordion">
+          <summary class="faq-question">How does Google handle robots.txt rules?</summary>
+          <div class="faq-answer">
+            <p>Google strictly respects Robots Exclusion Protocol directives. It caches robots.txt content for up to 24 hours, meaning changes to crawl rules may take a day to propagate. If your site returns a 5xx server error when Googlebot fetches robots.txt, Google will temporarily pause crawling to avoid requesting unauthorized pages.</p>
+          </div>
+        </details>
+      </section>
+
+      <!-- ==================== RELATED TOOLS ==================== -->
+      <section class="related-tools">
+        <h2 class="related-tools-heading">Related Tools</h2>
+        <div class="related-tools-grid">
+          <a href="../xml-sitemap-generator/index.html" class="related-tool-card">
+            <strong class="related-tool-name">XML Sitemap Generator</strong>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+          <a href="../meta-tag-generator/index.html" class="related-tool-card">
+            <strong class="related-tool-name">SEO Meta Tag Generator</strong>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+          <a href="../hreflang-generator/index.html" class="related-tool-card">
+            <strong class="related-tool-name">Hreflang Tag Generator</strong>
+            <span class="related-tool-link">Try this tool</span>
+          </a>
+        </div>
+      </section>
     </div>
-  
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid"><a href="../domain-suggestor/index.html" class="related-tool-card"><strong class="related-tool-name">Domain Name Suggestor</strong><span class="related-tool-link">Try this tool</span></a><a href="../page-speed-tips/index.html" class="related-tool-card"><strong class="related-tool-name">Page Speed Tips Auditor</strong><span class="related-tool-link">Try this tool</span></a><a href="../serp-preview/index.html" class="related-tool-card"><strong class="related-tool-name">SERP Preview Tool</strong><span class="related-tool-link">Try this tool</span></a></div></section>
   </main>
   <script src="../../script.js"></script>
   
