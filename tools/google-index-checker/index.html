@@ -335,23 +335,28 @@
       </div>
 
       <!-- ==================== HOW IT WORKS SECTION ==================== -->
-      <section class="tool-guide">
-        <h2 class="guide-title">How to Audit Page Indexability</h2>
-        <div class="guide-steps">
-          <div class="guide-step-card">
-            <div class="step-num">1</div>
-            <h3 class="step-title">Enter URL & Code</h3>
-            <p class="step-desc">Provide the URL you wish to check. Paste its page HTML head tags and your server's robots.txt directives.</p>
+            <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            <h2>How the Google Index Checker Works</h2>
           </div>
-          <div class="guide-step-card">
-            <div class="step-num">2</div>
-            <h3 class="step-title">Generate Query Queries</h3>
-            <p class="step-desc">Create direct link queries to Google's index, search cache, and information operator servers to trace indexing live.</p>
+        </div>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">1</div>
+            <h3 >Enter URL & Code</h3>
+            <p >Provide the URL you wish to check. Paste its page HTML head tags and your server's robots.txt directives.</p>
           </div>
-          <div class="guide-step-card">
-            <div class="step-num">3</div>
-            <h3 class="step-title">Trace Crawl Rules</h3>
-            <p class="step-desc">Verify meta robots index directives, validate canonical consistency, and trace robots exclusions locally.</p>
+          <div class="seo-step-card">
+            <div class="seo-step-num">2</div>
+            <h3 >Generate Query Queries</h3>
+            <p >Create direct link queries to Google's index, search cache, and information operator servers to trace indexing live.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">3</div>
+            <h3 >Trace Crawl Rules</h3>
+            <p >Verify meta robots index directives, validate canonical consistency, and trace robots exclusions locally.</p>
           </div>
         </div>
       </section>
@@ -412,40 +417,46 @@
       </section>
 
       <!-- ==================== FAQ SECTION ==================== -->
-      <section class="tool-faq">
-        <h2 class="faq-heading">Frequently Asked Questions</h2>
+            <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <h2>Frequently Asked Questions</h2>
+          </div>
+        </div>
+        <div class="tool-faq-list">
         
-        <details class="faq-accordion" open>
-          <summary class="faq-question">Why can't this tool check Google's index automatically?</summary>
-          <div class="faq-answer">
+        <details class="tool-faq-item" open>
+          <summary class="tool-faq-q">Why can't this tool check Google's index automatically?</summary>
+          <div class="tool-faq-a">
             <p>Google does not offer a public API to check page indexing status without authenticating domain ownership inside Google Search Console. In addition, scraping search results directly is blocked by security captchas. To bypass this, our tool generates direct, pre-formatted search operator links that let you check Google's live database with one click, paired with a local code auditor.</p>
           </div>
         </details>
 
-        <details class="faq-accordion">
-          <summary class="faq-question">What does the 'site:' search operator do?</summary>
-          <div class="faq-answer">
+        <details class="tool-faq-item">
+          <summary class="tool-faq-q">What does the 'site:' search operator do?</summary>
+          <div class="tool-faq-a">
             <p>The <code>site:</code> operator restricts search results to a specific website or exact URL (e.g., <code>site:example.com/page</code>). If Google returns no results for the exact URL query, it confirms that the target page is not currently indexed in Google's database.</p>
           </div>
         </details>
 
-        <details class="faq-accordion">
-          <summary class="faq-question">How does canonical mismatch affect indexing?</summary>
-          <div class="faq-answer">
+        <details class="tool-faq-item">
+          <summary class="tool-faq-q">How does canonical mismatch affect indexing?</summary>
+          <div class="tool-faq-a">
             <p>A canonical mismatch occurs when page A points to page B as its canonical version. When this happens, Googlebot transfers search credit and indexing priority to page B, meaning page A may be excluded from search listings because it is treated as a duplicate.</p>
           </div>
         </details>
 
-        <details class="faq-accordion">
-          <summary class="faq-question">How long does it take Google to index a new page?</summary>
-          <div class="faq-answer">
+        <details class="tool-faq-item">
+          <summary class="tool-faq-q">How long does it take Google to index a new page?</summary>
+          <div class="tool-faq-a">
             <p>Indexing can take anywhere from a few hours to several weeks. Crawling speed depends on your website's domain authority, XML sitemap updates, internal link structures, and overall crawl budget. You can request fast indexation by submitting URLs in Google Search Console.</p>
           </div>
         </details>
 
-        <details class="faq-accordion">
-          <summary class="faq-question">Can robots.txt block pages from appearing in Google?</summary>
-          <div class="faq-answer">
+        <details class="tool-faq-item">
+          <summary class="tool-faq-q">Can robots.txt block pages from appearing in Google?</summary>
+          <div class="tool-faq-a">
             <p>Yes, robots.txt blocks Google from crawling a page, but it may still index the page if it finds links pointing to it from other websites. To ensure a page is kept out of search index records, allow crawling and use a <code>noindex</code> meta tag.</p>
           </div>
         </details>
@@ -782,4 +793,5 @@
   </script>
 </body>
 </html>
+
 

@@ -271,7 +271,59 @@
       </div>
     </div>
   
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid">
+          <!-- How It Works Section (Semantic step-by-step layout) -->
+      <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            <h2>How the PDF Page Numberer Works</h2>
+          </div>
+        </div>
+        <p>This tool processes PDF document trees using PDF.js inside local memory. No files are uploaded, ensuring 100% data safety.</p>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">STEP 1</div>
+            <h3>Select PDF File</h3>
+            <p>Click the selection zone to upload your PDF document from your local storage.</p>
+          </div>          <div class="seo-step-card">
+            <div class="seo-step-num">STEP 2</div>
+            <h3>Configure Page & Watermark Settings</h3>
+            <p>Choose specific pages to split, enter watermark text, or adjust quality and rotation degrees.</p>
+          </div>          <div class="seo-step-card">
+            <div class="seo-step-num">STEP 3</div>
+            <h3>Generate & Download</h3>
+            <p>The local parser processes the document tree and prompts you to download the updated PDF document.</p>
+          </div>        </div>
+      </section>
+
+      <!-- FAQ Section (Semantic & Pre-rendered for NLP SEO) -->
+      <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <h2>Frequently Asked Questions</h2>
+          </div>
+        </div>
+        <div class="tool-faq-list">
+          <details class="tool-faq-item" open>
+            <summary class="tool-faq-q">Is my uploaded PDF secure and private?</summary>
+            <div class="tool-faq-a">
+              <p>Yes, absolutely. Your PDF files are processed entirely inside your local browser memory using PDF.js and WebAssembly. No files are uploaded to any remote servers or cloud storage.</p>
+            </div>
+          </details>          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Can I compress large PDF documents?</summary>
+            <div class="tool-faq-a">
+              <p>Yes. The compressor tool reduces file sizes by optimizing embedded images and cleaning up resource structures locally.</p>
+            </div>
+          </details>          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Do these tools require any extensions or software installation?</summary>
+            <div class="tool-faq-a">
+              <p>No. All tool operations run inside any modern web browser without requiring Adobe Acrobat or third-party browser add-ons.</p>
+            </div>
+          </details>        </div>
+      </section>
+
+      <section class="related-tools"><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid">
         <a href="../html-to-pdf/index.html" class="related-tool-card">
           <div class="related-tool-card-top">
             <div class="related-tool-icon-wrapper tool-icon-red">
@@ -403,4 +455,5 @@
   <script src="pdf-page-numberer.js"></script>
 </body>
 </html>
+
 

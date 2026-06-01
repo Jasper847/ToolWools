@@ -369,36 +369,41 @@
       </div>
 
       <!-- FAQ SECTION -->
-      <section class="tool-panel tool-card">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <div class="faq-grid">
-          <details class="faq-details">
-            <summary class="faq-summary">How does the client-side sentiment analysis work?</summary>
-            <div class="faq-content">
+            <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <h2>Frequently Asked Questions</h2>
+          </div>
+        </div>
+        <div class="tool-faq-list">
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">How does the client-side sentiment analysis work?</summary>
+            <div class="tool-faq-a">
               <p>This utility uses the AFINN-165 lexical database containing pre-evaluated emotional valence scores for thousands of English words. It parses your input text, performs tokenization, checks for negation modifiers, and aggregates the scores.</p>
             </div>
           </details>
-          <details class="faq-details">
-            <summary class="faq-summary">Is my text data private?</summary>
-            <div class="faq-content">
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Is my text data private?</summary>
+            <div class="tool-faq-a">
               <p>Yes. To maintain complete data privacy, all text parsing and sentence calculations execute purely inside your browser memory sandbox. Your document content is never uploaded to any remote server.</p>
             </div>
           </details>
-          <details class="faq-details">
-            <summary class="faq-summary">What do the sentiment scores represent?</summary>
-            <div class="faq-content">
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">What do the sentiment scores represent?</summary>
+            <div class="tool-faq-a">
               <p>The core score represents the aggregated sum of sentiment valence weights. Individual sentiment words carry weights from -5 (highly negative) to +5 (highly positive). A net score greater than 2 indicates a positive sentiment, while less than -2 indicates a negative sentiment.</p>
             </div>
           </details>
-          <details class="faq-details">
-            <summary class="faq-summary">How are negation words like "not" or "never" handled?</summary>
-            <div class="faq-content">
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">How are negation words like "not" or "never" handled?</summary>
+            <div class="tool-faq-a">
               <p>The algorithm employs a local valence shift heuristic. If a sentiment-carrying word is immediately preceded by a negation token, the score of that word is inverted.</p>
             </div>
           </details>
-          <details class="faq-details">
-            <summary class="faq-summary">Does the tool work with non-English languages?</summary>
-            <div class="faq-content">
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Does the tool work with non-English languages?</summary>
+            <div class="tool-faq-a">
               <p>The current version uses the English AFINN-165 lexicon. For best results, input text in English.</p>
             </div>
           </details>
@@ -406,30 +411,40 @@
       </section>
 
       <!-- HOW IT WORKS -->
-      <section class="tool-panel tool-card">
-        <h2 class="section-title">How It Works</h2>
-        <div class="steps-grid">
-          <div class="step-card">
-            <div class="step-num">1</div>
-            <h3 class="step-title">Enter Text</h3>
-            <p class="step-desc">Type or paste the article, review, or customer feedback into the secure local workspace input area.</p>
+            <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            <h2>How the AI Sentiment Analyzer Works</h2>
           </div>
-          <div class="step-card">
-            <div class="step-num">2</div>
-            <h3 class="step-title">Run Analysis</h3>
-            <p class="step-desc">Click the "Analyze Sentiment" button to process the words and token hierarchies locally.</p>
+        </div>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">1</div>
+            <h3 >Enter Text</h3>
+            <p >Type or paste the article, review, or customer feedback into the secure local workspace input area.</p>
           </div>
-          <div class="step-card">
-            <div class="step-num">3</div>
-            <h3 class="step-title">Inspect Insights</h3>
-            <p class="step-desc">View the overall polarity, check the gauge meter, and explore the word contribution list.</p>
+          <div class="seo-step-card">
+            <div class="seo-step-num">2</div>
+            <h3 >Run Analysis</h3>
+            <p >Click the "Analyze Sentiment" button to process the words and token hierarchies locally.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">3</div>
+            <h3 >Inspect Insights</h3>
+            <p >View the overall polarity, check the gauge meter, and explore the word contribution list.</p>
           </div>
         </div>
       </section>
 
       <!-- TECHNICAL SPECS -->
-      <section class="tool-panel tool-card">
-        <h2 class="section-title">Technical Specifications</h2>
+            <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            <h2>How the AI Sentiment Analyzer Works</h2>
+          </div>
+        </div>
         <p class="section-subtitle">Comparing sentiment score boundaries and valence mappings.</p>
         <table class="specs-table">
           <thead>
@@ -694,4 +709,5 @@
   </script>
 </body>
 </html>
+
 

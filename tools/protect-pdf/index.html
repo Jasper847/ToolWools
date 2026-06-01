@@ -285,36 +285,41 @@
       </div>
 
       <!-- FAQ SECTION -->
-      <section class="tool-panel tool-card">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <div class="faq-grid">
-          <details class="faq-details">
-            <summary class="faq-summary">How does PDF encryption protect my documents?</summary>
-            <div class="faq-content">
+            <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <h2>Frequently Asked Questions</h2>
+          </div>
+        </div>
+        <div class="tool-faq-list">
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">How does PDF encryption protect my documents?</summary>
+            <div class="tool-faq-a">
               <p>Adding a User password encrypts the document file stream using secure hashes. The PDF reader will block all rendering until the user enters the correct security key.</p>
             </div>
           </details>
-          <details class="faq-details">
-            <summary class="faq-summary">What is the difference between User and Owner passwords?</summary>
-            <div class="faq-content">
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">What is the difference between User and Owner passwords?</summary>
+            <div class="tool-faq-a">
               <p>A **User Password** blocks read access, requiring users to authenticate before reading pages. An **Owner Password** restricts operational permissions like printing, copying, and layout changes without blocking read access.</p>
             </div>
           </details>
-          <details class="faq-details">
-            <summary class="faq-summary">Are my files uploaded to the web to perform encryption?</summary>
-            <div class="faq-content">
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Are my files uploaded to the web to perform encryption?</summary>
+            <div class="tool-faq-a">
               <p>No. Encryption algorithms run client-side in browser memory using `@pdfsmaller/pdf-encrypt`. Your file and passwords never traverse the network.</p>
             </div>
           </details>
-          <details class="faq-details">
-            <summary class="faq-summary">Can my passwords be retrieved if I forget them?</summary>
-            <div class="faq-content">
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Can my passwords be retrieved if I forget them?</summary>
+            <div class="tool-faq-a">
               <p>No. To ensure absolute privacy, we store zero logs, session histories, or metadata. Be sure to note your passwords safely, as they cannot be recovered by us.</p>
             </div>
           </details>
-          <details class="faq-details">
-            <summary class="faq-summary">Does this tool support high-strength AES-256 standard encryption?</summary>
-            <div class="faq-content">
+          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Does this tool support high-strength AES-256 standard encryption?</summary>
+            <div class="tool-faq-a">
               <p>Yes. The client-side encryption module uses standard RC4 128-bit and AES-128/256 compatible headers compliant with universal PDF reader applications.</p>
             </div>
           </details>
@@ -322,30 +327,40 @@
       </section>
 
       <!-- HOW IT WORKS -->
-      <section class="tool-panel tool-card">
-        <h2 class="section-title">How It Works</h2>
-        <div class="steps-grid">
-          <div class="step-card">
-            <div class="step-num">1</div>
-            <h3 class="step-title">Select Document</h3>
-            <p class="step-desc">Upload your PDF document to our local secure sandboxed memory interface.</p>
+            <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            <h2>How the Protect PDF Works</h2>
           </div>
-          <div class="step-card">
-            <div class="step-num">2</div>
-            <h3 class="step-title">Define Keys</h3>
-            <p class="step-desc">Enter passwords and configure checkboxes to toggle printing and copying restrictions.</p>
+        </div>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">1</div>
+            <h3 >Select Document</h3>
+            <p >Upload your PDF document to our local secure sandboxed memory interface.</p>
           </div>
-          <div class="step-card">
-            <div class="step-num">3</div>
-            <h3 class="step-title">Download Secure</h3>
-            <p class="step-desc">Click encrypt to apply settings locally and download the password-protected document.</p>
+          <div class="seo-step-card">
+            <div class="seo-step-num">2</div>
+            <h3 >Define Keys</h3>
+            <p >Enter passwords and configure checkboxes to toggle printing and copying restrictions.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">3</div>
+            <h3 >Download Secure</h3>
+            <p >Click encrypt to apply settings locally and download the password-protected document.</p>
           </div>
         </div>
       </section>
 
       <!-- TECHNICAL SPECS -->
-      <section class="tool-panel tool-card">
-        <h2 class="section-title">Technical Specifications</h2>
+            <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            <h2>How the Protect PDF Works</h2>
+          </div>
+        </div>
         <p class="section-subtitle">Understanding permissions mapping configurations in standard PDF file tables.</p>
         <table class="specs-table">
           <thead>
@@ -572,4 +587,5 @@
   </script>
 </body>
 </html>
+
 

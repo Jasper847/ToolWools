@@ -243,23 +243,28 @@
       </div>
 
       <!-- ==================== HOW IT WORKS SECTION ==================== -->
-      <section class="tool-guide">
-        <h2 class="guide-title">How to Use the Robots.txt Generator</h2>
-        <div class="guide-steps">
-          <div class="guide-step-card">
-            <div class="step-num">1</div>
-            <h3 class="step-title">Specify Sitemap URL</h3>
-            <p class="step-desc">Enter the full canonical URL to your website's sitemap.xml to help search engine crawlers find and index your pages faster.</p>
+            <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            <h2>How the Robots.txt Generator Works</h2>
           </div>
-          <div class="guide-step-card">
-            <div class="step-num">2</div>
-            <h3 class="step-title">Define Crawl Restrictions</h3>
-            <p class="step-desc">Specify disallowed paths like admin directories or search query pages to block crawlers, and whitelist any nested folders.</p>
+        </div>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">1</div>
+            <h3 >Specify Sitemap URL</h3>
+            <p >Enter the full canonical URL to your website's sitemap.xml to help search engine crawlers find and index your pages faster.</p>
           </div>
-          <div class="guide-step-card">
-            <div class="step-num">3</div>
-            <h3 class="step-title">Generate & Download</h3>
-            <p class="step-desc">Click 'Generate Rules' to verify the directives, then copy the output code or download it directly as a standard robots.txt file.</p>
+          <div class="seo-step-card">
+            <div class="seo-step-num">2</div>
+            <h3 >Define Crawl Restrictions</h3>
+            <p >Specify disallowed paths like admin directories or search query pages to block crawlers, and whitelist any nested folders.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">3</div>
+            <h3 >Generate & Download</h3>
+            <p >Click 'Generate Rules' to verify the directives, then copy the output code or download it directly as a standard robots.txt file.</p>
           </div>
         </div>
       </section>
@@ -326,40 +331,46 @@
       </section>
 
       <!-- ==================== FAQ SECTION ==================== -->
-      <section class="tool-faq">
-        <h2 class="faq-heading">Frequently Asked Questions</h2>
+            <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <h2>Frequently Asked Questions</h2>
+          </div>
+        </div>
+        <div class="tool-faq-list">
         
-        <details class="faq-accordion" open>
-          <summary class="faq-question">What is a robots.txt file and why do I need one?</summary>
-          <div class="faq-answer">
+        <details class="tool-faq-item" open>
+          <summary class="tool-faq-q">What is a robots.txt file and why do I need one?</summary>
+          <div class="tool-faq-a">
             <p>A robots.txt file is a plain text file placed in the root directory of your website. It uses the Robots Exclusion Protocol to instruct web spiders and crawlers (such as Googlebot and Bingbot) which sections of your site they are allowed to index. Having a properly configured robots.txt is crucial for SEO to prevent search crawlers from wasting crawl budget on private, admin, or search-query pages.</p>
           </div>
         </details>
 
-        <details class="faq-accordion">
-          <summary class="faq-question">Where should the robots.txt file be hosted?</summary>
-          <div class="faq-answer">
+        <details class="tool-faq-item">
+          <summary class="tool-faq-q">Where should the robots.txt file be hosted?</summary>
+          <div class="tool-faq-a">
             <p>The robots.txt file must be placed in the main root directory of your web host. For search engines to discover it, the file must be publicly accessible via the exact address <code>https://yourdomain.com/robots.txt</code>. Placing it in subdirectories (e.g., <code>yourdomain.com/assets/robots.txt</code>) will cause bots to ignore the file entirely.</p>
           </div>
         </details>
 
-        <details class="faq-accordion">
-          <summary class="faq-question">Does robots.txt hide private folders from the public?</summary>
-          <div class="faq-answer">
+        <details class="tool-faq-item">
+          <summary class="tool-faq-q">Does robots.txt hide private folders from the public?</summary>
+          <div class="tool-faq-a">
             <p>No, robots.txt does not secure or hide private folders. The file itself is publicly readable by anyone visiting the URL. In addition, malicious scrapers and search bots can choose to ignore robots.txt directives. To protect confidential content or pages, implement server-side authentication or use password-protected directory mechanisms.</p>
           </div>
         </details>
 
-        <details class="faq-accordion">
-          <summary class="faq-question">What is the difference between Disallow and Noindex?</summary>
-          <div class="faq-answer">
+        <details class="tool-faq-item">
+          <summary class="tool-faq-q">What is the difference between Disallow and Noindex?</summary>
+          <div class="tool-faq-a">
             <p>The <code>Disallow</code> directive in robots.txt stops crawlers from visiting a URL, but Google can still index the URL if it finds external links pointing to it. To guarantee that a page does not appear in search results, you must allow crawlers to visit the page and use a <code>&lt;meta name="robots" content="noindex"&gt;</code> HTML header tag instead.</p>
           </div>
         </details>
 
-        <details class="faq-accordion">
-          <summary class="faq-question">How does Google handle robots.txt rules?</summary>
-          <div class="faq-answer">
+        <details class="tool-faq-item">
+          <summary class="tool-faq-q">How does Google handle robots.txt rules?</summary>
+          <div class="tool-faq-a">
             <p>Google strictly respects Robots Exclusion Protocol directives. It caches robots.txt content for up to 24 hours, meaning changes to crawl rules may take a day to propagate. If your site returns a 5xx server error when Googlebot fetches robots.txt, Google will temporarily pause crawling to avoid requesting unauthorized pages.</p>
           </div>
         </details>
@@ -501,4 +512,5 @@
   <script src="robots-txt.js"></script>
 </body>
 </html>
+
 

@@ -186,7 +186,59 @@
   <button id="btn-clear" class="btn btn-secondary">Clear</button>
 </div>
 </div>
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid">
+          <!-- How It Works Section (Semantic step-by-step layout) -->
+      <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            <h2>How the Morse Code Translator Works</h2>
+          </div>
+        </div>
+        <p>This tool operates entirely on client-side regex, array operations, and string APIs to sort, count, filter, or compare standard text structures.</p>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">STEP 1</div>
+            <h3>Paste Target Text Block</h3>
+            <p>Input your content, article paragraphs, or list items into the configuration panel.</p>
+          </div>          <div class="seo-step-card">
+            <div class="seo-step-num">STEP 2</div>
+            <h3>Configure Parsing Criteria</h3>
+            <p>Choose specific rules such as case shifts, word counts, line-breaks, or pattern sorting.</p>
+          </div>          <div class="seo-step-card">
+            <div class="seo-step-num">STEP 3</div>
+            <h3>Retrieve Clean Text</h3>
+            <p>View instant stats (words, characters, paragraphs) and copy the updated text block immediately.</p>
+          </div>        </div>
+      </section>
+
+      <!-- FAQ Section (Semantic & Pre-rendered for NLP SEO) -->
+      <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <h2>Frequently Asked Questions</h2>
+          </div>
+        </div>
+        <div class="tool-faq-list">
+          <details class="tool-faq-item" open>
+            <summary class="tool-faq-q">How secure are the text transformation utilities?</summary>
+            <div class="tool-faq-a">
+              <p>Processing happens completely client-side in your browser using standard JavaScript regex and string APIs. None of your text is sent to our servers.</p>
+            </div>
+          </details>          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Is there a character limit for processing?</summary>
+            <div class="tool-faq-a">
+              <p>There is no strict character limit. The tool can comfortably process standard blog posts, coding scripts, or text files up to several megabytes.</p>
+            </div>
+          </details>          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Does the tool preserve formatting?</summary>
+            <div class="tool-faq-a">
+              <p>Most operations (like line-break removal or case conversion) are non-destructive and only modify the specific patterns you request.</p>
+            </div>
+          </details>        </div>
+      </section>
+
+      <section class="related-tools"><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid">
         <a href="../lorem-ipsum-generator/index.html" class="related-tool-card">
           <div class="related-tool-card-top">
             <div class="related-tool-icon-wrapper tool-icon-green">
@@ -312,4 +364,5 @@
     </div>
   </footer>
 <script src="../../script.js"></script><script src="morse-code-translator.js"></script></body></html>
+
 

@@ -366,23 +366,28 @@
       </div>
 
       <!-- ==================== HOW IT WORKS SECTION ==================== -->
-      <section class="tool-guide">
-        <h2 class="guide-title">How to Enhance Photo Clarity</h2>
-        <div class="guide-steps">
-          <div class="guide-step-card">
-            <div class="step-num">1</div>
-            <h3 class="step-title">Upload a Photo</h3>
-            <p class="step-desc">Drag or choose your photo file. Renders matching canvases side-by-side in our visual comparison curtain container.</p>
+            <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            <h2>How the Photo Enhancer Works</h2>
           </div>
-          <div class="guide-step-card">
-            <div class="step-num">2</div>
-            <h3 class="step-title">Apply Enhancements</h3>
-            <p class="step-desc">Select presets (like Vivid or Noir), adjust sliders (contrast, saturation), or toggle sharpen convolution matrixes.</p>
+        </div>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">1</div>
+            <h3 >Upload a Photo</h3>
+            <p >Drag or choose your photo file. Renders matching canvases side-by-side in our visual comparison curtain container.</p>
           </div>
-          <div class="guide-step-card">
-            <div class="step-num">3</div>
-            <h3 class="step-title">Drag & Compare</h3>
-            <p class="step-desc">Slide the center divider curtain handle back and forth to inspect details, then download your finalized image.</p>
+          <div class="seo-step-card">
+            <div class="seo-step-num">2</div>
+            <h3 >Apply Enhancements</h3>
+            <p >Select presets (like Vivid or Noir), adjust sliders (contrast, saturation), or toggle sharpen convolution matrixes.</p>
+          </div>
+          <div class="seo-step-card">
+            <div class="seo-step-num">3</div>
+            <h3 >Drag & Compare</h3>
+            <p >Slide the center divider curtain handle back and forth to inspect details, then download your finalized image.</p>
           </div>
         </div>
       </section>
@@ -455,40 +460,46 @@
       </section>
 
       <!-- ==================== FAQ SECTION ==================== -->
-      <section class="tool-faq">
-        <h2 class="faq-heading">Frequently Asked Questions</h2>
+            <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <h2>Frequently Asked Questions</h2>
+          </div>
+        </div>
+        <div class="tool-faq-list">
         
-        <details class="faq-accordion" open>
-          <summary class="faq-question">How does the sliding comparison window work?</summary>
-          <div class="faq-answer">
+        <details class="tool-faq-item" open>
+          <summary class="tool-faq-q">How does the sliding comparison window work?</summary>
+          <div class="tool-faq-a">
             <p>The sliding preview places two identical canvas elements directly on top of each other. The "Before" canvas sits at the bottom, while the "After" (enhanced) canvas sits inside an overlay container. Dragging the center handle adjusts the width of the top container, showing a split before/after view.</p>
           </div>
         </details>
 
-        <details class="faq-accordion">
-          <summary class="faq-question">What does the Sharpen filter actually do to the photo?</summary>
-          <div class="faq-answer">
+        <details class="tool-faq-item">
+          <summary class="tool-faq-q">What does the Sharpen filter actually do to the photo?</summary>
+          <div class="tool-faq-a">
             <p>The Sharpen filter applies a 3x3 mathematical matrix to calculate contrast boundaries between adjacent pixels. It increases brightness differences along edges, making textures look crisper and restoring details in slightly blurry areas.</p>
           </div>
         </details>
 
-        <details class="faq-accordion">
-          <summary class="faq-question">Will enhancing my photo reduce its resolution?</summary>
-          <div class="faq-answer">
+        <details class="tool-faq-item">
+          <summary class="tool-faq-q">Will enhancing my photo reduce its resolution?</summary>
+          <div class="tool-faq-a">
             <p>No, the canvas editor processes the original pixel dimensions of your uploaded image. Adjusting colors, brightness, or sharpness updates the values without reducing the image's height or width.</p>
           </div>
         </details>
 
-        <details class="faq-accordion">
-          <summary class="faq-question">Does this tool support raw camera files (RAW)?</summary>
-          <div class="faq-answer">
+        <details class="tool-faq-item">
+          <summary class="tool-faq-q">Does this tool support raw camera files (RAW)?</summary>
+          <div class="tool-faq-a">
             <p>Browsers cannot read raw camera files directly. This tool supports standard web formats like PNG, JPEG, WebP, and SVG. To edit raw photos, convert them to PNG or JPEG before uploading.</p>
           </div>
         </details>
 
-        <details class="faq-accordion">
-          <summary class="faq-question">Are enhanced photos saved or sent to any servers?</summary>
-          <div class="faq-answer">
+        <details class="tool-faq-item">
+          <summary class="tool-faq-q">Are enhanced photos saved or sent to any servers?</summary>
+          <div class="tool-faq-a">
             <p>No, all photo modifications are computed locally in your browser's memory using HTML5 canvas. No files or pixel data are uploaded to the web, keeping your images completely private.</p>
           </div>
         </details>
@@ -918,4 +929,5 @@
   </script>
 </body>
 </html>
+
 

@@ -326,7 +326,59 @@
       </div>
     </div>
   
-    <section class="related-tools" ><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid">
+          <!-- How It Works Section (Semantic step-by-step layout) -->
+      <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            <h2>How the Page Speed Tips Works</h2>
+          </div>
+        </div>
+        <p>This tool performs structural diagnostics on your web configurations, checking meta tags, sitemaps, headers, and performance factors.</p>
+        <div class="seo-steps-grid">
+          <div class="seo-step-card">
+            <div class="seo-step-num">STEP 1</div>
+            <h3>Submit Target Domain or URL</h3>
+            <p>Paste the web link or input sitemap xml targets to examine search indexing factors.</p>
+          </div>          <div class="seo-step-card">
+            <div class="seo-step-num">STEP 2</div>
+            <h3>Run SEO Diagnostic Audit</h3>
+            <p>The client-side parser checks status headers, redirects, hreflang syntax, or viewport compatibility.</p>
+          </div>          <div class="seo-step-card">
+            <div class="seo-step-num">STEP 3</div>
+            <h3>Analyze SEO Report</h3>
+            <p>Inspect the clean metrics grid and recommendation list to optimize your pages for ranking.</p>
+          </div>        </div>
+      </section>
+
+      <!-- FAQ Section (Semantic & Pre-rendered for NLP SEO) -->
+      <section class="tool-panel reveal-up" style="margin-top:24px">
+        <div class="tool-panel-title">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <h2>Frequently Asked Questions</h2>
+          </div>
+        </div>
+        <div class="tool-faq-list">
+          <details class="tool-faq-item" open>
+            <summary class="tool-faq-q">Why is a local SEO audit checker useful?</summary>
+            <div class="tool-faq-a">
+              <p>It allows developers and webmasters to parse local files, inspect code structures, and run sanity checks on URLs before deployment without triggering rate limits on servers.</p>
+            </div>
+          </details>          <details class="tool-faq-item">
+            <summary class="tool-faq-q">Do you track my audited domains or websites?</summary>
+            <div class="tool-faq-a">
+              <p>Never. All analysis takes place directly on your machine. We do not store or log any domain names, meta tags, or URLs you audit.</p>
+            </div>
+          </details>          <details class="tool-faq-item">
+            <summary class="tool-faq-q">How can I resolve meta tag or sitemap warning flags?</summary>
+            <div class="tool-faq-a">
+              <p>The reports list exact issues (such as length violations or syntax errors). You can copy the recommended structures directly into your files.</p>
+            </div>
+          </details>        </div>
+      </section>
+
+      <section class="related-tools"><h2 class="related-tools-heading">Related Tools</h2><div class="related-tools-grid">
         <a href="../domain-suggestor/index.html" class="related-tool-card">
           <div class="related-tool-card-top">
             <div class="related-tool-icon-wrapper tool-icon-orange">
@@ -457,4 +509,5 @@
   <script src="page-speed-tips.js"></script>
 </body>
 </html>
+
 
