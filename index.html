@@ -16,7 +16,7 @@
 
   <!-- Open Graph -->
   <meta property="og:site_name" content="ToolWools">
-  <meta property="og:title" content="ToolWools — Every Tool Your Workflow Will Ever Need">
+  <meta property="og:title" content="ToolWools — 80+ Free Online Tools. No Signup. No Limits.">
   <meta property="og:description" content="Free SEO, image, PDF, text, AI and developer tools. No signup. No paywalls. Just fast, reliable tools that work right in your browser.">
   <meta property="og:image" content="https://toolwools.com/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -236,6 +236,7 @@
 
   <main>
     <!-- ==================== SECTION 2: HERO ==================== -->
+    <!-- B1: min-height 100dvh desktop / auto mobile via .hero CSS -->
     <section class="hero" id="hero">
       <div class="hero-container">
         <div class="hero-grid-bg" aria-hidden="true"></div>
@@ -254,22 +255,26 @@
 
         <!-- Hero Content -->
         <div class="hero-content">
+          <!-- B1: badge updated to reflect product identity -->
           <div class="hero-badge animate-fade-up">
             <span class="badge-dot"></span>
-            <span class="badge-text">TRUSTED BY DEVELOPERS & MARKETERS</span>
+            <span class="badge-text">80+ FREE TOOLS — SEO · IMAGE · PDF · DEV · AI</span>
             <span class="badge-dot"></span>
           </div>
 
+          <!-- B1: headline rewritten — product-specific, names the user and the job -->
           <h1 class="hero-title animate-fade-up delay-1">
-            Every tool<br>
-            your <em class="highlight">workflow</em><br>
-            will ever need.
+            80+ free tools for<br>
+            <em class="highlight">SEO, images, PDFs</em><br>
+            and developers.
           </h1>
 
-          <p class="hero-subtitle animate-fade-up delay-2">
-            80+ professional-grade tools that run entirely in your browser. No accounts, no uploads, no data collection — just instant results.
+          <!-- B1: subtitle left-aligned via hero-subtitle--left class; precise frictionless value prop -->
+          <p class="hero-subtitle hero-subtitle--left animate-fade-up delay-2">
+            Professional-grade tools that run entirely in your browser. No accounts, no uploads, no data collection — just instant results, every time.
           </p>
 
+          <!-- B1: CTA row unchanged in structure; btn-primary must be solid #F4511E (enforced in styles.css) -->
           <div class="hero-ctas animate-fade-up delay-3">
             <a href="tools/index.html" class="btn btn-primary btn-lg">
               Explore All Tools
@@ -279,6 +284,18 @@
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L11 8L6 12" fill="currentColor"/></svg>
               See How It Works
             </a>
+          </div>
+
+          <!-- B1: trust line placed directly below CTA row, tight margin -->
+          <div class="hero-trust animate-fade-up delay-4">
+            <span class="trust-stars" aria-label="5 stars">
+              <svg width="14" height="14" viewBox="0 0 16 16"><path d="M8 1L9.79 5.56L14.65 5.94L10.99 9.1L12.07 13.84L8 11.28L3.93 13.84L5.01 9.1L1.35 5.94L6.21 5.56L8 1Z" fill="#F59E0B"/></svg>
+              <svg width="14" height="14" viewBox="0 0 16 16"><path d="M8 1L9.79 5.56L14.65 5.94L10.99 9.1L12.07 13.84L8 11.28L3.93 13.84L5.01 9.1L1.35 5.94L6.21 5.56L8 1Z" fill="#F59E0B"/></svg>
+              <svg width="14" height="14" viewBox="0 0 16 16"><path d="M8 1L9.79 5.56L14.65 5.94L10.99 9.1L12.07 13.84L8 11.28L3.93 13.84L5.01 9.1L1.35 5.94L6.21 5.56L8 1Z" fill="#F59E0B"/></svg>
+              <svg width="14" height="14" viewBox="0 0 16 16"><path d="M8 1L9.79 5.56L14.65 5.94L10.99 9.1L12.07 13.84L8 11.28L3.93 13.84L5.01 9.1L1.35 5.94L6.21 5.56L8 1Z" fill="#F59E0B"/></svg>
+              <svg width="14" height="14" viewBox="0 0 16 16"><path d="M8 1L9.79 5.56L14.65 5.94L10.99 9.1L12.07 13.84L8 11.28L3.93 13.84L5.01 9.1L1.35 5.94L6.21 5.56L8 1Z" fill="#F59E0B"/></svg>
+            </span>
+            <span class="trust-text">Trusted by developers &amp; marketers worldwide · No signup ever</span>
           </div>
         </div>
       </div>
@@ -638,15 +655,11 @@
             <!-- Image Comparison Slider -->
             <div class="image-compare" id="imageCompare">
               <div class="compare-image compare-original">
-                <div class="compare-canvas" id="compareOriginal">
-                  <!-- Generated via JS: mountain landscape -->
-                </div>
+                <div class="compare-canvas" id="compareOriginal"></div>
                 <span class="compare-label compare-label-left">Original</span>
               </div>
               <div class="compare-image compare-compressed" id="compareCompressed">
-                <div class="compare-canvas" id="compareCompressedCanvas">
-                  <!-- Generated via JS: compressed version -->
-                </div>
+                <div class="compare-canvas" id="compareCompressedCanvas"></div>
                 <span class="compare-label compare-label-right">Compressed</span>
               </div>
               <div class="compare-slider" id="compareSlider">
@@ -667,7 +680,6 @@
     <!-- ==================== SECTION 7B: FEATURED AUDIOBOOK DEMO ==================== -->
     <section class="featured-demo reveal-up" id="audiobook-demo">
       <div class="featured-container">
-        <!-- Floating Badge -->
         <div class="floating-badge">
           <div class="floating-badge-inner" style="background: var(--color-primary);">
             <span class="floating-badge-number" style="color: white;">-33%</span>
@@ -677,7 +689,6 @@
         </div>
 
         <div class="featured-grid">
-          <!-- Left Column -->
           <div class="featured-info">
             <span class="section-label">AUDIOBOOK CALCULATOR</span>
             <h2 class="featured-title">Know exactly how long any audiobook takes</h2>
@@ -706,7 +717,6 @@
             </a>
           </div>
 
-          <!-- Right Column: Mockup -->
           <div class="featured-mockup">
             <div class="mockup-window">
               <div class="mockup-topbar">
@@ -715,7 +725,6 @@
                 <span class="dot dot-green"></span>
               </div>
               <div class="mockup-content">
-                <!-- Mini calculator mockup -->
                 <div class="home-audiobook-mockup">
                   <div class="mockup-calc-header">
                     <span class="mockup-calc-title">Audiobook Speed Calculator</span>
@@ -732,9 +741,7 @@
                         <div class="mockup-calc-val">30</div>
                       </div>
                     </div>
-                    
                     <div class="mockup-calc-divider"></div>
-                    
                     <div class="mockup-speed-selector">
                       <div class="mockup-speed-pills">
                         <span class="mockup-pill">1×</span>
@@ -743,13 +750,11 @@
                         <span class="mockup-pill">3×</span>
                       </div>
                     </div>
-
                     <div class="mockup-calc-main-result">
                       <span class="mockup-calc-label">Duration at 1.5× Speed</span>
                       <h3 class="mockup-calc-result-val">7h 0m</h3>
                       <span class="mockup-calc-savings">↓ 3h 30m saved (33% faster)</span>
                     </div>
-
                     <div class="mockup-calc-stats">
                       <div class="mockup-calc-stat">
                         <span class="mockup-calc-stat-label">Books / Year</span>
@@ -777,7 +782,6 @@
           <h2 class="section-title-center">Built for everyday workflows</h2>
         </div>
         <div class="testimonials-grid stagger-children">
-          <!-- Testimonial 1 -->
           <div class="testimonial-card reveal-up">
             <div class="stars-row">
               <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1L9.79 5.56L14.65 5.94L10.99 9.1L12.07 13.84L8 11.28L3.93 13.84L5.01 9.1L1.35 5.94L6.21 5.56L8 1Z" fill="#F59E0B"/></svg>
@@ -795,7 +799,6 @@
               </div>
             </div>
           </div>
-          <!-- Testimonial 2 -->
           <div class="testimonial-card reveal-up">
             <div class="stars-row">
               <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1L9.79 5.56L14.65 5.94L10.99 9.1L12.07 13.84L8 11.28L3.93 13.84L5.01 9.1L1.35 5.94L6.21 5.56L8 1Z" fill="#F59E0B"/></svg>
@@ -813,10 +816,8 @@
               </div>
             </div>
           </div>
-          <!-- Testimonial 3 -->
           <div class="testimonial-card reveal-up">
             <div class="stars-row">
-              <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1L9.79 5.56L14.65 5.94L10.99 9.1L12.07 13.84L8 11.28L3.93 13.84L5.01 9.1L1.35 5.94L6.21 5.56L8 1Z" fill="#F59E0B"/></svg>
               <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1L9.79 5.56L14.65 5.94L10.99 9.1L12.07 13.84L8 11.28L3.93 13.84L5.01 9.1L1.35 5.94L6.21 5.56L8 1Z" fill="#F59E0B"/></svg>
               <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1L9.79 5.56L14.65 5.94L10.99 9.1L12.07 13.84L8 11.28L3.93 13.84L5.01 9.1L1.35 5.94L6.21 5.56L8 1Z" fill="#F59E0B"/></svg>
               <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1L9.79 5.56L14.65 5.94L10.99 9.1L12.07 13.84L8 11.28L3.93 13.84L5.01 9.1L1.35 5.94L6.21 5.56L8 1Z" fill="#F59E0B"/></svg>
@@ -850,7 +851,6 @@
           </a>
         </div>
         <div class="cta-mascots" aria-hidden="true">
-          <!-- Orange mascot -->
           <svg class="cta-mascot cta-mascot-1" width="100" height="120" viewBox="0 0 100 120">
             <rect x="15" y="20" width="70" height="65" rx="20" fill="#F4511E"/>
             <circle cx="38" cy="48" r="4" fill="white"/><circle cx="62" cy="48" r="4" fill="white"/>
@@ -861,7 +861,6 @@
             <line x1="35" y1="83" x2="32" y2="105" stroke="#F4511E" stroke-width="5" stroke-linecap="round"/>
             <line x1="65" y1="83" x2="68" y2="105" stroke="#F4511E" stroke-width="5" stroke-linecap="round"/>
           </svg>
-          <!-- Green mascot -->
           <svg class="cta-mascot cta-mascot-2" width="90" height="110" viewBox="0 0 90 110">
             <rect x="12" y="18" width="66" height="60" rx="16" fill="#10B981"/>
             <circle cx="34" cy="44" r="4" fill="white"/><circle cx="56" cy="44" r="4" fill="white"/>
@@ -872,7 +871,6 @@
             <line x1="32" y1="76" x2="28" y2="100" stroke="#10B981" stroke-width="5" stroke-linecap="round"/>
             <line x1="58" y1="76" x2="62" y2="100" stroke="#10B981" stroke-width="5" stroke-linecap="round"/>
           </svg>
-          <!-- Blue mascot with glasses -->
           <svg class="cta-mascot cta-mascot-3" width="100" height="120" viewBox="0 0 100 120">
             <circle cx="50" cy="55" r="35" fill="#2563EB"/>
             <circle cx="38" cy="50" r="8" stroke="white" stroke-width="2" fill="none"/>
@@ -886,7 +884,6 @@
             <line x1="38" y1="88" x2="33" y2="112" stroke="#2563EB" stroke-width="5" stroke-linecap="round"/>
             <line x1="62" y1="88" x2="67" y2="112" stroke="#2563EB" stroke-width="5" stroke-linecap="round"/>
           </svg>
-          <!-- Yellow mascot -->
           <svg class="cta-mascot cta-mascot-4" width="90" height="110" viewBox="0 0 90 110">
             <rect x="12" y="18" width="66" height="60" rx="14" fill="#FBBF24"/>
             <circle cx="34" cy="44" r="4" fill="white"/><circle cx="56" cy="44" r="4" fill="white"/>
@@ -896,12 +893,8 @@
             <line x1="78" y1="44" x2="88" y2="34" stroke="#FBBF24" stroke-width="5" stroke-linecap="round"/>
             <line x1="32" y1="76" x2="28" y2="100" stroke="#FBBF24" stroke-width="5" stroke-linecap="round"/>
             <line x1="58" y1="76" x2="62" y2="100" stroke="#FBBF24" stroke-width="5" stroke-linecap="round"/>
-            <!-- Code brackets -->
-            <g transform="translate(68, 8)">
-              <text font-family="monospace" font-size="14" fill="white" font-weight="700">{}</text>
-            </g>
+            <g transform="translate(68, 8)"><text font-family="monospace" font-size="14" fill="white" font-weight="700">{}</text></g>
           </svg>
-          <!-- Red PDF mascot -->
           <svg class="cta-mascot cta-mascot-5" width="90" height="110" viewBox="0 0 90 110">
             <rect x="12" y="18" width="66" height="60" rx="18" fill="#EF4444"/>
             <circle cx="34" cy="44" r="4" fill="white"/><circle cx="56" cy="44" r="4" fill="white"/>
@@ -912,7 +905,6 @@
             <line x1="32" y1="76" x2="28" y2="100" stroke="#EF4444" stroke-width="5" stroke-linecap="round"/>
             <line x1="58" y1="76" x2="62" y2="100" stroke="#EF4444" stroke-width="5" stroke-linecap="round"/>
           </svg>
-          <!-- Sparkles/confetti -->
           <svg class="cta-sparkle cta-sparkle-1" width="12" height="12" viewBox="0 0 12 12"><path d="M6 0L7 4.5L12 6L7 7.5L6 12L5 7.5L0 6L5 4.5L6 0Z" fill="#FBBF24"/></svg>
           <svg class="cta-sparkle cta-sparkle-2" width="10" height="10" viewBox="0 0 12 12"><path d="M6 0L7 4.5L12 6L7 7.5L6 12L5 7.5L0 6L5 4.5L6 0Z" fill="#F4511E"/></svg>
           <svg class="cta-sparkle cta-sparkle-3" width="8" height="8" viewBox="0 0 12 12"><path d="M6 0L7 4.5L12 6L7 7.5L6 12L5 7.5L0 6L5 4.5L6 0Z" fill="#10B981"/></svg>
@@ -926,7 +918,6 @@
   <footer class="footer" id="footer">
     <div class="footer-container">
       <div class="footer-grid">
-        <!-- Brand Column -->
         <div class="footer-brand">
           <a href="index.html" class="nav-logo">
             <div class="logo-icon">
@@ -941,22 +932,21 @@
           </a>
           <p class="footer-brand-desc">All-in-one online tools platform for SEO, Images, PDFs, Text, AI and Developers.</p>
           <div class="social-icons">
-            <a href="https://twitter.com/toolwools" aria-label="Twitter/X" class="social-icon">
+            <a href="https://twitter.com/toolwools" aria-label="Twitter/X" class="social-icon" target="_blank" rel="noopener noreferrer">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M11.9 8.45L18.35 1H16.86L11.24 7.5L6.72 1H1L7.75 10.95L1 18.8H2.49L8.41 11.9L13.18 18.8H18.9L11.9 8.45ZM9.17 11.05L8.5 10.1L3.02 2.1H6.02L9.75 7.4L10.42 8.35L16.86 17.75H13.86L9.17 11.05Z" fill="currentColor"/></svg>
             </a>
-            <a href="https://linkedin.com/company/toolwools" aria-label="LinkedIn" class="social-icon">
+            <a href="https://linkedin.com/company/toolwools" aria-label="LinkedIn" class="social-icon" target="_blank" rel="noopener noreferrer">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4.5 3C3.67 3 3 3.67 3 4.5C3 5.33 3.67 6 4.5 6C5.33 6 6 5.33 6 4.5C6 3.67 5.33 3 4.5 3ZM3 8H6V17H3V8ZM8 8H11V9.5C11.5 8.5 12.8 7.7 14.5 7.7C17.5 7.7 17.5 10.2 17.5 12V17H14.5V12.5C14.5 11 14 10.5 13 10.5C11.5 10.5 11 11.5 11 12.5V17H8V8Z" fill="currentColor"/></svg>
             </a>
-            <a href="https://github.com/toolwools" aria-label="GitHub" class="social-icon">
+            <a href="https://github.com/Jasper847/ToolWools" aria-label="GitHub" class="social-icon" target="_blank" rel="noopener noreferrer">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C5.58 2 2 5.58 2 10C2 13.54 4.29 16.53 7.47 17.59C7.87 17.66 8.02 17.42 8.02 17.21V15.65C5.73 16.13 5.26 14.56 5.26 14.56C4.89 13.64 4.35 13.4 4.35 13.4C3.6 12.88 4.4 12.9 4.4 12.9C5.22 12.96 5.65 13.74 5.65 13.74C6.37 14.97 7.55 14.63 8.05 14.43C8.12 13.91 8.33 13.56 8.56 13.36C6.77 13.15 4.88 12.42 4.88 9.43C4.88 8.56 5.2 7.85 5.66 7.29C5.58 7.08 5.3 6.27 5.74 5.17C5.74 5.17 6.43 4.95 8.02 5.99C8.66 5.81 9.34 5.72 10.02 5.72C10.7 5.72 11.38 5.81 12.02 5.99C13.61 4.95 14.3 5.17 14.3 5.17C14.74 6.27 14.46 7.08 14.38 7.29C14.84 7.85 15.16 8.56 15.16 9.43C15.16 12.43 13.27 13.15 11.46 13.35C11.75 13.6 12.02 14.1 12.02 14.86V17.21C12.02 17.42 12.17 17.67 12.57 17.59C15.73 16.53 18 13.54 18 10C18 5.58 14.42 2 10 2Z" fill="currentColor"/></svg>
             </a>
-            <a href="https://instagram.com/toolwools" aria-label="Instagram" class="social-icon">
+            <a href="https://instagram.com/toolwools" aria-label="Instagram" class="social-icon" target="_blank" rel="noopener noreferrer">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="15" cy="5" r="1" fill="currentColor"/></svg>
             </a>
           </div>
         </div>
 
-        <!-- Product Column -->
         <div class="footer-col">
           <h4 class="footer-col-title">PRODUCT</h4>
           <a href="tools/index.html" class="footer-link">All Tools</a>
@@ -967,7 +957,6 @@
           <a href="tools/index.html?cat=text" class="footer-link">Text Tools</a>
         </div>
 
-        <!-- Company Column -->
         <div class="footer-col">
           <h4 class="footer-col-title">COMPANY</h4>
           <a href="about/index.html" class="footer-link">About Us</a>
