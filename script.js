@@ -436,6 +436,45 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, 100);
+
+  // ==========================================
+  // 14. 3D MOUSE TILT & SPOTLIGHT FOLLOW
+  // ==========================================
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!isTouchDevice && !prefersReducedMotion) {
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        card.style.setProperty('--x', `${x}px`);
+        card.style.setProperty('--y', `${y}px`);
+
+        const width = rect.width;
+        const height = rect.height;
+        const centerX = width / 2;
+        const centerY = height / 2;
+        const deltaX = x - centerX;
+        const deltaY = y - centerY;
+        
+        const tiltX = (deltaY / centerY) * -8; // subtle X tilt
+        const tiltY = (deltaX / centerX) * 8;  // subtle Y tilt
+
+        card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.015, 1.015, 1.015)`;
+      });
+
+      card.style.transition = 'transform 0.1s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s, box-shadow 0.3s';
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        card.style.setProperty('--x', '50%');
+        card.style.setProperty('--y', '50%');
+      });
+    });
+  }
 });
 
 
