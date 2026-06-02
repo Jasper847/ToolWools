@@ -1377,21 +1377,17 @@ html {
 
 .mockup-window {
   background: var(--color-surface);
-  border-radius: var(--space-4);
+  border-radius: var(--radius-card);
   overflow: hidden;
   border: 1px solid var(--color-border);
-  box-shadow:
-    0 2px var(--space-1) rgba(0,0,0,0.04),
-    0 var(--space-2) var(--space-8) rgba(0,0,0,0.08),
-    0 var(--space-8) var(--space-20) rgba(0,0,0,0.06),
-    0 0 0 1px rgba(255,255,255,0.05) inset;
+  box-shadow: none;
 }
 [data-theme="dark"] .mockup-window {
-  box-shadow: 0 var(--space-8) var(--space-20) rgba(0,0,0,0.4);
+  box-shadow: none;
 }
 
 .mockup-topbar {
-  background: linear-gradient(180deg, var(--color-border-light) 0%, var(--color-border) 100%);
+  background: var(--color-border-light);
   display: flex;
   align-items: center;
   gap: var(--space-1-5);
@@ -1404,9 +1400,9 @@ html {
   height: var(--space-3);
   border-radius: 50%;
 }
-.dot-red { background: #FF5F57; box-shadow: 0 0 0 1px rgba(0,0,0,0.12); }
-.dot-yellow { background: #FEBC2E; box-shadow: 0 0 0 1px rgba(0,0,0,0.10); }
-.dot-green { background: #28C840; box-shadow: 0 0 0 1px rgba(0,0,0,0.10); }
+.dot-red { background: #FF5F57; }
+.dot-yellow { background: #FEBC2E; }
+.dot-green { background: #28C840; }
 
 .mockup-content {
   padding: var(--space-4);
@@ -1418,6 +1414,7 @@ html {
   padding: var(--space-8) var(--space-4);
   text-align: center;
   margin-bottom: var(--space-4);
+  background: var(--color-bg);
 }
 .upload-zone svg {
   margin-bottom: var(--space-3);
@@ -1425,11 +1422,11 @@ html {
 .upload-main-text {
   font-weight: 500;
   font-size: var(--text-sm);
-  color: var(--color-body);
+  color: var(--color-dark);
 }
 .upload-sub-text {
   font-size: var(--text-xs);
-  color: var(--color-muted-light);
+  color: var(--color-muted);
   margin-top: var(--space-1);
 }
 
@@ -1439,7 +1436,7 @@ html {
   justify-content: space-between;
   padding: var(--space-2) var(--space-3);
   background: var(--color-border-light);
-  border-radius: var(--space-2);
+  border-radius: var(--radius-sm);
   margin-bottom: var(--space-2);
 }
 .file-info {
@@ -1450,7 +1447,7 @@ html {
 .file-name {
   font-size: var(--text-xs);
   font-weight: 500;
-  color: var(--color-body);
+  color: var(--color-dark);
 }
 .file-size {
   font-size: var(--text-xs);
@@ -1458,16 +1455,16 @@ html {
 }
 
 .progress-bar-container {
-  height: 6px;
+  height: 8px;
   background: var(--color-border-light);
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
   margin-bottom: var(--space-2);
 }
 .progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, #10B981, #34D399);
-  border-radius: 100px;
+  background: var(--color-green);
+  border-radius: var(--radius-sm);
   transition: width 1s ease;
 }
 
@@ -1510,29 +1507,32 @@ html {
   top: -10px;
   right: var(--space-7);
   z-index: 3;
-  animation: mascotFloat 2.5s ease-in-out infinite;
+  animation: floatCard 2.5s ease-in-out infinite alternate;
 }
 .floating-badge-inner {
   width: var(--space-14);
   height: var(--space-14);
   border-radius: 50%;
   background: var(--color-surface);
-  box-shadow: var(--shadow-xl);
+  box-shadow: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--color-border-light);
+  border: 2px solid var(--color-dark);
 }
 .floating-badge-number {
-  font-weight: 700;
-  font-size: var(--text-xl);
-  color: var(--color-primary);
+  font-weight: 800;
+  font-size: var(--text-lg);
+  color: var(--color-dark);
   line-height: 1;
 }
 .floating-badge-label {
-  font-size: var(--text-xs);
+  font-size: 10px;
   color: var(--color-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
 }
 .floating-badge-arrow {
   position: absolute;
