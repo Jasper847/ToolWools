@@ -1109,7 +1109,8 @@ html {
 }
 
 .featured-title {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
   font-weight: 700;
   font-size: var(--text-2xl);
   color: var(--color-dark);
@@ -1667,6 +1668,8 @@ html {
 .tool-icon-green svg line { stroke: var(--color-green); }
 
 .tool-name {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
   font-weight: 600;
   font-size: var(--text-base);
   color: var(--color-dark);
@@ -1721,6 +1724,8 @@ html {
 }
 
 .feature-card-title {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
   font-weight: 700;
   font-size: var(--text-xl);
   color: var(--color-dark);
