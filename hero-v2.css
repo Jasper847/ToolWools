@@ -241,3 +241,13 @@
 
 /* --- delay-4 animation --- */
 .delay-4 { animation-delay: 0.4s; }
+
+/* --- Accessibility: Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-float-card,
+  .hero-sparkle,
+  .badge-dot--pulse {
+    animation: none !important;
+    transition: none !important;
+  }
+}
